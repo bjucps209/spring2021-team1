@@ -5,4 +5,4 @@ game name : Public safety escape
 enums 
 state enum { jump, left, right, speed up} the state in which the player is in 
 powerup enum { blow up, immunity, super jump, coin, lives}
-traffic enum { cars, truck, }
+traffic enum { cars, truck, ...}
