@@ -1,11 +1,17 @@
+package model;
 class Player{
     State player = State.DRIVING;
+    PlayerObserver observer;
 
     public Player(State Player){
         this.player = Player;
     }
-    
 
+    public void setObserver(PlayerObserver observer) {
+        this.observer = observer;
+    }
+    
+}
 //     switch (State){
 //         case1: State = State.JUMP;
 //             break;

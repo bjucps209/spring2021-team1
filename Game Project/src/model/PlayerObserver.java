@@ -1,3 +1,4 @@
+package model;
 interface PlayerObserver{
-    update();
+    public void update(State state);
 }
