@@ -7,6 +7,8 @@
     spacing="10" prefHeight="400" prefWidth="250">
 
     <Label text="high scores"/>
+    
+    <Button fx:id="btnBackHigh" onAction="#onBackClicked" text="Back"  />
 
 
 </VBox>

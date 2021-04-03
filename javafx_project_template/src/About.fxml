@@ -7,6 +7,8 @@
     spacing="10" prefHeight="400" prefWidth="250">
 
     <Label text="about screen"/>
+    
+    <Button fx:id="btnBackAbout" onAction="#onBackClicked" text="Back"  />
 
 
 </VBox>
