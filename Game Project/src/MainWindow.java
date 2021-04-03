@@ -8,7 +8,7 @@ public class MainWindow {
 
     @FXML
     void onGreetClicked(ActionEvent event) {
-        var alert = new Alert(AlertType.INFORMATION, "Hello, world!");
+        var alert = new Alert(AlertType.INFORMATION, "i made a change!");
         alert.setHeaderText(null);
         alert.show();
 

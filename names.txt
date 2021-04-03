@@ -2,4 +2,7 @@ file containing variables/methods/classes names and meaning
 
 game name : Public safety escape 
 
-new comment 
+enums 
+state enum { jump, left, right, speed up} the state in which the player is in 
+powerup enum { blow up, immunity, super jump, coin, lives}
+traffic enum { cars, truck, ...}
