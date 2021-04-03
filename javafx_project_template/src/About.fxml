@@ -6,8 +6,9 @@
 <VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="@MainWindow.css"
     spacing="10" prefHeight="400" prefWidth="250">
 
-    <Label text="start game?"/>
-    <Button fx:id="btnBackStart" onAction="#onBackClicked" text="Back"  />
+    <Label text="about screen"/>
+    
+    <Button fx:id="btnBackAbout" onAction="#onBackClicked" text="Back"  />
 
 
 </VBox>
