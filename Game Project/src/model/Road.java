@@ -1,0 +1,38 @@
+package model;
+
+public class Road{
+
+
+
+    {
+    //Switch for each DifficultyLevel/ LevelSequece combinations
+    switch (DifficultyLevel){
+    case 1: DifficultyLevel = DifficultyLevel.EASY;
+        switch (LevelSequence){
+            case 1: LevelSequence = LevelSequence.FIVE;
+                break;
+            case 2: LevelSequence = LevelSequence.TEN;
+                break;
+            case 3: LevelSequence = LevelSequence.FIFTEEN;
+                break;
+           }
+    case 2: DifficultyLevel = DifficultyLevel.MEDIUM;
+        switch (LevelSequence){
+            case 1: LevelSequence = LevelSequence.FIVE;
+                break;
+            case 2: LevelSequence = LevelSequence.TEN;
+                break;
+            case 3: LevelSequence = LevelSequence.FIFTEEN;
+                break;
+        }
+    case 3: DifficultyLevel= DifficultyLevel.HARD;
+        switch (LevelSequence){
+            case 1: LevelSequence = LevelSequence.FIVE;
+                break;
+            case 2: LevelSequence = LevelSequence.TEN;
+                break;
+            case 3: LevelSequence = LevelSequence.FIFTEEN;
+        }
+    }
+    }
+}
