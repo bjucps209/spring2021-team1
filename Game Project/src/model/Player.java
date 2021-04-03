@@ -2,10 +2,14 @@ package model;
 
 
 class Player{
+    //how the player begins (in the middle lane moving forward)
     State player = State.MOVING;
+
+    //x and y coordinate
     int x;
     int y;
 
+    //
     public Player(State Player, int x, int y){
         this.player = Player;
         Coordinate coor = new Coordinate(x, y);
