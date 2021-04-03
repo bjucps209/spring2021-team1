@@ -11,7 +11,8 @@ import javafx.stage.Stage;
 
 
 public class MainWindow {
-    @FXML Button btnStart;
+    @FXML Button btnStart, btnHelp, btnAbout, btnHigh;
+    
 
     @FXML
     void onStartClicked(ActionEvent event) throws IOException {
@@ -22,4 +23,32 @@ public class MainWindow {
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    void onHelpClicked(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("Help.fxml"));
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    void onAboutClicked(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("About.fxml"));
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    void onHighClicked(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("Highscores.fxml"));
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }
