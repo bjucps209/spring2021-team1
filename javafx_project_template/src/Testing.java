@@ -1,7 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class RoadTesting {
+public class Testing{
     // @Test
     // public void testAdd_PositiveNums_PositiveResult() {
     //     var calc = new Calculator();
