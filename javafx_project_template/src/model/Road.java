@@ -1,8 +1,20 @@
 package model;
 
+
+
+import java.io.File;
+import java.util.ArrayList;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.ObjectCodec;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+
 public class Road{
     //File to load and save from
-    static final String filename = "data.json";
+    static final File filename = new File("/data.json");
+    ArrayList<Object> saveList = new ArrayList();
     boolean gameOver;
     boolean cheatOn;
     Player player;
@@ -83,11 +95,15 @@ public class Road{
         return newRoad;
     }
 
-    public void save(String filename) {
-
+    public void save(File filename) throws Exception {
+       ObjectMapper mp = new ObjectMapper();
+        
+       for (Object item : saveList) {
+           mp.writeValue(filename, item);
+       }
     }
 
-    public void load(String filename) {
-
+    public void load(File filename) {
+ 
     }
 }
