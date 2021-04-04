@@ -33,20 +33,48 @@ public class Road{
                     case 2: LevelSequence = LevelSequence.TEN;
                         break;
                     case 3: LevelSequence = LevelSequence.FIFTEEN;
+                        break;
                 }
             }
             }
     }
-
-    public void addObjectsA(int x, int y){
-        //setCell(x: int, type: Traffic)
+    
+    /**
+     * @return none
+     * @param TrafficItem:object
+     */
+    public void addObjectsA(){
+        //code
     }
 
-    public void addObjectsB(int x, int y){
-        //setCell(x: int, type: Traffic)
+    /**
+     * @return none
+     * @param TrafficItem:object
+     */
+    public void addObjectsB(){
+        //code
     }
 
-    public void addObjectsC(int x, int y){
-        //setCell(x: int, type: Traffic)
+    /**
+     * @return none
+     * @param TrafficItem:object
+     */
+    public void addObjectsC(){
+        //code
+    }
+
+    /**
+     * @param int:d
+     * @param int:r
+     * @return
+     */
+    public int calculateTime(int d, int r){
+        t = d/t;
+        return t;
+    }
+
+    public Road createRoad(){
+        Road newRoad = new Road();
+        return newRoad;
     }
 }
