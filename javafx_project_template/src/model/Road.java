@@ -15,7 +15,6 @@ public class Road{
     //File to load and save from
     static final File filename = new File("/data.json");
     ArrayList<Object> saveList = new ArrayList();
-    
     boolean gameOver;
     boolean cheatOn;
     Player player;
