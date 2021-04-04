@@ -13,7 +13,7 @@ public class highscoresOverall {
     
     public void addToTxtFile(){
         try {
-            FileWriter myWriter = new FileWriter("filename.txt");
+            FileWriter myWriter = new FileWriter("highscore.txt");
             myWriter.write(playerList.toString());
             myWriter.close();
           } catch (IOException e) {}
