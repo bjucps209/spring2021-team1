@@ -3,6 +3,8 @@ package model;
 import java.util.Random;
 
 public class Road{
+    //File to load and save from
+    static final String filename = "data.json";
 
     public Road(){
         {
@@ -76,5 +78,13 @@ public class Road{
     public Road createRoad(){
         Road newRoad = new Road();
         return newRoad;
+    }
+
+    public void save() {
+
+    }
+
+    public void road() {
+
     }
 }
