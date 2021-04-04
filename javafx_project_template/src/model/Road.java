@@ -103,7 +103,12 @@ public class Road{
        }
     }
 
-    public void load(File filename) {
- 
+    public void load(File filename) throws Exception{
+        ObjectMapper mp = new ObjectMapper();
+        JsonNode loadArray = mp.readTree(filename);
+        for (JsonNode node : loadArray) {
+            System.out.println(node);
+        }
+
     }
 }
