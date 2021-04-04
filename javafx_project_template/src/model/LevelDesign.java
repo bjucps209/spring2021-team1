@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 
 class LevelDesign{
@@ -14,7 +16,7 @@ class LevelDesign{
     }
 
 
-public ArrayList buildLevel(RoadBlock roadblock){
+public ArrayList<RoadBlock> buildLevel(RoadBlock roadblock){
     //return an arraylist with the user specified oblstacles
     return null;
 }
