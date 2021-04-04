@@ -12,6 +12,15 @@ public class playerHighscore {
         this.name = name;
         this.score = score;
     }
+    public String infromation(){
+        String info = "";
+        info += difficulty.toString() + ",";
+        info += distance.toString() + ",";
+        info += name +",";
+        info += String.valueOf(score) +",";
+        return info;
+        
+    }
 
     public void setDifficulty(model.DifficultyLevel difficulty) {
         this.difficulty = difficulty;
