@@ -103,8 +103,29 @@ public class Road{
            mp.writeValue(filename, item);
        }
     }
+    
+    public Road load(File filename) throws Exception{
+        /*
+        Hypothetical Methods:
+        setBackground()
+        addObjects()
+        addLanes()
 
-    public void load(File filename) {
- 
+        */
+        ObjectMapper mp = new ObjectMapper();
+        JsonNode loadArray = mp.readTree(filename);
+        for (JsonNode node : loadArray) {
+            System.out.println(node);
+            String type = node.path("type").asText();
+            //Switch statement to deal with objects based on type
+            
+        }
+
+        Road road = new Road();
+        //Set road properties
+        return road;
+
+
+
     }
 }
