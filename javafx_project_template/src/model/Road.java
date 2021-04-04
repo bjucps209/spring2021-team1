@@ -83,11 +83,11 @@ public class Road{
         return newRoad;
     }
 
-    public void save() {
+    public void save(String filename) {
 
     }
 
-    public void load() {
+    public void load(String filename) {
 
     }
 }
