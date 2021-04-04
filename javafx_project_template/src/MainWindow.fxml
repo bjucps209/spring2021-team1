@@ -6,6 +6,7 @@
 <VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="@MainWindow.css"
     spacing="10" prefHeight="400" prefWidth="250">
 
+    <Label text="Welcome to public safety escape"/>
     <Button fx:id="btnStart" onAction="#onStartClicked" text="Start"  />
     <Button fx:id="btnHigh" onAction="#onHighClicked" text="Highscores"  />
     <Button fx:id="btnAbout" onAction="#onAboutClicked" text="About"  />

@@ -16,22 +16,22 @@ class Player{
 
     }
 
-    {
-    switch (State){
-        case 1: State = State.JUMP;
-            break;
-            //jumpUp()
-        case 2: State = State.SPEEDUP;
-            break;
-            //speedUp();
-        case 3: State = State.LEFT;
-            break;
-        case 4: State = State.RIGHT;
-            break;
-        case 5: State = State.DRIVING;
-            break;
-    }
-    }
+    // {
+    // switch (State){
+    //     case 1: State = State.JUMP;
+    //         break;
+    //         //jumpUp()
+    //     case 2: State = State.SPEEDUP;
+    //         break;
+    //         //speedUp();
+    //     case 3: State = State.LEFT;
+    //         break;
+    //     case 4: State = State.RIGHT;
+    //         break;
+    //     case 5: State = State.DRIVING;
+    //         break;
+    // }
+    // }
 
     /**
      * @return none
@@ -39,7 +39,7 @@ class Player{
      * @param int:y
      */
     public void jumpUp(){
-        break;
+        // break;
     }
 
     /**
@@ -48,7 +48,7 @@ class Player{
      * make the view go faster meaning adding more in x over a faster period of times
      */
     public void speedUp(){
-        break;
+        // break;
     }
 
     /**
@@ -58,7 +58,7 @@ class Player{
      * the right or the middle lane add y
      */
     public void leftLane(){
-        break;
+        // break;
     }
 
     /**
@@ -68,7 +68,7 @@ class Player{
      * the left or the middle lane add y
      */
     public void rightLane(){
-        break;
+        // break;
     }
 
 
@@ -78,7 +78,14 @@ class Player{
      * get the y, if its 0, the current state is right lane, if its a 1 its the middle lane, and if its the 2 its the left lane
      */
     public void getCurrentState(){
-        break;
+        // break;
+    }
+
+    public void serialize() {
+
+    }
+
+    public void deserialize() {
+        
     }
 }
-
