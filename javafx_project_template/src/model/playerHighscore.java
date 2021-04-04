@@ -12,6 +12,31 @@ public class playerHighscore {
         this.name = name;
         this.score = score;
     }
-    
+
+    public void setDifficulty(DifficultyLevel difficulty) {
+        this.difficulty = difficulty;
+    }
+    public void setDistance(LevelSequence distance) {
+        this.distance = distance;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setScore(int score) {
+        this.score = score;
+    }
+    public DifficultyLevel getDifficulty() {
+        return difficulty;
+    }
+    public LevelSequence getDistance() {
+        return distance;
+    }
+    public String getName() {
+        return name;
+    }
+    public int getScore() {
+        return score;
+    }
+
 
 }
