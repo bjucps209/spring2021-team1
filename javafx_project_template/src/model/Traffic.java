@@ -1,6 +1,6 @@
 package model;
 
-public enum Traffic {
+public enum TrafficItem {
     CARS, PEOPLE, TRUCK, POTHOLES
 }
 
