@@ -80,4 +80,12 @@ class Player{
     public void getCurrentState(){
         // break;
     }
+
+    public void serialize() {
+
+    }
+
+    public void deserialize() {
+        
+    }
 }
