@@ -1,10 +1,13 @@
 package model;
 
-import java.util.Random;
-
 public class Road{
     //File to load and save from
     static final String filename = "data.json";
+    boolean gameOver;
+    boolean cheatOn;
+    Player player;
+    int time;
+    int distance;
 
     public Road(){
         // {
@@ -71,8 +74,8 @@ public class Road{
      * @return
      */
     public int calculateTime(int d, int r){
-        int t = d/r;
-        return t;
+        time = d/r;
+        return time;
     }
 
     public Road createRoad(){
@@ -84,7 +87,7 @@ public class Road{
 
     }
 
-    public void road() {
+    public void load() {
 
     }
 }
