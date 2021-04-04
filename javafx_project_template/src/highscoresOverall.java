@@ -10,16 +10,21 @@ public class highscoresOverall {
     ArrayList<String> playerList = new ArrayList<String>();
 
     public void addPlayer(playerHighscore player){
-        String info = player.infromation();
-        playerList.add(info);
+        // String info = player.infromation();
+        // playerList.add(info);
     }
     
-    public void addToTxtFile(){
-        try {
-            FileWriter myWriter = new FileWriter("highscore.txt");
-            myWriter.write();
-            myWriter.close();
-          } catch (IOException e) {}
-        }
+    public void addToTxtFile(int index){
+        // try {
+        //     FileWriter myWriter = new FileWriter("highscore.txt");
+        //     myWriter.write(playerList.get(index));
+        //     myWriter.close();
+        //   } catch (IOException e) {}
+    }
 
+    public void readFromTxtFile(String filename){
+        //this method will read from the high scores file 
+    }
+
+    
 }

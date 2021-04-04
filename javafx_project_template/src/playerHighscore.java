@@ -13,11 +13,11 @@ public class playerHighscore {
         this.score = score;
     }
     public String infromation(){
-        String info = "";
-        info += difficulty.toString() + ",";
-        info += distance.toString() + ",";
-        info += name +",";
-        info += String.valueOf(score) +",";
+         String info = "";
+        // info += difficulty.toString() + ",";
+        // info += distance.toString() + ",";
+        // info += name +",";
+        // info += String.valueOf(score) +",";
         return info;
         
     }
