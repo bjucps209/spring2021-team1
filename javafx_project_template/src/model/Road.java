@@ -5,38 +5,38 @@ import java.util.Random;
 public class Road{
 
     public Road(){
-        {
+        // {
             //Switch for each DifficultyLevel/ LevelSequece combinations
-            switch (DifficultyLevel){
-            case 1: DifficultyLevel = DifficultyLevel.EASY;
-                switch (LevelSequence){
-                    case 1: LevelSequence = LevelSequence.FIVE;
-                        break;
-                    case 2: LevelSequence = LevelSequence.TEN;
-                        break;
-                    case 3: LevelSequence = LevelSequence.FIFTEEN;
-                        break;
-                   }
-            case 2: DifficultyLevel = DifficultyLevel.MEDIUM;
-                switch (LevelSequence){
-                    case 1: LevelSequence = LevelSequence.FIVE;
-                        break;
-                    case 2: LevelSequence = LevelSequence.TEN;
-                        break;
-                    case 3: LevelSequence = LevelSequence.FIFTEEN;
-                        break;
-                }
-            case 3: DifficultyLevel= DifficultyLevel.HARD;
-                switch (LevelSequence){
-                    case 1: LevelSequence = LevelSequence.FIVE;
-                        break;
-                    case 2: LevelSequence = LevelSequence.TEN;
-                        break;
-                    case 3: LevelSequence = LevelSequence.FIFTEEN;
-                        break;
-                }
-            }
-            }
+            // switch (DifficultyLevel){
+            // case 1: DifficultyLevel = DifficultyLevel.EASY;
+            //     switch (LevelSequence){
+            //         case 1: LevelSequence = LevelSequence.FIVE;
+            //             break;
+            //         case 2: LevelSequence = LevelSequence.TEN;
+            //             break;
+            //         case 3: LevelSequence = LevelSequence.FIFTEEN;
+            //             break;
+            //        }
+            // case 2: DifficultyLevel = DifficultyLevel.MEDIUM;
+            //     switch (LevelSequence){
+            //         case 1: LevelSequence = LevelSequence.FIVE;
+            //             break;
+            //         case 2: LevelSequence = LevelSequence.TEN;
+            //             break;
+            //         case 3: LevelSequence = LevelSequence.FIFTEEN;
+            //             break;
+            //     }
+            // case 3: DifficultyLevel= DifficultyLevel.HARD;
+            //     switch (LevelSequence){
+            //         case 1: LevelSequence = LevelSequence.FIVE;
+            //             break;
+            //         case 2: LevelSequence = LevelSequence.TEN;
+            //             break;
+            //         case 3: LevelSequence = LevelSequence.FIFTEEN;
+            //             break;
+            //     }
+            // }
+            // }
     }
     
     /**
@@ -69,7 +69,7 @@ public class Road{
      * @return
      */
     public int calculateTime(int d, int r){
-        t = d/t;
+        int t = d/r;
         return t;
     }
 
