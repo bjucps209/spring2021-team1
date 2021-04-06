@@ -1,12 +1,10 @@
 package model;
-
-
 class Player{
     //how the player begins (in the middle lane moving forward)
-    State player = State.MIDDLE;
     int speed = 0;
     int lives = 3;
     int score = 0;
+    State player = State.MOVING;
 
     //x and y coordinate
     int x;
@@ -91,5 +89,12 @@ class Player{
     public boolean collisionDetection(RoadBlock rb){
         
     }
-}
 
+    public void serialize() {
+
+    }
+
+    public void deserialize() {
+        
+    }
+}

@@ -1,8 +1,20 @@
 package model;
 
+
+
+import java.io.File;
+import java.util.ArrayList;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.ObjectCodec;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+
 public class Road{
     //File to load and save from
-    static final String filename = "data.json";
+    static final File filename = new File("/data.json");
+    ArrayList<Object> saveList = new ArrayList();
     boolean gameOver;
     boolean cheatOn;
     Player player;
@@ -84,11 +96,36 @@ public class Road{
         return newRoad;
     }
 
-    public void save() {
-
+    public void save(File filename) throws Exception {
+       ObjectMapper mp = new ObjectMapper();
+        
+       for (Object item : saveList) {
+           mp.writeValue(filename, item);
+       }
     }
+    
+    public Road load(File filename) throws Exception{
+        /*
+        Hypothetical Methods:
+        setBackground()
+        addObjects()
+        addLanes()
 
-    public void load() {
+        */
+        ObjectMapper mp = new ObjectMapper();
+        JsonNode loadArray = mp.readTree(filename);
+        for (JsonNode node : loadArray) {
+            System.out.println(node);
+            String type = node.path("type").asText();
+            //Switch statement to deal with objects based on type
+            
+        }
+
+        Road road = new Road();
+        //Set road properties
+        return road;
+
+
 
     }
 
