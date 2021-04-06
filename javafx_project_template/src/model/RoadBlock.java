@@ -1,9 +1,6 @@
 package model;
 
-enum TrafficItem {
+enum RoadBlock {
     CARS, PEOPLE, TRUCK, POTHOLES
 }
 
-enum Lane {
-    A, B, C
-}

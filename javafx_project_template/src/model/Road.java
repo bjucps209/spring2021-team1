@@ -7,6 +7,7 @@ public class Road{
     boolean cheatOn;
     Player player;
     int time;
+    int speed;
     int distance;
 
     public Road(){
@@ -46,25 +47,25 @@ public class Road{
     
     /**
      * @return none
-     * @param TrafficItem:object
+     * @param RoadBlock:object
      */
-    public void addObjectsA(){
+    public void addObjectsA(RoadBlock object, int x){
         //code
     }
 
     /**
      * @return none
-     * @param TrafficItem:object
+     * @param RoadBlock:object
      */
-    public void addObjectsB(){
+    public void addObjectsB(RoadBlock object, int x){
         //code
     }
 
     /**
      * @return none
-     * @param TrafficItem:object
+     * @param RoadBlock:object
      */
-    public void addObjectsC(){
+    public void addObjectsC(RoadBlock object, int x){
         //code
     }
 
@@ -89,5 +90,10 @@ public class Road{
 
     public void load() {
 
+    }
+
+    public RoadBlock getObject(int x){
+        RoadBlock item = RoadBlock.CARS;
+        return item;
     }
 }
