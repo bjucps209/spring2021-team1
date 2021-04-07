@@ -87,6 +87,7 @@ class Player{
      * @param 
      */
     public boolean collisionDetection(RoadBlock rb){
+        return false;
         
     }
 
