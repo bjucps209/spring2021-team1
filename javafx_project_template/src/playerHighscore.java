@@ -10,7 +10,7 @@ public class PlayerHighScore {
     public String infromation(){
         String info = "";
         info += name +",";
-        info += String.valueOf(score) +",";
+        info += String.valueOf(score);
         return info;
         
     }
