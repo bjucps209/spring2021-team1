@@ -14,12 +14,12 @@ public class highscoresOverall {
         playerList.add(info);
     }
     
-    public void addToTxtFile(){
-        try {
-            FileWriter myWriter = new FileWriter("highscore.txt");
-            myWriter.write();
-            myWriter.close();
-          } catch (IOException e) {}
-        }
+    // public void addToTxtFile(){
+    //     try {
+    //         FileWriter myWriter = new FileWriter("highscore.txt");
+    //         myWriter.write();
+    //         myWriter.close();
+    //       } catch (IOException e) {}
+    //     }
 
 }

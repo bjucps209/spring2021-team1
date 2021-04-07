@@ -4,6 +4,8 @@ package model;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
@@ -15,6 +17,7 @@ public class Road{
     //File to load and save from
     static final File filename = new File("/data.json");
     ArrayList<Object> saveList = new ArrayList();
+    ArrayList<RoadBlock> rbList = new ArrayList<>();
     boolean gameOver;
     boolean cheatOn;
     Player player;
@@ -23,6 +26,10 @@ public class Road{
     int distance;
 
     public Road(){
+        rbList.add(RoadBlock.CARS);
+        rbList.add(RoadBlock.PEOPLE);
+        rbList.add(RoadBlock.POTHOLES);
+        rbList.add(RoadBlock.TRUCK);
         // {
             //Switch for each DifficultyLevel/ LevelSequece combinations
             // switch (DifficultyLevel){
@@ -132,5 +139,15 @@ public class Road{
     public RoadBlock getObject(int x){
         RoadBlock item = RoadBlock.CARS;
         return item;
+    }
+
+    /**
+     * @param none
+     * @return Obstacle
+     */
+    public Obstacle createRandomObstacle(){
+        Random rand = new Random();
+        Obstacle obstacle = new Obstacle(rbList.get(rand.nextInt(3)));
+        return obstacle;
     }
 }

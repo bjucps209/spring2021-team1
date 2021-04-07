@@ -74,7 +74,7 @@ class Player{
 
 
     /**
-     * @return none
+     * @return Lane
      * @param none
      * get the y, if its 0, the current state is right lane, if its a 1 its the middle lane, and if its the 2 its the left lane
      */
@@ -86,8 +86,18 @@ class Player{
      * @return boolean
      * @param 
      */
-    public boolean collisionDetection(RoadBlock rb){
-        
+    public void collisionDetection(Obstacle rb){
+        /**
+         * what do i need to check?
+         *  check what the state of the player is
+         *  check the type of rb
+         *  check the x and y coordinate of the player
+         *  check the x and y coordinate of the rb
+         * 
+         * if the players x and y is where rb x y is and if the state of the player is jumpting and rb is truck
+         *  return false
+         * 
+         */
     }
 
     public void serialize() {
