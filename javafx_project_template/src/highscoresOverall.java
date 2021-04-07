@@ -9,10 +9,10 @@ public class highscoresOverall {
     
     ArrayList<String> playerList = new ArrayList<String>();
 
-    public void addPlayer(playerHighscore player){
-        String info = player.infromation();
-        playerList.add(info);
-    }
+    // public void addPlayer(playerHighscore player){
+    //     String info = player.infromation();
+    //     playerList.add(info);
+    // }
     
     // public void addToTxtFile(){
     //     try {

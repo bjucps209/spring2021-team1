@@ -99,6 +99,10 @@ class Player{
          * 
          */
     }
+    public boolean collisionDetection(RoadBlock rb){
+        return false;
+        
+    }
 
     public void serialize() {
 

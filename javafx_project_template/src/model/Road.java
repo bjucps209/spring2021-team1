@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.ObjectCodec;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+// import com.fasterxml.jackson.core.JsonParser;
+// import com.fasterxml.jackson.core.ObjectCodec;
+// import com.fasterxml.jackson.databind.JsonNode;
+// import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class Road{
@@ -104,11 +104,11 @@ public class Road{
     }
 
     public void save(File filename) throws Exception {
-       ObjectMapper mp = new ObjectMapper();
+    //    ObjectMapper mp = new ObjectMapper();
         
-       for (Object item : saveList) {
-           mp.writeValue(filename, item);
-       }
+    //    for (Object item : saveList) {
+    //        mp.writeValue(filename, item);
+    //    }
     }
     
     public Road load(File filename) throws Exception{
@@ -119,14 +119,14 @@ public class Road{
         addLanes()
 
         */
-        ObjectMapper mp = new ObjectMapper();
-        JsonNode loadArray = mp.readTree(filename);
-        for (JsonNode node : loadArray) {
-            System.out.println(node);
-            String type = node.path("type").asText();
-            //Switch statement to deal with objects based on type
+        // ObjectMapper mp = new ObjectMapper();
+        // JsonNode loadArray = mp.readTree(filename);
+        // for (JsonNode node : loadArray) {
+        //     System.out.println(node);
+        //     String type = node.path("type").asText();
+        //     //Switch statement to deal with objects based on type
             
-        }
+        // }
 
         Road road = new Road();
         //Set road properties
