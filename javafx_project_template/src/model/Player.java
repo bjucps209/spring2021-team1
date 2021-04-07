@@ -1,8 +1,9 @@
 package model;
-
-
 class Player{
     //how the player begins (in the middle lane moving forward)
+    int speed = 0;
+    int lives = 3;
+    int score = 0;
     State player = State.MOVING;
 
     //x and y coordinate
@@ -28,7 +29,7 @@ class Player{
     //         break;
     //     case 4: State = State.RIGHT;
     //         break;
-    //     case 5: State = State.DRIVING;
+    //     case 5: State = State.MOVING;
     //         break;
     // }
     // }
@@ -79,6 +80,14 @@ class Player{
      */
     public void getCurrentState(){
         // break;
+    }
+
+    /**
+     * @return boolean
+     * @param 
+     */
+    public boolean collisionDetection(RoadBlock rb){
+        
     }
 
     public void serialize() {
