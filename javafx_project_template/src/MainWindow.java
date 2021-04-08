@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
 import javafx.stage.Stage;
 
 
@@ -57,7 +56,6 @@ public class MainWindow {
     }
 
     @FXML
-    
     void onBackClicked(ActionEvent event) throws IOException{
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
