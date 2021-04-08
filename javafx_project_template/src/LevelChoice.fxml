@@ -3,8 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="@MainWindow.css"
-    spacing="10" prefHeight="400" prefWidth="250">
+<VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="@LevelChoice.css"
+    spacing="10" prefHeight="400" prefWidth="250" styleClass = "VBox">
     <Button fx:id="btnBackStart" onAction="#onBackClicked" text="Back"  />
     <Slider fx:id="sldDiff" />
     <Button text="level 1"/>

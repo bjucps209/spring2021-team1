@@ -1,8 +1,5 @@
 package model;
-<<<<<<< HEAD
-=======
 
->>>>>>> fa1771db0029da95d27a7347c5e5b1e8b8af29e2
 import java.util.ArrayList;
 
 
