@@ -12,7 +12,6 @@ public class PlayerHighScore {
         info += name +",";
         info += String.valueOf(score);
         return info;
-        
     }
 
     public void setName(String name) {
