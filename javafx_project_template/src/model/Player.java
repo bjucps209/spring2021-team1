@@ -5,6 +5,7 @@ class Player{
     int lives = 3;
     int score = 0;
     State player = State.MOVING;
+    Coordinate coor;
 
     //x and y coordinate
     int x;
@@ -13,26 +14,29 @@ class Player{
     //
     public Player(State Player, int x, int y){
         this.player = Player;
-        Coordinate coor = new Coordinate(x, y);
+        coor = new Coordinate(x, y);
 
+        State[] state = State.values();
+    for(State s: state){
+    {
+        switch (s){
+            case JUMP:
+                //jumpUp()
+            case SPEEDUP:
+                break;
+                //speedUp();
+            case LEFT:
+                break;
+            case RIGHT:
+                break;
+            case MOVING:
+                break;
+        }
+    }
     }
 
-    // {
-    // switch (State){
-    //     case 1: State = State.JUMP;
-    //         break;
-    //         //jumpUp()
-    //     case 2: State = State.SPEEDUP;
-    //         break;
-    //         //speedUp();
-    //     case 3: State = State.LEFT;
-    //         break;
-    //     case 4: State = State.RIGHT;
-    //         break;
-    //     case 5: State = State.MOVING;
-    //         break;
-    // }
-    // }
+    }
+    
 
     /**
      * @return none
@@ -40,7 +44,8 @@ class Player{
      * @param int:y
      */
     public void jumpUp(){
-        // break;
+        //getplayers x coordinate and add 50
+        coor.setX(coor.getX() + 50);
     }
 
     /**

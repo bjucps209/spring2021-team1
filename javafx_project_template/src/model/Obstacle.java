@@ -3,6 +3,7 @@ package model;
 import java.util.Random;
 
 public class Obstacle {
+    Coordinate coord;
     // when is obstacle used?
         /**
          * its used when there is roadblock created randomly.=
@@ -11,10 +12,9 @@ public class Obstacle {
     RoadBlock object;
     Random rand = new Random();
 
-    public Obstacle(RoadBlock rd){
-        Coordinate coord = new Coordinate(rand.nextInt(50), rand.nextInt(50));
-        int x = coord.getX();
-        int y = coord.getY();
+    public Obstacle(RoadBlock rd, int x){
+        //100 for height of the screen
+        coord = new Coordinate(rand.nextInt(x), rand.nextInt(100));
         this.object = rd;
     }
 }
