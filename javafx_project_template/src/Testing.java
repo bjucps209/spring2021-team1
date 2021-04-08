@@ -7,8 +7,6 @@ import org.junit.Test;
 public class Testing{
     @Test
     public void highscoresOverallTest() throws IOException{
-        HighscoresOverall test = new HighscoresOverall();
-
         
         PlayerHighScore ply1 = new PlayerHighScore("Jackie", 900);
         PlayerHighScore ply2 = new PlayerHighScore("Aya", 1000);
@@ -19,6 +17,11 @@ public class Testing{
         all.addPlayer(ply2);
         all.addPlayer(ply3);
         HighScoreWriter writer = HighScoreWriter.getInstance();
+        writer.addToTxtFile();
+
+        
+        PlayerHighScore ply4 = new PlayerHighScore("William's", 0);
+        all.addPlayer(ply4);
         writer.addToTxtFile();
 
     }
