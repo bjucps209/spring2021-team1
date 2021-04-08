@@ -2,14 +2,35 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?> 
+
+
 
 <VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="@MainWindow.css"
-    spacing="10" prefHeight="400" prefWidth="250">
+    spacing="10" prefHeight="500"  style="-fx-background-color: black;" prefWidth="500" alignment="CENTER">
 
-    <Label text="Welcome to public safety escape"/>
-    <Button fx:id="btnStart" onAction="#onStartClicked" text="Start"  />
+    <MenuBar style="-fx-background-color: black;">
+    <Menu text="Highscores"  onAction="#onHighClicked" style="-fx-font: 20px Tahoma; -fx-text-fill: #AEAEAE;"/>
+    <Menu text="About" onAction="#onAboutClicked" style="-fx-font: 20px Tahoma;  -fx-text-fill: #AEAEAE;"  />
+    <Menu text="Help" onAction="#onHelpClicked" style="-fx-font: 20px Tahoma;  -fx-text-fill: #AEAEAE;"/>
+    </MenuBar>
+
+     <Label text="Welcome to public safety escape"/>
+
+    <!-- <HBox  spacing="10" alignment="CENTER">
     <Button fx:id="btnHigh" onAction="#onHighClicked" text="Highscores"  />
     <Button fx:id="btnAbout" onAction="#onAboutClicked" text="About"  />
     <Button fx:id="btnHelp" onAction="#onHelpClicked" text="Help"  />
+    </HBox>
+ -->
+    <ImageView fitHeight="500" fitWidth="500" smooth="true">      
+    <image>
+          <Image url="images/reallogo.png"/>
+    </image>
+    </ImageView>  
+    
+    <Button fx:id="btnStart"   prefHeight="150" prefWidth="200" onAction="#onStartClicked" text="Start" style="-fx-font: 30px Tahoma; -fx-background-color: #318AE0    
+ 
+; -fx-text-fill: black;" />
 
 </VBox>
