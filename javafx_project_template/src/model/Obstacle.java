@@ -12,9 +12,9 @@ public class Obstacle {
     RoadBlock object;
     Random rand = new Random();
 
-    public Obstacle(RoadBlock rd, int x){
+    public Obstacle(RoadBlock rd, int x, Lane y){
         //100 for height of the screen
-        coord = new Coordinate(rand.nextInt(x), rand.nextInt(100));
+        coord = new Coordinate(rand.nextInt(x), y);
         this.object = rd;
     }
 
@@ -40,5 +40,10 @@ public class Obstacle {
      */
     public void addObjectsC(RoadBlock object, int x){
         //code
+    }
+
+    public void update(){
+       coord.setX(coord.getX()-3);
+
     }
 }
