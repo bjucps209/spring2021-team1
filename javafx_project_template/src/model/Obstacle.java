@@ -17,4 +17,28 @@ public class Obstacle {
         coord = new Coordinate(rand.nextInt(x), rand.nextInt(100));
         this.object = rd;
     }
+
+        /**
+     * @return none
+     * @param RoadBlock:object
+     */
+    public void addObjectsA(RoadBlock object, int x){
+        //code
+    }
+
+    /**
+     * @return none
+     * @param RoadBlock:object
+     */
+    public void addObjectsB(RoadBlock object, int x){
+        //code
+    }
+
+    /**
+     * @return none
+     * @param RoadBlock:object
+     */
+    public void addObjectsC(RoadBlock object, int x){
+        //code
+    }
 }

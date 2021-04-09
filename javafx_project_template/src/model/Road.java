@@ -18,6 +18,7 @@ public class Road{
     static final File filename = new File("/data.json");
     ArrayList<Object> saveList = new ArrayList();
     RoadBlock[] rb = RoadBlock.values();
+    RoadBlock[] usingRB;
     boolean gameOver;
     boolean cheatOn;
     Player player;
@@ -30,29 +31,6 @@ public class Road{
         
     }
     
-    /**
-     * @return none
-     * @param RoadBlock:object
-     */
-    public void addObjectsA(RoadBlock object, int x){
-        //code
-    }
-
-    /**
-     * @return none
-     * @param RoadBlock:object
-     */
-    public void addObjectsB(RoadBlock object, int x){
-        //code
-    }
-
-    /**
-     * @return none
-     * @param RoadBlock:object
-     */
-    public void addObjectsC(RoadBlock object, int x){
-        //code
-    }
 
     // /**
     //  * @param int:d
@@ -89,7 +67,6 @@ public class Road{
                     for (LevelSequence LS : levelSequence){
                         switch (LS){
                             case TEN:
-                                distance = 10;
                                 setTimeDistanceSpeed(10, 60);
                             case TWENTY:
                                 setTimeDistanceSpeed(20, 60);
