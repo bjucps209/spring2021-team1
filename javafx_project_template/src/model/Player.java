@@ -31,6 +31,8 @@ class Player{
                 break;
             case MOVING:
                 break;
+        default:
+            break;
         }
     }
     }

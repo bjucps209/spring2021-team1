@@ -4,11 +4,15 @@
 <?import javafx.scene.layout.*?>
 
 <VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="@LevelChoice.css"
-    spacing="10" prefHeight="400" prefWidth="250" styleClass = "VBox">
-    <Button fx:id="btnBackStart" onAction="#onBackClicked" text="Back"  />
-    <Slider fx:id="sldDiff" />
-    <Button text="level 1"/>
-    <Button text="level 2"/>
-    <Button text="level 3"/>
+    spacing="10" prefHeight="500" prefWidth="500" styleClass = "VBox">
+    <HBox prefHeight="200" prefWidth="200" styleClass = "HBox">
+        <Button text="Easy"/>
+        <Button text="Medium"/>
+        <Button text="Hard"/>
+    </HBox>
+
+    <Label text="Levels"/>
+    <Slider fx:id="sldDiff" max="3" showTickLabels="True" min="1" snapToTicks="True" showTickMarks="True" majorTickUnit="1.0" minorTickCount="0"/>
+    <Button fx:id="btnBackStart" onAction="#onBackClicked" text="Back"/>
 
 </VBox>

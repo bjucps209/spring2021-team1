@@ -1,5 +1,18 @@
 .VBox { 
     -fx-alignment: center;
-    -fx-background-color: rgba(37, 0, 139, 0);
+    -fx-background-color: black;
+
+}
+
+.VBox Label{
+    -fx-font-family: monospace; 
+    -fx-font-size: 50;
+    -fx-text-fill: blue;
+}
+
+.HBox{
+    -fx-spacing: 20;
+    -fx-alignment: center;
+    -fx-font-size: 20;
 
 }
