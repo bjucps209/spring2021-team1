@@ -30,6 +30,6 @@
     </image>
     </ImageView>  
     
-    <Button fx:id="btnStart"   prefHeight="150" prefWidth="200" onAction="#onStartClicked" text="Start" style="-fx-font: 30px Tahoma; -fx-background-color: #318AE0; -fx-text-fill: black;" />
+    <Button fx:id="btnStart" prefHeight="150" prefWidth="200" onAction="#onStartClicked" text="Next" style="-fx-font: 30px Tahoma; -fx-background-color: #318AE0; -fx-text-fill: black;" />
 
 </VBox>
