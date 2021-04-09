@@ -8,10 +8,9 @@ public class GameWindow {
 
     @FXML Label lblCoord;
 
-
-    
     @FXML
     void onMouseMoved(MouseEvent event) {
         lblCoord.setText(String.format("(%d, %d)", (int) event.getX(), (int) event.getY()));
     }
+    
 }
