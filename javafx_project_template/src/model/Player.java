@@ -5,6 +5,7 @@ class Player{
     int lives = 3;
     int score = 0;
     State player = State.MOVING;
+    Coordinate coor;
 
     //x and y coordinate
     int x;
@@ -13,26 +14,31 @@ class Player{
     //
     public Player(State Player, int x, int y){
         this.player = Player;
-        Coordinate coor = new Coordinate(x, y);
+        coor = new Coordinate(x, y);
 
+        State[] state = State.values();
+    for(State s: state){
+    {
+        switch (s){
+            case JUMP:
+                //jumpUp()
+            case SPEEDUP:
+                break;
+                //speedUp();
+            case LEFT:
+                break;
+            case RIGHT:
+                break;
+            case MOVING:
+                break;
+        default:
+            break;
+        }
+    }
     }
 
-    // {
-    // switch (State){
-    //     case 1: State = State.JUMP;
-    //         break;
-    //         //jumpUp()
-    //     case 2: State = State.SPEEDUP;
-    //         break;
-    //         //speedUp();
-    //     case 3: State = State.LEFT;
-    //         break;
-    //     case 4: State = State.RIGHT;
-    //         break;
-    //     case 5: State = State.MOVING;
-    //         break;
-    // }
-    // }
+    }
+    
 
     /**
      * @return none
@@ -40,7 +46,8 @@ class Player{
      * @param int:y
      */
     public void jumpUp(){
-        // break;
+        //getplayers x coordinate and add 50
+        coor.setX(coor.getX() + 50);
     }
 
     /**
@@ -74,7 +81,7 @@ class Player{
 
 
     /**
-     * @return none
+     * @return Lane
      * @param none
      * get the y, if its 0, the current state is right lane, if its a 1 its the middle lane, and if its the 2 its the left lane
      */
@@ -86,6 +93,19 @@ class Player{
      * @return boolean
      * @param 
      */
+    public void collisionDetection(Obstacle rb){
+        /**
+         * what do i need to check?
+         *  check what the state of the player is
+         *  check the type of rb
+         *  check the x and y coordinate of the player
+         *  check the x and y coordinate of the rb
+         * 
+         * if the players x and y is where rb x y is and if the state of the player is jumpting and rb is truck
+         *  return false
+         * 
+         */
+    }
     public boolean collisionDetection(RoadBlock rb){
         return false;
         

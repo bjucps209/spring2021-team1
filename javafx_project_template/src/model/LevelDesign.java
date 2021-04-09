@@ -5,40 +5,42 @@ import java.util.ArrayList;
 
 class LevelDesign{
 
-    /**
-     *
-     * @param distance
-     * @return int
-     */
-    public void getsequenceDifficulty(LevelSequence distance){
-        if (distance == LevelSequence.FIVE){
-
-        }
+    
+    public int getsequenceDifficulty(LevelSequence distance){
+        int km = 0;
         if (distance == LevelSequence.TEN){
-            
+            km = 10;
+    }
+        if (distance == LevelSequence.TWENTY){
+            km = 20;  
         }
-        if (distance == LevelSequence.FIFTEEN){
-            
-        }
+        if (distance == LevelSequence.THIRTY){
+            km = 30;
+        } 
+        return km;
     }
 
-    public int getlevelDifficulty(DifficultyLevel difficulty){
+   /*  public int getlevelDifficulty(DifficultyLevel difficulty){
             if(difficulty == DifficultyLevel.EASY){
-
+                
             }
             if(difficulty == DifficultyLevel.MEDIUM){
                 
             }
             if(difficulty == DifficultyLevel.HARD){
                 
-            }
+            } */
         
-    }
+    
 
 
 
     public LevelSequence currentSequence(LevelSequence sequence){
+        return sequence;
+    }
 
+
+    public void setCurrentSequence(LevelSequence sequence){
 
 
     }

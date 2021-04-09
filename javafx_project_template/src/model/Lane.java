@@ -1,5 +1,6 @@
 package model;
 
-enum Lane {
+public enum Lane {
     A, B, C
+    
 }
