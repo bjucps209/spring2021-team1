@@ -25,7 +25,7 @@ import javafx.util.Duration;
 public class Road{
     //File to load and save from
     static final File filename = new File("/data.json");
-    ArrayList<Object> saveList = new ArrayList();
+    ArrayList<Object> saveList = new ArrayList<Object>();
     RoadBlock[] rb = RoadBlock.values();
     Lane[] lane = Lane.values();
     ArrayList<Obstacle> usingRB;
@@ -83,7 +83,7 @@ public class Road{
                                 setDistanceSpeed(10, 60);
                             case TWENTY:
                                 setDistanceSpeed(20, 60);
-                            case THIRDY:
+                            case THIRTY:
                                 setDistanceSpeed(30, 60);
                         }}
                 case MEDIUM:
@@ -93,7 +93,7 @@ public class Road{
                                 setDistanceSpeed(10, 70);
                             case TWENTY:
                                 setDistanceSpeed(20, 70);
-                            case THIRDY:
+                            case THIRTY:
                                 setDistanceSpeed(30, 70);
                         }
                     }
@@ -104,7 +104,7 @@ public class Road{
                                 setDistanceSpeed(10, 80);
                             case TWENTY:
                                 setDistanceSpeed(20, 80);
-                            case THIRDY:
+                            case THIRTY:
                                 setDistanceSpeed(30, 80);
                         }
                     }
