@@ -38,6 +38,7 @@ public class MainWindow {
         stage.setScene(scene);
         stage.show();
     }
+    
     @FXML
     void onHelpClicked(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
