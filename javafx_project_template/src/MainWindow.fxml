@@ -10,9 +10,11 @@
     spacing="10" prefHeight="500"  style="-fx-background-color: black;" prefWidth="500" alignment="CENTER">
 
     <MenuBar style="-fx-background-color: black;">
-    <Menu text="Highscores"  onAction="#onHighClicked" style="-fx-font: 20px Tahoma; -fx-text-fill: #AEAEAE;"/>
-    <Menu text="About" onAction="#onAboutClicked" style="-fx-font: 20px Tahoma;  -fx-text-fill: #AEAEAE;"  />
-    <Menu text="Help" onAction="#onHelpClicked" style="-fx-font: 20px Tahoma;  -fx-text-fill: #AEAEAE;"/>
+    <Menu text="Menu" style="-fx-font: 20px Tahoma; -fx-text-fill: #AEAEAE;">
+    <MenuItem text="Highscores"  onAction="#onHighClicked" style="-fx-font: 20px Tahoma; -fx-text-fill: #AEAEAE;"/>
+    <MenuItem text="About" onAction="#onAboutClicked" style="-fx-font: 20px Tahoma;  -fx-text-fill: #AEAEAE;"  />
+    <MenuItem text="Help" onAction="#onHelpClicked" style="-fx-font: 20px Tahoma;  -fx-text-fill: #AEAEAE;"/>
+    </Menu>
     </MenuBar>
 
      <Label text="Welcome to public safety escape"/>

@@ -3,12 +3,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="@MainWindow.css"
-    spacing="10" prefHeight="400" prefWidth="250">
-    <Button fx:id="btnBackStart" onAction="#onBackClicked" text="Back"  />
+<HBox fx:controller="Game.java" xmlns:fx="http://javafx.com/fxml"  stylesheets="@MainWindow.css"
+    spacing="10" HBox.hgrow="ALWAYS" prefHeight="400" prefWidth="500">
+
+   
+    <!-- <Button fx:id="btnBackStart" onAction="#onBackClicked" text="Back"  />
     <Slider fx:id="sldDiff" />
     <Button text="level 1"/>
     <Button text="level 2"/>
-    <Button text="level 3"/>
+    <Button text="level 3"/> -->
+    
 
-</VBox>
+</HBox>
