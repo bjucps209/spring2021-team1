@@ -6,6 +6,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+
+import javax.swing.Action;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.util.Duration;
 
 // import com.fasterxml.jackson.core.JsonParser;
 // import com.fasterxml.jackson.core.ObjectCodec;
@@ -18,13 +27,14 @@ public class Road{
     static final File filename = new File("/data.json");
     ArrayList<Object> saveList = new ArrayList();
     RoadBlock[] rb = RoadBlock.values();
-    RoadBlock[] usingRB;
+    Lane[] lane = Lane.values();
+    ArrayList<Obstacle> usingRB;
     boolean gameOver;
     boolean cheatOn;
     Player player;
-    int time;
     int speed;
     int distance;
+    Obstacle obstacle;
 
     // sets the time and distance to move through the pane
     public Road(){
@@ -43,8 +53,7 @@ public class Road{
     //     return seconds;
     // }
 
-    public void setTimeDistanceSpeed(int d, int r){
-        time = (d/r)*3600;
+    public void setDistanceSpeed(int d, int r){
         distance = d;
         speed = r;
     }
@@ -54,6 +63,10 @@ public class Road{
         
         Road newRoad = new Road();
         return newRoad;
+    }
+
+    public void setLanes(){
+
     }
 
     public void organizeVariable(){
@@ -67,32 +80,32 @@ public class Road{
                     for (LevelSequence LS : levelSequence){
                         switch (LS){
                             case TEN:
-                                setTimeDistanceSpeed(10, 60);
+                                setDistanceSpeed(10, 60);
                             case TWENTY:
-                                setTimeDistanceSpeed(20, 60);
+                                setDistanceSpeed(20, 60);
                             case THIRDY:
-                                setTimeDistanceSpeed(30, 60);
+                                setDistanceSpeed(30, 60);
                         }}
                 case MEDIUM:
                     for (LevelSequence LS : levelSequence){
                         switch (LS){
                             case TEN:
-                                setTimeDistanceSpeed(10, 70);
+                                setDistanceSpeed(10, 70);
                             case TWENTY:
-                                setTimeDistanceSpeed(20, 70);
+                                setDistanceSpeed(20, 70);
                             case THIRDY:
-                                setTimeDistanceSpeed(30, 70);
+                                setDistanceSpeed(30, 70);
                         }
                     }
                 case HARD:
                     for (LevelSequence LS : levelSequence){
                         switch (LS){
                             case TEN:
-                                setTimeDistanceSpeed(10, 80);
+                                setDistanceSpeed(10, 80);
                             case TWENTY:
-                                setTimeDistanceSpeed(20, 80);
+                                setDistanceSpeed(20, 80);
                             case THIRDY:
-                                setTimeDistanceSpeed(30, 80);
+                                setDistanceSpeed(30, 80);
                         }
                     }
                 }   
@@ -138,18 +151,30 @@ public class Road{
         return item;
     }
 
+    public void timer(ArrayList<Obstacle> list){
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event){
+                loop();
+            }
+        }));
+        
+    }
+
     /**
      * @param none
      * @return Obstacle
      */
-    public Obstacle createRandomObstacle(){
+    public void createRandomObstacle(){
         Random rand = new Random();
-        Obstacle obstacle = new Obstacle(rb[rand.nextInt(3)], distance);
-        return obstacle;
+        Obstacle obstacle = new Obstacle(rb[rand.nextInt(3)], distance, lane[rand.nextInt(2)]);
+        usingRB.add(obstacle);
     }
 
-    public int getTime() {
-        return time;
+    public void loop(){
+        for (int i = 0; i < usingRB.size(); ++i){
+            obstacle.update();
+        }
     }
 
     public int getSpeed() {

@@ -1,4 +1,5 @@
 package model;
+
 class Player{
     //how the player begins (in the middle lane moving forward)
     int speed = 0;
@@ -12,7 +13,7 @@ class Player{
     int y;
 
     //
-    public Player(State Player, int x, int y){
+    public Player(State Player, int x, Lane y){
         this.player = Player;
         coor = new Coordinate(x, y);
 
