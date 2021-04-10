@@ -7,7 +7,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 
 
-public class Obstacle extends Coordinate {
+public class Obstacle extends Coordinate implements Savable {
         
 
     Coordinate coord;

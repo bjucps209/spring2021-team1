@@ -130,36 +130,8 @@ public class Road{
         return player.getCoordinate().getX();
     }
 
-    public void save(File filename) throws Exception {
-        //    ObjectMapper mp = new ObjectMapper();
-            
-        //    for (Object item : saveList) {
-        //        mp.writeValue(filename, item);
-        //    }
-        }
-        
-        public Road load(File filename) throws Exception{
-            /*
-            Hypothetical Methods:
-            setBackground()
-            addObjects()
-            addLanes()
-    
-            */
-            // ObjectMapper mp = new ObjectMapper();
-            // JsonNode loadArray = mp.readTree(filename);
-            // for (JsonNode node : loadArray) {
-            //     System.out.println(node);
-            //     String type = node.path("type").asText();
-            //     //Switch statement to deal with objects based on type
-                
-            // }
-    
-            Road road = new Road();
-            //Set road properties
-            return road;
-    
-        }
+       
+ 
 
         public void organizeVariable(){
             DifficultyLevel[] difficultylevel = DifficultyLevel.values();
