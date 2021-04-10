@@ -10,7 +10,7 @@
     <Label fx:id="lblCoord" style="-fx-text-fill: blue"/>
 
 
-    <Pane prefHeight="300" prefWidth="1000" style="-fx-background-color: white" styleClass="Pane" fx:id="pane"/>
+    <Pane prefHeight="300" prefWidth="1100" style="-fx-background-color: white" styleClass="Pane" fx:id="pane"/>
     
 
 </HBox>

@@ -6,7 +6,9 @@
 
 <VBox alignment="CENTER" spacing="10" stylesheets="@MainWindow.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="MainWindow">
 
-    
+    <!-- Make the distance to be available for player to choose or make a set distance  -->
+    <!-- Either way, have a scroll bar at the bottom so that the user can go move the pane -->
+
     <HBox spacing="10">
         <VBox spacing="10">
             <Button onAction="onPotholeClicked" maxHeight="100" maxWidth="100" styleClass="leftbutton"><graphic><ImageView  fitHeight="80" fitWidth="80"><image><Image url="@images/blackhole.gif" /></image></ImageView></graphic></Button>

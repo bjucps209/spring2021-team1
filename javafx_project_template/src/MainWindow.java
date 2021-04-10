@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import javafx.scene.control.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.stage.Stage;
 
 
 
@@ -38,7 +37,6 @@ public class MainWindow {
         stage.setScene(scene);
         stage.show();
     }
-<<<<<<< HEAD
 
     @FXML
     void onLevelClicked(ActionEvent event) throws IOException {
@@ -52,9 +50,7 @@ public class MainWindow {
         stage.show();
     }
 
-=======
     
->>>>>>> 4fe7356ab519781d7a143c1fc2ab9a6ba10dfc7b
     @FXML
     void onHelpClicked(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
