@@ -45,7 +45,7 @@ public class Road{
     public void addObjectsdefault(){
         for (int i = 0; i < 25; i ++){
             Random rand = new Random();
-            Obstacle obstacle = new Obstacle(rb[rand.nextInt(3)], rand.nextInt(1250), lane[rand.nextInt(2)]);
+            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], rand.nextInt(1250), lane[rand.nextInt(3)]);
             usingRB.add(obstacle);
         }
     }
@@ -89,7 +89,7 @@ public class Road{
 
     public void createRandomObstacle(){
         Random rand = new Random();
-        Obstacle obstacle = new Obstacle(rb[rand.nextInt(3)], distance, lane[rand.nextInt(2)]);
+        Obstacle obstacle = new Obstacle(rb[rand.nextInt(4)], distance, lane[rand.nextInt(2)]);
         usingRB.add(obstacle);
         // serialize(obstacle);
     }

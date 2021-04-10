@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
@@ -29,8 +30,8 @@ public class GameWindow implements ObserverGame {
 
     // final Image humanImage = new Image("/images/human.gif");
     // final Image potholeImage = new Image("/images/blackhole.gif");
-    final Image humanImage = new Image("/images/shield.png");
-    final Image potholeImage = new Image("/images/speed.png");
+    final Image humanImage = new Image("/images/human.png");
+    final Image potholeImage = new Image("/images/pothole.png");
     final Image truckImage = new Image("/images/truck.png");
     final Image coneImage = new Image("/images/cone.png");
     final Image carImage = new Image("/images/RoadBlockcar.png");
@@ -54,45 +55,48 @@ public class GameWindow implements ObserverGame {
         var img = new ImageView(player);
         img.setPreserveRatio(true);
         img.setFitWidth(100);
-        img.relocate(300 , 300);
+        img.relocate(50 , 300);
         paneMain.getChildren().add(img);
 
         ImageView obstacleImageView;
         
+        Random rand = new Random();
+
         for(int i = 0; i < road.getUsingRB().size(); i++){
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
             int x = road.getUsingRB().get(i).getX();
+            int y = rand.nextInt(500);
 
             if(type == RoadBlock.PEOPLE){
                 obstacleImageView = new ImageView(humanImage);
                 img.setPreserveRatio(true);
-                obstacleImageView.setFitWidth(150);
-                obstacleImageView.setFitHeight(150);
-                obstacleImageView.relocate(x, 100);
+                obstacleImageView.setFitWidth(50);
+                obstacleImageView.setFitHeight(50);
+                obstacleImageView.relocate(x, rand.nextInt(500));
                 paneMain.getChildren().add(obstacleImageView);
             }else if (type == RoadBlock.POTHOLES){
                 obstacleImageView = new ImageView(potholeImage);
-                obstacleImageView.setFitWidth(150);
-                obstacleImageView.setFitHeight(150);
-                obstacleImageView.relocate(x, 100);
+                obstacleImageView.setFitWidth(50);
+                obstacleImageView.setFitHeight(50);
+                obstacleImageView.relocate(x, rand.nextInt(500));
                 paneMain.getChildren().add(obstacleImageView);
             } else if (type == RoadBlock.TRUCK){
                 obstacleImageView = new ImageView(truckImage);
-                obstacleImageView.setFitWidth(150);
-                obstacleImageView.setFitHeight(150);
-                obstacleImageView.relocate(x, 200);
+                obstacleImageView.setFitWidth(75);
+                obstacleImageView.setFitHeight(75);
+                obstacleImageView.relocate(x, rand.nextInt(500));
                 paneMain.getChildren().add(obstacleImageView);
             } else if (type == RoadBlock.CONES){
                 obstacleImageView = new ImageView(coneImage);
-                obstacleImageView.setFitWidth(150);
-                obstacleImageView.setFitHeight(150);
-                obstacleImageView.relocate(x, 200);
+                obstacleImageView.setFitWidth(50);
+                obstacleImageView.setFitHeight(50);
+                obstacleImageView.relocate(x, rand.nextInt(500));
                 paneMain.getChildren().add(obstacleImageView);
             } else if (type == RoadBlock.CARS){
                 obstacleImageView = new ImageView(carImage);
-                obstacleImageView.setFitWidth(150);
-                obstacleImageView.setFitHeight(150);
-                obstacleImageView.relocate(x, 300);
+                obstacleImageView.setFitWidth(50);
+                obstacleImageView.setFitHeight(50);
+                obstacleImageView.relocate(x, rand.nextInt(500));
                 paneMain.getChildren().add(obstacleImageView);
             }
 
@@ -125,9 +129,10 @@ public class GameWindow implements ObserverGame {
         }
     }
 
-    public void getEachObject(){
+    // public int setLanes(int y){
+    //     if(y <= 600 && y){
 
-        
-    }  
+    //     }
+    // }
 
 }
