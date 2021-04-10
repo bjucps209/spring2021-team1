@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import model.Obstacle;
 
 public class MainWindow {
-<<<<<<< HEAD
     
     /**
      *
@@ -30,34 +29,12 @@ public class MainWindow {
 
     @FXML
     void onStartClicked(ActionEvent event) throws IOException {
-=======
-
-    @FXML
-    Button btnStart, btnHelp, btnAbout, btnHigh;
-    @FXML
-    Button btnBackStart, btnBackHelp, btnBackAbout, btnBackHigh;
-    @FXML
-    Pane roadPane;
-    @FXML
-    Pane paneMain;
->>>>>>> 44d88b372e2ec608588baa182f3b32fb98d6616c
 
     @FXML
     Label lblCoord;
 
     final Image IMG_CAR = new Image("/images/car.png");
 
-<<<<<<< HEAD
-=======
-    Obstacle obstacle;
-
-    @FXML
-    void onStartClicked(ActionEvent event) throws IOException {
-        var loader = new FXMLLoader(getClass().getResource("GameWindow.fxml"));
-        var scene = new Scene(loader.load());
-
-        var stage = new Stage();
->>>>>>> 44d88b372e2ec608588baa182f3b32fb98d6616c
         stage.setScene(scene);
         stage.show();
 
