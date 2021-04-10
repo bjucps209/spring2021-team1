@@ -23,8 +23,8 @@ public class Road{
     static final File filename = new File("/data.json");
     ArrayList<Object> saveList = new ArrayList<Object>();
     RoadBlock[] rb = RoadBlock.values();
-    Lane[] lane = Lane.values();
     ArrayList<Obstacle> usingRB;
+    Lane[] lane = Lane.values();
     boolean gameOver;
     boolean cheatOn;
     Player player;
@@ -35,7 +35,7 @@ public class Road{
     // sets the time and distance to move through the pane
     public Road(){
        Player player = new Player(State.MOVING, 0, Lane.B);
-    //    Obstacle
+       
     }
     
 
@@ -51,7 +51,7 @@ public class Road{
     // }
 
     public void setDistanceSpeed(int d, int r){
-        distance = d;
+        distance = d*10;
         speed = r;
     }
 
@@ -78,20 +78,28 @@ public class Road{
                         switch (LS){
                             case TEN:
                                 setDistanceSpeed(10, 60);
+                                addObjects(distance);
                             case TWENTY:
                                 setDistanceSpeed(20, 60);
+                                addObjects(distance);
                             case THIRTY:
                                 setDistanceSpeed(30, 60);
+                                addObjects(distance);
+                                
                         }}
                 case MEDIUM:
                     for (LevelSequence LS : levelSequence){
                         switch (LS){
                             case TEN:
                                 setDistanceSpeed(10, 70);
+                                addObjects(distance);
                             case TWENTY:
                                 setDistanceSpeed(20, 70);
+                                addObjects(distance);
                             case THIRTY:
                                 setDistanceSpeed(30, 70);
+                                addObjects(distance);
+
                         }
                     }
                 case HARD:
@@ -99,16 +107,34 @@ public class Road{
                         switch (LS){
                             case TEN:
                                 setDistanceSpeed(10, 80);
+                                addObjects(distance);
                             case TWENTY:
                                 setDistanceSpeed(20, 80);
+                                addObjects(distance);
                             case THIRTY:
                                 setDistanceSpeed(30, 80);
+                                addObjects(distance);
                         }
                     }
                 }   
         }
         }        
     }
+
+        /**
+     * @return none
+     * @param RoadBlock:object
+     */
+    public void addObjects(int distance){
+        for (int i = 0; i<distance*2; i++){
+            createRandomObstacle();
+        }
+    }
+
+
+    // public void setObserverGame(ObserverGame observer){
+    //     this.observer = observer;
+    // }
 
     public void save(File filename) throws Exception {
     //    ObjectMapper mp = new ObjectMapper();
@@ -158,15 +184,17 @@ public class Road{
         
     }
 
-    /**
-     * @param none
-     * @return Obstacle
-     */
     public void createRandomObstacle(){
         Random rand = new Random();
         Obstacle obstacle = new Obstacle(rb[rand.nextInt(3)], distance, lane[rand.nextInt(2)]);
         usingRB.add(obstacle);
     }
+
+    /**
+     * @param none
+     * @return Obstacle
+     */
+    
 
     public void loop(){
         for (int i = 0; i < usingRB.size(); ++i){

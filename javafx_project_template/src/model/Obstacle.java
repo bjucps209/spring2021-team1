@@ -1,10 +1,12 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
 public class Obstacle extends Coordinate {
         
+
     Coordinate coord;
     // when is obstacle used?
         /**
@@ -17,34 +19,6 @@ public class Obstacle extends Coordinate {
     public Obstacle(RoadBlock rd, int x, Lane y){
         super(x, y);
         this.object = rd;
-    }
-
-        /**
-     * @return none
-     * @param RoadBlock:object
-     */
-    public void addObjectsA(RoadBlock object, int x){
-        //code
-    }
-
-    /**
-     * @return none
-     * @param RoadBlock:object
-     */
-    public void addObjectsB(RoadBlock object, int x){
-        //code
-    }
-
-    // public void setObserverGame(ObserverGame observer){
-    //     this.observer = observer;
-    // }
-
-    /**
-     * @return none
-     * @param RoadBlock:object
-     */
-    public void addObjectsC(RoadBlock object, int x){
-        //code
     }
 
     public void updateX(){
