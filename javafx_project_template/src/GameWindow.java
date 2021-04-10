@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-
 import javafx.beans.property.ObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
