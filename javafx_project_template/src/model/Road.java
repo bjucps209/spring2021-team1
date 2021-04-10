@@ -34,7 +34,9 @@ public class Road{
 
     // sets the time and distance to move through the pane
     public Road(){
-       Player player = new Player(State.MOVING, 0, Lane.B);
+        Player player = new Player(State.MOVING, 0, Lane.B);
+        createRandomObstacle();
+        usingRB = getUsingRB();
        
     }
     
@@ -184,6 +186,12 @@ public class Road{
         
     }
 
+    public void createRandomObstacledefault(){
+        for (int i = 0; i < 25; i ++){
+            createRandomObstacle();
+        }
+    }
+
     public void createRandomObstacle(){
         Random rand = new Random();
         Obstacle obstacle = new Obstacle(rb[rand.nextInt(3)], distance, lane[rand.nextInt(2)]);
@@ -211,5 +219,8 @@ public class Road{
     }
 
 
+    public ArrayList<Obstacle> getUsingRB() {
+        return usingRB;
+    }
 
 }
