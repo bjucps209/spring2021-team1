@@ -4,11 +4,7 @@ package model;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.util.Timer;
-
-import javax.swing.Action;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -38,7 +34,8 @@ public class Road{
 
     // sets the time and distance to move through the pane
     public Road(){
-        
+       Player player = new Player(State.MOVING, 0, Lane.B);
+    //    Obstacle
     }
     
 
@@ -67,50 +64,6 @@ public class Road{
 
     public void setLanes(){
 
-    }
-
-    public void organizeVariable(){
-        DifficultyLevel[] difficultylevel = DifficultyLevel.values();
-        LevelSequence[] levelSequence = LevelSequence.values();
-        for (DifficultyLevel DL : difficultylevel){
-        {
-            // Switch for each DifficultyLevel/ LevelSequece combinations
-            switch (DL){
-                case EASY:
-                    for (LevelSequence LS : levelSequence){
-                        switch (LS){
-                            case TEN:
-                                setDistanceSpeed(10, 60);
-                            case TWENTY:
-                                setDistanceSpeed(20, 60);
-                            case THIRDY:
-                                setDistanceSpeed(30, 60);
-                        }}
-                case MEDIUM:
-                    for (LevelSequence LS : levelSequence){
-                        switch (LS){
-                            case TEN:
-                                setDistanceSpeed(10, 70);
-                            case TWENTY:
-                                setDistanceSpeed(20, 70);
-                            case THIRDY:
-                                setDistanceSpeed(30, 70);
-                        }
-                    }
-                case HARD:
-                    for (LevelSequence LS : levelSequence){
-                        switch (LS){
-                            case TEN:
-                                setDistanceSpeed(10, 80);
-                            case TWENTY:
-                                setDistanceSpeed(20, 80);
-                            case THIRDY:
-                                setDistanceSpeed(30, 80);
-                        }
-                    }
-                }   
-        }
-        }        
     }
 
     public void save(File filename) throws Exception {
@@ -173,7 +126,7 @@ public class Road{
 
     public void loop(){
         for (int i = 0; i < usingRB.size(); ++i){
-            obstacle.update();
+            obstacle.updateX();
         }
     }
 
@@ -184,5 +137,7 @@ public class Road{
     public int getDistance() {
         return distance;
     }
+
+
 
 }
