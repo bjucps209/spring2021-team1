@@ -26,7 +26,6 @@ public class MainWindow {
 
     @FXML
     void onStartClicked(ActionEvent event) throws IOException {
-
         
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
