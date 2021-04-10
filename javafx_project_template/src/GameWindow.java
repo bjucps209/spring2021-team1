@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
@@ -25,8 +26,8 @@ public class GameWindow implements ObserverGame {
 
     // final Image humanImage = new Image("/images/human.gif");
     // final Image potholeImage = new Image("/images/blackhole.gif");
-    final Image humanImage = new Image("/images/shield.png");
-    final Image potholeImage = new Image("/images/speed.png");
+    final Image humanImage = new Image("/images/human.png");
+    final Image potholeImage = new Image("/images/pothole.png");
     final Image truckImage = new Image("/images/truck.png");
     final Image coneImage = new Image("/images/cone.png");
     final Image carImage = new Image("/images/RoadBlockcar.png");
@@ -38,6 +39,54 @@ public class GameWindow implements ObserverGame {
         img.setFitWidth(100);
         img.relocate(50 , 300);
         paneMain.getChildren().add(img);
+<<<<<<< HEAD
+=======
+
+        ImageView obstacleImageView;
+        
+        Random rand = new Random();
+
+        for(int i = 0; i < road.getUsingRB().size(); i++){
+            RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
+            int x = road.getUsingRB().get(i).getX();
+            int y = rand.nextInt(500);
+
+            if(type == RoadBlock.PEOPLE){
+                obstacleImageView = new ImageView(humanImage);
+                img.setPreserveRatio(true);
+                obstacleImageView.setFitWidth(50);
+                obstacleImageView.setFitHeight(50);
+                obstacleImageView.relocate(x, rand.nextInt(500));
+                paneMain.getChildren().add(obstacleImageView);
+            }else if (type == RoadBlock.POTHOLES){
+                obstacleImageView = new ImageView(potholeImage);
+                obstacleImageView.setFitWidth(50);
+                obstacleImageView.setFitHeight(50);
+                obstacleImageView.relocate(x, rand.nextInt(500));
+                paneMain.getChildren().add(obstacleImageView);
+            } else if (type == RoadBlock.TRUCK){
+                obstacleImageView = new ImageView(truckImage);
+                obstacleImageView.setFitWidth(75);
+                obstacleImageView.setFitHeight(75);
+                obstacleImageView.relocate(x, rand.nextInt(500));
+                paneMain.getChildren().add(obstacleImageView);
+            } else if (type == RoadBlock.CONES){
+                obstacleImageView = new ImageView(coneImage);
+                obstacleImageView.setFitWidth(50);
+                obstacleImageView.setFitHeight(50);
+                obstacleImageView.relocate(x, rand.nextInt(500));
+                paneMain.getChildren().add(obstacleImageView);
+            } else if (type == RoadBlock.CARS){
+                obstacleImageView = new ImageView(carImage);
+                obstacleImageView.setFitWidth(50);
+                obstacleImageView.setFitHeight(50);
+                obstacleImageView.relocate(x, rand.nextInt(500));
+                paneMain.getChildren().add(obstacleImageView);
+            }
+
+
+        }
+>>>>>>> 0cead7ab73e970bcaeae2b2629390fc39d180741
     }
 
     @Override
@@ -46,4 +95,26 @@ public class GameWindow implements ObserverGame {
 
     }
 
+<<<<<<< HEAD
+=======
+    public void KeyEvent(KeyEvent event){
+
+        if(event.getCode() == KeyCode.SPACE){
+            input.set(State.JUMP);
+        } else if (event.getCode() == KeyCode.UP){
+            input.set(State.LEFT);
+        } else if (event.getCode() == KeyCode.DOWN){
+            input.set(State.RIGHT);
+        } else if (event.getCode() == KeyCode.RIGHT){
+            input.set(State.SPEEDUP);
+        }
+    }
+
+    // public int setLanes(int y){
+    //     if(y <= 600 && y){
+
+    //     }
+    // }
+
+>>>>>>> 0cead7ab73e970bcaeae2b2629390fc39d180741
 }
