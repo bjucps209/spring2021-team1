@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,11 +30,9 @@ public class MainWindow {
 
     @FXML
     void onStartClicked(ActionEvent event) throws IOException {
-
-    @FXML
-    Label lblCoord;
-
-    final Image IMG_CAR = new Image("/images/car.png");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("GameWindow.fxml"));
+        Scene scene = new Scene(root);
 
         stage.setScene(scene);
         stage.show();
