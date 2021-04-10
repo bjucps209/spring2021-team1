@@ -23,7 +23,7 @@
     <Menu  text="Help" onAction="#onHelpClicked" style="-fx-font: 20px Tahoma;  -fx-text-fill: #AEAEAE;"/>-->    
     <!-- </MenuBar>  -->
 
-     <Label text="Welcome to public safety escape"/>
+    
 
     <HBox  spacing="10" alignment="CENTER">
     <Button fx:id="btnHigh" onAction="#onHighClicked" text="Highscores"  />

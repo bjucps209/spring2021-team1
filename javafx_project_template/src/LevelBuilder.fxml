@@ -10,10 +10,12 @@
     <!-- Either way, have a scroll bar at the bottom so that the user can go move the pane -->
 
     <HBox spacing="10">
+         
         <VBox spacing="10">
-            <Button onAction="onPotholeClicked" maxHeight="100" maxWidth="100" styleClass="leftbutton"><graphic><ImageView  fitHeight="80" fitWidth="80"><image><Image url="@images/blackhole.gif" /></image></ImageView></graphic></Button>
-            <Button onAction="onHumanClicked" maxHeight="100" maxWidth="100" styleClass="leftbutton"><graphic><ImageView  fitHeight="80" fitWidth="80"><image><Image url="@images/human.gif" /></image></ImageView></graphic></Button>
-            <Button onAction="onConeClicked" maxHeight="100" maxWidth="100"  styleClass="leftbutton"><graphic><ImageView  fitHeight="80" fitWidth="80"><image><Image url="@images/cone.png" /></image></ImageView></graphic></Button>
+         <Slider fx:id="sldLevel" max="30" showTickLabels="True" min="10" snapToTicks="True" showTickMarks="True" majorTickUnit="10.0" />
+            <Button maxHeight="100" maxWidth="100" styleClass="leftbutton"><graphic><ImageView  fitHeight="80" fitWidth="80"><image><Image url="@images/blackhole.gif" /></image></ImageView></graphic></Button>
+             <Button maxHeight="100" maxWidth="100" styleClass="leftbutton"><graphic><ImageView  fitHeight="80" fitWidth="80"><image><Image url="@images/human.gif" /></image></ImageView></graphic></Button>
+            <Button maxHeight="100" maxWidth="100"  styleClass="leftbutton"><graphic><ImageView  fitHeight="80" fitWidth="80"><image><Image url="@images/cone.png" /></image></ImageView></graphic></Button>
         </VBox>
             <!-- <Button onAction="#onDeleteClicked" styleClass="leftbutton"><graphic><ImageView><image><Image url="@images/delete-icon.png" /></image></ImageView></graphic></Button>
             <Button styleClass="leftbutton"><graphic><ImageView><image><Image url="@images/undo-icon.png" /></image></ImageView></graphic></Button> -->

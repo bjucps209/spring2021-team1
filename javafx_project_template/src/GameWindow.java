@@ -13,12 +13,12 @@ public class GameWindow {
 
     Obstacle obstacle;
 
+    
     public void initialize(){
         Image image = new Image("\\images\\pngfind.com-skateboard-side-view-png-6935593.png");
         ImageView imageview = new ImageView(image);
         imageview.setX(50);
         imageview.setY(50);
-
         pane.getChildren().add(imageview);
     }
 
