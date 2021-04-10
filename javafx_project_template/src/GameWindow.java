@@ -31,7 +31,7 @@ public class GameWindow implements ObserverGame{
     @FXML
     Label lblCoord;
 
-    final Image IMG_CAR = new Image("/images/car.png");
+    final Image IMG_CAR = new Image("/images/player.png");
 
     Obstacle obstacle;
     ObjectProperty<State> input;
