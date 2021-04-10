@@ -47,8 +47,11 @@ public class GameWindow implements ObserverGame{
 
         Road road = new Road();
         ArrayList<Obstacle> usingRB = road.getUsingRB();
-        ImageView playerImageView = new ImageView(player);
-        pane.getChildren().add(playerImageView);
+        var img = new ImageView(player);
+        img.setPreserveRatio(true);
+        img.setFitWidth(100);
+        img.relocate(50 , 300);
+        pane.getChildren().add(img);
 
         ImageView obstacleImageView;
 
