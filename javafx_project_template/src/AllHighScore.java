@@ -1,22 +1,22 @@
-// import java.util.ArrayList;
+import java.util.ArrayList;
 
-// class AllHighScore{ 
+class AllHighScore{ 
 
-//     private AllHighScore(){};
+    private AllHighScore(){};
      
-//     public void addPlayer(PlayerHighScore player) {
-//         String info = player.infromation();
-//         playerList.add(info);
-//     }
+    public void addPlayer(PlayerHighScore player) {
+        String info = player.infromation();
+        playerList.add(info);
+    }
 
-//     ArrayList<String> playerList = new ArrayList<String>();
+    ArrayList<String> playerList = new ArrayList<String>();
 
-//     private static AllHighScore instance = new AllHighScore();
+    private static AllHighScore instance = new AllHighScore();
 
-//     public static AllHighScore getInstance() {
-//         return instance;
-//     }
-//     public ArrayList<String> getPlayerList(){
-//         return playerList;
-//     }
-// }
+    public static AllHighScore getInstance() {
+        return instance;
+    }
+    public ArrayList<String> getPlayerList(){
+        return playerList;
+    }
+}

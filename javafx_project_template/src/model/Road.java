@@ -33,7 +33,7 @@ public class Road{
 
     //File to load and save from
     static final File filename = new File("/data.json");
-    ArrayList<Object> saveList = new ArrayList<Object>();
+    public static ArrayList<Savable> saveList = new ArrayList<Savable>();
 
     // sets the time and distance to move through the pane
     public Road(){
@@ -93,6 +93,7 @@ public class Road{
         Random rand = new Random();
         Obstacle obstacle = new Obstacle(rb[rand.nextInt(3)], distance, lane[rand.nextInt(2)]);
         usingRB.add(obstacle);
+        serialize(obstacle);
     }
 
     public void setObserver(ObserverGame observer) {
@@ -131,36 +132,10 @@ public class Road{
         return player.getCoordinate().getX();
     }
 
-    public void save(File filename) throws Exception {
-        //    ObjectMapper mp = new ObjectMapper();
-            
-        //    for (Object item : saveList) {
-        //        mp.writeValue(filename, item);
-        //    }
-        }
-        
-        public Road load(File filename) throws Exception{
-            /*
-            Hypothetical Methods:
-            setBackground()
-            addObjects()
-            addLanes()
-    
-            */
-            // ObjectMapper mp = new ObjectMapper();
-            // JsonNode loadArray = mp.readTree(filename);
-            // for (JsonNode node : loadArray) {
-            //     System.out.println(node);
-            //     String type = node.path("type").asText();
-            //     //Switch statement to deal with objects based on type
-                
-            // }
-    
-            Road road = new Road();
-            //Set road properties
-            return road;
-    
-        }
+    public void serialize(Object obj) {
+        saveList.add(obj);
+    } 
+ 
 
         public void organizeVariable(){
             DifficultyLevel[] difficultylevel = DifficultyLevel.values();
