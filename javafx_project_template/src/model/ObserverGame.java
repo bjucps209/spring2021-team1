@@ -1,4 +1,4 @@
 package model;
-public class ObserverGame {
-    public void update(int x){}
+public interface ObserverGame {
+    public void update(int x);
 }

@@ -2,7 +2,9 @@ package model;
 
 import java.util.Random;
 
-public class Obstacle {
+
+public class Obstacle extends Coordinate {
+        
     Coordinate coord;
     // when is obstacle used?
         /**
@@ -13,8 +15,7 @@ public class Obstacle {
     Random rand = new Random();
 
     public Obstacle(RoadBlock rd, int x, Lane y){
-        //100 for height of the screen
-        coord = new Coordinate(rand.nextInt(x), y);
+        super(x, y);
         this.object = rd;
     }
 
@@ -34,6 +35,10 @@ public class Obstacle {
         //code
     }
 
+    // public void setObserverGame(ObserverGame observer){
+    //     this.observer = observer;
+    // }
+
     /**
      * @return none
      * @param RoadBlock:object
@@ -42,8 +47,19 @@ public class Obstacle {
         //code
     }
 
-    public void update(){
+    public void updateX(){
        coord.setX(coord.getX()-3);
+       
 
     }
+
+    // public static Obstacle getInstance(){
+    //     return this;
+    // }
+
+    // @Override
+    // public void update(int x) {
+    //     this.setX(x);
+        
+    // }
 }

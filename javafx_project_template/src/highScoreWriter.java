@@ -6,7 +6,8 @@
 // import java.io.OutputStreamWriter;
 // import java.util.ArrayList;
 
-// public class HighScoreWriter {
+// public class HighScoreWriter{
+    
 //     private HighScoreWriter() {
 //     };
 

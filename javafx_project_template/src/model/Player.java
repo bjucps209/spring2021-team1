@@ -18,25 +18,25 @@ class Player{
         coor = new Coordinate(x, y);
 
         State[] state = State.values();
-    for(State s: state){
-    {
-        switch (s){
-            case JUMP:
-                //jumpUp()
-            case SPEEDUP:
+        for(State s: state){
+        {
+            switch (s){
+                case JUMP:
+                    jumpUp();
+                case SPEEDUP:
+                    break;
+                    // speedUp();
+                case LEFT:
+                    break;
+                case RIGHT:
+                    break;
+                case MOVING:
+                    break;
+            default:
                 break;
-                //speedUp();
-            case LEFT:
-                break;
-            case RIGHT:
-                break;
-            case MOVING:
-                break;
-        default:
-            break;
+            }
         }
-    }
-    }
+        }
 
     }
     
