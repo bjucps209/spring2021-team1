@@ -1,0 +1,16 @@
+<VBox alignment="CENTER" spacing="10" stylesheets="@MainWindow.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="MainWindow">
+
+  
+    <HBox spacing="10">
+        <VBox spacing="10">
+            <Button   styleClass="leftbutton"><graphic><ImageView><image><Image url="@images/blackhole.gif" /></image></ImageView></graphic></Button>
+            <Button styleClass="leftbutton"><graphic><ImageView><image><Image url="@images/human.gif" /></image></ImageView></graphic></Button>
+            <Button  styleClass="leftbutton"><graphic><ImageView><image><Image url="@images/cone.gif" /></image></ImageView></graphic></Button>
+
+            <!-- <Button onAction="#onDeleteClicked" styleClass="leftbutton"><graphic><ImageView><image><Image url="@images/delete-icon.png" /></image></ImageView></graphic></Button>
+            <Button styleClass="leftbutton"><graphic><ImageView><image><Image url="@images/undo-icon.png" /></image></ImageView></graphic></Button> -->
+        </VBox>
+        <FlowPane fx:id="pane" prefHeight="500" prefWidth="800" style="-fx-background-color: lightgray" />
+        
+    <Button text=" Start Level" />
+</VBox>
