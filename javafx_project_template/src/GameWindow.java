@@ -26,20 +26,26 @@ import model.State;
 public class GameWindow implements ObserverGame{
     @FXML Pane pane;
     @FXML HBox hbox;
-    @FXML Label lblCoord;
+    @FXML
+    Pane paneMain;
+    @FXML
+    Label lblCoord;
+
+    final Image IMG_CAR = new Image("/images/car.png");
 
     Obstacle obstacle;
     ObjectProperty<State> input;
 
     final Image image = new Image("images/shield.png");
 
-    final Image humanImage = new Image("/images/human.gif");
-    final Image potholeImage = new Image("/images/blackhole.gif");
+    // final Image humanImage = new Image("/images/human.gif");
+    // final Image potholeImage = new Image("/images/blackhole.gif");
+    final Image humanImage = new Image("/images/shield.gif");
+    final Image potholeImage = new Image("/images/speed.gif");
     final Image truckImage = new Image("/images/truck.png");
     final Image coneImage = new Image("/images/cone.png");
     final Image carImage = new Image("/images/RoadBlockcar.png");
 
-    final Image player = new Image("/images/player.png");
 
 
     @FXML
@@ -47,8 +53,12 @@ public class GameWindow implements ObserverGame{
 
         Road road = new Road();
         ArrayList<Obstacle> usingRB = road.getUsingRB();
-        ImageView playerImageView = new ImageView(player);
-        pane.getChildren().add(playerImageView);
+
+        var img = new ImageView(IMG_CAR);
+        img.setPreserveRatio(true);
+        img.setFitWidth(100);
+        img.relocate(100, 100);
+        paneMain.getChildren().add(img);
 
         ImageView obstacleImageView;
 
@@ -119,27 +129,6 @@ public class GameWindow implements ObserverGame{
         // }
 
     }
-
-    
-
-    
-public class GameWindow {
-    @FXML
-    Pane paneMain;
-
-    @FXML
-    Label lblCoord;
-
-    final Image IMG_CAR = new Image("/images/car.png");
-
-    Obstacle obstacle;
-
-    public void initialize() {
-        var img = new ImageView(IMG_CAR);
-        img.setPreserveRatio(true);
-        img.setFitWidth(100);
-        img.relocate(100, 100);
-        paneMain.getChildren().add(img);
-    }
-
 }
+
+    

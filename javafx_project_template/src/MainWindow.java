@@ -29,7 +29,7 @@ public class MainWindow {
     @FXML
     Label lblCoord;
 
-    final Image IMG_CAR = new Image("/images/car.png");
+    //final Image IMG_CAR = new Image("/images/car.png");
 
     Obstacle obstacle;
 
