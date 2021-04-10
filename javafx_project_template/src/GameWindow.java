@@ -1,24 +1,14 @@
 import java.util.ArrayList;
 
 import javafx.beans.property.ObjectProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.Labeled;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import model.ObserverGame;
 import model.Obstacle;
-import model.Road;
-import model.RoadBlock;
 import model.State;
 
 public class GameWindow implements ObserverGame {
