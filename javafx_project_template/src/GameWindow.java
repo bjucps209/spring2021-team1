@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import javafx.beans.property.ObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.image.Image;
@@ -36,8 +36,6 @@ public class GameWindow implements ObserverGame{
     Obstacle obstacle;
     ObjectProperty<State> input;
 
-    final Image image = new Image("images/shield.png");
-
     // final Image humanImage = new Image("/images/human.gif");
     // final Image potholeImage = new Image("/images/blackhole.gif");
     final Image humanImage = new Image("/images/shield.gif");
@@ -57,8 +55,8 @@ public class GameWindow implements ObserverGame{
         var img = new ImageView(IMG_CAR);
         img.setPreserveRatio(true);
         img.setFitWidth(100);
-        img.relocate(100, 100);
-        paneMain.getChildren().add(img);
+        img.relocate(50 , 300);
+        pane.getChildren().add(img);
 
         ImageView obstacleImageView;
 
@@ -129,6 +127,32 @@ public class GameWindow implements ObserverGame{
         // }
 
     }
-}
 
     
+}
+    
+// public class GameWindow {
+//     @FXML
+//     Pane paneMain;
+
+//     @FXML
+//     Label lblCoord;
+
+//     final Image IMG_CAR = new Image("/images/car.png");
+
+//     Obstacle obstacle;
+
+//     public void initialize() {
+//         var img = new ImageView(IMG_CAR);
+//         img.setPreserveRatio(true);
+//         img.setFitWidth(100);
+//         img.relocate(50 , 300);
+//         paneMain.getChildren().add(img);
+//         img.setOnKeyPressed(e -> keyPress(img););
+//     }
+
+//     private void keyPress(Node node) {
+        
+
+//     }
+// }
