@@ -21,7 +21,7 @@ import javafx.util.Duration;
 public class Road{
     //File to load and save from
     static final File filename = new File("/data.json");
-    ArrayList<Object> saveList = new ArrayList();
+    ArrayList<Object> saveList = new ArrayList<Object>();
     RoadBlock[] rb = RoadBlock.values();
     Lane[] lane = Lane.values();
     ArrayList<Obstacle> usingRB;
@@ -64,6 +64,50 @@ public class Road{
 
     public void setLanes(){
 
+    }
+
+    public void organizeVariable(){
+        DifficultyLevel[] difficultylevel = DifficultyLevel.values();
+        LevelSequence[] levelSequence = LevelSequence.values();
+        for (DifficultyLevel DL : difficultylevel){
+        {
+            // Switch for each DifficultyLevel/ LevelSequece combinations
+            switch (DL){
+                case EASY:
+                    for (LevelSequence LS : levelSequence){
+                        switch (LS){
+                            case TEN:
+                                setDistanceSpeed(10, 60);
+                            case TWENTY:
+                                setDistanceSpeed(20, 60);
+                            case THIRTY:
+                                setDistanceSpeed(30, 60);
+                        }}
+                case MEDIUM:
+                    for (LevelSequence LS : levelSequence){
+                        switch (LS){
+                            case TEN:
+                                setDistanceSpeed(10, 70);
+                            case TWENTY:
+                                setDistanceSpeed(20, 70);
+                            case THIRTY:
+                                setDistanceSpeed(30, 70);
+                        }
+                    }
+                case HARD:
+                    for (LevelSequence LS : levelSequence){
+                        switch (LS){
+                            case TEN:
+                                setDistanceSpeed(10, 80);
+                            case TWENTY:
+                                setDistanceSpeed(20, 80);
+                            case THIRTY:
+                                setDistanceSpeed(30, 80);
+                        }
+                    }
+                }   
+        }
+        }        
     }
 
     public void save(File filename) throws Exception {

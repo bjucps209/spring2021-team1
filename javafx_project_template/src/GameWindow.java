@@ -11,10 +11,5 @@ public class GameWindow {
 
     Obstacle obstacle;
 
-    @FXML
-    public void initialize(ActionEvent event){
-        
-    }
-
-
+    
 }
