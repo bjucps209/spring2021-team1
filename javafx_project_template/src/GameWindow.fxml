@@ -4,13 +4,15 @@
 <?import javafx.scene.layout.*?>
 
 <HBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="GameWindow.css"
-    spacing="10" prefHeight="600"  style="-fx-background-color: black;" prefWidth="1500" alignment="CENTER">
+    spacing="10" prefHeight="600"  style="-fx-background-color: black;" prefWidth="1500" alignment="CENTER" fx:id="hbox">
 
     
     <Label fx:id="lblCoord" style="-fx-text-fill: blue"/>
 
 
-    <Pane prefHeight="300" prefWidth="1100" style="-fx-background-color: white" styleClass="Pane" fx:id="pane"/>
+    <Pane prefHeight="300" prefWidth="1100" style="-fx-background-color: white" styleClass="Pane" fx:id="pane">
+        <Label text="boo"/>
+    </Pane>
     
 
 </HBox>

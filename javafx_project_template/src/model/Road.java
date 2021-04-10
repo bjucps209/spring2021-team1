@@ -19,9 +19,6 @@ import javafx.util.Duration;
 
 
 public class Road{
-    //File to load and save from
-    static final File filename = new File("/data.json");
-    ArrayList<Object> saveList = new ArrayList<Object>();
     RoadBlock[] rb = RoadBlock.values();
     ArrayList<Obstacle> usingRB;
     Lane[] lane = Lane.values();
@@ -31,99 +28,35 @@ public class Road{
     int speed;
     int distance;
     Obstacle obstacle;
+    ObserverGame observer;
+    
+
+    //File to load and save from
+    static final File filename = new File("/data.json");
+    ArrayList<Object> saveList = new ArrayList<Object>();
 
     // sets the time and distance to move through the pane
     public Road(){
-        Player player = new Player(State.MOVING, 0, Lane.B);
-        createRandomObstacle();
+        player = new Player(State.MOVING, 0, Lane.B);
+        addObjectsdefault();
         usingRB = getUsingRB();
        
     }
     
-
-    // /**
-    //  * @param int:d
-    //  * @param int:r
-    //  * @return
-    //  */
-    // public int calculateTime(int d, int r){
-    //     time = d/r;
-    //     int seconds = time*3600;
-    //     return seconds;
-    // }
+    public void addObjectsdefault(){
+        for (int i = 0; i < 25; i ++){
+            Random rand = new Random();
+            Obstacle obstacle = new Obstacle(rb[rand.nextInt(3)], rand.nextInt(20), lane[rand.nextInt(2)]);
+            usingRB.add(obstacle);
+        }
+    }
 
     public void setDistanceSpeed(int d, int r){
         distance = d*10;
         speed = r;
     }
 
-    public Road createRoad(){
-        //for x amount of distance (this.getDistance())
-        
-        Road newRoad = new Road();
-        return newRoad;
-    }
-
-    public void setLanes(){
-
-    }
-
-    public void organizeVariable(){
-        DifficultyLevel[] difficultylevel = DifficultyLevel.values();
-        LevelSequence[] levelSequence = LevelSequence.values();
-        for (DifficultyLevel DL : difficultylevel){
-        {
-            // Switch for each DifficultyLevel/ LevelSequece combinations
-            switch (DL){
-                case EASY:
-                    for (LevelSequence LS : levelSequence){
-                        switch (LS){
-                            case TEN:
-                                setDistanceSpeed(10, 60);
-                                addObjects(distance);
-                            case TWENTY:
-                                setDistanceSpeed(20, 60);
-                                addObjects(distance);
-                            case THIRTY:
-                                setDistanceSpeed(30, 60);
-                                addObjects(distance);
-                                
-                        }}
-                case MEDIUM:
-                    for (LevelSequence LS : levelSequence){
-                        switch (LS){
-                            case TEN:
-                                setDistanceSpeed(10, 70);
-                                addObjects(distance);
-                            case TWENTY:
-                                setDistanceSpeed(20, 70);
-                                addObjects(distance);
-                            case THIRTY:
-                                setDistanceSpeed(30, 70);
-                                addObjects(distance);
-
-                        }
-                    }
-                case HARD:
-                    for (LevelSequence LS : levelSequence){
-                        switch (LS){
-                            case TEN:
-                                setDistanceSpeed(10, 80);
-                                addObjects(distance);
-                            case TWENTY:
-                                setDistanceSpeed(20, 80);
-                                addObjects(distance);
-                            case THIRTY:
-                                setDistanceSpeed(30, 80);
-                                addObjects(distance);
-                        }
-                    }
-                }   
-        }
-        }        
-    }
-
-        /**
+    /**
      * @return none
      * @param RoadBlock:object
      */
@@ -133,63 +66,26 @@ public class Road{
         }
     }
 
-
-    // public void setObserverGame(ObserverGame observer){
-    //     this.observer = observer;
-    // }
-
-    public void save(File filename) throws Exception {
-    //    ObjectMapper mp = new ObjectMapper();
-        
-    //    for (Object item : saveList) {
-    //        mp.writeValue(filename, item);
-    //    }
-    }
-    
-    public Road load(File filename) throws Exception{
-        /*
-        Hypothetical Methods:
-        setBackground()
-        addObjects()
-        addLanes()
-
-        */
-        // ObjectMapper mp = new ObjectMapper();
-        // JsonNode loadArray = mp.readTree(filename);
-        // for (JsonNode node : loadArray) {
-        //     System.out.println(node);
-        //     String type = node.path("type").asText();
-        //     //Switch statement to deal with objects based on type
-            
-        // }
-
-        Road road = new Road();
-        //Set road properties
-        return road;
-
-
-
-    }
-
-    public RoadBlock getObject(int x){
-        RoadBlock item = RoadBlock.CARS;
-        return item;
-    }
-
-    public void timer(ArrayList<Obstacle> list){
+    public void timer(){
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
                 loop();
             }
         }));
+        observer.update(usingRB);
         
     }
 
-    public void createRandomObstacledefault(){
-        for (int i = 0; i < 25; i ++){
-            createRandomObstacle();
+    public void loop(){ //Caedmon Evans helped me with this idea
+        for (int i = 0; i < usingRB.size(); ++i){
+            updateX(usingRB.get(i));
         }
+    }
+
+    public void updateX(Obstacle obstacles){
+        obstacles.setX(obstacles.getX()-3);
+ 
     }
 
     public void createRandomObstacle(){
@@ -198,18 +94,18 @@ public class Road{
         usingRB.add(obstacle);
     }
 
-    /**
-     * @param none
-     * @return Obstacle
-     */
+    public void setObserver(ObserverGame observer) {
+        this.observer = observer;
+    }
     
+    private static Road instance = new Road();
 
-    public void loop(){
-        for (int i = 0; i < usingRB.size(); ++i){
-            obstacle.updateX();
-        }
+    public static Road getInstance() { 
+        return instance;
     }
 
+    
+    //Getters for variables
     public int getSpeed() {
         return speed;
     }
@@ -222,5 +118,103 @@ public class Road{
     public ArrayList<Obstacle> getUsingRB() {
         return usingRB;
     }
+    /**
+     * @param none
+     * @return RoadBlock
+     */
+    public RoadBlock getObjectType(Obstacle obst){
+        return obst.getRoadBlock();
+    }
+
+    public int getplayerXcoord(){
+        return player.getCoordinate().getX();
+    }
+
+    public void save(File filename) throws Exception {
+        //    ObjectMapper mp = new ObjectMapper();
+            
+        //    for (Object item : saveList) {
+        //        mp.writeValue(filename, item);
+        //    }
+        }
+        
+        public Road load(File filename) throws Exception{
+            /*
+            Hypothetical Methods:
+            setBackground()
+            addObjects()
+            addLanes()
+    
+            */
+            // ObjectMapper mp = new ObjectMapper();
+            // JsonNode loadArray = mp.readTree(filename);
+            // for (JsonNode node : loadArray) {
+            //     System.out.println(node);
+            //     String type = node.path("type").asText();
+            //     //Switch statement to deal with objects based on type
+                
+            // }
+    
+            Road road = new Road();
+            //Set road properties
+            return road;
+    
+        }
+
+        public void organizeVariable(){
+            DifficultyLevel[] difficultylevel = DifficultyLevel.values();
+            LevelSequence[] levelSequence = LevelSequence.values();
+            for (DifficultyLevel DL : difficultylevel){
+            {
+                // Switch for each DifficultyLevel/ LevelSequece combinations
+                switch (DL){
+                    case EASY:
+                        for (LevelSequence LS : levelSequence){
+                            switch (LS){
+                                case TEN:
+                                    setDistanceSpeed(10, 60);
+                                    addObjects(distance);
+                                case TWENTY:
+                                    setDistanceSpeed(20, 60);
+                                    addObjects(distance);
+                                case THIRTY:
+                                    setDistanceSpeed(30, 60);
+                                    addObjects(distance);
+                                    
+                            }}
+                    case MEDIUM:
+                        for (LevelSequence LS : levelSequence){
+                            switch (LS){
+                                case TEN:
+                                    setDistanceSpeed(10, 70);
+                                    addObjects(distance);
+                                case TWENTY:
+                                    setDistanceSpeed(20, 70);
+                                    addObjects(distance);
+                                case THIRTY:
+                                    setDistanceSpeed(30, 70);
+                                    addObjects(distance);
+    
+                            }
+                        }
+                    case HARD:
+                        for (LevelSequence LS : levelSequence){
+                            switch (LS){
+                                case TEN:
+                                    setDistanceSpeed(10, 80);
+                                    addObjects(distance);
+                                case TWENTY:
+                                    setDistanceSpeed(20, 80);
+                                    addObjects(distance);
+                                case THIRTY:
+                                    setDistanceSpeed(30, 80);
+                                    addObjects(distance);
+                            }
+                        }
+                    }   
+            }
+            }        
+        }
+    
 
 }

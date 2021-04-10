@@ -18,19 +18,23 @@ import javafx.animation.Timeline;
 
 public class MainWindow {
     
+    /**
+     *
+     */
     @FXML Button btnStart, btnHelp, btnAbout, btnHigh;
     @FXML Button btnBackStart, btnBackHelp, btnBackAbout, btnBackHigh;
     @FXML Pane roadPane;
     
+    GameWindow gamewindow = new GameWindow();
    
 
     @FXML
     void onStartClicked(ActionEvent event) throws IOException {
-        
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("GameWindow.fxml"));
         Scene scene = new Scene(root);
+
 
 
         stage.setScene(scene);
