@@ -71,6 +71,8 @@ public class MainWindow {
 
         stage.setScene(scene);
         stage.show();
+
+        
     }
 
     @FXML
