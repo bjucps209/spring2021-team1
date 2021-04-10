@@ -1,5 +1,6 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.image.Image;
@@ -22,8 +23,13 @@ public class GameWindow {
         var img = new ImageView(IMG_CAR);
         img.setPreserveRatio(true);
         img.setFitWidth(100);
-        img.relocate(100, 100);
+        img.relocate(50 , 300);
         paneMain.getChildren().add(img);
+        img.setOnKeyPressed(e -> keyPress(img););
     }
 
+    private void keyPress(Node node) {
+        
+
+    }
 }
