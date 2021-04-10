@@ -21,68 +21,132 @@ import model.Road;
 import model.RoadBlock;
 import model.State;
 
-public class GameWindow implements ObserverGame{
-    @FXML Pane pane;
-    @FXML HBox hbox;
+public class GameWindow implements ObserverGame {
+
+    @FXML
+    HBox hbox;
     @FXML
     Pane paneMain;
     @FXML
     Label lblCoord;
-
-    // final Image IMG_CAR = new Image("/images/player.png");
 
     Obstacle obstacle;
     ObjectProperty<State> input;
 
     // final Image humanImage = new Image("/images/human.gif");
     // final Image potholeImage = new Image("/images/blackhole.gif");
-    // final Image humanImage = new Image("/images/shield.png");
-    // final Image potholeImage = new Image("/images/speed.png");
-    // final Image truckImage = new Image("/images/truck.png");
-    // final Image coneImage = new Image("/images/cone.png");
-    // final Image carImage = new Image("/images/RoadBlockcar.png");
+    final Image humanImage = new Image("/images/shield.png");
+    final Image potholeImage = new Image("/images/speed.png");
+    final Image truckImage = new Image("/images/truck.png");
+    final Image coneImage = new Image("/images/cone.png");
+    final Image carImage = new Image("/images/RoadBlockcar.png");
+    final Image player = new Image("/images/player.png");
 
-    
     public void initialize(){
-        // Image image = new Image("\\images\\pngfind.com-skateboard-side-view-png-6935593.png");
-        // ImageView imageview = new ImageView(image);
-        // imageview.setX(50);
-        // imageview.setY(50);
-        // pane.getChildren().add(imageview);
-    }
+        Road road = Road.getInstance();
 
+        var img = new ImageView(player);
+        img.setPreserveRatio(true);
+        img.setFitWidth(100);
+        img.relocate(300 , 300);
+        paneMain.getChildren().add(img);
+
+        ImageView obstacleImageView;
+        
+        for(int i = 0; i < road.getUsingRB().size(); i++){
+            RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
+            int x = road.getUsingRB().get(i).getX();
+
+            if(type == RoadBlock.PEOPLE){
+                obstacleImageView = new ImageView(humanImage);
+                img.setPreserveRatio(true);
+                obstacleImageView.setFitWidth(150);
+                obstacleImageView.setFitHeight(150);
+                obstacleImageView.relocate(x, 100);
+                paneMain.getChildren().add(obstacleImageView);
+            }else if (type == RoadBlock.POTHOLES){
+                obstacleImageView = new ImageView(potholeImage);
+                obstacleImageView.setFitWidth(150);
+                obstacleImageView.setFitHeight(150);
+                obstacleImageView.relocate(x, 100);
+                paneMain.getChildren().add(obstacleImageView);
+            } else if (type == RoadBlock.TRUCK){
+                obstacleImageView = new ImageView(truckImage);
+                obstacleImageView.setFitWidth(150);
+                obstacleImageView.setFitHeight(150);
+                obstacleImageView.relocate(x, 200);
+                paneMain.getChildren().add(obstacleImageView);
+            } else if (type == RoadBlock.CONES){
+                obstacleImageView = new ImageView(coneImage);
+                obstacleImageView.setFitWidth(150);
+                obstacleImageView.setFitHeight(150);
+                obstacleImageView.relocate(x, 200);
+                paneMain.getChildren().add(obstacleImageView);
+            } else if (type == RoadBlock.CARS){
+                obstacleImageView = new ImageView(carImage);
+                obstacleImageView.setFitWidth(150);
+                obstacleImageView.setFitHeight(150);
+                obstacleImageView.relocate(x, 300);
+                paneMain.getChildren().add(obstacleImageView);
+            }
+
+
+        }
+    }
 
     @Override
     public void update(ArrayList<Obstacle> list) {
-        // TODO Auto-generated method stub
-        
+        for(Obstacle i: list){
+            
+        }
+
+        //for loop through the arraylist
+        //set the image of the obstacle object to the certain x by doing obstacle.getX()
+        //after creating a method of separating the lanes by abc, set the y of the same image by obstacle.getY();
+        //CHeck for obstacle object type
     }
 
-    
-}
-    
-// public class GameWindow {
-//     @FXML
-//     Pane paneMain;
+    public void KeyEvent(KeyEvent event){
 
-//     @FXML
-//     Label lblCoord;
+        if(event.getCode() == KeyCode.SPACE){
+            input.set(State.JUMP);
+        } else if (event.getCode() == KeyCode.UP){
+            input.set(State.LEFT);
+        } else if (event.getCode() == KeyCode.DOWN){
+            input.set(State.RIGHT);
+        } else if (event.getCode() == KeyCode.RIGHT){
+            input.set(State.SPEEDUP);
+        }
+    }
 
-//     final Image IMG_CAR = new Image("/images/car.png");
+    public void getEachObject(){
 
-//     Obstacle obstacle;
-
-//     public void initialize() {
-//         var img = new ImageView(IMG_CAR);
-//         img.setPreserveRatio(true);
-//         img.setFitWidth(100);
-//         img.relocate(50 , 300);
-//         paneMain.getChildren().add(img);
-//         img.setOnKeyPressed(e -> keyPress(img););
-//     }
-
-//     private void keyPress(Node node) {
         
+    }  
 
-//     }
+}
+
+// public class GameWindow {
+// @FXML
+// Pane paneMain;
+
+// @FXML
+// Label lblCoord;
+
+// final Image IMG_CAR = new Image("/images/car.png");
+
+// Obstacle obstacle;
+
+// public void initialize() {
+// var img = new ImageView(IMG_CAR);
+// img.setPreserveRatio(true);
+// img.setFitWidth(100);
+// img.relocate(50 , 300);
+// paneMain.getChildren().add(img);
+// img.setOnKeyPressed(e -> keyPress(img););
+// }
+
+// private void keyPress(Node node) {
+
+// }
 // }

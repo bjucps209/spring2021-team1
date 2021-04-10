@@ -38,15 +38,16 @@ public class Road{
     // sets the time and distance to move through the pane
     public Road(){
         player = new Player(State.MOVING, 0, Lane.B);
+        usingRB = new ArrayList<>();
         addObjectsdefault();
-        usingRB = getUsingRB();
+        
        
     }
     
     public void addObjectsdefault(){
         for (int i = 0; i < 25; i ++){
             Random rand = new Random();
-            Obstacle obstacle = new Obstacle(rb[rand.nextInt(3)], rand.nextInt(20), lane[rand.nextInt(2)]);
+            Obstacle obstacle = new Obstacle(rb[rand.nextInt(3)], rand.nextInt(1250), lane[rand.nextInt(2)]);
             usingRB.add(obstacle);
         }
     }
