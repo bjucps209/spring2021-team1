@@ -16,21 +16,6 @@ import javafx.stage.Stage;
 import model.Obstacle;
 
 public class MainWindow {
-<<<<<<< HEAD
-    
-    /**
-     *
-     */
-    @FXML Button btnStart, btnHelp, btnAbout, btnHigh;
-    @FXML Button btnBackStart, btnBackHelp, btnBackAbout, btnBackHigh;
-    @FXML Pane roadPane;
-    
-    GameWindow gamewindow = new GameWindow();
-   
-
-    @FXML
-    void onStartClicked(ActionEvent event) throws IOException {
-=======
 
     @FXML
     Button btnStart, btnHelp, btnAbout, btnHigh;
@@ -40,16 +25,12 @@ public class MainWindow {
     Pane roadPane;
     @FXML
     Pane paneMain;
->>>>>>> 84146052765ccf68f4880bd910d44bdde57f00c3
 
     @FXML
     Label lblCoord;
 
     final Image IMG_CAR = new Image("/images/car.png");
 
-<<<<<<< HEAD
-
-=======
     Obstacle obstacle;
 
     @FXML
@@ -58,7 +39,6 @@ public class MainWindow {
         var scene = new Scene(loader.load());
 
         var stage = new Stage();
->>>>>>> 84146052765ccf68f4880bd910d44bdde57f00c3
         stage.setScene(scene);
         stage.show();
 
