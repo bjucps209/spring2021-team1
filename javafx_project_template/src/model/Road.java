@@ -33,7 +33,7 @@ public class Road{
 
     //File to load and save from
     static final File filename = new File("/data.json");
-    ArrayList<Object> saveList = new ArrayList<Object>();
+    public static ArrayList<Savable> saveList = new ArrayList<Savable>();
 
     // sets the time and distance to move through the pane
     public Road(){
@@ -92,6 +92,7 @@ public class Road{
         Random rand = new Random();
         Obstacle obstacle = new Obstacle(rb[rand.nextInt(3)], distance, lane[rand.nextInt(2)]);
         usingRB.add(obstacle);
+        serialize(obstacle);
     }
 
     public void setObserver(ObserverGame observer) {
@@ -130,7 +131,9 @@ public class Road{
         return player.getCoordinate().getX();
     }
 
-       
+    public void serialize(Object obj) {
+        saveList.add(obj);
+    } 
  
 
         public void organizeVariable(){
