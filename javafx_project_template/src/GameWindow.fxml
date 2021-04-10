@@ -3,20 +3,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="GameWindow.css"
+<HBox fx:controller="GameWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="GameWindow.css"
     spacing="10" prefHeight="600"  style="-fx-background-color: black;" prefWidth="1500" alignment="CENTER" fx:id="hbox">
 
 
     
     <Label fx:id="lblCoord" style="-fx-text-fill: blue"/>
 
-<<<<<<< HEAD
     
     <Pane prefHeight="300" prefWidth="500" style="-fx-background-color: lightgrey" styleClass="Pane" fx:id="pane"/>
-=======
-
-    <Pane prefHeight="300" prefWidth="1100" style="-fx-background-color: white" styleClass="Pane" fx:id="paneMain"></Pane>
->>>>>>> 876f1de791b5711f0370202e11c86f41bfb1a107
     
 
 </HBox>
