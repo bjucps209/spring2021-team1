@@ -9,8 +9,6 @@ class Player{
     Coordinate coor;
 
     //x and y coordinate
-    int x;
-    int y;
 
     //
     public Player(State Player, int x, Lane y){
@@ -90,6 +88,10 @@ class Player{
         // break;
     }
 
+    public Coordinate getCoordinate(){
+        return coor;
+    }
+
     /**
      * @return boolean
      * @param 
@@ -106,10 +108,6 @@ class Player{
          *  return false
          * 
          */
-    }
-    public boolean collisionDetection(RoadBlock rb){
-        return false;
-        
     }
 
     public void serialize() {

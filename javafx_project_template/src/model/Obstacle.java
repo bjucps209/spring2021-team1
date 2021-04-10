@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+
 
 public class Obstacle extends Coordinate {
         
@@ -21,19 +24,9 @@ public class Obstacle extends Coordinate {
         this.object = rd;
     }
 
-    public void updateX(){
-       coord.setX(coord.getX()-3);
-       
-
+    public RoadBlock getRoadBlock(){
+        return object;
     }
 
-    // public static Obstacle getInstance(){
-    //     return this;
-    // }
-
-    // @Override
-    // public void update(int x) {
-    //     this.setX(x);
-        
-    // }
+    
 }
