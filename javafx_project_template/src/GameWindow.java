@@ -5,10 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import model.ObserverGame;
 import model.Obstacle;
+import model.Road;
+import model.RoadBlock;
 import model.State;
 
 public class GameWindow implements ObserverGame {
@@ -32,22 +36,10 @@ public class GameWindow implements ObserverGame {
     final Image carImage = new Image("/images/RoadBlockcar.png");
     final Image player = new Image("/images/player.png");
 
-<<<<<<< HEAD
-
-
-    @FXML
-    public void initialize(){
-
-        Road road = new Road();
-        ArrayList<Obstacle> usingRB = road.getUsingRB();
-
-        var img = new ImageView(IMG_CAR);
-=======
     public void initialize(){
         Road road = Road.getInstance();
 
         var img = new ImageView(player);
->>>>>>> 248e4215c173082512989641237b5cbcf909e85c
         img.setPreserveRatio(true);
         img.setFitWidth(100);
         img.relocate(300 , 300);

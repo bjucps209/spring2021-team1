@@ -1,7 +1,5 @@
 package model;
 
-
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
@@ -93,7 +91,7 @@ public class Road{
         Random rand = new Random();
         Obstacle obstacle = new Obstacle(rb[rand.nextInt(3)], distance, lane[rand.nextInt(2)]);
         usingRB.add(obstacle);
-        serialize(obstacle);
+        // serialize(obstacle);
     }
 
     public void setObserver(ObserverGame observer) {
@@ -132,9 +130,9 @@ public class Road{
         return player.getCoordinate().getX();
     }
 
-    public void serialize(Object obj) {
-        saveList.add(obj);
-    } 
+    // public void serialize(Object obj) {
+    //     saveList.add(obj);
+    // } 
  
 
         public void organizeVariable(){
