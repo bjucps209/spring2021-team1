@@ -29,26 +29,26 @@ public class GameWindow implements ObserverGame{
     @FXML
     Label lblCoord;
 
-    final Image IMG_CAR = new Image("/images/player.png");
+    // final Image IMG_CAR = new Image("/images/player.png");
 
     Obstacle obstacle;
     ObjectProperty<State> input;
 
     // final Image humanImage = new Image("/images/human.gif");
     // final Image potholeImage = new Image("/images/blackhole.gif");
-    final Image humanImage = new Image("/images/shield.png");
-    final Image potholeImage = new Image("/images/speed.png");
-    final Image truckImage = new Image("/images/truck.png");
-    final Image coneImage = new Image("/images/cone.png");
-    final Image carImage = new Image("/images/RoadBlockcar.png");
+    // final Image humanImage = new Image("/images/shield.png");
+    // final Image potholeImage = new Image("/images/speed.png");
+    // final Image truckImage = new Image("/images/truck.png");
+    // final Image coneImage = new Image("/images/cone.png");
+    // final Image carImage = new Image("/images/RoadBlockcar.png");
 
     
     public void initialize(){
-        Image image = new Image("\\images\\pngfind.com-skateboard-side-view-png-6935593.png");
-        ImageView imageview = new ImageView(image);
-        imageview.setX(50);
-        imageview.setY(50);
-        pane.getChildren().add(imageview);
+        // Image image = new Image("\\images\\pngfind.com-skateboard-side-view-png-6935593.png");
+        // ImageView imageview = new ImageView(image);
+        // imageview.setX(50);
+        // imageview.setY(50);
+        // pane.getChildren().add(imageview);
     }
 
 
