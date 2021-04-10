@@ -44,6 +44,15 @@ public class GameWindow implements ObserverGame{
     final Image coneImage = new Image("/images/cone.png");
     final Image carImage = new Image("/images/RoadBlockcar.png");
 
+<<<<<<< HEAD
+    
+    public void initialize(){
+        Image image = new Image("\\images\\pngfind.com-skateboard-side-view-png-6935593.png");
+        ImageView imageview = new ImageView(image);
+        imageview.setX(50);
+        imageview.setY(50);
+        pane.getChildren().add(imageview);
+=======
 
 
     @FXML
@@ -126,6 +135,7 @@ public class GameWindow implements ObserverGame{
         //     input.set(State.SPEEDUP);
         // }
 
+>>>>>>> 876f1de791b5711f0370202e11c86f41bfb1a107
     }
 
     
