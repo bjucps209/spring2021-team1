@@ -17,26 +17,26 @@ import javafx.stage.Stage;
 import model.Obstacle;
 
 public class MainWindow {
-    
+
     /**
      *
      */
-    @FXML Button btnStart, btnHelp, btnAbout, btnHigh;
-    @FXML Button btnBackStart, btnBackHelp, btnBackAbout, btnBackHigh;
-    @FXML Pane roadPane;
-    
+    @FXML
+    Button btnStart, btnHelp, btnAbout, btnHigh;
+    @FXML
+    Button btnBackStart, btnBackHelp, btnBackAbout, btnBackHigh;
+    @FXML
+    Pane roadPane;
+
     GameWindow gamewindow = new GameWindow();
-   
 
     @FXML
     void onStartClicked(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("GameWindow.fxml"));
-        Scene scene = new Scene(root);
-
+        var loader = new FXMLLoader(getClass().getResource("GameWindow.fxml"));
+        var scene = new Scene(loader.load());
+        var stage = new Stage();
         stage.setScene(scene);
         stage.show();
-
     }
 
     @FXML

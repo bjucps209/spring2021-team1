@@ -23,15 +23,14 @@ import model.Road;
 import model.RoadBlock;
 import model.State;
 
-public class GameWindow implements ObserverGame{
-    @FXML Pane pane;
-    @FXML HBox hbox;
+public class GameWindow implements ObserverGame {
+
+    @FXML
+    HBox hbox;
     @FXML
     Pane paneMain;
     @FXML
     Label lblCoord;
-
-    final Image IMG_CAR = new Image("/images/player.png");
 
     Obstacle obstacle;
     ObjectProperty<State> input;
@@ -43,48 +42,45 @@ public class GameWindow implements ObserverGame{
     final Image truckImage = new Image("/images/truck.png");
     final Image coneImage = new Image("/images/cone.png");
     final Image carImage = new Image("/images/RoadBlockcar.png");
+    final Image player = new Image("/images/player.png");
 
-    
     public void initialize(){
-        Image image = new Image("\\images\\pngfind.com-skateboard-side-view-png-6935593.png");
-        ImageView imageview = new ImageView(image);
-        imageview.setX(50);
-        imageview.setY(50);
-        pane.getChildren().add(imageview);
+        var img = new ImageView(player);
+        img.setPreserveRatio(true);
+        img.setFitWidth(100);
+        img.relocate(50 , 300);
+        paneMain.getChildren().add(img);
     }
-
 
     @Override
     public void update(ArrayList<Obstacle> list) {
         // TODO Auto-generated method stub
-        
+
     }
 
-    
 }
-    
+
 // public class GameWindow {
-//     @FXML
-//     Pane paneMain;
+// @FXML
+// Pane paneMain;
 
-//     @FXML
-//     Label lblCoord;
+// @FXML
+// Label lblCoord;
 
-//     final Image IMG_CAR = new Image("/images/car.png");
+// final Image IMG_CAR = new Image("/images/car.png");
 
-//     Obstacle obstacle;
+// Obstacle obstacle;
 
-//     public void initialize() {
-//         var img = new ImageView(IMG_CAR);
-//         img.setPreserveRatio(true);
-//         img.setFitWidth(100);
-//         img.relocate(50 , 300);
-//         paneMain.getChildren().add(img);
-//         img.setOnKeyPressed(e -> keyPress(img););
-//     }
+// public void initialize() {
+// var img = new ImageView(IMG_CAR);
+// img.setPreserveRatio(true);
+// img.setFitWidth(100);
+// img.relocate(50 , 300);
+// paneMain.getChildren().add(img);
+// img.setOnKeyPressed(e -> keyPress(img););
+// }
 
-//     private void keyPress(Node node) {
-        
+// private void keyPress(Node node) {
 
-//     }
+// }
 // }
