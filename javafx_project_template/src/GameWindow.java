@@ -1,26 +1,29 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.Obstacle;
 
 public class GameWindow {
-    @FXML Pane pane;
+    @FXML
+    Pane paneMain;
 
-    @FXML Label lblCoord;
+    @FXML
+    Label lblCoord;
+
+    final Image IMG_CAR = new Image("/images/car.png");
 
     Obstacle obstacle;
 
-    public void initialize(){
-        Image image = new Image("\\images\\pngfind.com-skateboard-side-view-png-6935593.png");
-        ImageView imageview = new ImageView(image);
-        imageview.setX(50);
-        imageview.setY(50);
-
-        pane.getChildren().add(imageview);
+    public void initialize() {
+        var img = new ImageView(IMG_CAR);
+        img.setPreserveRatio(true);
+        img.setFitWidth(100);
+        img.relocate(100, 100);
+        paneMain.getChildren().add(img);
     }
 
-    
 }
