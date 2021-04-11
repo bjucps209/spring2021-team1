@@ -91,6 +91,10 @@ public class Road{
     }
     }
 
+    public void load() {
+        //Still testing in separate project
+    }
+
     public void loop(){ //Caedmon Evans helped me with this idea
         for (int i = 0; i < usingRB.size(); ++i){
             updateX(usingRB.get(i));
