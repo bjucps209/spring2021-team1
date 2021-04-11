@@ -1,3 +1,4 @@
-Jackie,900
-Aya,1000
-Brigs,700
+Jackie, 900
+Aya, 1000
+Brigs, 700
+William's, 802

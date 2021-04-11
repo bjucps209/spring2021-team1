@@ -28,8 +28,6 @@ public class HighScore {
         }
     }
 
-
-
     @FXML
     void onBackClicked(ActionEvent event) throws IOException {
 
