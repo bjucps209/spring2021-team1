@@ -7,11 +7,10 @@ public class SerializationTest {
 
     @Test
     public void testSave() {
-        //Road road = new Road();
-        for (Object o : Road.saveList) {
-            System.out.println(o);
+        Road r = new Road();
+        for (Savable o : r.saveList) {
+            o.serialize();
         }
-        Game.save();
     }
 
 }
