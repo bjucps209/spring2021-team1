@@ -39,6 +39,7 @@ public class Road{
         createLanes();
         addObjectsdefault();
         player = new Player(STATE.MOVING, 0, Lane.get(1));
+        saveList.add(player);
         
        
     }

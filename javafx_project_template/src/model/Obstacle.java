@@ -36,6 +36,7 @@ public class Obstacle extends Coordinate implements Savable {
         try(FileWriter fr = new FileWriter("src/data.txt")){
             fr.append("Obstacle" + "\n");
             fr.append(String.valueOf(x) +"\n");
+            fr.append(String.valueOf(y) +"\n");
             fr.append("END");
 
         } catch(Exception e) {
