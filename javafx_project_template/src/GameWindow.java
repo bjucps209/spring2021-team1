@@ -44,8 +44,13 @@ public class GameWindow implements ObserverGame {
     final Image carImage = new Image("/images/RoadBlockcar.png");
     final Image player = new Image("/images/player.png");
 
+
+
+    @FXML
     public void initialize(){
         road = new Road();
+
+        ArrayList<Obstacle> usingRB = road.getUsingRB();
 
         var img = new ImageView(player);
         img.setPreserveRatio(true);
