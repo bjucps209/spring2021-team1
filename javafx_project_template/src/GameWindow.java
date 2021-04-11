@@ -62,13 +62,13 @@ public class GameWindow{
         var img = new ImageView(player);
         img.setPreserveRatio(true);
         img.setFitWidth(100);
-        img.relocate(100, 100);
+        img.relocate(50, 300);
         paneMain.getChildren().add(img);
 
         for (int i = 0; i < road.getUsingRB().size(); i++) {
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
             int x = road.getUsingRB().get(i).getX();
-            int y = rand.nextInt(500);
+            int y = road.getUsingRB().get(i).getY();
 
             if(type == RoadBlock.PEOPLE){
                 setImage(humanImage, x, y);
@@ -81,7 +81,7 @@ public class GameWindow{
             } else if (type == RoadBlock.CARS){
                 setImage(carImage, x, y);
             }
-        road.timer();
+        // road.timer();
         }
     }
             
