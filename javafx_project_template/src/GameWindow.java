@@ -100,7 +100,6 @@ public class GameWindow{
         // road.timer();
         }
     }
-<<<<<<< HEAD
 
     @Override
     public void update(ArrayList<Obstacle> list) {
@@ -109,28 +108,6 @@ public class GameWindow{
         }
 
     }
-=======
-            
-    // public void KeyEvent(KeyEvent event, Node node) {
-
-    // if (event.getCode() == KeyCode.SPACE) {
-    // } else if (event.getCode() == KeyCode.UP) {
-    // input.set(State.LEFT);
-    // } else if (event.getCode() == KeyCode.DOWN) {
-    // input.set(State.RIGHT);
-    // } else if (event.getCode() == KeyCode.RIGHT) {
-    // input.set(State.SPEEDUP);
-    // }
-    // }
-
-    // public int setLanes(int y){
-    // if(y <= 600 && y){
-
-    // }
-    // }
-    
-
->>>>>>> 9132190cb54ed0857fdafddbcd9a7b6a1c0ca0b8
     @FXML
     public void KeyEventJump(KeyEvent event){
         if(event.getCode() == KeyCode.SPACE){
@@ -173,12 +150,5 @@ public class GameWindow{
         obstacleImageView.relocate(x, y);
         paneMain.getChildren().add(obstacleImageView);
         imageViews.add(obstacleImageView);
-<<<<<<< HEAD
-
-=======
-        obstacleImageView.layoutXProperty().bind(Bindings.createIntegerBinding(()-> x));
-        obstacleImageView.layoutYProperty().bind(Bindings.createIntegerBinding(()-> y));
-        }
->>>>>>> 9132190cb54ed0857fdafddbcd9a7b6a1c0ca0b8
 
     }
