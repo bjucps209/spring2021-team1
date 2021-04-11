@@ -9,8 +9,8 @@
 
 | Name |ownership |username | hours | remaining hours | Journals |
 | :----------- | :-----------: |--------:| --------:| --------:| --------:| 
-|Aya | model design|aya228| 22 | 28 | [Cathey](https://github.com/bjucps209/spring2021-team1/wiki/CatheyJournal)|
-|Briggs |Serilization| bestel01 | ...| ...| [Estelle](https://github.com/bjucps209/spring2021-team1/wiki/EstelleJournal)|
+|Aya | model design|aya228| 15 | 38 | [Cathey](https://github.com/bjucps209/spring2021-team1/wiki/CatheyJournal)|
+|Briggs |Serilization| bestel01 | 16 | 37 | [Estelle](https://github.com/bjucps209/spring2021-team1/wiki/EstelleJournal)|
 |Ortiz|High Score| jorti426 |...|...| [Ortiz](https://github.com/bjucps209/spring2021-team1/wiki/OrtizJournal)|
 |Williams | Level Design | ... |...| ...| [William's](https://github.com/bjucps209/spring2021-team1/wiki/Williams'sJournal)|
 
