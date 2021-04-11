@@ -1,5 +1,6 @@
 package model;
 
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -27,6 +28,15 @@ public class Obstacle extends Coordinate implements Savable {
     public RoadBlock getRoadBlock(){
         return object;
     }
+    public void placingObjectBound(){
+        //go through the loop and check if there is 
+    }
+
+    public String serialize() {
+        String serial = "Obstacle" + "\n" + String.valueOf(x) + "\n" + String.valueOf(y) + "\n" + "END" + "\n";
+        return serial;
+        }
+    }
 
     
-}
+

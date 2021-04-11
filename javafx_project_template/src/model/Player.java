@@ -1,6 +1,8 @@
 package model;
 
-public class Player{
+import java.io.FileWriter;
+
+public class Player implements Savable{
     //how the player begins (in the middle lane moving forward)
     int speed = 0;
     int lives = 3;
@@ -108,8 +110,13 @@ public class Player{
 
     }
 
-    public void serialize() {
-
+    public String serialize() {
+        Coordinate co = getCoordinate();
+        int x = co.x;
+        int y = co.y;
+        String serial = "Player" + "\n" + String.valueOf(x) + "\n" + String.valueOf(y) + "\n" + "END";
+        //State will be added when getState() is complete
+        return serial;
     }
 
     public void deserialize() {
