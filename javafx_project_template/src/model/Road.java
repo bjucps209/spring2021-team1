@@ -50,6 +50,7 @@ public class Road{
             Random rand = new Random();
             Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], rand.nextInt(100)*20, Lane.get(rand.nextInt(3)));
             usingRB.add(obstacle);
+            saveList.add(obstacle);
         }
     }
 
@@ -76,6 +77,12 @@ public class Road{
             }
         }));
         
+    }
+
+    public void save() {
+        for (Savable obj : saveList) {
+            obj.serialize();
+        }
     }
 
     public void loop(){ //Caedmon Evans helped me with this idea
