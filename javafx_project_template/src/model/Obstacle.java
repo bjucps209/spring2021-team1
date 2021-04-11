@@ -1,5 +1,6 @@
 package model;
 
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -29,6 +30,17 @@ public class Obstacle extends Coordinate implements Savable {
     }
     public void placingObjectBound(){
         //go through the loop and check if there is 
+    }
+
+    public void serialize() {
+        try(FileWriter fr = new FileWriter("src/data.txt")){
+            fr.append("Obstacle" + "\n");
+            fr.append(String.valueOf(x) +"\n");
+            fr.append("END");
+
+        } catch(Exception e) {
+            System.out.println(e.getStackTrace());
+        }
     }
 
     

@@ -29,8 +29,8 @@ public class Road{
 
     
     //File to load and save from
-    static final File filename = new File("/data.json");
-    public static ArrayList<Savable> saveList = new ArrayList<Savable>();
+    //static final File filename = new File("/data.json");
+    public ArrayList<Savable> saveList = new ArrayList<Savable>();
 
     // sets the time and distance to move through the pane
     public Road(){
@@ -93,7 +93,7 @@ public class Road{
         Random rand = new Random();
         Obstacle obstacle = new Obstacle(rb[rand.nextInt(4)], distance, Lane.get(rand.nextInt(2)));
         usingRB.add(obstacle);
-        // serialize(obstacle);
+        
     }
 
     public static Road getInstance() { 
