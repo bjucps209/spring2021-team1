@@ -1,22 +1,22 @@
 package model;
 
-class Player{
+public class Player{
     //how the player begins (in the middle lane moving forward)
     int speed = 0;
     int lives = 3;
     int score = 0;
-    State player = State.MOVING;
+    STATE player = STATE.MOVING;
     Coordinate coor;
 
     //x and y coordinate
 
     //
-    public Player(State Player, int x, Lane y){
+    public Player(STATE Player, int x, int y){
         this.player = Player;
         coor = new Coordinate(x, y);
 
-        State[] state = State.values();
-        for(State s: state){
+        STATE[] state = STATE.values();
+        for(STATE s: state){
         {
             switch (s){
                 case JUMP:
@@ -54,9 +54,6 @@ class Player{
      * @param none
      * make the view go faster meaning adding more in x over a faster period of times
      */
-    public void speedUp(){
-        // break;
-    }
 
     /**
      * @return none
@@ -108,6 +105,7 @@ class Player{
          *  return false
          * 
          */
+
     }
 
     public void serialize() {
