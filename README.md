@@ -11,7 +11,7 @@
 | :----------- | :-----------: |--------:| --------:| --------:| --------:| 
 |Aya | model design|aya228| 15 | 38 | [Cathey](https://github.com/bjucps209/spring2021-team1/wiki/CatheyJournal)|
 |Briggs |Serilization| bestel01 | ...| ...| [Estelle](https://github.com/bjucps209/spring2021-team1/wiki/EstelleJournal)|
-|Ortiz|High Score| jorti426 |...|...| [Ortiz](https://github.com/bjucps209/spring2021-team1/wiki/OrtizJournal)|
+|Ortiz|High Score| jorti426 | 19.5 | 20.5 | [Ortiz](https://github.com/bjucps209/spring2021-team1/wiki/OrtizJournal)|
 |Williams | Level Design | ... |...| ...| [William's](https://github.com/bjucps209/spring2021-team1/wiki/Williams'sJournal)|
 
 
