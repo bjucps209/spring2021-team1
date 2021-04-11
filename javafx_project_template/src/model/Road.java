@@ -46,7 +46,7 @@ public class Road{
     private static Road instance = new Road();
     
     public void addObjectsdefault(){
-        for (int i = 0; i < 5; i ++){
+        for (int i = 0; i < 25; i ++){
             Random rand = new Random();
             Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], rand.nextInt(100)*20, Lane.get(rand.nextInt(3)));
             usingRB.add(obstacle);
