@@ -8,6 +8,6 @@
     
     <Label fx:id="lblCoord" style="-fx-text-fill: blue"/>
 
-    <!-- <Pane prefHeight="600" prefWidth="1250" style="-fx-background-color: lightgrey" styleClass="Pane" fx:id="paneMain"/>
-     -->
+    <Pane prefHeight="600" prefWidth="1250" style="-fx-background-color: lightgrey" styleClass="Pane" fx:id="paneMain"/>
+    
 </HBox>

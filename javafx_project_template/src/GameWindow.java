@@ -62,9 +62,8 @@ public class GameWindow{
         var img = new ImageView(player);
         img.setPreserveRatio(true);
         img.setFitWidth(100);
-        img.relocate(50 , 300);
+        img.relocate(100, 100);
         paneMain.getChildren().add(img);
-
 
         for (int i = 0; i < road.getUsingRB().size(); i++) {
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
