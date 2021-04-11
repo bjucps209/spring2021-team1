@@ -3,9 +3,9 @@ package model;
 class Coordinate{
     
     int x;
-    int y;
+    Lane y;
     
-    Coordinate(int x, int y){
+    Coordinate(int x, Lane y){
         this.x = x;
         this.y = y;
     }
@@ -18,11 +18,11 @@ class Coordinate{
         return x;
     }
 
-    public void setY(int y) {
+    public void setY(Lane y) {
         this.y = y;
     }
 
-    public int getY() {
+    public Lane getY() {
         return y;
     }
     

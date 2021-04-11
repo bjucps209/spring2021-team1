@@ -19,36 +19,33 @@ import javafx.util.Duration;
 public class Road{
     RoadBlock[] rb = RoadBlock.values();
     ArrayList<Obstacle> usingRB;
-    ArrayList<Integer> Lane = new ArrayList<>();
+    Lane[] lane = Lane.values();
     boolean gameOver;
     boolean cheatOn;
     Player player;
     int speed;
     int distance;
     Obstacle obstacle;
-
+    ObserverGame observer;
     
+
     //File to load and save from
-    //static final File filename = new File("/data.json");
-    public ArrayList<Savable> saveList = new ArrayList<Savable>();
+    static final File filename = new File("/data.json");
+    public static ArrayList<Savable> saveList = new ArrayList<Savable>();
 
     // sets the time and distance to move through the pane
     public Road(){
+        player = new Player(State.MOVING, 0, Lane.B);
         usingRB = new ArrayList<>();
-        Lane = new ArrayList<>();
-        createLanes();
         addObjectsdefault();
-        player = new Player(STATE.MOVING, 0, Lane.get(1));
         
        
     }
     
-    private static Road instance = new Road();
-    
     public void addObjectsdefault(){
-        for (int i = 0; i < 5; i ++){
+        for (int i = 0; i < 25; i ++){
             Random rand = new Random();
-            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], rand.nextInt(100)*20, Lane.get(rand.nextInt(3)));
+            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], rand.nextInt(1250), lane[rand.nextInt(3)]);
             usingRB.add(obstacle);
         }
     }
@@ -75,6 +72,7 @@ public class Road{
                 loop();
             }
         }));
+        observer.update(usingRB);
         
     }
 
@@ -91,40 +89,19 @@ public class Road{
 
     public void createRandomObstacle(){
         Random rand = new Random();
-        Obstacle obstacle = new Obstacle(rb[rand.nextInt(4)], distance, Lane.get(rand.nextInt(2)));
+        Obstacle obstacle = new Obstacle(rb[rand.nextInt(4)], distance, lane[rand.nextInt(2)]);
         usingRB.add(obstacle);
-        
+        // serialize(obstacle);
     }
+
+    public void setObserver(ObserverGame observer) {
+        this.observer = observer;
+    }
+    
+    private static Road instance = new Road();
 
     public static Road getInstance() { 
         return instance;
-    }
-
-    public void createLanes(){
-        int A = 500;
-        int B = 300;
-        int C = 100;
-
-        Lane.add(A);
-        Lane.add(B);
-        Lane.add(C);
-    }
-
-    public Boolean checkLeft(){
-        boolean statement = true;
-        if(player.getCoordinate().getY()== 100){
-            statement = false;
-        }
-        return statement;
-    }
-
-    public Boolean checkRight(){
-        boolean statement = true;
-        if(player.getCoordinate().getY()== 500){
-            statement = false;
-        }
-        return statement;
-
     }
 
     
@@ -151,10 +128,6 @@ public class Road{
 
     public int getplayerXcoord(){
         return player.getCoordinate().getX();
-    }
-
-    public Player getPlayer(){
-        return player;
     }
 
     // public void serialize(Object obj) {
@@ -215,14 +188,6 @@ public class Road{
                     }   
             }
             }        
-        }
-
-        public ArrayList<Integer> getLane() {
-            return Lane;
-        }
-
-        public void setLane(ArrayList<Integer> lane) {
-            Lane = lane;
         }
     
 

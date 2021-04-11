@@ -2,6 +2,8 @@ package model;
 
 
 class LevelData{
-    Road road = Road.getInstance();
+    Road road = new Road();
+
+    
 
 }
