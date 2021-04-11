@@ -152,3 +152,4 @@ public class GameWindow{
         imageViews.add(obstacleImageView);
 
     }
+}
