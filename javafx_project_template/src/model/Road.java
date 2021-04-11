@@ -26,7 +26,6 @@ public class Road{
     int speed;
     int distance;
     Obstacle obstacle;
-    ObserverGame observer;
 
     
     //File to load and save from
@@ -74,7 +73,6 @@ public class Road{
                 loop();
             }
         }));
-        observer.update(usingRB);
         
     }
 
@@ -96,16 +94,6 @@ public class Road{
         // serialize(obstacle);
     }
 
-    public void setObserver(ObserverGame observer) {
-        this.observer = observer;
-    }
-    
-    private static Road instance = new Road();
-
-
-    public static Road getInstance() { 
-        return instance;
-    }
 
     public void createLanes(){
         int A = 500;
@@ -117,7 +105,20 @@ public class Road{
         Lane.add(C);
     }
 
-    public void objectOverLap(){
+    public Boolean checkLeft(){
+        boolean statement = true;
+        if(player.getCoordinate().getY()== 100){
+            statement = false;
+        }
+        return statement;
+    }
+
+    public Boolean checkRight(){
+        boolean statement = true;
+        if(player.getCoordinate().getY()== 500){
+            statement = false;
+        }
+        return statement;
 
     }
 

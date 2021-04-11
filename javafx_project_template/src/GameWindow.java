@@ -5,7 +5,7 @@ import java.util.Random;
 
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
-
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -13,18 +13,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import model.ObserverGame;
+
 import model.Obstacle;
-<<<<<<< HEAD
-import model.State;
-=======
 import model.Road;
 import model.RoadBlock;
 import model.STATE;
 
->>>>>>> f8455741f12d5c3f1881e99717d7d2eacc0d766b
 
-public class GameWindow implements ObserverGame {
+public class GameWindow {
 
     @FXML
     HBox hbox;
@@ -51,17 +47,6 @@ public class GameWindow implements ObserverGame {
     final Image carImage = new Image("/images/RoadBlockcar.png");
     final Image player = new Image("/images/player.png");
 
-<<<<<<< HEAD
-    ImageView imgPlayer = new ImageView(player);
-    public void initialize(){
-        
-        imgPlayer.setPreserveRatio(true);
-        imgPlayer.setFitWidth(100);
-        imgPlayer.relocate(50 , 300);
-        paneMain.getChildren().add(imgPlayer);
-
-        ImageView obstacleImageView;
-=======
 
 
     @FXML
@@ -73,12 +58,8 @@ public class GameWindow implements ObserverGame {
         img.setFitWidth(100);
         img.relocate(50 , 300);
         paneMain.getChildren().add(img);
->>>>>>> f8455741f12d5c3f1881e99717d7d2eacc0d766b
-        
-        Road road = new Road();
 
         Random rand = new Random();
-        Road.getInstance().setObserver(this);
 
         for(int i = 0; i < road.getUsingRB().size(); i++){
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
@@ -88,16 +69,7 @@ public class GameWindow implements ObserverGame {
 
 
             if(type == RoadBlock.PEOPLE){
-<<<<<<< HEAD
-                obstacleImageView = new ImageView(humanImage);
-               // img.setPreserveRatio(true);
-                obstacleImageView.setFitWidth(50);
-                obstacleImageView.setFitHeight(50);
-                obstacleImageView.relocate(x, rand.nextInt(500));
-                paneMain.getChildren().add(obstacleImageView);
-=======
                 setImage(humanImage, x, y);
->>>>>>> f8455741f12d5c3f1881e99717d7d2eacc0d766b
             }else if (type == RoadBlock.POTHOLES){
                 setImage(potholeImage, x, y);
             } else if (type == RoadBlock.TRUCK){
@@ -110,40 +82,9 @@ public class GameWindow implements ObserverGame {
 
 
         }
-        // road.timer();
+        road.timer();
     }
 
-    @Override
-    public void update(ArrayList<Obstacle> list) {
-<<<<<<< HEAD
-        // TODO Auto-generated method stub
-=======
-        for (int i=0; i < imageViews.size(); i ++){
-            imageViews.get(i).setX(list.get(i).getX());
-        }
->>>>>>> f8455741f12d5c3f1881e99717d7d2eacc0d766b
-
-    }
-<<<<<<< HEAD
-
-     public void KeyEvent(KeyEvent event){
-        System.out.print("blah");
-        if(event.getCode() == KeyCode.SPACE){
-            input.set(State.JUMP);
-           // imgPlayer.relocate(, );
-            System.out.print("blah");
-        } else if (event.getCode() == KeyCode.UP){
-            input.set(State.LEFT);
-            imgPlayer.relocate(100, 600);
-            System.out.print("blah");
-        } else if (event.getCode() == KeyCode.DOWN){
-            input.set(State.RIGHT);
-            System.out.print("blah");
-        } else if (event.getCode() == KeyCode.RIGHT){
-            input.set(State.SPEEDUP);
-        } 
-    
-=======
     @FXML
     public void KeyEventJump(KeyEvent event){
         if(event.getCode() == KeyCode.SPACE){
@@ -164,7 +105,6 @@ public class GameWindow implements ObserverGame {
         //     input.set(State.SPEEDUP);
         // }
     }
->>>>>>> f8455741f12d5c3f1881e99717d7d2eacc0d766b
 
     @FXML
     public void KeyEventLeft(KeyEvent event){
@@ -187,7 +127,8 @@ public class GameWindow implements ObserverGame {
         obstacleImageView.relocate(x, y);
         paneMain.getChildren().add(obstacleImageView);
         imageViews.add(obstacleImageView);
-}
+        obstacleImageView.layoutXProperty().bind(Bindings.createIntegerBinding(()-> x));
+        obstacleImageView.layoutYProperty().bind(Bindings.createIntegerBinding(()-> y));
+        }
 
     }
-}
