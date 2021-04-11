@@ -1,0 +1,27 @@
+.VBox { 
+    -fx-alignment: center;
+    -fx-background-color: black;
+
+}
+
+.VBox Label{
+    -fx-font-family: monospace; 
+    -fx-font-size: 50;
+    -fx-text-fill: blue;
+}
+
+.VBox Slider{
+    -fx-font-family: monospace; 
+    -fx-font-size: 40;
+    -fx-text-fill: blue;
+}
+
+.HBox {
+    -fx-spacing: 20;
+    -fx-alignment: center;
+    -fx-font-size: 25;
+    -fx-text-fill: blue;
+}
+
+
+

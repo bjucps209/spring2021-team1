@@ -5,7 +5,6 @@ import java.util.Random;
 
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
-
 import javafx.beans.property.ObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -101,7 +100,8 @@ public class GameWindow implements ObserverGame {
     }
 
      public void KeyEvent(KeyEvent event){
-        System.out.print("blah");
+
+
         if(event.getCode() == KeyCode.SPACE){
             input.set(State.JUMP);
            // imgPlayer.relocate(, );
