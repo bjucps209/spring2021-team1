@@ -93,6 +93,7 @@ public class Road{
         Random rand = new Random();
         Obstacle obstacle = new Obstacle(rb[rand.nextInt(4)], distance, Lane.get(rand.nextInt(2)));
         usingRB.add(obstacle);
+        saveList.add(obstacle);
         
     }
 
