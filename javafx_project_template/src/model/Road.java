@@ -34,16 +34,16 @@ public class Road{
     public static ArrayList<Savable> saveList = new ArrayList<Savable>();
 
     // sets the time and distance to move through the pane
-    public Road(){
+    private Road(){
         player = new Player(State.MOVING, 0, Lane.B);
         usingRB = new ArrayList<>();
-        addObjectsdefault();
-        
-       
+        addObjectsdefault();  
     }
     
+    private static Road instance = new Road();
+    
     public void addObjectsdefault(){
-        for (int i = 0; i < 25; i ++){
+        for (int i = 0; i < 5; i ++){
             Random rand = new Random();
             Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], rand.nextInt(1250), lane[rand.nextInt(3)]);
             usingRB.add(obstacle);
@@ -98,7 +98,6 @@ public class Road{
         this.observer = observer;
     }
     
-    private static Road instance = new Road();
 
     public static Road getInstance() { 
         return instance;

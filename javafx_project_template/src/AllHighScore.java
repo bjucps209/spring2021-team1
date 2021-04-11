@@ -48,7 +48,9 @@ class AllHighScore{
         return playerList;
     }
 
-    public void save() throws IOException{
+    public void save(PlayerHighScore player) throws IOException{
+        //to be placed at the end of each game 
+        addPlayer(player);
         addToTxtFile();
     }
 
