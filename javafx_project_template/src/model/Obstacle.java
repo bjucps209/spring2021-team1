@@ -27,6 +27,9 @@ public class Obstacle extends Coordinate implements Savable {
     public RoadBlock getRoadBlock(){
         return object;
     }
+    public void placingObjectBound(){
+        //go through the loop and check if there is 
+    }
 
     
 }

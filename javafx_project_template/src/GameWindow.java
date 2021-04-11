@@ -48,9 +48,7 @@ public class GameWindow implements ObserverGame {
 
     @FXML
     public void initialize(){
-        road = new Road();
-
-        ArrayList<Obstacle> usingRB = road.getUsingRB();
+        Road road = new Road();
 
         var img = new ImageView(player);
         img.setPreserveRatio(true);
@@ -82,7 +80,7 @@ public class GameWindow implements ObserverGame {
 
 
         }
-        road.timer();
+        // road.timer();
     }
 
     @Override

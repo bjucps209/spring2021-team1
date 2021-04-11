@@ -19,7 +19,7 @@ import javafx.util.Duration;
 public class Road{
     RoadBlock[] rb = RoadBlock.values();
     ArrayList<Obstacle> usingRB;
-    ArrayList<Integer> Lane = new ArrayList<>();;
+    ArrayList<Integer> Lane = new ArrayList<>();
     boolean gameOver;
     boolean cheatOn;
     Player player;
@@ -27,6 +27,7 @@ public class Road{
     int distance;
     Obstacle obstacle;
     ObserverGame observer;
+
     
     //File to load and save from
     static final File filename = new File("/data.json");
@@ -34,10 +35,11 @@ public class Road{
 
     // sets the time and distance to move through the pane
     public Road(){
-        player = new Player(STATE.MOVING, 0, Lane.get(1));
         usingRB = new ArrayList<>();
+        Lane = new ArrayList<>();
         createLanes();
         addObjectsdefault();
+        player = new Player(STATE.MOVING, 0, Lane.get(1));
         
        
     }
@@ -45,7 +47,7 @@ public class Road{
     public void addObjectsdefault(){
         for (int i = 0; i < 25; i ++){
             Random rand = new Random();
-            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], rand.nextInt(1250), Lane.get(rand.nextInt(2)));
+            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], rand.nextInt(100)*20, Lane.get(rand.nextInt(3)));
             usingRB.add(obstacle);
         }
     }
