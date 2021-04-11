@@ -19,16 +19,13 @@ public class Obstacle extends Coordinate implements Savable {
     RoadBlock object;
     Random rand = new Random();
 
-    public Obstacle(RoadBlock rd, int x, int y){
+    public Obstacle(RoadBlock rd, int x, Lane y){
         super(x, y);
         this.object = rd;
     }
 
     public RoadBlock getRoadBlock(){
         return object;
-    }
-    public void placingObjectBound(){
-        //go through the loop and check if there is 
     }
 
     
