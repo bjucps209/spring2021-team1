@@ -21,13 +21,9 @@ import model.Obstacle;
 import model.Road;
 import model.RoadBlock;
 
-<<<<<<< HEAD
 
 
 public class GameWindow implements ObserverGame {
-=======
-public class GameWindow{
->>>>>>> 9132190cb54ed0857fdafddbcd9a7b6a1c0ca0b8
 
     @FXML
     HBox hbox;
@@ -54,11 +50,6 @@ public class GameWindow{
     final Image carImage = new Image("/images/RoadBlockcar.png");
     final Image player = new Image("/images/player.png");
 
-<<<<<<< HEAD
-=======
-    double xImg = 0;
-    double yImg = 0;
->>>>>>> 9132190cb54ed0857fdafddbcd9a7b6a1c0ca0b8
 
     ImageView imgPlayer = new ImageView(player);
 
@@ -72,14 +63,11 @@ public class GameWindow{
         img.setFitWidth(100);
         img.relocate(50, 300);
         paneMain.getChildren().add(img);
-<<<<<<< HEAD
         
         Road road = new Road();
 
         Random rand = new Random();
         Road.getInstance().setObserver(this);
-=======
->>>>>>> 9132190cb54ed0857fdafddbcd9a7b6a1c0ca0b8
 
         for (int i = 0; i < road.getUsingRB().size(); i++) {
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
