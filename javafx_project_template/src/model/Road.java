@@ -19,7 +19,7 @@ import javafx.util.Duration;
 public class Road{
     RoadBlock[] rb = RoadBlock.values();
     ArrayList<Obstacle> usingRB;
-    Lane[] lane = Lane.values();
+    ArrayList<Integer> Lane = new ArrayList<>();;
     boolean gameOver;
     boolean cheatOn;
     Player player;
@@ -28,15 +28,15 @@ public class Road{
     Obstacle obstacle;
     ObserverGame observer;
     
-
     //File to load and save from
     static final File filename = new File("/data.json");
     public static ArrayList<Savable> saveList = new ArrayList<Savable>();
 
     // sets the time and distance to move through the pane
     public Road(){
-        player = new Player(State.MOVING, 0, Lane.B);
+        player = new Player(STATE.MOVING, 0, Lane.get(1));
         usingRB = new ArrayList<>();
+        createLanes();
         addObjectsdefault();
         
        
@@ -45,7 +45,7 @@ public class Road{
     public void addObjectsdefault(){
         for (int i = 0; i < 25; i ++){
             Random rand = new Random();
-            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], rand.nextInt(1250), lane[rand.nextInt(3)]);
+            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], rand.nextInt(1250), Lane.get(rand.nextInt(2)));
             usingRB.add(obstacle);
         }
     }
@@ -89,7 +89,7 @@ public class Road{
 
     public void createRandomObstacle(){
         Random rand = new Random();
-        Obstacle obstacle = new Obstacle(rb[rand.nextInt(4)], distance, lane[rand.nextInt(2)]);
+        Obstacle obstacle = new Obstacle(rb[rand.nextInt(4)], distance, Lane.get(rand.nextInt(2)));
         usingRB.add(obstacle);
         // serialize(obstacle);
     }
@@ -100,8 +100,23 @@ public class Road{
     
     private static Road instance = new Road();
 
+
     public static Road getInstance() { 
         return instance;
+    }
+
+    public void createLanes(){
+        int A = 500;
+        int B = 300;
+        int C = 100;
+
+        Lane.add(A);
+        Lane.add(B);
+        Lane.add(C);
+    }
+
+    public void objectOverLap(){
+
     }
 
     
@@ -128,6 +143,10 @@ public class Road{
 
     public int getplayerXcoord(){
         return player.getCoordinate().getX();
+    }
+
+    public Player getPlayer(){
+        return player;
     }
 
     // public void serialize(Object obj) {
@@ -188,6 +207,14 @@ public class Road{
                     }   
             }
             }        
+        }
+
+        public ArrayList<Integer> getLane() {
+            return Lane;
+        }
+
+        public void setLane(ArrayList<Integer> lane) {
+            Lane = lane;
         }
     
 

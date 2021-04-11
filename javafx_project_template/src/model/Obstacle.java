@@ -19,7 +19,7 @@ public class Obstacle extends Coordinate implements Savable {
     RoadBlock object;
     Random rand = new Random();
 
-    public Obstacle(RoadBlock rd, int x, Lane y){
+    public Obstacle(RoadBlock rd, int x, int y){
         super(x, y);
         this.object = rd;
     }
