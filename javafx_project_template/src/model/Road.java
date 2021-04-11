@@ -1,6 +1,7 @@
 package model;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -81,9 +82,13 @@ public class Road{
     }
 
     public void save() {
+        try (FileWriter fr = new FileWriter("src/data.txt")) {
         for (Savable obj : saveList) {
-            obj.serialize();
+            fr.append(obj.serialize());
         }
+    } catch (Exception e) {
+        System.out.println(e);
+    }
     }
 
     public void loop(){ //Caedmon Evans helped me with this idea

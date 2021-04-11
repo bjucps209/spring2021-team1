@@ -110,20 +110,13 @@ public class Player implements Savable{
 
     }
 
-    public void serialize() {
+    public String serialize() {
         Coordinate co = getCoordinate();
         int x = co.x;
         int y = co.y;
-        try(FileWriter fr = new FileWriter("src/data.txt")){
-            fr.append("Player" + "\n");
-            fr.append(String.valueOf(x) +"\n");
-            fr.append(String.valueOf(y) +"\n");
-            //fr.append(getCurrentState());
-            fr.append("END");
-
-        } catch(Exception e) {
-            System.out.println(e.getStackTrace());
-        }
+        String serial = "Player" + "\n" + String.valueOf(x) + "\n" + String.valueOf(y) + "\n" + "END";
+        //State will be added when getState() is complete
+        return serial;
     }
 
     public void deserialize() {
