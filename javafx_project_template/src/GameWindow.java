@@ -1,7 +1,10 @@
 
+
 import java.util.ArrayList;
 import java.util.Random;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
@@ -18,12 +21,18 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import model.Obstacle;
+
 import model.Road;
 import model.RoadBlock;
+import javafx.util.Duration;
 
+<<<<<<< HEAD
+public class GameWindow{
+=======
 
 
 public class GameWindow implements ObserverGame {
+>>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
 
     @FXML
     HBox hbox;
@@ -31,6 +40,7 @@ public class GameWindow implements ObserverGame {
     Pane paneMain;
     @FXML
     Label lblCoord;
+    Timeline timeline;
 
     Obstacle obstacle;
   //  ObjectProperty<STATE> input;
@@ -50,6 +60,11 @@ public class GameWindow implements ObserverGame {
     final Image carImage = new Image("/images/RoadBlockcar.png");
     final Image player = new Image("/images/player.png");
 
+<<<<<<< HEAD
+    double xImg = 0;
+    double yImg = 0;
+=======
+>>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
 
     ImageView imgPlayer = new ImageView(player);
 
@@ -63,11 +78,14 @@ public class GameWindow implements ObserverGame {
         img.setFitWidth(100);
         img.relocate(50, 300);
         paneMain.getChildren().add(img);
+<<<<<<< HEAD
+=======
         
         Road road = new Road();
 
         Random rand = new Random();
         Road.getInstance().setObserver(this);
+>>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
 
         for (int i = 0; i < road.getUsingRB().size(); i++) {
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
@@ -87,15 +105,48 @@ public class GameWindow implements ObserverGame {
             }
         // road.timer();
         }
+<<<<<<< HEAD
+=======
     }
+>>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
 
-    @Override
-    public void update(ArrayList<Obstacle> list) {
-        for (int i=0; i < imageViews.size(); i ++){
-            imageViews.get(i).setX(list.get(i).getX());
+        timeline = new Timeline(new KeyFrame(Duration.millis(50), 
+        e -> img.setX(img.getX() + 2)));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+        
+
+        for (int i = 1; i < paneMain.getChildren().size(); i++) {
+            ImageView image = (ImageView)paneMain.getChildren().get(i);
+            timeline = new Timeline(new KeyFrame(Duration.millis(50), 
+        e -> image.setX(image.getX() - 2)));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
         }
-
     }
+<<<<<<< HEAD
+            
+    // public void KeyEvent(KeyEvent event, Node node) {
+
+    // if (event.getCode() == KeyCode.SPACE) {
+    // } else if (event.getCode() == KeyCode.UP) {
+    // input.set(State.LEFT);
+    // } else if (event.getCode() == KeyCode.DOWN) {
+    // input.set(State.RIGHT);
+    // } else if (event.getCode() == KeyCode.RIGHT) {
+    // input.set(State.SPEEDUP);
+    // }
+    // }
+
+    // public int setLanes(int y){
+    // if(y <= 600 && y){
+
+    // }
+    // }
+    
+
+=======
+>>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
     @FXML
     public void KeyEventJump(KeyEvent event){
         if(event.getCode() == KeyCode.SPACE){
@@ -138,6 +189,12 @@ public class GameWindow implements ObserverGame {
         obstacleImageView.relocate(x, y);
         paneMain.getChildren().add(obstacleImageView);
         imageViews.add(obstacleImageView);
+<<<<<<< HEAD
+        obstacleImageView.layoutXProperty().bind(Bindings.createIntegerBinding(()-> x));
+        obstacleImageView.layoutYProperty().bind(Bindings.createIntegerBinding(()-> y));
+        }
+=======
+>>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
 
     }
 }

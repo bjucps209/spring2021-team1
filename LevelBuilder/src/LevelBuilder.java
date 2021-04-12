@@ -124,7 +124,7 @@ public class LevelBuilder {
 
     @FXML
     void onSliderChanged(int val){
-       // pane.setWidth(val * 1000);
+     pane.setPrefWidth((double)val * 1000);
     }
 
 
