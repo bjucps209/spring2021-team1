@@ -1,5 +1,4 @@
 
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,6 +17,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import model.Obstacle;
@@ -26,13 +30,7 @@ import model.Road;
 import model.RoadBlock;
 import javafx.util.Duration;
 
-<<<<<<< HEAD
-public class GameWindow{
-=======
-
-
-public class GameWindow implements ObserverGame {
->>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
+public class GameWindow/*  implements ObserverGame */ {
 
     @FXML
     HBox hbox;
@@ -43,13 +41,10 @@ public class GameWindow implements ObserverGame {
     Timeline timeline;
 
     Obstacle obstacle;
-  //  ObjectProperty<STATE> input;
+    // ObjectProperty<STATE> input;
     ArrayList<ImageView> imageViews = new ArrayList<>();
     ImageView obstacleImageView;
     Road road;
-
-
-
 
     // final Image humanImage = new Image("/images/human.gif");
     // final Image potholeImage = new Image("/images/blackhole.gif");
@@ -59,142 +54,112 @@ public class GameWindow implements ObserverGame {
     final Image coneImage = new Image("/images/cone.png");
     final Image carImage = new Image("/images/RoadBlockcar.png");
     final Image player = new Image("/images/player.png");
-
-<<<<<<< HEAD
-    double xImg = 0;
-    double yImg = 0;
-=======
->>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
+    final Image roadImage = new Image("/images/road.png");
 
     ImageView imgPlayer = new ImageView(player);
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         Road road = new Road();
         Random rand = new Random();
+
+      
+        
+       
+        var imgRoad = new ImageView(roadImage);
+        imgRoad.setFitWidth(1250);
+        imgRoad.setFitHeight(600);
+        paneMain.getChildren().add(imgRoad);
 
         var img = new ImageView(player);
         img.setPreserveRatio(true);
         img.setFitWidth(100);
         img.relocate(50, 300);
         paneMain.getChildren().add(img);
-<<<<<<< HEAD
-=======
-        
-        Road road = new Road();
 
-        Random rand = new Random();
-        Road.getInstance().setObserver(this);
->>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
+
+
+        // Road.getInstance().setObserver(this);
 
         for (int i = 0; i < road.getUsingRB().size(); i++) {
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
             int x = road.getUsingRB().get(i).getX();
             int y = road.getUsingRB().get(i).getY();
 
-            if(type == RoadBlock.PEOPLE){
+            if (type == RoadBlock.PEOPLE) {
                 setImage(humanImage, x, y);
-            }else if (type == RoadBlock.POTHOLES){
+            } else if (type == RoadBlock.POTHOLES) {
                 setImage(potholeImage, x, y);
-            } else if (type == RoadBlock.TRUCK){
+            } else if (type == RoadBlock.TRUCK) {
                 setImage(truckImage, x, y);
-            } else if (type == RoadBlock.CONES){
+            } else if (type == RoadBlock.CONES) {
                 setImage(coneImage, x, y);
-            } else if (type == RoadBlock.CARS){
+            } else if (type == RoadBlock.CARS) {
                 setImage(carImage, x, y);
             }
-        // road.timer();
+            // road.timer();
         }
-<<<<<<< HEAD
-=======
-    }
->>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(50), 
-        e -> img.setX(img.getX() + 2)));
+        timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> img.setX(img.getX() + 2)));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-        
 
-        for (int i = 1; i < paneMain.getChildren().size(); i++) {
+        
+        for (int i = 2; i < paneMain.getChildren().size(); i++) {
             ImageView image = (ImageView)paneMain.getChildren().get(i);
             timeline = new Timeline(new KeyFrame(Duration.millis(50), 
         e -> image.setX(image.getX() - 2)));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
         }
+
     }
-<<<<<<< HEAD
-            
-    // public void KeyEvent(KeyEvent event, Node node) {
 
-    // if (event.getCode() == KeyCode.SPACE) {
-    // } else if (event.getCode() == KeyCode.UP) {
-    // input.set(State.LEFT);
-    // } else if (event.getCode() == KeyCode.DOWN) {
-    // input.set(State.RIGHT);
-    // } else if (event.getCode() == KeyCode.RIGHT) {
-    // input.set(State.SPEEDUP);
-    // }
-    // }
-
-    // public int setLanes(int y){
-    // if(y <= 600 && y){
-
-    // }
-    // }
     
 
-=======
->>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
     @FXML
-    public void KeyEventJump(KeyEvent event){
-        if(event.getCode() == KeyCode.SPACE){
+    public void KeyEventJump(KeyEvent event) {
+        if (event.getCode() == KeyCode.SPACE) {
             road.getPlayer().jumpUp();
         }
         // switch(event.getCode()){
 
-        //     case KeyCode.SPACE
+        // case KeyCode.SPACE
         // }
 
         // if(event.getCode() == KeyCode.SPACE){
-            
+
         // } else if (event.getCode() == KeyCode.UP){
-        //     input.set(State.LEFT);
+        // input.set(State.LEFT);
         // } else if (event.getCode() == KeyCode.DOWN){
-        //     input.set(State.RIGHT);
+        // input.set(State.RIGHT);
         // } else if (event.getCode() == KeyCode.RIGHT){
-        //     input.set(State.SPEEDUP);
+        // input.set(State.SPEEDUP);
         // }
     }
 
     @FXML
-    public void KeyEventLeft(KeyEvent event){
-        if(event.getCode() == KeyCode.UP){
+    public void KeyEventLeft(KeyEvent event) {
+        if (event.getCode() == KeyCode.UP) {
             road.getPlayer().jumpUp();
         }
     }
+
     @FXML
-    public void KeyEventRight(KeyEvent event){
-        if(event.getCode() == KeyCode.DOWN){
+    public void KeyEventRight(KeyEvent event) {
+        if (event.getCode() == KeyCode.DOWN) {
             road.getPlayer().rightLane();
-        } 
+        }
     }
 
     @FXML
-    public void setImage(Image imgs, int x, int y){
+    public void setImage(Image imgs, int x, int y) {
         obstacleImageView = new ImageView(imgs);
         obstacleImageView.setFitWidth(50);
         obstacleImageView.setFitHeight(50);
         obstacleImageView.relocate(x, y);
         paneMain.getChildren().add(obstacleImageView);
         imageViews.add(obstacleImageView);
-<<<<<<< HEAD
-        obstacleImageView.layoutXProperty().bind(Bindings.createIntegerBinding(()-> x));
-        obstacleImageView.layoutYProperty().bind(Bindings.createIntegerBinding(()-> y));
-        }
-=======
->>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
 
     }
 }
