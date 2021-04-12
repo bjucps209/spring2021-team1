@@ -26,7 +26,13 @@ import model.Road;
 import model.RoadBlock;
 import javafx.util.Duration;
 
+<<<<<<< HEAD
 public class GameWindow{
+=======
+
+
+public class GameWindow implements ObserverGame {
+>>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
 
     @FXML
     HBox hbox;
@@ -54,8 +60,11 @@ public class GameWindow{
     final Image carImage = new Image("/images/RoadBlockcar.png");
     final Image player = new Image("/images/player.png");
 
+<<<<<<< HEAD
     double xImg = 0;
     double yImg = 0;
+=======
+>>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
 
     ImageView imgPlayer = new ImageView(player);
 
@@ -69,6 +78,14 @@ public class GameWindow{
         img.setFitWidth(100);
         img.relocate(50, 300);
         paneMain.getChildren().add(img);
+<<<<<<< HEAD
+=======
+        
+        Road road = new Road();
+
+        Random rand = new Random();
+        Road.getInstance().setObserver(this);
+>>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
 
         for (int i = 0; i < road.getUsingRB().size(); i++) {
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
@@ -88,6 +105,10 @@ public class GameWindow{
             }
         // road.timer();
         }
+<<<<<<< HEAD
+=======
+    }
+>>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
 
         timeline = new Timeline(new KeyFrame(Duration.millis(50), 
         e -> img.setX(img.getX() + 2)));
@@ -103,6 +124,7 @@ public class GameWindow{
         timeline.play();
         }
     }
+<<<<<<< HEAD
             
     // public void KeyEvent(KeyEvent event, Node node) {
 
@@ -123,6 +145,8 @@ public class GameWindow{
     // }
     
 
+=======
+>>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
     @FXML
     public void KeyEventJump(KeyEvent event){
         if(event.getCode() == KeyCode.SPACE){
@@ -165,8 +189,12 @@ public class GameWindow{
         obstacleImageView.relocate(x, y);
         paneMain.getChildren().add(obstacleImageView);
         imageViews.add(obstacleImageView);
+<<<<<<< HEAD
         obstacleImageView.layoutXProperty().bind(Bindings.createIntegerBinding(()-> x));
         obstacleImageView.layoutYProperty().bind(Bindings.createIntegerBinding(()-> y));
         }
+=======
+>>>>>>> cc2622398ddfb9ce32555cc022361cb0be2753dc
 
     }
+}
