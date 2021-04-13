@@ -2,6 +2,8 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
@@ -17,6 +19,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import model.Obstacle;
 import model.Road;
 import model.RoadBlock;
@@ -36,7 +39,7 @@ public class GameWindow{
     ArrayList<ImageView> imageViews = new ArrayList<>();
     ImageView obstacleImageView;
     Road road;
-
+    Timeline timeline;
 
 
 
@@ -49,21 +52,21 @@ public class GameWindow{
     final Image carImage = new Image("/images/RoadBlockcar.png");
     final Image player = new Image("/images/player.png");
 
-    double xImg = 0;
-    double yImg = 0;
 
     ImageView imgPlayer = new ImageView(player);
 
     @FXML
     public void initialize(){
         Road road = new Road();
-        Random rand = new Random();
 
         var img = new ImageView(player);
         img.setPreserveRatio(true);
         img.setFitWidth(100);
         img.relocate(50, 300);
         paneMain.getChildren().add(img);
+
+        img.layoutXProperty().bind(Bindings.createIntegerBinding(() -> road.getPlayer().getCoordinate().getX()));
+        img.layoutYProperty().bind(Bindings.createIntegerBinding(() -> road.getPlayer().getCoordinate().getY()));
 
         for (int i = 0; i < road.getUsingRB().size(); i++) {
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
@@ -81,8 +84,13 @@ public class GameWindow{
             } else if (type == RoadBlock.CARS){
                 setImage(carImage, x, y);
             }
-        // road.timer();
         }
+        road.timer();
+
+        timeline = new Timeline(new KeyFrame(Duration.millis(50), 
+        e -> imgPlayer.setX(imgPlayer.getX() + 100)));
+        timeline.setCycleCount(50);
+        timeline.play();
     }
             
     // public void KeyEvent(KeyEvent event, Node node) {
