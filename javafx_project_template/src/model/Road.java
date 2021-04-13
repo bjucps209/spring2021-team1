@@ -39,8 +39,9 @@ public class Road{
        
     }
     
-    private static Road instance = new Road();
+    // private static Road instance = new Road();
     
+    //this is creating objects
     public void addObjectsdefault(){
         for (int i = 0; i < 25; i ++){
             Random rand = new Random();
@@ -75,19 +76,6 @@ public class Road{
         
     }
 
-    public void save() {
-        try (FileWriter fr = new FileWriter("src/data.txt")) {
-        for (Savable obj : saveList) {
-            fr.append(obj.serialize());
-        }
-    } catch (Exception e) {
-        System.out.println(e);
-    }
-    }
-
-    public void load() {
-        //Still testing in separate project
-    }
 
     public void loop(){ //Caedmon Evans helped me with this idea
         for (int i = 0; i < usingRB.size(); ++i){
@@ -108,9 +96,9 @@ public class Road{
         
     }
 
-    public static Road getInstance() { 
-        return instance;
-    }
+    // public static Road getInstance() { 
+    //     return instance;
+    // }
 
     public void createLanes(){
         int A = 500;
@@ -167,6 +155,28 @@ public class Road{
 
     public Player getPlayer(){
         return player;
+    }
+
+    public ArrayList<Integer> getLane() {
+        return Lane;
+    }
+
+    public void setLane(ArrayList<Integer> lane) {
+        Lane = lane;
+    }
+
+    public void save() {
+        try (FileWriter fr = new FileWriter("src/data.txt")) {
+        for (Savable obj : saveList) {
+            fr.append(obj.serialize());
+        }
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+    }
+
+    public void load() {
+        //Still testing in separate project
     }
 
  
@@ -226,13 +236,6 @@ public class Road{
             }        
         }
 
-        public ArrayList<Integer> getLane() {
-            return Lane;
-        }
-
-        public void setLane(ArrayList<Integer> lane) {
-            Lane = lane;
-        }
     
 
 }

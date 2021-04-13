@@ -5,10 +5,10 @@
 // public class SerializationTest {
     
 
-    @Test
-    public void testSave() {
-        Road r = new Road();
-        r.save();
-    }
+    // @Test
+    // public void testSave() {
+    //     Road r = new Road();
+    //     r.save();
+    // }
 
 // }

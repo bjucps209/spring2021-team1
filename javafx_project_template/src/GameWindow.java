@@ -1,27 +1,14 @@
 
 import java.util.ArrayList;
-import java.util.Random;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.ObjectProperty;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -29,7 +16,6 @@ import model.Obstacle;
 
 import model.Road;
 import model.RoadBlock;
-import javafx.util.Duration;
 
 public class GameWindow/*  implements ObserverGame */ {
 
@@ -42,8 +28,7 @@ public class GameWindow/*  implements ObserverGame */ {
     Timeline timeline;
 
     Obstacle obstacle;
-    // ObjectProperty<STATE> input;
-    ArrayList<ImageView> imageViews = new ArrayList<>();
+    ArrayList<ImageView> imgviewList = new ArrayList<>();
     ImageView obstacleImageView;
     Road road;
 
@@ -63,10 +48,6 @@ public class GameWindow/*  implements ObserverGame */ {
     public void initialize() {
         Road road = new Road();
 
-      
-        img.layoutXProperty().bind(Bindings.createIntegerBinding(() -> road.getPlayer().getCoordinate().getX()));
-        img.layoutYProperty().bind(Bindings.createIntegerBinding(() -> road.getPlayer().getCoordinate().getY()));
-       
         var imgRoad = new ImageView(roadImage);
         imgRoad.setFitWidth(1250);
         imgRoad.setFitHeight(600);
@@ -78,7 +59,8 @@ public class GameWindow/*  implements ObserverGame */ {
         img.relocate(50, 300);
         paneMain.getChildren().add(img);
 
-
+        img.layoutXProperty().bind(Bindings.createIntegerBinding(() -> road.getPlayer().getCoordinate().getX()));
+        img.layoutYProperty().bind(Bindings.createIntegerBinding(() -> road.getPlayer().getCoordinate().getY()));
 
         // Road.getInstance().setObserver(this);
 
@@ -100,6 +82,7 @@ public class GameWindow/*  implements ObserverGame */ {
             }
             // road.timer();
         }
+
 
         timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> img.setX(img.getX() + 2)));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -160,7 +143,10 @@ public class GameWindow/*  implements ObserverGame */ {
         obstacleImageView.setFitHeight(50);
         obstacleImageView.relocate(x, y);
         paneMain.getChildren().add(obstacleImageView);
-        imageViews.add(obstacleImageView);
-
+        imgviewList.add(obstacleImageView);
+        obstacleImageView.layoutXProperty().bind(Bindings.createIntegerBinding(() -> x));
+        obstacleImageView.layoutXProperty().bind(Bindings.createIntegerBinding(() -> y));
     }
+
+
 }

@@ -18,11 +18,14 @@ public class Obstacle extends Coordinate implements Savable {
          */
 
     RoadBlock object;
+    int id;
+    private static int nextId;
     Random rand = new Random();
 
     public Obstacle(RoadBlock rd, int x, int y){
         super(x, y);
         this.object = rd;
+        this.id = ++nextId;
     }
 
     public RoadBlock getRoadBlock(){
