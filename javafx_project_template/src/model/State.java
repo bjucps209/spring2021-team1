@@ -1,5 +1,5 @@
 package model;
 
-public enum STATE {
+ enum STATE {
     JUMP, LEFT, RIGHT, SPEEDUP, MIDDLE, MOVING
 }

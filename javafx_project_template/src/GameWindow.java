@@ -17,15 +17,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import model.Obstacle;
+
 import model.Road;
 import model.RoadBlock;
-import model.STATE;
+import javafx.util.Duration;
 
-public class GameWindow{
+public class GameWindow/*  implements ObserverGame */ {
 
     @FXML
     HBox hbox;
@@ -33,15 +39,13 @@ public class GameWindow{
     Pane paneMain;
     @FXML
     Label lblCoord;
+    Timeline timeline;
 
     Obstacle obstacle;
-    ObjectProperty<STATE> input;
+    // ObjectProperty<STATE> input;
     ArrayList<ImageView> imageViews = new ArrayList<>();
     ImageView obstacleImageView;
     Road road;
-    Timeline timeline;
-
-
 
     // final Image humanImage = new Image("/images/human.gif");
     // final Image potholeImage = new Image("/images/blackhole.gif");
@@ -51,13 +55,22 @@ public class GameWindow{
     final Image coneImage = new Image("/images/cone.png");
     final Image carImage = new Image("/images/RoadBlockcar.png");
     final Image player = new Image("/images/player.png");
-
+    final Image roadImage = new Image("/images/road.png");
 
     ImageView imgPlayer = new ImageView(player);
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         Road road = new Road();
+
+      
+        img.layoutXProperty().bind(Bindings.createIntegerBinding(() -> road.getPlayer().getCoordinate().getX()));
+        img.layoutYProperty().bind(Bindings.createIntegerBinding(() -> road.getPlayer().getCoordinate().getY()));
+       
+        var imgRoad = new ImageView(roadImage);
+        imgRoad.setFitWidth(1250);
+        imgRoad.setFitHeight(600);
+        paneMain.getChildren().add(imgRoad);
 
         var img = new ImageView(player);
         img.setPreserveRatio(true);
@@ -65,97 +78,89 @@ public class GameWindow{
         img.relocate(50, 300);
         paneMain.getChildren().add(img);
 
-        img.layoutXProperty().bind(Bindings.createIntegerBinding(() -> road.getPlayer().getCoordinate().getX()));
-        img.layoutYProperty().bind(Bindings.createIntegerBinding(() -> road.getPlayer().getCoordinate().getY()));
+
+
+        // Road.getInstance().setObserver(this);
 
         for (int i = 0; i < road.getUsingRB().size(); i++) {
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
             int x = road.getUsingRB().get(i).getX();
             int y = road.getUsingRB().get(i).getY();
 
-            if(type == RoadBlock.PEOPLE){
+            if (type == RoadBlock.PEOPLE) {
                 setImage(humanImage, x, y);
-            }else if (type == RoadBlock.POTHOLES){
+            } else if (type == RoadBlock.POTHOLES) {
                 setImage(potholeImage, x, y);
-            } else if (type == RoadBlock.TRUCK){
+            } else if (type == RoadBlock.TRUCK) {
                 setImage(truckImage, x, y);
-            } else if (type == RoadBlock.CONES){
+            } else if (type == RoadBlock.CONES) {
                 setImage(coneImage, x, y);
-            } else if (type == RoadBlock.CARS){
+            } else if (type == RoadBlock.CARS) {
                 setImage(carImage, x, y);
             }
+            // road.timer();
         }
-        road.timer();
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(50), 
-        e -> imgPlayer.setX(imgPlayer.getX() + 100)));
-        timeline.setCycleCount(50);
+        timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> img.setX(img.getX() + 2)));
+        timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+
+        
+        for (int i = 2; i < paneMain.getChildren().size(); i++) {
+            ImageView image = (ImageView)paneMain.getChildren().get(i);
+            timeline = new Timeline(new KeyFrame(Duration.millis(50), 
+        e -> image.setX(image.getX() - 2)));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+        }
+
     }
-            
-    // public void KeyEvent(KeyEvent event, Node node) {
 
-    // if (event.getCode() == KeyCode.SPACE) {
-    // } else if (event.getCode() == KeyCode.UP) {
-    // input.set(State.LEFT);
-    // } else if (event.getCode() == KeyCode.DOWN) {
-    // input.set(State.RIGHT);
-    // } else if (event.getCode() == KeyCode.RIGHT) {
-    // input.set(State.SPEEDUP);
-    // }
-    // }
-
-    // public int setLanes(int y){
-    // if(y <= 600 && y){
-
-    // }
-    // }
     
 
     @FXML
-    public void KeyEventJump(KeyEvent event){
-        if(event.getCode() == KeyCode.SPACE){
+    public void KeyEventJump(KeyEvent event) {
+        if (event.getCode() == KeyCode.SPACE) {
             road.getPlayer().jumpUp();
         }
         // switch(event.getCode()){
 
-        //     case KeyCode.SPACE
+        // case KeyCode.SPACE
         // }
 
         // if(event.getCode() == KeyCode.SPACE){
-            
+
         // } else if (event.getCode() == KeyCode.UP){
-        //     input.set(State.LEFT);
+        // input.set(State.LEFT);
         // } else if (event.getCode() == KeyCode.DOWN){
-        //     input.set(State.RIGHT);
+        // input.set(State.RIGHT);
         // } else if (event.getCode() == KeyCode.RIGHT){
-        //     input.set(State.SPEEDUP);
+        // input.set(State.SPEEDUP);
         // }
     }
 
     @FXML
-    public void KeyEventLeft(KeyEvent event){
-        if(event.getCode() == KeyCode.UP){
+    public void KeyEventLeft(KeyEvent event) {
+        if (event.getCode() == KeyCode.UP) {
             road.getPlayer().jumpUp();
         }
     }
+
     @FXML
-    public void KeyEventRight(KeyEvent event){
-        if(event.getCode() == KeyCode.DOWN){
+    public void KeyEventRight(KeyEvent event) {
+        if (event.getCode() == KeyCode.DOWN) {
             road.getPlayer().rightLane();
-        } 
+        }
     }
 
     @FXML
-    public void setImage(Image imgs, int x, int y){
+    public void setImage(Image imgs, int x, int y) {
         obstacleImageView = new ImageView(imgs);
         obstacleImageView.setFitWidth(50);
         obstacleImageView.setFitHeight(50);
         obstacleImageView.relocate(x, y);
         paneMain.getChildren().add(obstacleImageView);
         imageViews.add(obstacleImageView);
-        obstacleImageView.layoutXProperty().bind(Bindings.createIntegerBinding(()-> x));
-        obstacleImageView.layoutYProperty().bind(Bindings.createIntegerBinding(()-> y));
-        }
 
     }
+}

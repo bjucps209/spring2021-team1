@@ -5,13 +5,10 @@
 // public class SerializationTest {
     
 
-//     @Test
-//     public void testSave() {
-//         //Road road = new Road();
-//         for (Object o : Road.saveList) {
-//             System.out.println(o);
-//         }
-//         Game.save();
-//     }
+    @Test
+    public void testSave() {
+        Road r = new Road();
+        r.save();
+    }
 
 // }

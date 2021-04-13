@@ -32,16 +32,11 @@ public class Obstacle extends Coordinate implements Savable {
         //go through the loop and check if there is 
     }
 
-    public void serialize() {
-        try(FileWriter fr = new FileWriter("src/data.txt")){
-            fr.append("Obstacle" + "\n");
-            fr.append(String.valueOf(x) +"\n");
-            fr.append("END");
-
-        } catch(Exception e) {
-            System.out.println(e.getStackTrace());
+    public String serialize() {
+        String serial = "Obstacle" + "\n" + String.valueOf(x) + "\n" + String.valueOf(y) + "\n" + "END" + "\n";
+        return serial;
         }
     }
 
     
-}
+
