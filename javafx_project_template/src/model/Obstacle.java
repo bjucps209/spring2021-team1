@@ -36,7 +36,7 @@ public class Obstacle extends Coordinate implements Savable {
     }
 
     public String serialize() {
-        String serial = "Obstacle" + "\n" + String.valueOf(x) + "\n" + String.valueOf(y) + "\n" + "END" + "\n";
+        String serial = "Obstacle" + "\n" + String.valueOf(coord.getdoubleX()) + "\n" + String.valueOf(coord.getdoubleX()) + "\n" + "END" + "\n";
         return serial;
         }
     }

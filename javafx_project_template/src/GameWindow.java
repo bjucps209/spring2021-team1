@@ -45,6 +45,7 @@ public class GameWindow/*  implements ObserverGame */ {
     final Image roadImage = new Image("/images/road.png");
 
     ImageView imgPlayer = new ImageView(player);
+    ImageView img;
 
     @FXML
     public void initialize() {
@@ -61,15 +62,14 @@ public class GameWindow/*  implements ObserverGame */ {
         img.relocate(50, 300);
         paneMain.getChildren().add(img);
 
-        img.layoutXProperty().bind(Bindings.createIntegerBinding(() -> road.getPlayer().getCoordinate().getX()));
-        img.layoutYProperty().bind(Bindings.createIntegerBinding(() -> road.getPlayer().getCoordinate().getY()));
-
+        img.layoutXProperty().bind(road.getPlayer().getCoordinate().getX());
+        img.layoutYProperty().bind(road.getPlayer().getCoordinate().getY());
         // Road.getInstance().setObserver(this);
 
         for (int i = 0; i < road.getUsingRB().size(); i++) {
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
-            int x = road.getUsingRB().get(i).getX();
-            int y = road.getUsingRB().get(i).getY();
+            int x = (int) road.getUsingRB().get(i).getdoubleX();
+            int y = (int) road.getUsingRB().get(i).getdoubleY();
 
             if (type == RoadBlock.PEOPLE) {
                 setImage(humanImage, x, y);
@@ -99,13 +99,13 @@ public class GameWindow/*  implements ObserverGame */ {
         timeline.play();
         }
 
-        if(paneMain != null){
-            paneMain.getScene().setOnKeyPressed(ev -> {
-                if(ev.getCode() == KeyCode.UP){
-                    KeyEventLeft(ev);
-                }
-            });
-        }
+        // if(paneMain.getScene() != null){
+        //     paneMain.getScene().setOnKeyPressed(event -> {
+        //         if(event.getCode() == KeyCode.UP){
+        //             img.relocate(50, 500);
+        //         }
+        //     });
+        // }
 
         // paneMain.getScene().setOnKeyReleased(ev -> {​​​​​​​
         //     if (ev.getCode() == KeyCode.DOWN) {​​​​​​​
@@ -120,13 +120,21 @@ public class GameWindow/*  implements ObserverGame */ {
 
     }
 
-    
-
-    @FXML
-    public void KeyEventJump(KeyEvent event) {
-        if (event.getCode() == KeyCode.SPACE) {
-            road.getPlayer().jumpUp();
+    public void keyPressed(KeyEvent e) {
+        if(e.getCode()== KeyCode.UP){
+            img.relocate(50, 500);
         }
+        // String text = e.getText();
+        // if (text.length() == 1 && text.charAt(0) >= '0' && text.charAt(0) <= '9') {
+        //     digitEntered(text.charAt(0));
+        }
+
+
+    // @FXML
+    // public void KeyEventJump(KeyEvent event) {
+    //     if (event.getCode() == KeyCode.SPACE) {
+    //         road.getPlayer().jumpUp();
+    //     }
         // switch(event.getCode()){
 
         // case KeyCode.SPACE
@@ -141,19 +149,19 @@ public class GameWindow/*  implements ObserverGame */ {
         // } else if (event.getCode() == KeyCode.RIGHT){
         // input.set(State.SPEEDUP);
         // }
-    }
 
-    @FXML
-    public void KeyEventLeft(KeyEvent event) {
-            road.getPlayer().leftLane();
-    }
+    // @FXML
+    // public void KeyEventLeft(KeyEvent event) {
+    //         road.getPlayer().leftLane();
+    // }
 
-    @FXML
-    public void KeyEventRight(KeyEvent event) {
-        if (event.getCode() == KeyCode.DOWN) {
-            road.getPlayer().rightLane();
-        }
-    }
+    // @FXML
+    // public void KeyEventRight(KeyEvent event) {
+    //     if (event.getCode() == KeyCode.DOWN) {
+    //         road.getPlayer().rightLane();
+    //         img.relocate(50, 500);
+    //     }
+    // }
 
     @FXML
     public void setImage(Image imgs, int x, int y) {
@@ -164,7 +172,8 @@ public class GameWindow/*  implements ObserverGame */ {
         paneMain.getChildren().add(obstacleImageView);
         imgviewList.add(obstacleImageView);
         obstacleImageView.layoutXProperty().bind(Bindings.createIntegerBinding(() -> x));
-        obstacleImageView.layoutXProperty().bind(Bindings.createIntegerBinding(() -> y));
+        obstacleImageView.layoutYProperty().bind(Bindings.createIntegerBinding(() -> y));
+
     }
 
 
