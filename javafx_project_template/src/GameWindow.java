@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
@@ -11,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import model.Obstacle;
 
@@ -97,6 +99,25 @@ public class GameWindow/*  implements ObserverGame */ {
         timeline.play();
         }
 
+        if(paneMain != null){
+            paneMain.getScene().setOnKeyPressed(ev -> {
+                if(ev.getCode() == KeyCode.UP){
+                    KeyEventLeft(ev);
+                }
+            });
+        }
+
+        // paneMain.getScene().setOnKeyReleased(ev -> {​​​​​​​
+        //     if (ev.getCode() == KeyCode.DOWN) {​​​​​​​
+        //         downKeyPressed = false;
+        //     }​​​​​​​ else if ( ... ) {​​​​​​​
+        //         ...
+        //     }​​​​​​​
+        // }​​​​​​​);
+
+
+
+
     }
 
     
@@ -124,9 +145,7 @@ public class GameWindow/*  implements ObserverGame */ {
 
     @FXML
     public void KeyEventLeft(KeyEvent event) {
-        if (event.getCode() == KeyCode.UP) {
-            road.getPlayer().jumpUp();
-        }
+            road.getPlayer().leftLane();
     }
 
     @FXML

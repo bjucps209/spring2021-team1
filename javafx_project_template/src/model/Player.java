@@ -64,7 +64,13 @@ public class Player implements Savable{
      * the right or the middle lane add y
      */
     public void leftLane(){
-        // break;
+        if(coor.getY() == 300){
+            coor.setY(500);
+        } else if (coor.getY() == 100){
+            coor.setY(300);
+        } else if (coor.getY() == 500){
+            coor.setY(500);
+        }
     }
 
     /**
