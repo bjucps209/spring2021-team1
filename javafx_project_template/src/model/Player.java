@@ -48,7 +48,7 @@ public class Player implements Savable{
      */
     public void jumpUp(){
         //getplayers x coordinate and add 50
-        coor.setX(coor.getX() + 50);
+        coor.setX(coor.getdoubleX() + 50);
     }
 
     /**
@@ -64,7 +64,13 @@ public class Player implements Savable{
      * the right or the middle lane add y
      */
     public void leftLane(){
-        // break;
+        if(coor.getdoubleY() == 300){
+            coor.setY(500);
+        } else if (coor.getdoubleY() == 100){
+            coor.setY(300);
+        } else if (coor.getdoubleY() == 500){
+            coor.setY(500);
+        }
     }
 
     /**
@@ -112,8 +118,8 @@ public class Player implements Savable{
 
     public String serialize() {
         Coordinate co = getCoordinate();
-        int x = co.x;
-        int y = co.y;
+        double x = co.getdoubleX();
+        double y = co.getdoubleY();
         String serial = "Player" + "\n" + String.valueOf(x) + "\n" + String.valueOf(y) + "\n" + "END";
         //State will be added when getState() is complete
         return serial;

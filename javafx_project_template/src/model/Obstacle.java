@@ -18,11 +18,14 @@ public class Obstacle extends Coordinate implements Savable {
          */
 
     RoadBlock object;
+    int id;
+    private static int nextId;
     Random rand = new Random();
 
     public Obstacle(RoadBlock rd, int x, int y){
         super(x, y);
         this.object = rd;
+        this.id = ++nextId;
     }
 
     public RoadBlock getRoadBlock(){
@@ -33,7 +36,7 @@ public class Obstacle extends Coordinate implements Savable {
     }
 
     public String serialize() {
-        String serial = "Obstacle" + "\n" + String.valueOf(x) + "\n" + String.valueOf(y) + "\n" + "END" + "\n";
+        String serial = "Obstacle" + "\n" + String.valueOf(coord.getdoubleX()) + "\n" + String.valueOf(coord.getdoubleX()) + "\n" + "END" + "\n";
         return serial;
         }
     }

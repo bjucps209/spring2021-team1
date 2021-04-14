@@ -1,29 +1,39 @@
 package model;
 
-class Coordinate{
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+
+public class Coordinate{
     
-    int x;
-    int y;
+    private DoubleProperty x = new SimpleDoubleProperty();
+    private DoubleProperty y = new SimpleDoubleProperty();
     
     Coordinate(int x, int y){
-        this.x = x;
-        this.y = y;
+        setX(x);
+        this.x = getX();
+        setY(y);
+        this.y = getY();
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public final void setX(double value){
+        x.set(value);
     }
-
-    public int getX() {
+    public DoubleProperty getX() {
         return x;
     }
-
-    public void setY(int y) {
-        this.y = y;
+    public final double getdoubleX(){
+        return x.get();
     }
 
-    public int getY() {
+    public final void setY(double value){
+        y.set(value);
+    }
+    public DoubleProperty getY() {
         return y;
+    }
+
+    public final double getdoubleY(){
+        return y.get();
     }
     
 

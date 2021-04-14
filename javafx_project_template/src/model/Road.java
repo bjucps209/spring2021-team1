@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Random;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -21,6 +20,7 @@ public class Road{
     RoadBlock[] rb = RoadBlock.values();
     ArrayList<Obstacle> usingRB;
     ArrayList<Integer> Lane = new ArrayList<>();
+    ArrayList<Integer> objectXs = new ArrayList<>();
     boolean gameOver;
     boolean cheatOn;
     Player player;
@@ -45,12 +45,15 @@ public class Road{
        
     }
     
-    private static Road instance = new Road();
+    // private static Road instance = new Road();
     
+    //this is creating objects
     public void addObjectsdefault(){
         for (int i = 0; i < 25; i ++){
             Random rand = new Random();
-            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], rand.nextInt(100)*20, Lane.get(rand.nextInt(3)));
+            int newX = rand.nextInt(100)*20;
+            newX = checkObjectLocation(newX);
+            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], newX, Lane.get(rand.nextInt(3)));
             usingRB.add(obstacle);
             saveList.add(obstacle);
         }
@@ -81,19 +84,6 @@ public class Road{
         
     }
 
-    public void save() {
-        try (FileWriter fr = new FileWriter("src/data.txt")) {
-        for (Savable obj : saveList) {
-            fr.append(obj.serialize());
-        }
-    } catch (Exception e) {
-        System.out.println(e);
-    }
-    }
-
-    public void load() {
-        //Still testing in separate project
-    }
 
     public void loop(){ //Caedmon Evans helped me with this idea
         for (int i = 0; i < usingRB.size(); ++i){
@@ -102,7 +92,7 @@ public class Road{
     }
 
     public void updateX(Obstacle obstacles){
-        obstacles.setX(obstacles.getX()-3);
+        obstacles.setX(obstacles.getdoubleX()-3);
  
     }
 
@@ -114,9 +104,9 @@ public class Road{
         
     }
 
-    public static Road getInstance() { 
-        return instance;
-    }
+    // public static Road getInstance() { 
+    //     return instance;
+    // }
 
     public void createLanes(){
         int A = 500;
@@ -130,7 +120,7 @@ public class Road{
 
     public Boolean checkLeft(){
         boolean statement = true;
-        if(player.getCoordinate().getY()== 100){
+        if(player.getCoordinate().getdoubleY()== 100){
             statement = false;
         }
         return statement;
@@ -138,7 +128,7 @@ public class Road{
 
     public Boolean checkRight(){
         boolean statement = true;
-        if(player.getCoordinate().getY()== 500){
+        if(player.getCoordinate().getdoubleY()== 500){
             statement = false;
         }
         return statement;
@@ -167,17 +157,46 @@ public class Road{
         return obst.getRoadBlock();
     }
 
-    public int getplayerXcoord(){
-        return player.getCoordinate().getX();
-    }
-
     public Player getPlayer(){
         return player;
     }
 
-    // public void serialize(Object obj) {
-    //     saveList.add(obj);
-    // } 
+    public ArrayList<Integer> getLane() {
+        return Lane;
+    }
+
+    public void setLane(ArrayList<Integer> lane) {
+        Lane = lane;
+    }
+
+    public void save() {
+        try (FileWriter fr = new FileWriter("src/data.txt")) {
+        for (Savable obj : saveList) {
+            fr.append(obj.serialize());
+        }
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+    }
+
+    public void load() {
+        //Still testing in separate project
+    }
+
+    public int checkObjectLocation(int currentX){
+        Random rand = new Random();
+        int newX =  rand.nextInt(100)*20;
+        for(int i: objectXs){
+            if(currentX >= i + 100 && currentX <= i){
+                checkObjectLocation(newX);
+            }
+            else {
+                newX = currentX;
+            }
+        }
+        return newX;
+    }
+
  
 
         public void organizeVariable(){
@@ -235,13 +254,6 @@ public class Road{
             }        
         }
 
-        public ArrayList<Integer> getLane() {
-            return Lane;
-        }
-
-        public void setLane(ArrayList<Integer> lane) {
-            Lane = lane;
-        }
     
 
 }

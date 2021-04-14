@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <HBox fx:controller="GameWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="GameWindow.css"
-    spacing="10" prefHeight="600"  style="-fx-background-color: black;" prefWidth="1500" alignment="CENTER" fx:id="hbox">
+    spacing="10" prefHeight="600"  style="-fx-background-color: black;" prefWidth="1500" alignment="CENTER" fx:id="hbox" onKeyPressed="#keyPressed">
     
     <Label fx:id="lblCoord" style="-fx-text-fill: blue"/>
 
