@@ -29,6 +29,7 @@ public class MainWindow {
         var scene = new Scene(loader.load());
         var stage = new Stage();
         stage.setScene(scene);
+        
         stage.show();
     }
 
@@ -59,6 +60,7 @@ public class MainWindow {
         Parent root = FXMLLoader.load(getClass().getResource("About.fxml"));
         Scene scene = new Scene(root);
 
+        
         stage.setScene(scene);
         stage.show();
     }

@@ -17,11 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
+
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import model.Obstacle;
@@ -50,11 +46,12 @@ public class GameWindow/*  implements ObserverGame */ {
     // final Image potholeImage = new Image("/images/blackhole.gif");
     final Image humanImage = new Image("/images/human.png");
     final Image potholeImage = new Image("/images/pothole.png");
-    final Image truckImage = new Image("/images/truck.png");
+   final Image truckImage = new Image("/images/truck.png");
     final Image coneImage = new Image("/images/cone.png");
     final Image carImage = new Image("/images/RoadBlockcar.png");
     final Image player = new Image("/images/player.png");
     final Image roadImage = new Image("/images/road.png");
+    final Image fireImage = new Image("/images/fire.gif");
 
     ImageView imgPlayer = new ImageView(player);
 
@@ -63,28 +60,35 @@ public class GameWindow/*  implements ObserverGame */ {
         Road road = new Road();
         Random rand = new Random();
 
-      
         
+        
+      // paneMain.setOnKeyPressed( e -> keyPressed(e) );
        
         var imgRoad = new ImageView(roadImage);
         imgRoad.setFitWidth(1250);
         imgRoad.setFitHeight(600);
         paneMain.getChildren().add(imgRoad);
 
+
         var img = new ImageView(player);
+        //var imgFire = new ImageView(fireImage) ; 
+        img.setOnKeyPressed( e -> keyPressed(e) );
         img.setPreserveRatio(true);
-        img.setFitWidth(100);
+        img.setFitWidth(200);
         img.relocate(50, 300);
         paneMain.getChildren().add(img);
 
 
-
         // Road.getInstance().setObserver(this);
+
+       
+    
 
         for (int i = 0; i < road.getUsingRB().size(); i++) {
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
             int x = road.getUsingRB().get(i).getX();
             int y = road.getUsingRB().get(i).getY();
+
 
             if (type == RoadBlock.PEOPLE) {
                 setImage(humanImage, x, y);
@@ -100,7 +104,9 @@ public class GameWindow/*  implements ObserverGame */ {
             // road.timer();
         }
 
+        // img.setOnKeyPressed( e -> keyPressed(e) );;
         timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> img.setX(img.getX() + 2)));
+        
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
@@ -111,17 +117,18 @@ public class GameWindow/*  implements ObserverGame */ {
         e -> image.setX(image.getX() - 2)));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+        
         }
 
     }
 
     
 
-    @FXML
+    /* @FXML
     public void KeyEventJump(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
             road.getPlayer().jumpUp();
-        }
+        } */
         // switch(event.getCode()){
 
         // case KeyCode.SPACE
@@ -138,23 +145,34 @@ public class GameWindow/*  implements ObserverGame */ {
         // }
     }
 
-    @FXML
+   /*  @FXML public void keyPressed(KeyEvent event){
+
+        KeyCode key = event.getCode();   
+        System.out.println("Key Pressed: " + key);
+
+    }
+ */
+   /*  @FXML
     public void KeyEventLeft(KeyEvent event) {
         if (event.getCode() == KeyCode.UP) {
             road.getPlayer().jumpUp();
         }
     }
-
-    @FXML
+ */
+   /*  @FXML
     public void KeyEventRight(KeyEvent event) {
         if (event.getCode() == KeyCode.DOWN) {
             road.getPlayer().rightLane();
         }
-    }
+    } */
+
+
+    
 
     @FXML
     public void setImage(Image imgs, int x, int y) {
         obstacleImageView = new ImageView(imgs);
+        obstacleImageView.setPreserveRatio(true);
         obstacleImageView.setFitWidth(50);
         obstacleImageView.setFitHeight(50);
         obstacleImageView.relocate(x, y);
