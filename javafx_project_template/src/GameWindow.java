@@ -1,6 +1,6 @@
 
 import java.util.ArrayList;
-
+import javafx.scene.input.KeyEvent;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Window;
@@ -19,7 +18,7 @@ import model.Obstacle;
 import model.Road;
 import model.RoadBlock;
 
-public class GameWindow/*  implements ObserverGame */ {
+public class GameWindow {
 
     @FXML
     HBox hbox;
@@ -119,15 +118,23 @@ public class GameWindow/*  implements ObserverGame */ {
 
 
     }
-
-    public void keyPressed(KeyEvent e) {
-        if(e.getCode()== KeyCode.UP){
-            img.relocate(50, 500);
-        }
-        // String text = e.getText();
-        // if (text.length() == 1 && text.charAt(0) >= '0' && text.charAt(0) <= '9') {
-        //     digitEntered(text.charAt(0));
-        }
+    // public void keyPressed(KeyEvent e) {
+    //     var keyCode = e.getCode();
+    //     switch( keyCode ) { 
+    //         case KeyEvent.VK_UP:
+    //             // handle up 
+    //             break;
+    //         case KeyEvent.VK_DOWN:
+    //             // handle down 
+    //             break;
+    //         case KeyEvent.VK_LEFT:
+    //             // handle left
+    //             break;
+    //         case KeyEvent.VK_RIGHT :
+    //             // handle right
+    //             break;
+    //         }
+    // } 
 
 
     // @FXML
