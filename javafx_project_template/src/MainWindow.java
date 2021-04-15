@@ -23,13 +23,17 @@ public class MainWindow {
 
     GameWindow gamewindow = new GameWindow();
 
+    Stage mainStage;
     @FXML
     void onStartClicked(ActionEvent event) throws IOException {
         var loader = new FXMLLoader(getClass().getResource("GameWindow.fxml"));
         var scene = new Scene(loader.load());
         var stage = new Stage();
+        GameWindow gameWindow = loader.getController();
+        //mainStage = stage;
         stage.setScene(scene);
         stage.show();
+        gameWindow.initialize(stage);
     }
 
     @FXML
@@ -38,8 +42,8 @@ public class MainWindow {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("LevelBuilder.fxml"));
         Scene scene = new Scene(root);
-
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 
@@ -59,6 +63,7 @@ public class MainWindow {
         Parent root = FXMLLoader.load(getClass().getResource("About.fxml"));
         Scene scene = new Scene(root);
 
+        
         stage.setScene(scene);
         stage.show();
     }
@@ -68,7 +73,6 @@ public class MainWindow {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("Highscores.fxml"));
         Scene scene = new Scene(root);
-
         stage.setScene(scene);
         stage.show();
 
@@ -86,5 +90,6 @@ public class MainWindow {
         stage.show();
 
     }
+
 
 }

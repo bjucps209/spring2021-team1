@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class LevelBuilder {
 
     @FXML Slider sldLevel;
     @FXML Pane pane;
+    @FXML HBox paneHBox;
     IntegerProperty roadLength;
    
     
@@ -27,6 +29,7 @@ public class LevelBuilder {
     final Image IMG_HUMAN = new Image("/images/human.png");
     final Image IMG_TRUCK = new Image("/images/truck.png");
     final Image IMG_CAR = new Image("/images/RoadBlockcar.png");
+    final Image IMG_ROAD = new Image("/images/road.png");
 
     Random rand = new Random();
 
@@ -124,7 +127,10 @@ public class LevelBuilder {
 
     @FXML
     void onSliderChanged(int val){
-     pane.setPrefWidth((double)val * 1000);
+        Pane newPane = new Pane();
+        newPane.setMaxWidth(val *(1000));
+        paneHBox.getChildren();
+
     }
 
 

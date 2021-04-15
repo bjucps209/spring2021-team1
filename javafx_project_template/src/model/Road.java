@@ -10,6 +10,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
 
+// import com.fasterxml.jackson.core.JsonParser;
+// import com.fasterxml.jackson.core.ObjectCodec;
+// import com.fasterxml.jackson.databind.JsonNode;
+// import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 public class Road{
     RoadBlock[] rb = RoadBlock.values();
@@ -24,7 +29,8 @@ public class Road{
     Obstacle obstacle;
 
     
-
+    //File to load and save from
+    //static final File filename = new File("/data.json");
     public ArrayList<Savable> saveList = new ArrayList<Savable>();
 
     // sets the time and distance to move through the pane
