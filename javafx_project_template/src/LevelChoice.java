@@ -17,7 +17,7 @@ public class LevelChoice {
     @FXML ToggleGroup group;
 
     @FXML
-    private void initialize() {
+    public void initialize(Stage stage) {
         ToggleGroup group = new ToggleGroup(); //https://stackoverflow.com/questions/53467588/how-to-implement-togglegroup-in-fxml-file-using-spring-vs-javafx
         EasyBtn.setToggleGroup(group);
         MediumBtn.setToggleGroup(group);
@@ -26,9 +26,9 @@ public class LevelChoice {
 
     @FXML
     public void onStartClicked(ActionEvent event) throws IOException{
-        // RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
-        // String toogleGroupValue = selectedRadioButton.getText();
-        // int sliderValue = (int) sldLevel.getValue();
+        RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
+        String toogleGroupValue = selectedRadioButton.getText();
+        int sliderValue = (int) sldLevel.getValue();
 
         //show the gamewindow page
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

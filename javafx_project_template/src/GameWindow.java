@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import javafx.scene.input.KeyEvent;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -128,8 +127,8 @@ public class GameWindow/* implements ObserverGame */ {
     }
 
     public void keyPressed(KeyEvent event) {
-        var key = event.getCode();
-        switch (key){
+        var k = event.getCode();
+        switch (k){
         case UP: 
             img.setY(img.getY() - 200);
         
@@ -141,6 +140,8 @@ public class GameWindow/* implements ObserverGame */ {
 
         case SPACE:
             img.setX(img.getX() + 200);
+        default:
+            break;
             
         }
     }
