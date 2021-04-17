@@ -6,15 +6,12 @@ import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.util.Duration;
 import model.*;
 
@@ -73,8 +70,8 @@ public class GameWindow/* implements ObserverGame */ {
             }
         });
         img.setPreserveRatio(true);
-        img.setFitWidth(200);
-        img.relocate(50, 300);
+        img.setFitWidth(100);
+        img.relocate(50, 650);
         paneMain.getChildren().add(img);
 
         img.layoutXProperty().bind(road.getPlayer().getCoordinate().getX());
@@ -107,49 +104,32 @@ public class GameWindow/* implements ObserverGame */ {
 
         for (int i = 2; i < paneMain.getChildren().size(); i++) {
             ImageView image = (ImageView) paneMain.getChildren().get(i);
-            timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> image.setX(image.getX() - 2)));
+            timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+                image.setX(image.getX() - 2);
+                beginCollisionDetection();
+            }));
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
 
         }
 
-        // if(paneMain.getScene() != null){
-        // paneMain.getScene().setOnKeyPressed(event -> {
-        // if(event.getCode() == KeyCode.UP){
-        // img.relocate(50, 500);
-        // }
-        // });
-        // }
-
-        // paneMain.getScene().setOnKeyReleased(ev -> {​​​​​​​
-        // if (ev.getCode() == KeyCode.DOWN) {​​​​​​​
-        // downKeyPressed = false;
-        // }​​​​​​​ else if ( ... ) {​​​​​​​
-        // ...
-        // }​​​​​​​
-        // }​​​​​​​);
-
-        // String text = e.getText();
-        // if (text.length() == 1 && text.charAt(0) >= '0' && text.charAt(0) <= '9') {
-        // digitEntered(text.charAt(0));
+        beginCollisionDetection();
     }
 
     public void keyPressed(KeyEvent event) {
-
-        switch (event.getCode()){
+        var key = event.getCode();
+        switch (key){
         case UP: 
-            img.setY(img.getY() - 10);
+            img.setY(img.getY() - 200);
         
         break;
 
         case DOWN:
-           img.setY(img.getY() + 10);
+           img.setY(img.getY() + 200);
            break;
 
         case SPACE:
-            
-
-
+            img.setX(img.getX() + 200);
             
         }
     }
@@ -199,6 +179,16 @@ public class GameWindow/* implements ObserverGame */ {
         obstacleImageView.layoutXProperty().bind(Bindings.createIntegerBinding(() -> x));
         obstacleImageView.layoutYProperty().bind(Bindings.createIntegerBinding(() -> y));
 
+    }
+    @FXML
+    public void beginCollisionDetection(){
+        //if player image coordinate equals object object, print collided..
+        for(ImageView i: imgviewList){
+            if(i.getX()==img.getX() && i.getY() == img.getX()){
+                i.setDisable(false);
+
+            }
+        }
     }
 
 }
