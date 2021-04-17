@@ -1,6 +1,9 @@
+//-----------------------------------------------------------
+//File:   player.java
+//Desc:   Program that contains methods to set player and its
+//----------------------------------------------------------- 
 package model;
 
-import java.io.FileWriter;
 
 public class Player implements Savable{
     //how the player begins (in the middle lane moving forward)

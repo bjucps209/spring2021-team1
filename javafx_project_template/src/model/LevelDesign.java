@@ -1,7 +1,8 @@
+//-----------------------------------------------------------
+//File:   LevelDesign.java
+//Desc:   Program that contains methods to Get set  the current level diffculty and set 
+//----------------------------------------------------------- 
 package model;
-
-import java.util.ArrayList;
-
 
 class LevelDesign{
 
@@ -20,21 +21,6 @@ class LevelDesign{
         return km;
     }
 
-   /*  public int getlevelDifficulty(DifficultyLevel difficulty){
-            if(difficulty == DifficultyLevel.EASY){
-                
-            }
-            if(difficulty == DifficultyLevel.MEDIUM){
-                
-            }
-            if(difficulty == DifficultyLevel.HARD){
-                
-            } */
-        
-    
-
-
-
     public LevelSequence currentSequence(LevelSequence sequence){
         return sequence;
     }
@@ -42,12 +28,6 @@ class LevelDesign{
 
     public void setCurrentSequence(LevelSequence sequence){
 
-
     }
-
-/* public ArrayList<RoadBlock> buildLevel(RoadBlock roadblock){
-    //return an arraylist with the user specified oblstacles
-    return null;
-} */
 
 }

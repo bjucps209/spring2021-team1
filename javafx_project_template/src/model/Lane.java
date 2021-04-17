@@ -1,3 +1,7 @@
+//-----------------------------------------------------------
+//File:   Lane.java
+//Desc:   Enum that contains methods and a switch 
+//----------------------------------------------------------- 
 package model;
 
 import java.util.Random;
