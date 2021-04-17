@@ -19,7 +19,6 @@ import javafx.util.Duration;
 public class Road{
     RoadBlock[] rb = RoadBlock.values();
     ArrayList<Obstacle> usingRB;
-    ArrayList<Integer> Lane = new ArrayList<>();
     ArrayList<Integer> objectXs = new ArrayList<>();
     boolean gameOver;
     boolean cheatOn;
@@ -36,10 +35,8 @@ public class Road{
     // sets the time and distance to move through the pane
     public Road(){
         usingRB = new ArrayList<>();
-        Lane = new ArrayList<>();
-        createLanes();
-        addObjectsdefault();
-        player = new Player(STATE.MOVING, 0, Lane.get(1));
+        createCoursedefault();
+        player = new Player(STATE.MOVING, 0, Lane.B.getLaneYcoord());
         saveList.add(player);
         
        
@@ -48,16 +45,34 @@ public class Road{
     // private static Road instance = new Road();
     
     //this is creating objects
-    public void addObjectsdefault(){
+    public void createCoursedefault(){
         for (int i = 0; i < 25; i ++){
             Random rand = new Random();
-            int newX = rand.nextInt(100)*20;
-            newX = checkObjectLocation(newX);
-            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], newX, Lane.get(rand.nextInt(3)));
+            int currentX = rand.nextInt(100)*20;
+            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], currentX, Lane.getRandomLane().getLaneYcoord());
+            if(usingRB.size() != 0){
+                if(collision(obstacle) == true){
+                    Obstacle newObs = createObject();
+                    usingRB.add(newObs);
+                    saveList.add(newObs);
+                }
+            }
             usingRB.add(obstacle);
             saveList.add(obstacle);
         }
     }
+
+    public Obstacle createObject(){
+        Random rand = new Random();
+        int currentX = rand.nextInt(100)*20;
+        Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], currentX, Lane.getRandomLane().getLaneYcoord());
+        if(collision(obstacle) == true){
+            createObject();  
+        }
+        return obstacle;
+
+    }
+
 
     public void setDistanceSpeed(int d, int r){
         distance = d*10;
@@ -98,7 +113,7 @@ public class Road{
 
     public void createRandomObstacle(){
         Random rand = new Random();
-        Obstacle obstacle = new Obstacle(rb[rand.nextInt(4)], distance, Lane.get(rand.nextInt(2)));
+        Obstacle obstacle = new Obstacle(rb[rand.nextInt(4)], distance, Lane.getRandomLane().getLaneYcoord());
         usingRB.add(obstacle);
         saveList.add(obstacle);
         
@@ -107,16 +122,6 @@ public class Road{
     // public static Road getInstance() { 
     //     return instance;
     // }
-
-    public void createLanes(){
-        int A = 500;
-        int B = 300;
-        int C = 100;
-
-        Lane.add(A);
-        Lane.add(B);
-        Lane.add(C);
-    }
 
     public Boolean checkLeft(){
         boolean statement = true;
@@ -133,6 +138,13 @@ public class Road{
         }
         return statement;
 
+    }
+
+    public void update(){
+        for(Obstacle i: usingRB){
+            i.setX(i.getdoubleX()-2);
+        }
+        getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX()+2);
     }
 
     
@@ -161,14 +173,6 @@ public class Road{
         return player;
     }
 
-    public ArrayList<Integer> getLane() {
-        return Lane;
-    }
-
-    public void setLane(ArrayList<Integer> lane) {
-        Lane = lane;
-    }
-
     public void save() {
         try (FileWriter fr = new FileWriter("src/data.txt")) {
         for (Savable obj : saveList) {
@@ -183,20 +187,23 @@ public class Road{
         //Still testing in separate project
     }
 
-    public int checkObjectLocation(int currentX){
-        Random rand = new Random();
-        int newX =  rand.nextInt(100)*20;
-        for(int i: objectXs){
-            if(currentX >= i + 100 && currentX <= i){
-                checkObjectLocation(newX);
-            }
-            else {
-                newX = currentX;
+
+
+    public boolean collision(Coordinate coord){
+        //if player image coordinate equals object object, print collided..
+        // System.out.println(playerCoord.getX());
+        for(Obstacle i: usingRB){
+            if(coord.getdoubleY() == i.getdoubleY()){
+                if(coord.getdoubleX() <= i.getdoubleX() + i.getObstalceWidth()){
+                    if(coord.getdoubleX() + coord.getPlayerWidth() <= i.getdoubleX()){
+                        System.out.println("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+                        return true;
+                    }
+                }
             }
         }
-        return newX;
+        return false;
     }
-
  
 
         public void organizeVariable(){

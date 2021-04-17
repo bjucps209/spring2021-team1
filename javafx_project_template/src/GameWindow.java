@@ -23,12 +23,13 @@ public class GameWindow/* implements ObserverGame */ {
     Pane paneMain;
     @FXML
     Label lblCoord;
+
     Timeline timeline;
 
     Obstacle obstacle;
     ArrayList<ImageView> imgviewList = new ArrayList<>();
-    ImageView obstacleImageView;
     Road road;
+
 
     // final Image humanImage = new Image("/images/human.gif");
     // final Image potholeImage = new Image("/images/blackhole.gif");
@@ -55,6 +56,7 @@ public class GameWindow/* implements ObserverGame */ {
        // mainwindow = new MainWindow();
         //mainwindow.mainStage.getScene().setOnKeyPressed( e -> keyPressed(e) );
 
+        //Road picture
         var imgRoad = new ImageView(roadImage);
         imgRoad.setFitWidth(1250);
         imgRoad.setFitHeight(600);
@@ -69,51 +71,60 @@ public class GameWindow/* implements ObserverGame */ {
                 keyPressed(e);
             }
         });
+
+        //Adding Player Image
         img.setPreserveRatio(true);
+        img.setFitWidth(100);
         img.setFitWidth(100);
         img.relocate(50, 650);
         paneMain.getChildren().add(img);
 
-        img.layoutXProperty().bind(road.getPlayer().getCoordinate().getX());
-        img.layoutYProperty().bind(road.getPlayer().getCoordinate().getY());
+        img.layoutXProperty().bind((road.getPlayer().getCoordinate().getX()));
+        img.layoutYProperty().bind((road.getPlayer().getCoordinate().getY()));
         // Road.getInstance().setObserver(this);
 
         for (int i = 0; i < road.getUsingRB().size(); i++) {
+            Obstacle obs = road.getUsingRB().get(i);
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
-            int x = (int) road.getUsingRB().get(i).getdoubleX();
-            int y = (int) road.getUsingRB().get(i).getdoubleY();
+
+            ImageView image;
 
             if (type == RoadBlock.PEOPLE) {
-                setImage(humanImage, x, y);
+                image = setImage(humanImage, obs);
             } else if (type == RoadBlock.POTHOLES) {
-                setImage(potholeImage, x, y);
+                image = setImage(potholeImage, obs);
             } else if (type == RoadBlock.TRUCK) {
-                setImage(truckImage, x, y);
+                image = setImage(truckImage, obs);
             } else if (type == RoadBlock.CONES) {
-                setImage(coneImage, x, y);
+                image = setImage(coneImage, obs);
             } else if (type == RoadBlock.CARS) {
-                setImage(carImage, x, y);
+                image = setImage(carImage, obs);
             }
-            // road.timer();
+
+            
         }
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> img.setX(img.getX() + 2)));
-
+        timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+            road.update();
+            road.collision(road.getPlayer().getCoordinate());
+            // img.setX(img.getX() + 2);
+        }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
-        for (int i = 2; i < paneMain.getChildren().size(); i++) {
-            ImageView image = (ImageView) paneMain.getChildren().get(i);
-            timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
-                image.setX(image.getX() - 2);
-                beginCollisionDetection();
-            }));
-            timeline.setCycleCount(Timeline.INDEFINITE);
-            timeline.play();
 
-        }
+        // for (int i = 2; i < paneMain.getChildren().size(); i++) {
+            // ImageView image = (ImageView) paneMain.getChildren().get(i);
+            // timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+            //     image.setX(image.getX() - 2);
+            //     road.beginCollisionDetection();
+            // }));
+            // timeline.setCycleCount(Timeline.INDEFINITE);
+            // timeline.play();
 
-        beginCollisionDetection();
+        // }
+
+        // beginCollisionDetection();
     }
 
     public void keyPressed(KeyEvent event) {
@@ -168,27 +179,20 @@ public class GameWindow/* implements ObserverGame */ {
     // }
 
     @FXML
-    public void setImage(Image imgs, int x, int y) {
-        obstacleImageView = new ImageView(imgs);
+    public ImageView setImage(Image imgs, Obstacle ob) {
+        ImageView obstacleImageView = new ImageView(imgs);
         obstacleImageView.setPreserveRatio(true);
         obstacleImageView.setFitWidth(50);
         obstacleImageView.setFitHeight(50);
-        obstacleImageView.relocate(x, y);
+        obstacleImageView.relocate(ob.getdoubleX(), ob.getdoubleY());
         paneMain.getChildren().add(obstacleImageView);
         imgviewList.add(obstacleImageView);
-        obstacleImageView.layoutXProperty().bind(Bindings.createIntegerBinding(() -> x));
-        obstacleImageView.layoutYProperty().bind(Bindings.createIntegerBinding(() -> y));
+        obstacleImageView.layoutXProperty().bind(ob.getX());
+        obstacleImageView.layoutYProperty().bind(ob.getY());
+        return obstacleImageView;
 
     }
-    @FXML
-    public void beginCollisionDetection(){
-        //if player image coordinate equals object object, print collided..
-        for(ImageView i: imgviewList){
-            if(i.getX()==img.getX() && i.getY() == img.getX()){
-                i.setDisable(false);
-
-            }
-        }
-    }
-
+   
 }
+
+

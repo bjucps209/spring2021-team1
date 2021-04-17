@@ -16,6 +16,7 @@ public class Player implements Savable{
     public Player(STATE Player, int x, int y){
         this.player = Player;
         coor = new Coordinate(x, y);
+        
 
         STATE[] state = STATE.values();
         for(STATE s: state){

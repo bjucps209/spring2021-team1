@@ -7,12 +7,15 @@ public class Coordinate{
     
     private DoubleProperty x = new SimpleDoubleProperty();
     private DoubleProperty y = new SimpleDoubleProperty();
+    final int playerWidth;
     
     Coordinate(int x, int y){
         setX(x);
         this.x = getX();
         setY(y);
         this.y = getY();
+        playerWidth = 100;
+        
     }
 
     public final void setX(double value){
@@ -34,6 +37,10 @@ public class Coordinate{
 
     public final double getdoubleY(){
         return y.get();
+    }
+
+    public int getPlayerWidth() {
+        return playerWidth;
     }
     
 
