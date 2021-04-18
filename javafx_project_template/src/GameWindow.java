@@ -79,8 +79,12 @@ public class GameWindow {
         // Adding Player Image
         img.setPreserveRatio(true);
         img.setFitWidth(100);
+<<<<<<< HEAD
         img.setFitWidth(100);
         img.relocate(50, 650);
+=======
+        img.relocate(60, 300);
+>>>>>>> 0488f4a168fda21ae6c828435f2057ebfddf4dc5
         paneMain.getChildren().add(img);
         
 
@@ -104,6 +108,7 @@ public class GameWindow {
             } else if (type == RoadBlock.CARS) {
                 image = setImage(carImage, obs);
             }
+<<<<<<< HEAD
 
         }
 
@@ -123,6 +128,16 @@ public class GameWindow {
 
             }
         }));
+=======
+            // road.timer();
+
+            
+        }
+
+        
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> img.setX(img.getX() + 2)));
+>>>>>>> 0488f4a168fda21ae6c828435f2057ebfddf4dc5
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
@@ -158,10 +173,24 @@ public class GameWindow {
             if(img.getY() == -200){
                 img.setY(0);
             }
+<<<<<<< HEAD
 
             break;
         case SPACE: // jump
             img.setX(img.getX() + 50);
+=======
+        case SPACE:
+
+        // var jumptime = new Timeline(new KeyFrame(Duration.millis(500), e -> img.setFitWidth(img.getFitWidth()+ 90)));
+        // jumptime.setCycleCount(50);
+        // img.setX(img.getX()+ 8);
+        // img.setFitWidth(200);
+        // jumptime.play();        
+        // jumptime.stop();
+        
+
+        break;
+>>>>>>> 0488f4a168fda21ae6c828435f2057ebfddf4dc5
         }
 
     }
