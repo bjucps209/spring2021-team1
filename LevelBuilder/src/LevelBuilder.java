@@ -2,6 +2,7 @@
 
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,7 +19,7 @@ import javafx.fxml.FXML;
 public class LevelBuilder {
 
     @FXML Slider sldLevel;
-    @FXML Pane pane;
+   @FXML Pane paneRoad;
     @FXML HBox paneHBox;
     IntegerProperty roadLength;
    
@@ -32,9 +33,17 @@ public class LevelBuilder {
     final Image IMG_ROAD = new Image("/images/road.png");
 
     Random rand = new Random();
+    //Pane paneRoad = new Pane();
 
     void initialize(){
         sldLevel.valueProperty().addListener((o, oldVal, newVal) -> onSliderChanged(newVal.intValue()));
+       /// Pane paneRoad = new Pane();
+        ScrollPane sp = new ScrollPane();
+
+        sp.setContent(paneRoad);
+        sp.setPannable(true);
+        paneHBox.getChildren().add(sp);
+        
     }
 
     private void makeDraggable(Node node) {
@@ -67,7 +76,7 @@ public class LevelBuilder {
         img.relocate(x, y);
         img.setFitWidth(50);
         img.setFitHeight(50);
-        pane.getChildren().add(img);
+        paneRoad.getChildren().add(img);
         makeDraggable(img);
    
     }
@@ -81,7 +90,7 @@ public class LevelBuilder {
         img.setFitHeight(50);
         img.relocate(x, y);
 
-        pane.getChildren().add(img);
+        paneRoad.getChildren().add(img);
         makeDraggable(img);
     }
 
@@ -94,7 +103,7 @@ public class LevelBuilder {
         img.setFitHeight(50);
         img.relocate(x, y);
 
-        pane.getChildren().add(img);
+        paneRoad.getChildren().add(img);
         makeDraggable(img);
     }
     
@@ -107,7 +116,7 @@ public class LevelBuilder {
         img.setFitHeight(50);
         img.relocate(x, y);
         
-        pane.getChildren().add(img);
+        paneRoad.getChildren().add(img);
         makeDraggable(img);
     }
     
@@ -121,7 +130,7 @@ public class LevelBuilder {
         img.relocate(x, y);
 
         
-        pane.getChildren().add(img);
+        paneRoad.getChildren().add(img);
         makeDraggable(img);
     }
 
@@ -129,11 +138,14 @@ public class LevelBuilder {
     void onSliderChanged(int val){
         Pane newPane = new Pane();
         newPane.setMaxWidth(val *(1000));
-        paneHBox.getChildren();
+        paneHBox.getChildren().add(newPane);
 
     }
 
+    //Check current image pasition and make sure it's on a lane and not  between
+    public void setOnLanes(){
 
+    }
    
 
     private class Delta {

@@ -74,9 +74,10 @@ public class GameWindow/* implements ObserverGame */ {
             }
         });
         img.setPreserveRatio(true);
-        img.setFitWidth(200);
-        img.relocate(50, 300);
+        img.setFitWidth(100);
+        img.relocate(60, 300);
         paneMain.getChildren().add(img);
+        
 
         img.layoutXProperty().bind(road.getPlayer().getCoordinate().getX());
         img.layoutYProperty().bind(road.getPlayer().getCoordinate().getY());
@@ -99,7 +100,11 @@ public class GameWindow/* implements ObserverGame */ {
                 setImage(carImage, x, y);
             }
             // road.timer();
+
+            
         }
+
+        
 
         timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> img.setX(img.getX() + 2)));
 
@@ -139,15 +144,25 @@ public class GameWindow/* implements ObserverGame */ {
 
         switch (event.getCode()){
         case UP: 
-            img.setY(img.getY() - 10);
+            img.setY(img.getY() - 5);
         
         break;
 
         case DOWN:
-           img.setY(img.getY() + 10);
+           img.setY(img.getY() + 5);
            break;
 
         case SPACE:
+
+        var jumptime = new Timeline(new KeyFrame(Duration.millis(500), e -> img.setFitWidth(img.getFitWidth()+ 90)));
+        jumptime.setCycleCount(50);
+        img.setX(img.getX()+ 8);
+      //  img.setFitWidth(200);
+        jumptime.play();        
+        jumptime.stop();
+        
+
+        break;
             
 
 

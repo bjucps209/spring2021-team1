@@ -22,6 +22,7 @@ public class MainWindow {
     Pane roadPane;
 
     GameWindow gamewindow = new GameWindow();
+   // LevelBuilder levelbuiler = new LevelBuilder();
 
     @FXML
     void onStartClicked(ActionEvent event) throws IOException {
@@ -41,6 +42,10 @@ public class MainWindow {
 
         stage.setScene(scene);
         stage.show();
+      //  levelbuiler.initialize(stage);
+        
+        
+        
     }
 
     @FXML
