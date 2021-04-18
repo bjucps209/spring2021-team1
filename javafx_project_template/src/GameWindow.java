@@ -1,5 +1,7 @@
 
 import java.util.ArrayList;
+
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -8,8 +10,6 @@ import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -51,23 +51,22 @@ public class GameWindow {
 
     Stage stage;
 
-    //MainWindow mainwindow;
+    // MainWindow mainwindow;
     ImageView img = new ImageView(player);
 
     @FXML
     public void initialize(Stage stage, DifficultyLevel diff, LevelSequence seq) {
         Road road = new Road(diff.getAmtObj(), seq.getDistance());
 
-       // mainwindow = new MainWindow();
-        //mainwindow.mainStage.getScene().setOnKeyPressed( e -> keyPressed(e) );
+        // mainwindow = new MainWindow();
+        // mainwindow.mainStage.getScene().setOnKeyPressed( e -> keyPressed(e) );
 
-        //Road picture
+        // Road picture
         var imgRoad = new ImageView(roadImage);
         imgRoad.setFitWidth(1250);
         imgRoad.setFitHeight(600);
         paneMain.getChildren().add(imgRoad);
 
-        
         // var imgFire = new ImageView(fireImage) ;
         stage.setMaximized(true);
         stage.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -77,17 +76,17 @@ public class GameWindow {
             }
         });
 
-        //Adding Player Image
+        // Adding Player Image
         img.setPreserveRatio(true);
         img.setFitWidth(100);
         img.setFitWidth(100);
         img.relocate(50, 650);
         paneMain.getChildren().add(img);
+        
 
         img.layoutXProperty().bind((road.getPlayer().getCoordinate().getX()));
         img.layoutYProperty().bind((road.getPlayer().getCoordinate().getY()));
         // Road.getInstance().setObserver(this);
-
         for (int i = 0; i < road.getUsingRB().size(); i++) {
             Obstacle obs = road.getUsingRB().get(i);
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
@@ -106,12 +105,11 @@ public class GameWindow {
                 image = setImage(carImage, obs);
             }
 
-            
         }
 
         timeline = new Timeline(new KeyFrame(Duration.millis(30), e -> {
             road.update();
-            if(road.collision(road.getPlayer().getCoordinate()) == true){
+            if (road.detectCollision(road.getPlayer().getCoordinate()) == true) {
 
                 VBox vbox = new VBox(new Label("Label"));
                 Scene newScene = new Scene(vbox);
@@ -122,35 +120,51 @@ public class GameWindow {
                 vbox.getChildren().add(newLabel);
 
                 // Platform.runLater(() -> timeline.stop());
-                
+
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
+        // for (int i = 2; i < paneMain.getChildren().size(); i++) {
+        // ImageView image = (ImageView) paneMain.getChildren().get(i);
+        // timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+        // image.setX(image.getX() - 2);
+        // road.beginCollisionDetection();
+        // }));
+        // timeline.setCycleCount(Timeline.INDEFINITE);
+        // timeline.play();
+
+        // }
+
+        // beginCollisionDetection();
     }
 
     public void keyPressed(KeyEvent event) {
-        var k = event.getCode();
-        switch (k){
-        case UP: 
-            img.setY(img.getY() - 200);
-        
-        break;
-
-        case DOWN:
-           img.setY(img.getY() + 200);
-           break;
-
-        case SPACE:
-            img.setX(img.getX() + 200);
-
-        default:
+        KeyCode key = event.getCode();
+        switch (key) {
+        case UP: // up one lane
+            if(img.getY() == 0){
+                img.setY(-200);
+            }
+            if(img.getY() == 200){
+                img.setY(0);
+            }
             break;
-            
+        case DOWN: // down one lane
+            if (img.getY() == 0) {
+                img.setY(200);
+            }
+            if(img.getY() == -200){
+                img.setY(0);
+            }
+
+            break;
+        case SPACE: // jump
+            img.setX(img.getX() + 50);
         }
+
     }
-    
 
     @FXML
     public ImageView setImage(Image imgs, Obstacle ob) {
@@ -166,7 +180,5 @@ public class GameWindow {
         return obstacleImageView;
 
     }
-   
+
 }
-
-
