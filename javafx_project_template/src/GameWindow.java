@@ -80,10 +80,12 @@ public class GameWindow/* implements ObserverGame */ {
         img.setFitWidth(100);
         img.relocate(50, 650);
         paneMain.getChildren().add(img);
+        
 
         img.layoutXProperty().bind((road.getPlayer().getCoordinate().getX()));
         img.layoutYProperty().bind((road.getPlayer().getCoordinate().getY()));
         // Road.getInstance().setObserver(this);
+        System.out.println(img.getY() +" this is the begining");
 
         for (int i = 0; i < road.getUsingRB().size(); i++) {
             Obstacle obs = road.getUsingRB().get(i);
@@ -142,30 +144,27 @@ public class GameWindow/* implements ObserverGame */ {
     public void keyPressed(KeyEvent event) {
         KeyCode key = event.getCode();
         switch (key) {
-        case UP: {//up one lane
-            img.setY(img.getY() - 200);
-            if (road.getPlayer() != null) {
-                System.out.println(road.getPlayer().getCoordinate().getdoubleY());
+        case UP: // up one lane
+            if(img.getY() == 0){
+                img.setY(-200);
+            }
+            if(img.getY() == 200){
+                img.setY(0);
             }
             break;
-        }
-        case DOWN: {//down one lane 
-            if(img.getY() == 100){
+        case DOWN: // down one lane
+            if (img.getY() == 0) {
+                img.setY(200);
             }
-            if(img.getY() == 300){
-                img.setY(img.getY() + 200);
+            if(img.getY() == -200){
+                img.setY(0);
             }
-            if(img.getY() == 500){
-            }
-            break;}
-        
 
-        case SPACE: {//jump
-            img.setX(img.getX() + 50);}
-        default:{}
+            break;
+        case SPACE: // jump
+            img.setX(img.getX() + 50);
         }
-        
-    
+
     }
 
     @FXML
