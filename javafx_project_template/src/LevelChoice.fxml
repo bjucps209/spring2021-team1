@@ -25,7 +25,23 @@
     </HBox>
 
     <Label text="Levels"/>
-    <Slider fx:id="sldLevel" max="3" showTickLabels="True" min="1" snapToTicks="True" showTickMarks="True" majorTickUnit="1.0" minorTickCount="0"/>
+    <HBox prefHeight="200" prefWidth="200" styleClass = "HBox">
+        <RadioButton text="Level 1 " fx:id="oneBtn">
+            <toggleGroup>
+                <ToggleGroup fx:id="level"/>
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton text="Level 2" fx:id="twoBtn">
+            <toggleGroup>
+                <fx:reference source="level"/>
+                </toggleGroup>
+        </RadioButton>
+        <RadioButton text="Level 3" fx:id="threeBtn">
+            <toggleGroup>
+                <fx:reference source="level"/>
+            </toggleGroup>
+        </RadioButton>
+    </HBox>
     <Button fx:id="btnStart" text="Start" onAction="#onStartClicked" style="-fx-font: 30px Tahoma; -fx-background-color: #318AE0; -fx-text-fill: black;"/>
     <Button fx:id="btnBackStart" onAction="#onBackClicked" text="Back"/>
 

@@ -49,7 +49,7 @@ public class GameWindow/* implements ObserverGame */ {
     ImageView img = new ImageView(player);
 
     @FXML
-    public void initialize(Stage stage) {
+    public void initialize(Stage stage, DifficultyLevel diff, LevelSequence seq) {
         Road road = new Road();
 
        // mainwindow = new MainWindow();
