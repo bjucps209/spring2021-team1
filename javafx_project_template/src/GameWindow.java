@@ -79,8 +79,7 @@ public class GameWindow {
         // Adding Player Image
         img.setPreserveRatio(true);
         img.setFitWidth(100);
-        img.setFitWidth(100);
-        img.relocate(50, 650);
+        img.relocate(60, 300);
         paneMain.getChildren().add(img);
         
 
@@ -104,25 +103,14 @@ public class GameWindow {
             } else if (type == RoadBlock.CARS) {
                 image = setImage(carImage, obs);
             }
+            // road.timer();
 
+            
         }
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(30), e -> {
-            road.update();
-            if (road.detectCollision(road.getPlayer().getCoordinate()) == true) {
+        
 
-                VBox vbox = new VBox(new Label("Label"));
-                Scene newScene = new Scene(vbox);
-                Stage newStage = new Stage();
-                newStage.setScene(newScene);
-
-                Label newLabel = new Label("you have failed");
-                vbox.getChildren().add(newLabel);
-
-                // Platform.runLater(() -> timeline.stop());
-
-            }
-        }));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> img.setX(img.getX() + 2)));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
@@ -158,10 +146,17 @@ public class GameWindow {
             if(img.getY() == -200){
                 img.setY(0);
             }
+        case SPACE:
 
-            break;
-        case SPACE: // jump
-            img.setX(img.getX() + 50);
+        // var jumptime = new Timeline(new KeyFrame(Duration.millis(500), e -> img.setFitWidth(img.getFitWidth()+ 90)));
+        // jumptime.setCycleCount(50);
+        // img.setX(img.getX()+ 8);
+        // img.setFitWidth(200);
+        // jumptime.play();        
+        // jumptime.stop();
+        
+
+        break;
         }
 
     }

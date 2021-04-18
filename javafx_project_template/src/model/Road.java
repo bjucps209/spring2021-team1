@@ -49,15 +49,13 @@ public class Road {
         saveList.add(player);
         this.amtObj = amtObj;
         this.distance = distance;
-        
-       
     }
     
     public void createRandomObstacle(){
-        for (int i = 0; i < amtObj; i ++){
+        for (int i = 0; i < 8; i ++){
             Random rand = new Random();
-            int currentX = (rand.nextInt(100 - 15 + 1) + 10)*20;
-            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], currentX, Lane.getRandomLane().getLaneYcoord());
+            //int currentX = (rand.nextInt(100 - 15 + 1) + 10)*20;
+            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], setXList.get(i), setYList.get(i));
             checkCollisionPics(obstacle);
             usingRB.add(obstacle);
             saveList.add(obstacle);
