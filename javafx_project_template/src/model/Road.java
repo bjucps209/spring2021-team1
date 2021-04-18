@@ -253,6 +253,9 @@ public class Road{
             }        
         }
 
+        public void beginCollisionDetection() {
+        }
+
     
 
 }

@@ -32,6 +32,7 @@ public class GameWindow/* implements ObserverGame */ {
     Obstacle obstacle;
     ArrayList<ImageView> imgviewList = new ArrayList<>();
     Road road;
+    AllHighScore highScore = AllHighScore.getInstance();
 
 
     // final Image humanImage = new Image("/images/human.gif");
@@ -129,13 +130,13 @@ public class GameWindow/* implements ObserverGame */ {
 
 
         // for (int i = 2; i < paneMain.getChildren().size(); i++) {
-            // ImageView image = (ImageView) paneMain.getChildren().get(i);
-            // timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
-            //     image.setX(image.getX() - 2);
-            //     road.beginCollisionDetection();
-            // }));
-            // timeline.setCycleCount(Timeline.INDEFINITE);
-            // timeline.play();
+        //     ImageView image = (ImageView) paneMain.getChildren().get(i);
+        //     timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+        //         image.setX(image.getX() - 2);
+        //         road.beginCollisionDetection();
+        //     }));
+        //     timeline.setCycleCount(Timeline.INDEFINITE);
+        //     timeline.play();
 
         // }
 
