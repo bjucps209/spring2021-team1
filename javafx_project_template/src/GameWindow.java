@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import javafx.scene.input.KeyEvent;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -18,7 +20,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
 
-public class GameWindow/* implements ObserverGame */ {
+public class GameWindow {
 
     @FXML
     HBox hbox;
@@ -33,7 +35,6 @@ public class GameWindow/* implements ObserverGame */ {
     ArrayList<ImageView> imgviewList = new ArrayList<>();
     Road road;
     AllHighScore highScore = AllHighScore.getInstance();
-
 
     // final Image humanImage = new Image("/images/human.gif");
     // final Image potholeImage = new Image("/images/blackhole.gif");
@@ -55,7 +56,7 @@ public class GameWindow/* implements ObserverGame */ {
 
     @FXML
     public void initialize(Stage stage, DifficultyLevel diff, LevelSequence seq) {
-        Road road = new Road();
+        Road road = new Road(diff.getAmtObj(), seq.getDistance());
 
        // mainwindow = new MainWindow();
         //mainwindow.mainStage.getScene().setOnKeyPressed( e -> keyPressed(e) );
@@ -108,7 +109,7 @@ public class GameWindow/* implements ObserverGame */ {
             
         }
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(30), e -> {
             road.update();
             if(road.collision(road.getPlayer().getCoordinate()) == true){
 
@@ -123,31 +124,17 @@ public class GameWindow/* implements ObserverGame */ {
                 // Platform.runLater(() -> timeline.stop());
                 
             }
-            // img.setX(img.getX() + 2);
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
-
-        // for (int i = 2; i < paneMain.getChildren().size(); i++) {
-        //     ImageView image = (ImageView) paneMain.getChildren().get(i);
-        //     timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
-        //         image.setX(image.getX() - 2);
-        //         road.beginCollisionDetection();
-        //     }));
-        //     timeline.setCycleCount(Timeline.INDEFINITE);
-        //     timeline.play();
-
-        // }
-
-        // beginCollisionDetection();
     }
 
     public void keyPressed(KeyEvent event) {
         var k = event.getCode();
         switch (k){
         case UP: 
-            road.getPlayer().getCoordinate().setY(road.getPlayer().getCoordinate().getdoubleX() - 200);
+            img.setY(img.getY() - 200);
         
         break;
 
@@ -157,6 +144,7 @@ public class GameWindow/* implements ObserverGame */ {
 
         case SPACE:
             img.setX(img.getX() + 200);
+
         default:
             break;
             

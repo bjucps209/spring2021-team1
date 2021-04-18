@@ -4,6 +4,7 @@
 //----------------------------------------------------------- 
 package model;
 
+import javafx.scene.shape.Rectangle;
 
 public class Player implements Savable{
     //how the player begins (in the middle lane moving forward)
@@ -96,25 +97,7 @@ public class Player implements Savable{
     public Coordinate getCoordinate(){
         return coor;
     }
-
-    // /**
-    //  * @return boolean
-    //  * @param 
-    //  */
-    // public void collisionDetection(Obstacle rb){
-    //     /**
-    //      * what do i need to check?
-    //      *  check what the state of the player is
-    //      *  check the type of rb
-    //      *  check the x and y coordinate of the player
-    //      *  check the x and y coordinate of the rb
-    //      * 
-    //      * if the players x and y is where rb x y is and if the state of the player is jumpting and rb is truck
-    //      *  return false
-    //      * 
-    //      */
-
-    // }
+    
 
     public String serialize() {
         Coordinate co = getCoordinate();

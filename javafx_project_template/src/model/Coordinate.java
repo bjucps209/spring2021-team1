@@ -7,19 +7,27 @@ package model;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.geometry.Bounds;
+import javafx.scene.shape.Rectangle;
 
 public class Coordinate{
     
     private DoubleProperty x = new SimpleDoubleProperty();
     private DoubleProperty y = new SimpleDoubleProperty();
     final int playerWidth;
+    final int playerHeight;
     
+    public int getPlayerHeight() {
+        return playerHeight;
+    }
+
     Coordinate(int x, int y){
         setX(x);
         this.x = getX();
         setY(y);
         this.y = getY();
         playerWidth = 100;
+        playerHeight = 100;
         
     }
 
@@ -47,6 +55,5 @@ public class Coordinate{
     public int getPlayerWidth() {
         return playerWidth;
     }
-    
 
 }

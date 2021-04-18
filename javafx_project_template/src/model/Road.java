@@ -12,6 +12,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Bounds;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 // import com.fasterxml.jackson.core.JsonParser;
@@ -27,7 +29,7 @@ public class Road{
     boolean gameOver;
     boolean cheatOn;
     Player player;
-    int speed;
+    int amtObj;
     int distance;
     Obstacle obstacle;
 
@@ -37,33 +39,43 @@ public class Road{
     public ArrayList<Savable> saveList = new ArrayList<Savable>();
 
     // sets the time and distance to move through the pane
-    public Road(){
+    public Road(int distance, int amtObj){
         usingRB = new ArrayList<>();
-        createCoursedefault();
+        createRandomObstacle();
         player = new Player(STATE.MOVING, 0, Lane.B.getLaneYcoord());
         saveList.add(player);
+        this.amtObj = amtObj;
+        this.distance = distance;
         
        
     }
     
-    // private static Road instance = new Road();
-    
-    //this is creating objects
-    public void createCoursedefault(){
-        for (int i = 0; i < 25; i ++){
+    public void createRandomObstacle(){
+        for (int i = 0; i < amtObj; i ++){
             Random rand = new Random();
             int currentX = (rand.nextInt(100 - 15 + 1) + 10)*20;
-
             Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], currentX, Lane.getRandomLane().getLaneYcoord());
-            if(usingRB.size() != 0){
-                if(collision(obstacle) == true){
-                    obstacle.setX(obstacle.getdoubleX() + 100);
-                }
-            }
+            checkCollisionPics(obstacle);
             usingRB.add(obstacle);
             saveList.add(obstacle);
         }
     }
+    
+    //this is creating objects
+    // public void createCoursedefault(){
+    //     for (int i = 0; i < amtObj; i ++){
+    
+    //         Random rand = new Random();
+    //         int currentX = (rand.nextInt(100 - 15 + 1) + 10)*20;
+    //         if((currentX%100) != 0 ){
+    //            currentX = Math.round(currentX*100)/100;
+    //         }
+    //         Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], currentX, Lane.getRandomLane().getLaneYcoord());
+    //         checkCollisionPics(obstacle);
+    //         usingRB.add(obstacle);
+    //         saveList.add(obstacle);
+    //     }
+    // }
 
     public Obstacle createObject(){
         // Random rand = new Random();
@@ -77,10 +89,24 @@ public class Road{
 
     }
 
+    public void checkCollisionPics(Obstacle obs){
+        Random rand = new Random();
+        if(usingRB.size() != 0){
+            for(Obstacle i: usingRB){
+                if(i.getdoubleX() == obs.getdoubleX()){
+                    obs.setX(rand.nextInt((100 - 15 + 1) + 10)*20);
+                    checkCollisionPics(obs);
+                }else{
+                    break;
+                }
+            }
+        }
+    }
 
-    public void setDistanceSpeed(int d, int r){
+
+    public void setDistanceAmtObj(int d, int obj){
         distance = d*10;
-        speed = r;
+        amtObj = obj;
     }
 
     /**
@@ -93,28 +119,10 @@ public class Road{
         }
     }
 
-    public void loop(){ //Caedmon Evans helped me with this idea
-        for (int i = 0; i < usingRB.size(); ++i){
-            updateX(usingRB.get(i));
-        }
-    }
-
     public void updateX(Obstacle obstacles){
         obstacles.setX(obstacles.getdoubleX()-3);
  
     }
-
-    public void createRandomObstacle(){
-        Random rand = new Random();
-        Obstacle obstacle = new Obstacle(rb[rand.nextInt(4)], distance, Lane.getRandomLane().getLaneYcoord());
-        usingRB.add(obstacle);
-        saveList.add(obstacle);
-        
-    }
-
-    // public static Road getInstance() { 
-    //     return instance;
-    // }
 
     public Boolean checkLeft(){
         boolean statement = true;
@@ -143,7 +151,7 @@ public class Road{
     
     //Getters for variables
     public int getSpeed() {
-        return speed;
+        return amtObj;
     }
 
     public int getDistance() {
@@ -196,65 +204,6 @@ public class Road{
         }
         return false;
     }
- 
-
-        public void organizeVariable(){
-            DifficultyLevel[] difficultylevel = DifficultyLevel.values();
-            LevelSequence[] levelSequence = LevelSequence.values();
-            for (DifficultyLevel DL : difficultylevel){
-            {
-                // Switch for each DifficultyLevel/ LevelSequece combinations
-                switch (DL){
-                    case EASY:
-                        for (LevelSequence LS : levelSequence){
-                            switch (LS){
-                                case TEN:
-                                    setDistanceSpeed(10, 60);
-                                    addObjects(distance);
-                                case TWENTY:
-                                    setDistanceSpeed(20, 60);
-                                    addObjects(distance);
-                                case THIRTY:
-                                    setDistanceSpeed(30, 60);
-                                    addObjects(distance);
-                                    
-                            }}
-                    case MEDIUM:
-                        for (LevelSequence LS : levelSequence){
-                            switch (LS){
-                                case TEN:
-                                    setDistanceSpeed(10, 70);
-                                    addObjects(distance);
-                                case TWENTY:
-                                    setDistanceSpeed(20, 70);
-                                    addObjects(distance);
-                                case THIRTY:
-                                    setDistanceSpeed(30, 70);
-                                    addObjects(distance);
-    
-                            }
-                        }
-                    case HARD:
-                        for (LevelSequence LS : levelSequence){
-                            switch (LS){
-                                case TEN:
-                                    setDistanceSpeed(10, 80);
-                                    addObjects(distance);
-                                case TWENTY:
-                                    setDistanceSpeed(20, 80);
-                                    addObjects(distance);
-                                case THIRTY:
-                                    setDistanceSpeed(30, 80);
-                                    addObjects(distance);
-                            }
-                        }
-                    }   
-            }
-            }        
-        }
-
-        public void beginCollisionDetection() {
-        }
 
     
 

@@ -6,10 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.DifficultyLevel;
 import model.LevelSequence;
@@ -46,7 +48,7 @@ public class LevelChoice {
         if (MediumBtn.isSelected()) {
             diffLevel = DifficultyLevel.MEDIUM;
         }
-        if (MediumBtn.isSelected()) {
+        if (HardBtn.isSelected()) {
             diffLevel = DifficultyLevel.HARD;
         }
         return diffLevel;
@@ -68,17 +70,35 @@ public class LevelChoice {
     @FXML
     public void onStartClicked(ActionEvent event) throws IOException {
 
-        DifficultyLevel difficultyLevel = getDiffButton();
-        LevelSequence levelSequence = getLevelButton();
+        if(EasyBtn.isSelected() == false || MediumBtn.isSelected() == false|| HardBtn.isSelected() == false){
+            Alert alert = new Alert(AlertType.INFORMATION, "Missing Difficulty");
+            alert.setHeaderText("Missing Information");
+            alert.show();
+            
+        }else if(oneBtn.isSelected() == false || twoBtn.isSelected() == false|| threeBtn.isSelected() == false ){
+            Alert alert = new Alert(AlertType.INFORMATION, "Missing Level");
+            alert.setHeaderText("Missing Information");
+            alert.show();
+            
+        }else if((oneBtn.isSelected() == false || twoBtn.isSelected() == false|| threeBtn.isSelected() == false ) && (EasyBtn.isSelected() == false || MediumBtn.isSelected() == false|| HardBtn.isSelected() == false )){
+            Alert alert = new Alert(AlertType.INFORMATION, "Missing Level and Difficulty");
+            alert.setHeaderText("Missing Information");
+            alert.show();
+        }
 
-        var loader = new FXMLLoader(getClass().getResource("GameWindow.fxml"));
-        var scene = new Scene(loader.load());
-        var stage = new Stage();
-        GameWindow window = loader.getController();
-        // mainStage = stage;
-        stage.setScene(scene);
-        stage.show();
-        window.initialize(stage, difficultyLevel, levelSequence);
+        if((oneBtn.isSelected() == true || twoBtn.isSelected() == true|| threeBtn.isSelected() == true ) && (EasyBtn.isSelected() == true || MediumBtn.isSelected() == true|| HardBtn.isSelected() == true )){
+            DifficultyLevel difficultyLevel = getDiffButton();
+            LevelSequence levelSequence = getLevelButton();
+
+            var loader = new FXMLLoader(getClass().getResource("GameWindow.fxml"));
+            var scene = new Scene(loader.load());
+            var stage = new Stage();
+            GameWindow window = loader.getController();
+            // mainStage = stage;
+            stage.setScene(scene);
+            stage.show();
+            window.initialize(stage, difficultyLevel, levelSequence);
+        }
     }
 
     @FXML
