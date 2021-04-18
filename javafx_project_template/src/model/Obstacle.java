@@ -1,11 +1,11 @@
+//-----------------------------------------------------------
+//File:   Obstable.java
+//Desc:   Program that contains methods create an instance of 
+    //an obstable that will later be put on the road
+//----------------------------------------------------------- 
 package model;
 
-import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.Random;
-
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
 
 
 public class Obstacle extends Coordinate implements Savable {
@@ -40,7 +40,7 @@ public class Obstacle extends Coordinate implements Savable {
     public String serialize() {
         String serial = "Obstacle" + "\n" + String.valueOf(coord.getdoubleX()) + "\n" + String.valueOf(coord.getdoubleX()) + "\n" + "END" + "\n";
         return serial;
-        }
+    }
 
     public int getObstalceWidth() {
         return obstalceWidth;
@@ -50,7 +50,7 @@ public class Obstacle extends Coordinate implements Savable {
         return id;
     }
 
-    }
+}
 
     
 

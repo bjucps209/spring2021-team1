@@ -1,3 +1,8 @@
+//-----------------------------------------------------------
+//File:   Game.java
+//Desc:   This program contains all the methods to get and set 
+//          the x and y coordinate of a player. 
+//----------------------------------------------------------- 
 package model;
 
 public class Game {

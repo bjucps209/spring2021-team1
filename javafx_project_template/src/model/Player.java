@@ -1,6 +1,9 @@
+//-----------------------------------------------------------
+//File:   player.java
+//Desc:   Program that contains methods to set player and its
+//----------------------------------------------------------- 
 package model;
 
-import java.io.FileWriter;
 
 public class Player implements Savable{
     //how the player begins (in the middle lane moving forward)
@@ -10,13 +13,9 @@ public class Player implements Savable{
     STATE player = STATE.MOVING;
     Coordinate coor;
 
-    //x and y coordinate
-
-    //
     public Player(STATE Player, int x, int y){
         this.player = Player;
         coor = new Coordinate(x, y);
-        
 
         STATE[] state = STATE.values();
         for(STATE s: state){

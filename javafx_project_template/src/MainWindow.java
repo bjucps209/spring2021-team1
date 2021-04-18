@@ -9,11 +9,9 @@ import javafx.scene.control.Button;
 
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+
 public class MainWindow {
 
-    /**
-     *
-     */
     @FXML
     Button btnStart, btnHelp, btnAbout, btnHigh;
     @FXML
@@ -21,24 +19,24 @@ public class MainWindow {
     @FXML
     Pane roadPane;
 
-    GameWindow gamewindow = new GameWindow();
+    LevelChoice window = new LevelChoice();
 
     Stage mainStage;
+
     @FXML
     void onStartClicked(ActionEvent event) throws IOException {
-        var loader = new FXMLLoader(getClass().getResource("GameWindow.fxml"));
+        var loader = new FXMLLoader(getClass().getResource("LevelChoice.fxml"));
         var scene = new Scene(loader.load());
         var stage = new Stage();
-        GameWindow gameWindow = loader.getController();
-        //mainStage = stage;
+        LevelChoice window = loader.getController();
+        // mainStage = stage;
         stage.setScene(scene);
         stage.show();
-        gameWindow.initialize(stage);
+        window.initialize(stage);
     }
 
     @FXML
     void onLevelClicked(ActionEvent event) throws IOException {
-
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("LevelBuilder.fxml"));
         Scene scene = new Scene(root);
@@ -52,7 +50,6 @@ public class MainWindow {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("Help.fxml"));
         Scene scene = new Scene(root);
-
         stage.setScene(scene);
         stage.show();
     }
@@ -62,8 +59,6 @@ public class MainWindow {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("About.fxml"));
         Scene scene = new Scene(root);
-
-        
         stage.setScene(scene);
         stage.show();
     }
@@ -75,21 +70,14 @@ public class MainWindow {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-        
     }
 
     @FXML
     void onBackClicked(ActionEvent event) throws IOException {
-
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
         Scene scene = new Scene(root);
-
         stage.setScene(scene);
         stage.show();
-
     }
-
-
 }

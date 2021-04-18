@@ -1,6 +1,10 @@
+//-----------------------------------------------------------
+//File:   Road.java
+//Desc:   Program that contains methods to set road blocks 
+//        and check collison 
+//----------------------------------------------------------- 
 package model;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Random;
