@@ -79,12 +79,7 @@ public class GameWindow {
         // Adding Player Image
         img.setPreserveRatio(true);
         img.setFitWidth(100);
-<<<<<<< HEAD
         img.relocate(60, 300);
-=======
-        img.setFitWidth(100);
-        img.relocate(50, 650);
->>>>>>> 539656d2fb9cfaade740b6d310f8d15d10710c14
         paneMain.getChildren().add(img);
         
 
@@ -108,7 +103,6 @@ public class GameWindow {
             } else if (type == RoadBlock.CARS) {
                 image = setImage(carImage, obs);
             }
-<<<<<<< HEAD
             // road.timer();
 
             
@@ -116,28 +110,7 @@ public class GameWindow {
 
         
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> img.setX(img.getX() + 2)));
-=======
-
-        }
-
-        timeline = new Timeline(new KeyFrame(Duration.millis(30), e -> {
-            road.update();
-            if (road.detectCollision(road.getPlayer().getCoordinate()) == true) {
-
-                VBox vbox = new VBox(new Label("Label"));
-                Scene newScene = new Scene(vbox);
-                Stage newStage = new Stage();
-                newStage.setScene(newScene);
-
-                Label newLabel = new Label("you have failed");
-                vbox.getChildren().add(newLabel);
-
-                // Platform.runLater(() -> timeline.stop());
->>>>>>> 539656d2fb9cfaade740b6d310f8d15d10710c14
-
-            }
-        }));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> img.setX(img.getX() + 2)));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
@@ -173,38 +146,17 @@ public class GameWindow {
             if(img.getY() == -200){
                 img.setY(0);
             }
-
-<<<<<<< HEAD
-        switch (event.getCode()){
-        case UP: 
-            img.setY(img.getY() - 5);
-        
-        break;
-
-        case DOWN:
-           img.setY(img.getY() + 5);
-           break;
-
         case SPACE:
 
-        var jumptime = new Timeline(new KeyFrame(Duration.millis(500), e -> img.setFitWidth(img.getFitWidth()+ 90)));
-        jumptime.setCycleCount(50);
-        img.setX(img.getX()+ 8);
-      //  img.setFitWidth(200);
-        jumptime.play();        
-        jumptime.stop();
+        // var jumptime = new Timeline(new KeyFrame(Duration.millis(500), e -> img.setFitWidth(img.getFitWidth()+ 90)));
+        // jumptime.setCycleCount(50);
+        // img.setX(img.getX()+ 8);
+        // img.setFitWidth(200);
+        // jumptime.play();        
+        // jumptime.stop();
         
 
         break;
-            
-
-
-            
-=======
-            break;
-        case SPACE: // jump
-            img.setX(img.getX() + 50);
->>>>>>> 539656d2fb9cfaade740b6d310f8d15d10710c14
         }
 
     }
