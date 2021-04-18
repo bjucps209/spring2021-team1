@@ -52,13 +52,12 @@ public class Road{
     public void createCoursedefault(){
         for (int i = 0; i < 25; i ++){
             Random rand = new Random();
-            int currentX = rand.nextInt(100)*20;
+            int currentX = (rand.nextInt(100 - 15 + 1) + 10)*20;
+
             Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], currentX, Lane.getRandomLane().getLaneYcoord());
             if(usingRB.size() != 0){
                 if(collision(obstacle) == true){
-                    Obstacle newObs = createObject();
-                    usingRB.add(newObs);
-                    saveList.add(newObs);
+                    obstacle.setX(obstacle.getdoubleX() + 100);
                 }
             }
             usingRB.add(obstacle);
@@ -67,12 +66,13 @@ public class Road{
     }
 
     public Obstacle createObject(){
-        Random rand = new Random();
-        int currentX = rand.nextInt(100)*20;
-        Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], currentX, Lane.getRandomLane().getLaneYcoord());
-        if(collision(obstacle) == true){
-            createObject();  
-        }
+        // Random rand = new Random();
+        // int currentX = rand.nextInt(100)*20;
+        // if()
+        // Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], currentX, Lane.getRandomLane().getLaneYcoord());
+        // if(collision(obstacle) == true){
+        //     createObject();  
+        // }
         return obstacle;
 
     }
@@ -92,17 +92,6 @@ public class Road{
             createRandomObstacle();
         }
     }
-
-    public void timer(){
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(30), new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event){
-                loop();
-            }
-        }));
-        
-    }
-
 
     public void loop(){ //Caedmon Evans helped me with this idea
         for (int i = 0; i < usingRB.size(); ++i){
@@ -190,7 +179,7 @@ public class Road{
     public void load() {
         //Still testing in separate project
     }
-
+// road.getPlayer().getCoordinate().setY(road.getPlayer().getCoordinate().getdoubleY() - 200);
 
 
     public boolean collision(Coordinate coord){
@@ -200,7 +189,6 @@ public class Road{
             if(coord.getdoubleY() == i.getdoubleY()){
                 if(coord.getdoubleX() <= i.getdoubleX() + i.getObstalceWidth()){
                     if(coord.getdoubleX() + coord.getPlayerWidth() <= i.getdoubleX()){
-                        System.out.println("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
                         return true;
                     }
                 }
