@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleGroup;
@@ -14,19 +15,21 @@ import model.DifficultyLevel;
 import model.LevelSequence;
 
 public class LevelChoice {
-    @FXML RadioButton EasyBtn, MediumBtn, HardBtn;
-    @FXML RadioButton oneBtn, twoBtn, threeBtn;
-    @FXML Slider sldLevel;
-    @FXML ToggleGroup group;
+    @FXML
+    RadioButton EasyBtn, MediumBtn, HardBtn;
+    @FXML
+    RadioButton oneBtn, twoBtn, threeBtn;
+    @FXML 
+    Button btnBackStart;
+    @FXML
+    ToggleGroup group;
     GameWindow gameWindow = new GameWindow();
     DifficultyLevel diffLevel;
     LevelSequence levelSeq;
-    
-
 
     @FXML
     public void initialize(Stage stage) {
-        ToggleGroup group = new ToggleGroup(); //https://stackoverflow.com/questions/53467588/how-to-implement-togglegroup-in-fxml-file-using-spring-vs-javafx
+        ToggleGroup group = new ToggleGroup(); // https://stackoverflow.com/questions/53467588/how-to-implement-togglegroup-in-fxml-file-using-spring-vs-javafx
         EasyBtn.setToggleGroup(group);
         MediumBtn.setToggleGroup(group);
         HardBtn.setToggleGroup(group);
@@ -37,38 +40,37 @@ public class LevelChoice {
     }
 
     public DifficultyLevel getDiffButton() {
-        if(EasyBtn.isSelected()){
+        if (EasyBtn.isSelected()) {
             diffLevel = DifficultyLevel.EASY;
         }
-        if(MediumBtn.isSelected()){
+        if (MediumBtn.isSelected()) {
             diffLevel = DifficultyLevel.MEDIUM;
         }
-        if(MediumBtn.isSelected()){
+        if (MediumBtn.isSelected()) {
             diffLevel = DifficultyLevel.HARD;
         }
         return diffLevel;
     }
+
     public LevelSequence getLevelButton() {
-        if(oneBtn.isSelected()){
+        if (oneBtn.isSelected()) {
             levelSeq = LevelSequence.TEN;
         }
-        if(twoBtn.isSelected()){
+        if (twoBtn.isSelected()) {
             levelSeq = LevelSequence.TWENTY;
         }
-        if(threeBtn.isSelected()){
+        if (threeBtn.isSelected()) {
             levelSeq = LevelSequence.THIRTY;
         }
         return levelSeq;
     }
 
     @FXML
-    public void onStartClicked(ActionEvent event) throws IOException{
-        
-        RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
+    public void onStartClicked(ActionEvent event) throws IOException {
+
         DifficultyLevel difficultyLevel = getDiffButton();
         LevelSequence levelSequence = getLevelButton();
 
-        
         var loader = new FXMLLoader(getClass().getResource("GameWindow.fxml"));
         var scene = new Scene(loader.load());
         var stage = new Stage();
@@ -78,16 +80,12 @@ public class LevelChoice {
         stage.show();
         window.initialize(stage, difficultyLevel, levelSequence);
     }
-    @FXML
-    void onBackClicked(ActionEvent event) throws IOException{
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
-    
+    @FXML
+    void onBackClicked(ActionEvent event) throws IOException {
+        Stage stage = (Stage) btnBackStart.getScene().getWindow();
+        stage.close();
+
     }
 
 }

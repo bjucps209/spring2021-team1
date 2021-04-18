@@ -24,7 +24,7 @@ public class MainWindow {
     Stage mainStage;
 
     @FXML
-    void onStartClicked(ActionEvent event) throws IOException {
+    void onNextClicked(ActionEvent event) throws IOException {
         var loader = new FXMLLoader(getClass().getResource("LevelChoice.fxml"));
         var scene = new Scene(loader.load());
         var stage = new Stage();
