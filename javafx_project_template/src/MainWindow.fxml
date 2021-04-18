@@ -6,25 +6,8 @@
 
 
 
-<VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="@MainWindow.css"
+<VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml" 
     spacing="10" prefHeight="600"  style="-fx-background-color: black;" prefWidth="500" alignment="CENTER">
-
-    <!-- <MenuBar style="-fx-background-color: black;">
-    <Menu text="Menu" style="-fx-font: 20px Tahoma; -fx-text-fill: #AEAEAE;">
-    <MenuItem text="Highscores"  onAction="#onHighClicked" style="-fx-font: 20px Tahoma; -fx-text-fill: #AEAEAE;"/>
-    <MenuItem text="About" onAction="#onAboutClicked" style="-fx-font: 20px Tahoma;  -fx-text-fill: #AEAEAE;"  />
-    <MenuItem text="Help" onAction="#onHelpClicked" style="-fx-font: 20px Tahoma;  -fx-text-fill: #AEAEAE;"/>
-    </Menu>
-    </MenuBar> -->
-    
-        <!-- CHANGED MENU BECAUSE I DONT THINK IT WILL WORK WITH THE ONACTION METHOD I SET UP
-        <Menu  text="Highscores"  onAction="#onHighClicked" style="-fx-font: 20px Tahoma; -fx-text-fill: #AEAEAE;"/>
-    <Menu  text="About" onAction="#onAboutClicked" style="-fx-font: 20px Tahoma;  -fx-text-fill: #AEAEAE;"  />
-    <Menu  text="Help" onAction="#onHelpClicked" style="-fx-font: 20px Tahoma;  -fx-text-fill: #AEAEAE;"/>-->    
-    <!-- </MenuBar>  -->
-
-
-    
 
     <HBox  spacing="10" alignment="CENTER">
     <Button fx:id="btnHigh" onAction="#onHighClicked" text="Highscores"  />
@@ -38,6 +21,6 @@
     </image>
     </ImageView>  
     
-    <Button fx:id="btnStart" prefHeight="150" prefWidth="200" onAction="#onStartClicked" text="Next" style="-fx-font: 30px Tahoma; -fx-background-color: #318AE0; -fx-text-fill: black;" />
+    <Button fx:id="btnStart" prefHeight="150" prefWidth="200" onAction="#onNextClicked" text="Next" style="-fx-font: 30px Tahoma; -fx-background-color: #318AE0; -fx-text-fill: black;" />
 
 </VBox>

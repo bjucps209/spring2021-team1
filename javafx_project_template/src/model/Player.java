@@ -1,6 +1,11 @@
+//-----------------------------------------------------------
+//File:   player.java
+//Desc:   Program that contains methods to set player and its
+//----------------------------------------------------------- 
 package model;
 
-import java.io.FileWriter;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.shape.Rectangle;
 
 public class Player implements Savable{
     //how the player begins (in the middle lane moving forward)
@@ -9,10 +14,10 @@ public class Player implements Savable{
     int score = 0;
     STATE player = STATE.MOVING;
     Coordinate coor;
+    final int playerWidth = 100;
+    final int playerHeight = 50;
+    
 
-    //x and y coordinate
-
-    //
     public Player(STATE Player, int x, int y){
         this.player = Player;
         coor = new Coordinate(x, y);
@@ -96,25 +101,7 @@ public class Player implements Savable{
     public Coordinate getCoordinate(){
         return coor;
     }
-
-    /**
-     * @return boolean
-     * @param 
-     */
-    public void collisionDetection(Obstacle rb){
-        /**
-         * what do i need to check?
-         *  check what the state of the player is
-         *  check the type of rb
-         *  check the x and y coordinate of the player
-         *  check the x and y coordinate of the rb
-         * 
-         * if the players x and y is where rb x y is and if the state of the player is jumpting and rb is truck
-         *  return false
-         * 
-         */
-
-    }
+    
 
     public String serialize() {
         Coordinate co = getCoordinate();
@@ -127,5 +114,8 @@ public class Player implements Savable{
 
     public void deserialize() {
         
+    }
+    public Rectangle2D getBounds() {
+        return new Rectangle2D(coor.getdoubleX(), coor.getdoubleY(), playerWidth, playerHeight);
     }
 }

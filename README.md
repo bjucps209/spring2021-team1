@@ -2,9 +2,8 @@
  
  
 - Instructions: You can click next and start the game. You can click up and down arrow key to move from lane to lane.
-- Work Completed: We have the Title screen available.
-- Known Issues: We dont have any inputs available. None of the animation is working.
-- Recording: https://drive.google.com/file/d/1Qi-J0UQ1zKdgCzc-TORCcHe34F0Hu9zK/view?usp=sharing
+- Work Completed: We have the Title screen available. The player can now move up and down to avoid collision. 
+- Recording: https://drive.google.com/drive/u/0/folders/1q6v6P4bDIYyX0nnt3XJDdihP46uLgLv-
 - Expenses: Provide a table showing for each team member the member’s name, Github username, ownership area, how many hours each team member has invested to this point, how many hours they have remaining out of their individual time budget, and link to each team member’s journal.
 
 | Name |ownership |username | hours | remaining hours | Journals |

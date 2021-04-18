@@ -1,3 +1,7 @@
+//-----------------------------------------------------------
+//File:   SerializationTest.java
+//Desc:   Unit testing fer saveable 
+//----------------------------------------------------------- 
 // package model;
 
 // import org.junit.Test;

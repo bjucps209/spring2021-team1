@@ -1,8 +1,46 @@
 file containing variables/methods/classes names and meaning 
+Model classes
+//-----------------------------------------------------------
+//File:   Coordinate.java
+//Desc:   This program contains all the methods to get and set 
+//          the x and y coordinate of a player. 
+//----------------------------------------------------------- 
+//-----------------------------------------------------------
+//File:   Lane.java
+//Desc:   Enum that contains methods and a switch 
+//----------------------------------------------------------- 
+//-----------------------------------------------------------
+//File:   LevelDesign.java
+//Desc:   Program that contains methods to Get set  the current level diffculty
+//----------------------------------------------------------- 
+//-----------------------------------------------------------
+//File:   Obstable.java
+//Desc:   Program that contains methods create an instance of 
+    //an obstable that will later be put on the road
+//----------------------------------------------------------- 
+//-----------------------------------------------------------
+//File:   Player.java
+//Desc:   Program that contains methods to set player and its
+//----------------------------------------------------------- 
+//-----------------------------------------------------------
+//File:   Road.java
+//Desc:   Program that contains methods to set road blocks 
+//        and check collison 
+//----------------------------------------------------------- 
+//-----------------------------------------------------------
+//File:   RoadTesting.java
+//Desc:   Program that contains unit test for road 
+//----------------------------------------------------------- 
+//-----------------------------------------------------------
+//File:   SerializationTest.java
+//Desc:   Unit testing fer saveable 
+//----------------------------------------------------------- 
+Model enums
+DifficultyLevel: EASY, MEDIUM, HARD
+LevelSequence: TEN, TWENTY, THIRTY
+PowerUp: IMMUNITY , BLOWUP, SUPERJUMP, COINS
+RoadBlock: CARS, PEOPLE, TRUCK, POTHOLES, CONES
+STATE: JUMP, LEFT, RIGHT, SPEEDUP, MIDDLE, MOVING
 
-game name : Public safety escape 
-
-enums 
-state enum { jump, left, right, speed up} the state in which the player is in 
-powerup enum { blow up, immunity, super jump, coin, lives}
-traffic enum { cars, truck, ...}
+Model Interfaces
+Saveable.java : serialize() 

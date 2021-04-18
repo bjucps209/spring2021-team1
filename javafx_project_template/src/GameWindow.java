@@ -1,8 +1,11 @@
 
 import java.util.ArrayList;
 
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -10,16 +13,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.util.Duration;
 import model.*;
 
-public class GameWindow/* implements ObserverGame */ {
+public class GameWindow {
 
     @FXML
     HBox hbox;
@@ -27,12 +28,13 @@ public class GameWindow/* implements ObserverGame */ {
     Pane paneMain;
     @FXML
     Label lblCoord;
+
     Timeline timeline;
 
     Obstacle obstacle;
     ArrayList<ImageView> imgviewList = new ArrayList<>();
-    ImageView obstacleImageView;
     Road road;
+    AllHighScore highScore = AllHighScore.getInstance();
 
     // final Image humanImage = new Image("/images/human.gif");
     // final Image potholeImage = new Image("/images/blackhole.gif");
@@ -49,22 +51,22 @@ public class GameWindow/* implements ObserverGame */ {
 
     Stage stage;
 
-    //MainWindow mainwindow;
+    // MainWindow mainwindow;
     ImageView img = new ImageView(player);
 
     @FXML
-    public void initialize(Stage stage) {
-        Road road = new Road();
+    public void initialize(Stage stage, DifficultyLevel diff, LevelSequence seq) {
+        Road road = new Road(diff.getAmtObj(), seq.getDistance());
 
-       // mainwindow = new MainWindow();
-        //mainwindow.mainStage.getScene().setOnKeyPressed( e -> keyPressed(e) );
+        // mainwindow = new MainWindow();
+        // mainwindow.mainStage.getScene().setOnKeyPressed( e -> keyPressed(e) );
 
+        // Road picture
         var imgRoad = new ImageView(roadImage);
         imgRoad.setFitWidth(1250);
         imgRoad.setFitHeight(600);
         paneMain.getChildren().add(imgRoad);
 
-        
         // var imgFire = new ImageView(fireImage) ;
         stage.setMaximized(true);
         stage.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -73,32 +75,40 @@ public class GameWindow/* implements ObserverGame */ {
                 keyPressed(e);
             }
         });
+
+        // Adding Player Image
         img.setPreserveRatio(true);
         img.setFitWidth(100);
+<<<<<<< HEAD
         img.relocate(60, 300);
+=======
+        img.setFitWidth(100);
+        img.relocate(50, 650);
+>>>>>>> 539656d2fb9cfaade740b6d310f8d15d10710c14
         paneMain.getChildren().add(img);
         
 
-        img.layoutXProperty().bind(road.getPlayer().getCoordinate().getX());
-        img.layoutYProperty().bind(road.getPlayer().getCoordinate().getY());
+        img.layoutXProperty().bind((road.getPlayer().getCoordinate().getX()));
+        img.layoutYProperty().bind((road.getPlayer().getCoordinate().getY()));
         // Road.getInstance().setObserver(this);
-
         for (int i = 0; i < road.getUsingRB().size(); i++) {
+            Obstacle obs = road.getUsingRB().get(i);
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
-            int x = (int) road.getUsingRB().get(i).getdoubleX();
-            int y = (int) road.getUsingRB().get(i).getdoubleY();
+
+            ImageView image;
 
             if (type == RoadBlock.PEOPLE) {
-                setImage(humanImage, x, y);
+                image = setImage(humanImage, obs);
             } else if (type == RoadBlock.POTHOLES) {
-                setImage(potholeImage, x, y);
+                image = setImage(potholeImage, obs);
             } else if (type == RoadBlock.TRUCK) {
-                setImage(truckImage, x, y);
+                image = setImage(truckImage, obs);
             } else if (type == RoadBlock.CONES) {
-                setImage(coneImage, x, y);
+                image = setImage(coneImage, obs);
             } else if (type == RoadBlock.CARS) {
-                setImage(carImage, x, y);
+                image = setImage(carImage, obs);
             }
+<<<<<<< HEAD
             // road.timer();
 
             
@@ -107,41 +117,64 @@ public class GameWindow/* implements ObserverGame */ {
         
 
         timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> img.setX(img.getX() + 2)));
-
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-
-        for (int i = 2; i < paneMain.getChildren().size(); i++) {
-            ImageView image = (ImageView) paneMain.getChildren().get(i);
-            timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> image.setX(image.getX() - 2)));
-            timeline.setCycleCount(Timeline.INDEFINITE);
-            timeline.play();
+=======
 
         }
 
-        // if(paneMain.getScene() != null){
-        // paneMain.getScene().setOnKeyPressed(event -> {
-        // if(event.getCode() == KeyCode.UP){
-        // img.relocate(50, 500);
-        // }
-        // });
+        timeline = new Timeline(new KeyFrame(Duration.millis(30), e -> {
+            road.update();
+            if (road.detectCollision(road.getPlayer().getCoordinate()) == true) {
+
+                VBox vbox = new VBox(new Label("Label"));
+                Scene newScene = new Scene(vbox);
+                Stage newStage = new Stage();
+                newStage.setScene(newScene);
+
+                Label newLabel = new Label("you have failed");
+                vbox.getChildren().add(newLabel);
+
+                // Platform.runLater(() -> timeline.stop());
+>>>>>>> 539656d2fb9cfaade740b6d310f8d15d10710c14
+
+            }
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+
+        // for (int i = 2; i < paneMain.getChildren().size(); i++) {
+        // ImageView image = (ImageView) paneMain.getChildren().get(i);
+        // timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+        // image.setX(image.getX() - 2);
+        // road.beginCollisionDetection();
+        // }));
+        // timeline.setCycleCount(Timeline.INDEFINITE);
+        // timeline.play();
+
         // }
 
-        // paneMain.getScene().setOnKeyReleased(ev -> {​​​​​​​
-        // if (ev.getCode() == KeyCode.DOWN) {​​​​​​​
-        // downKeyPressed = false;
-        // }​​​​​​​ else if ( ... ) {​​​​​​​
-        // ...
-        // }​​​​​​​
-        // }​​​​​​​);
-
-        // String text = e.getText();
-        // if (text.length() == 1 && text.charAt(0) >= '0' && text.charAt(0) <= '9') {
-        // digitEntered(text.charAt(0));
+        // beginCollisionDetection();
     }
 
     public void keyPressed(KeyEvent event) {
+        KeyCode key = event.getCode();
+        switch (key) {
+        case UP: // up one lane
+            if(img.getY() == 0){
+                img.setY(-200);
+            }
+            if(img.getY() == 200){
+                img.setY(0);
+            }
+            break;
+        case DOWN: // down one lane
+            if (img.getY() == 0) {
+                img.setY(200);
+            }
+            if(img.getY() == -200){
+                img.setY(0);
+            }
 
+<<<<<<< HEAD
         switch (event.getCode()){
         case UP: 
             img.setY(img.getY() - 5);
@@ -167,53 +200,27 @@ public class GameWindow/* implements ObserverGame */ {
 
 
             
+=======
+            break;
+        case SPACE: // jump
+            img.setX(img.getX() + 50);
+>>>>>>> 539656d2fb9cfaade740b6d310f8d15d10710c14
         }
+
     }
-    
-    // @FXML
-    // public void KeyEventJump(KeyEvent event) {
-    // if (event.getCode() == KeyCode.SPACE) {
-    // road.getPlayer().jumpUp();
-    // }
-    // switch(event.getCode()){
-
-    // case KeyCode.SPACE
-    // }
-
-    // if(event.getCode() == KeyCode.SPACE){
-
-    // } else if (event.getCode() == KeyCode.UP){
-    // input.set(State.LEFT);
-    // } else if (event.getCode() == KeyCode.DOWN){
-    // input.set(State.RIGHT);
-    // } else if (event.getCode() == KeyCode.RIGHT){
-    // input.set(State.SPEEDUP);
-    // }
-
-    // @FXML
-    // public void KeyEventLeft(KeyEvent event) {
-    // road.getPlayer().leftLane();
-    // }
-
-    // @FXML
-    // public void KeyEventRight(KeyEvent event) {
-    // if (event.getCode() == KeyCode.DOWN) {
-    // road.getPlayer().rightLane();
-    // img.relocate(50, 500);
-    // }
-    // }
 
     @FXML
-    public void setImage(Image imgs, int x, int y) {
-        obstacleImageView = new ImageView(imgs);
+    public ImageView setImage(Image imgs, Obstacle ob) {
+        ImageView obstacleImageView = new ImageView(imgs);
         obstacleImageView.setPreserveRatio(true);
         obstacleImageView.setFitWidth(50);
         obstacleImageView.setFitHeight(50);
-        obstacleImageView.relocate(x, y);
+        obstacleImageView.relocate(ob.getdoubleX(), ob.getdoubleY());
         paneMain.getChildren().add(obstacleImageView);
         imgviewList.add(obstacleImageView);
-        obstacleImageView.layoutXProperty().bind(Bindings.createIntegerBinding(() -> x));
-        obstacleImageView.layoutYProperty().bind(Bindings.createIntegerBinding(() -> y));
+        obstacleImageView.layoutXProperty().bind(ob.getX());
+        obstacleImageView.layoutYProperty().bind(ob.getY());
+        return obstacleImageView;
 
     }
 
