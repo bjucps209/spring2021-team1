@@ -146,9 +146,7 @@ public class GameWindow/* implements ObserverGame */ {
         var k = event.getCode();
         switch (k){
         case UP: 
-            img.setY(img.getY() - 200);
-            if(road.getPlayer() != null){
-                System.out.println(road.getPlayer().getCoordinate().getdoubleY());}
+            road.getPlayer().getCoordinate().setY(road.getPlayer().getCoordinate().getdoubleX() - 200);
         
         break;
 
