@@ -7,6 +7,8 @@ package model;
 
 import java.util.Random;
 
+import javafx.geometry.Rectangle2D;
+
 
 public class Obstacle extends Coordinate implements Savable {
         
@@ -21,6 +23,7 @@ public class Obstacle extends Coordinate implements Savable {
     int id;
     private static int nextId;
     final int obstalceWidth;
+    final int obstalceHight;
     Random rand = new Random();
 
     public Obstacle(RoadBlock rd, int x, int y){
@@ -28,6 +31,7 @@ public class Obstacle extends Coordinate implements Savable {
         this.object = rd;
         this.id = ++nextId;
         obstalceWidth = 50;
+        obstalceHight = 50;
     }
 
     public RoadBlock getRoadBlock(){
@@ -49,7 +53,9 @@ public class Obstacle extends Coordinate implements Savable {
     public int getId() {
         return id;
     }
-
+    public Rectangle2D getBounds() {
+        return new Rectangle2D(coord.getdoubleX(), coord.getdoubleY(), obstalceWidth, obstalceHight);
+    }
 }
 
     

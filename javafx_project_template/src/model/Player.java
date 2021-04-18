@@ -4,6 +4,8 @@
 //----------------------------------------------------------- 
 package model;
 
+import javafx.geometry.Rectangle2D;
+import javafx.scene.shape.Rectangle;
 
 public class Player implements Savable{
     //how the player begins (in the middle lane moving forward)
@@ -12,6 +14,9 @@ public class Player implements Savable{
     int score = 0;
     STATE player = STATE.MOVING;
     Coordinate coor;
+    final int playerWidth = 100;
+    final int playerHeight = 50;
+    
 
     public Player(STATE Player, int x, int y){
         this.player = Player;
@@ -127,5 +132,8 @@ public class Player implements Savable{
 
     public void deserialize() {
         
+    }
+    public Rectangle2D getBounds() {
+        return new Rectangle2D(coor.getdoubleX(), coor.getdoubleY(), playerWidth, playerHeight);
     }
 }

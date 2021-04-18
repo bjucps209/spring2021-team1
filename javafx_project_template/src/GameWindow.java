@@ -85,8 +85,6 @@ public class GameWindow/* implements ObserverGame */ {
         img.layoutXProperty().bind((road.getPlayer().getCoordinate().getX()));
         img.layoutYProperty().bind((road.getPlayer().getCoordinate().getY()));
         // Road.getInstance().setObserver(this);
-        System.out.println(img.getY() +" this is the begining");
-
         for (int i = 0; i < road.getUsingRB().size(); i++) {
             Obstacle obs = road.getUsingRB().get(i);
             RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
@@ -109,7 +107,7 @@ public class GameWindow/* implements ObserverGame */ {
 
         timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
             road.update();
-            if (road.collision(road.getPlayer().getCoordinate()) == true) {
+            if (road.detectCollision(road.getPlayer().getCoordinate()) == true) {
 
                 VBox vbox = new VBox(new Label("Label"));
                 Scene newScene = new Scene(vbox);
