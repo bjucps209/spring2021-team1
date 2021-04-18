@@ -110,7 +110,13 @@ public class GameWindow {
 
         
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> img.setX(img.getX() + 2)));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> img.setX(img.getX() + 2)));
+
+        timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+            road.update();
+            road.collision();
+            // img.setX(img.getX() + 2);
+        }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
