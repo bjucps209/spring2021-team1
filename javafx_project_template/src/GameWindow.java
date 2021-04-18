@@ -3,14 +3,19 @@ import java.util.ArrayList;
 import javafx.scene.input.KeyEvent;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
@@ -106,7 +111,19 @@ public class GameWindow/* implements ObserverGame */ {
 
         timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
             road.update();
-            road.collision(road.getPlayer().getCoordinate());
+            if(road.collision(road.getPlayer().getCoordinate()) == true){
+
+                VBox vbox = new VBox(new Label("Label"));
+                Scene newScene = new Scene(vbox);
+                Stage newStage = new Stage();
+                newStage.setScene(newScene);
+
+                Label newLabel = new Label("you have failed");
+                vbox.getChildren().add(newLabel);
+
+                // Platform.runLater(() -> timeline.stop());
+                
+            }
             // img.setX(img.getX() + 2);
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -132,6 +149,8 @@ public class GameWindow/* implements ObserverGame */ {
         switch (key){
         case UP: 
             img.setY(img.getY() - 200);
+            if(road.getPlayer() != null){
+                System.out.println(road.getPlayer().getCoordinate().getdoubleY());}
         
         break;
 
@@ -145,38 +164,6 @@ public class GameWindow/* implements ObserverGame */ {
         }
     }
     
-    // @FXML
-    // public void KeyEventJump(KeyEvent event) {
-    // if (event.getCode() == KeyCode.SPACE) {
-    // road.getPlayer().jumpUp();
-    // }
-    // switch(event.getCode()){
-
-    // case KeyCode.SPACE
-    // }
-
-    // if(event.getCode() == KeyCode.SPACE){
-
-    // } else if (event.getCode() == KeyCode.UP){
-    // input.set(State.LEFT);
-    // } else if (event.getCode() == KeyCode.DOWN){
-    // input.set(State.RIGHT);
-    // } else if (event.getCode() == KeyCode.RIGHT){
-    // input.set(State.SPEEDUP);
-    // }
-
-    // @FXML
-    // public void KeyEventLeft(KeyEvent event) {
-    // road.getPlayer().leftLane();
-    // }
-
-    // @FXML
-    // public void KeyEventRight(KeyEvent event) {
-    // if (event.getCode() == KeyCode.DOWN) {
-    // road.getPlayer().rightLane();
-    // img.relocate(50, 500);
-    // }
-    // }
 
     @FXML
     public ImageView setImage(Image imgs, Obstacle ob) {
