@@ -185,10 +185,10 @@ public class Road{
     public boolean collision(Coordinate coord){
         //if player image coordinate equals object object, print collided..
         // System.out.println(playerCoord.getX());
-        for(Obstacle i: usingRB){
+            for(Obstacle i: usingRB){
             if(coord.getdoubleY() == i.getdoubleY()){
-                if(coord.getdoubleX() <= i.getdoubleX() + i.getObstalceWidth()){
-                    if(coord.getdoubleX() + coord.getPlayerWidth() <= i.getdoubleX()){
+                if(coord.getdoubleX() >= i.getdoubleX() + i.getObstalceWidth()){
+                    if(coord.getdoubleX() + coord.getPlayerWidth() >= i.getdoubleX()){
                         return true;
                     }
                 }
