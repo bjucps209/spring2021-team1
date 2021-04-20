@@ -159,6 +159,35 @@ public void updateXPositionOfObstableAndPlayer() {
     System.out.println(getPlayer().getdoubleY() +" Y player ");
 }
 
+//==================Switching Lanes====================//
+    public void switchUp(){
+        if(getPlayer().getdoubleY() == Lane.A.getLaneYcoord()){
+            getPlayer().setX(Lane.A.getLaneYcoord());
+        }
+        if(getPlayer().getdoubleY() == Lane.B.getLaneYcoord()){
+            getPlayer().setX(Lane.A.getLaneYcoord());
+        }
+        if(getPlayer().getdoubleY() == Lane.C.getLaneYcoord()){
+            getPlayer().setX(Lane.B.getLaneYcoord());
+        }
+    }
+
+    public void switchDown(){
+        if(getPlayer().getdoubleY() == Lane.A.getLaneYcoord()){
+            getPlayer().setX(Lane.B.getLaneYcoord());
+        }
+        if(getPlayer().getdoubleY() == Lane.B.getLaneYcoord()){
+            getPlayer().setX(Lane.C.getLaneYcoord());
+        }
+        if(getPlayer().getdoubleY() == Lane.C.getLaneYcoord()){
+            getPlayer().setX(Lane.C.getLaneYcoord());
+        }
+    }
+    public void jumpOver(){
+        getPlayer().setX(getPlayer().getdoubleX()+80);
+    }
+
+
 
 //================Serialization=========================//
 

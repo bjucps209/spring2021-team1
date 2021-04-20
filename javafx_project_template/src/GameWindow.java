@@ -124,34 +124,11 @@ public class GameWindow {
     public void keyPressed(KeyEvent event) {
         KeyCode key = event.getCode();
         switch (key) {
-        case UP: // up one lane
-            // if(img.getY() == 0){
-            //     img.setY(-200);
-            //     // System.out.println(road.getPlayer().getdoubleY());
-            // }
-            // if(img.getY() == 200){
-            //     img.setY(0);
-            // }
-            if(road.getPlayer().getdoubleY() == Lane.A.getLaneYcoord()){
-                road.getPlayer().setX(Lane.A.getLaneYcoord());
-            }
-            if(road.getPlayer().getdoubleY() == Lane.B.getLaneYcoord()){
-                road.getPlayer().setX(Lane.A.getLaneYcoord());
-            }
-            if(road.getPlayer().getdoubleY() == Lane.C.getLaneYcoord()){
-                road.getPlayer().setX(Lane.B.getLaneYcoord());
-            }
+        case UP: 
+            road.switchUp();
             break;
         case DOWN: // down one lane
-            if (img.getY() == 0) {
-                img.setY(200);
-                Platform.runLater(() -> System.out.println(road.getPlayer().getdoubleY() + "from jey press switch")); 
-            }
-            if(img.getY() == -200){
-                img.setY(0);
-                Platform.runLater(() -> System.out.println(road.getPlayer().getdoubleY() + "from jey press switch"));
-            }
-            break;
+            road.switchDown();
         case SPACE:
 
         // var jumptime = new Timeline(new KeyFrame(Duration.millis(500), e -> img.setFitWidth(img.getFitWidth()+ 90)));
