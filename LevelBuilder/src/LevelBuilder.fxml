@@ -21,7 +21,7 @@
         </VBox>
             <!-- <Button onAction="#onDeleteClicked" styleClass="leftbutton"><graphic><ImageView><image><Image url="@images/delete-icon.png" /></image></ImageView></graphic></Button>
             <Button styleClass="leftbutton"><graphic><ImageView><image><Image url="@images/undo-icon.png" /></image></ImageView></graphic></Button> -->
-         <Pane fx:id="paneRoad" prefHeight="300" prefWidth="500" style="-fx-background-color: lightgray" /> 
+         <Pane fx:id="paneRoad" prefHeight="600" prefWidth="2000" style="-fx-background-color: lightgray" /> 
         </HBox>
 
    <Button text=" Start Level" />

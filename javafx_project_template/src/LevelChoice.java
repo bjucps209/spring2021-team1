@@ -67,20 +67,17 @@ public class LevelChoice {
     @FXML
     public void onStartClicked(ActionEvent event) throws IOException {
 
-        if(EasyBtn.isSelected() == false || MediumBtn.isSelected() == false|| HardBtn.isSelected() == false){
-            Alert alert = new Alert(AlertType.INFORMATION, "Missing Difficulty");
-            alert.setHeaderText("Missing Information");
-            alert.show();
+        if((oneBtn.isSelected() == false || twoBtn.isSelected() == false|| threeBtn.isSelected() == false ) && (EasyBtn.isSelected() == false || MediumBtn.isSelected() == false|| HardBtn.isSelected() == false )){
+            oneBtn.setSelected(true);
+            EasyBtn.setSelected(true);
             
-        }else if(oneBtn.isSelected() == false || twoBtn.isSelected() == false|| threeBtn.isSelected() == false ){
-            Alert alert = new Alert(AlertType.INFORMATION, "Missing Level");
-            alert.setHeaderText("Missing Information");
-            alert.show();
             
-        }else if((oneBtn.isSelected() == false || twoBtn.isSelected() == false|| threeBtn.isSelected() == false ) && (EasyBtn.isSelected() == false || MediumBtn.isSelected() == false|| HardBtn.isSelected() == false )){
-            Alert alert = new Alert(AlertType.INFORMATION, "Missing Level and Difficulty");
-            alert.setHeaderText("Missing Information");
-            alert.show();
+        }else if(EasyBtn.isSelected() == false || MediumBtn.isSelected() == false|| HardBtn.isSelected() == false){
+            EasyBtn.setSelected(true);
+            
+            
+        }else if (oneBtn.isSelected() == false || twoBtn.isSelected() == false|| threeBtn.isSelected() == false ){
+            oneBtn.setSelected(true);
         }
 
         if((oneBtn.isSelected() == true || twoBtn.isSelected() == true|| threeBtn.isSelected() == true ) && (EasyBtn.isSelected() == true || MediumBtn.isSelected() == true|| HardBtn.isSelected() == true )){

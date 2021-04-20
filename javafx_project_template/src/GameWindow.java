@@ -6,16 +6,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
@@ -30,7 +27,8 @@ public class GameWindow {
     Label lblCoord;
 
     Timeline timeline;
-
+    boolean gameOver;
+    boolean cheatMode = false;
     Obstacle obstacle;
     ArrayList<ImageView> imgviewList = new ArrayList<>();
     Road road;
@@ -57,7 +55,8 @@ public class GameWindow {
     @FXML
     public void initialize(Stage stage, DifficultyLevel diff, LevelSequence seq) {
         Road road = new Road(diff.getAmtObj(), seq.getDistance());
-
+        
+        System.out.println(road.getPlayer().getdoubleX());
         // mainwindow = new MainWindow();
         // mainwindow.mainStage.getScene().setOnKeyPressed( e -> keyPressed(e) );
 
@@ -79,12 +78,12 @@ public class GameWindow {
         // Adding Player Image
         img.setPreserveRatio(true);
         img.setFitWidth(100);
-        img.relocate(60, 300);
+        img.relocate(road.getPlayer().getdoubleX(), road.getPlayer().getdoubleY());
         paneMain.getChildren().add(img);
         
 
-        img.layoutXProperty().bind((road.getPlayer().getCoordinate().getX()));
-        img.layoutYProperty().bind((road.getPlayer().getCoordinate().getY()));
+        img.layoutXProperty().bind((road.getPlayer().getX()));
+        img.layoutYProperty().bind((road.getPlayer().getY()));
         // Road.getInstance().setObserver(this);
         for (int i = 0; i < road.getUsingRB().size(); i++) {
             Obstacle obs = road.getUsingRB().get(i);
@@ -110,26 +109,17 @@ public class GameWindow {
 
         
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
-            img.setX(img.getX() + 2);
-            //checkCollision();
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> img.setX(img.getX() + 2)));
+        timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+            road.updateXPositionOfObstableAndPlayer();
+            if(road.getGameOver()){
+            }
+            
         }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.setCycleCount(100);
         timeline.play();
         //checkCollision();
 
-        // for (int i = 2; i < paneMain.getChildren().size(); i++) {
-        // ImageView image = (ImageView) paneMain.getChildren().get(i);
-        // timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
-        // image.setX(image.getX() - 2);
-        // road.beginCollisionDetection();
-        // }));
-        // timeline.setCycleCount(Timeline.INDEFINITE);
-        // timeline.play();
-
-        // }
-
-        // beginCollisionDetection();
     }
 
     
@@ -139,37 +129,24 @@ public class GameWindow {
     public void keyPressed(KeyEvent event) {
         KeyCode key = event.getCode();
         switch (key) {
-        case UP: // up one lane
-            if(img.getY() == 0){
-                img.setY(-200);
-            }
-            if(img.getY() == 200){
-                img.setY(0);
-            }
-           //checkCollision();
+        case UP: 
+            road.switchUp();
             break;
         case DOWN: // down one lane
-            if (img.getY() == 0) {
-                img.setY(200);
-            }
-            if(img.getY() == -200){
-                img.setY(0);
-               // checkCollision();
-            }
+            road.switchDown();
         case SPACE:
 
         // var jumptime = new Timeline(new KeyFrame(Duration.millis(500), e -> img.setFitWidth(img.getFitWidth()+ 90)));
         // jumptime.setCycleCount(50);
-        // img.setX(img.getX()+ 8);
+            img.setX(img.getX()+ 8);
         // img.setFitWidth(200);
         // jumptime.play();        
         // jumptime.stop();
-        
-
-        break;
+            break;
+        case ESCAPE:
+            cheatMode = true;
         }
 
-        
 
     }
 
