@@ -29,7 +29,6 @@ public class GameWindow {
 
     Timeline timeline;
     boolean gameOver;
-    boolean iWantToFinishThis = false;
     boolean cheatMode = false;
     Obstacle obstacle;
     ArrayList<ImageView> imgviewList = new ArrayList<>();
@@ -119,10 +118,14 @@ public class GameWindow {
         // timeline.play();
         // //checkCollision();
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
             // img.setX(img.getX() + 2);
             road.updateXPositionOfObstableAndPlayer();
             //checkCollision();
+            if(road.getGameOver() == true){
+                timeline.stop();
+                
+            }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
@@ -130,11 +133,6 @@ public class GameWindow {
         
 
     }
-
-    public void switches(){
-        road.setFinishPlease(true);
-    }
-
    
 
     public void keyPressed(KeyEvent event) {

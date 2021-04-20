@@ -21,14 +21,6 @@ import javafx.geometry.Rectangle2D;
 public class Road {
     RoadBlock[] rb = RoadBlock.values();
     ArrayList<Obstacle> usingRB;
-    boolean finishPlease = false;
-    public boolean isFinishPlease() {
-        return finishPlease;
-    }
-
-    public void setFinishPlease(boolean finishPlease) {
-        this.finishPlease = finishPlease;
-    }
 
     ArrayList<Integer> objectXs = new ArrayList<>();
     boolean gameOver;
