@@ -5,35 +5,24 @@
 package model;
 
 import javafx.geometry.Rectangle2D;
-import javafx.scene.shape.Rectangle;
 
-public class Player extends Coordinate implements Savable{
+public class Player implements Savable{
     //how the player begins (in the middle lane moving forward)
     int speed = 0;
     int lives = 3;
     int score = 0;
+    Coordinate coord;
     STATE player = STATE.MOVING;
     final int playerWidth = 100;
     final int playerHeight = 50;
     
 
     public Player(STATE Player, int x, int y){
-        super(x, y);
+        coord = new Coordinate(x, y); 
         this.player = Player;
-
+        
     }
     
-
-    /**
-     * @return none
-     * @param int:x
-     * @param int:y
-     */
-    public void jumpUp(){
-        //getplayers x coordinate and add 50
-        setX(getdoubleX() + 50);
-    }
-
     /**
      * @return none 
      * @param none
@@ -47,12 +36,12 @@ public class Player extends Coordinate implements Savable{
      * the right or the middle lane add y
      */
     public void leftLane(){
-        if(getdoubleY() == 300){
-            setY(500);
-        } else if (getdoubleY() == 100){
-            setY(300);
-        } else if (getdoubleY() == 500){
-            setY(500);
+        if(coord.getdoubleY() == 300){
+            coord.setY(500);
+        } else if (coord.getdoubleY() == 100){
+            coord.setY(300);
+        } else if (coord.getdoubleY() == 500){
+            coord.setY(500);
         }
     }
 
@@ -67,18 +56,13 @@ public class Player extends Coordinate implements Savable{
     }
 
 
-    /**
-     * @return Lane
-     * @param none
-     * get the y, if its 0, the current state is right lane, if its a 1 its the middle lane, and if its the 2 its the left lane
-     */
-    public void getCurrentState(){
-        // break;
+    public Coordinate getCoordinate(){
+        return coord;
     }
 
     public String serialize() {
-        double x = getdoubleX();
-        double y = getdoubleY();
+        double x = coord.getdoubleX();
+        double y = coord.getdoubleY();
         String serial = "Player" + "\n" + String.valueOf(x) + "\n" + String.valueOf(y) + "\n" + "END";
         //State will be added when getState() is complete
         return serial;
@@ -88,6 +72,6 @@ public class Player extends Coordinate implements Savable{
         
     }
     public Rectangle2D getBounds() {
-        return new Rectangle2D(getdoubleX(), getdoubleY(), playerWidth, playerHeight);
+        return new Rectangle2D(coord.getdoubleX(), coord.getdoubleY(), playerWidth, playerHeight);
     }
 }
