@@ -12,8 +12,6 @@ import javafx.geometry.Rectangle2D;
 
 public class Obstacle extends Coordinate implements Savable {
         
-
-    Coordinate coord;
     // when is obstacle used?
         /**
          * its used when there is roadblock created randomly.=
@@ -42,7 +40,7 @@ public class Obstacle extends Coordinate implements Savable {
     }
 
     public String serialize() {
-        String serial = "Obstacle" + "\n" + String.valueOf(coord.getdoubleX()) + "\n" + String.valueOf(coord.getdoubleX()) + "\n" + "END" + "\n";
+        String serial = "Obstacle" + "\n" + String.valueOf(getdoubleX()) + "\n" + String.valueOf(getdoubleX()) + "\n" + "END" + "\n";
         return serial;
     }
 
@@ -54,7 +52,7 @@ public class Obstacle extends Coordinate implements Savable {
         return id;
     }
     public Rectangle2D getBounds() {
-        return new Rectangle2D(coord.getdoubleX(), coord.getdoubleY(), obstalceWidth, obstalceHight);
+        return new Rectangle2D(getdoubleX(), getdoubleY(), obstalceWidth, obstalceHight);
     }
 }
 
