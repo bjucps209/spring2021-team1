@@ -89,7 +89,6 @@ public class Road {
     public void detectCollision() {
         // if player image coordinate equals object object, print collided..
         // System.out.println(playerCoord.getX());
-        Coordinate player = getPlayer().getCoordinate();
         for (Obstacle i : usingRB) {
             if (player.getdoubleY() == i.getdoubleY()) {
                 if (player.getdoubleX() <= i.getdoubleX() + i.getObstalceWidth()) {
@@ -162,7 +161,7 @@ public void update() {
     for (Obstacle i : usingRB) {
         i.setX(i.getdoubleX() - 2);
     }
-    getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 2);
+    getPlayer().setX(getPlayer().getdoubleX() + 2);
     detectCollision();
     }
 
@@ -185,7 +184,7 @@ public void update() {
     public void load() {
         // Still testing in separate project
     }
-    // road.getPlayer().getCoordinate().setY(road.getPlayer().getCoordinate().getdoubleY()
+    // road.getPlayer().setY(road.getPlayer().getdoubleY()
     // - 200);
 
 }

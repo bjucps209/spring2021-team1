@@ -61,7 +61,7 @@ public class GameWindow {
     public void initialize(Stage stage, DifficultyLevel diff, LevelSequence seq) {
         Road road = new Road(diff.getAmtObj(), seq.getDistance());
         
-
+        System.out.println(road.getPlayer().getdoubleX());
         // mainwindow = new MainWindow();
         // mainwindow.mainStage.getScene().setOnKeyPressed( e -> keyPressed(e) );
 
@@ -83,12 +83,12 @@ public class GameWindow {
         // Adding Player Image
         img.setPreserveRatio(true);
         img.setFitWidth(100);
-        img.relocate(60, 300);
+        img.relocate(road.getPlayer().getdoubleX(), road.getPlayer().getdoubleY());
         paneMain.getChildren().add(img);
         
 
-        img.layoutXProperty().bind((road.getPlayer().getCoordinate().getX()));
-        img.layoutYProperty().bind((road.getPlayer().getCoordinate().getY()));
+        img.layoutXProperty().bind((road.getPlayer().getX()));
+        img.layoutYProperty().bind((road.getPlayer().getY()));
         // Road.getInstance().setObserver(this);
         for (int i = 0; i < road.getUsingRB().size(); i++) {
             Obstacle obs = road.getUsingRB().get(i);
@@ -118,7 +118,6 @@ public class GameWindow {
         timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
             road.update();
             if(road.isGameOver()){
-                System.out.println(road.getPlayer().getCoordinate().getdoubleY());
             }
             
         }));
@@ -131,12 +130,21 @@ public class GameWindow {
         KeyCode key = event.getCode();
         switch (key) {
         case UP: // up one lane
-            if(img.getY() == 0){
-                img.setY(-200);
-                // System.out.println(road.getPlayer().getCoordinate().getdoubleY());
+            // if(img.getY() == 0){
+            //     img.setY(-200);
+            //     // System.out.println(road.getPlayer().getdoubleY());
+            // }
+            // if(img.getY() == 200){
+            //     img.setY(0);
+            // }
+            if(road.getPlayer().getdoubleY() == Lane.A.getLaneYcoord()){
+                road.getPlayer().setX(Lane.A.getLaneYcoord());
             }
-            if(img.getY() == 200){
-                img.setY(0);
+            if(road.getPlayer().getdoubleY() == Lane.B.getLaneYcoord()){
+                road.getPlayer().setX(Lane.A.getLaneYcoord());
+            }
+            if(road.getPlayer().getdoubleY() == Lane.C.getLaneYcoord()){
+                road.getPlayer().setX(Lane.B.getLaneYcoord());
             }
             break;
         case DOWN: // down one lane
@@ -159,6 +167,7 @@ public class GameWindow {
         case ESCAPE:
             cheatMode = true;
         }
+
 
     }
 

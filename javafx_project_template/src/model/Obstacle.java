@@ -28,8 +28,8 @@ public class Obstacle extends Coordinate implements Savable {
         super(x, y);
         this.object = rd;
         this.id = ++nextId;
-        obstalceWidth = 50;
-        obstalceHight = 50;
+        obstalceWidth = 75;
+        obstalceHight = 75;
     }
 
     public RoadBlock getRoadBlock(){
