@@ -1,5 +1,5 @@
 //-----------------------------------------------------------
-//File:   player.java
+//File:   Player.java
 //Desc:   Program that contains methods to set player and its
 //----------------------------------------------------------- 
 package model;
