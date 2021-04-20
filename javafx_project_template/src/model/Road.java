@@ -40,7 +40,7 @@ public class Road {
         gameOver = false;
         usingRB = new ArrayList<>();
         createRandomObstacle();
-        player = new Player(STATE.MOVING, 0, Lane.B.getLaneYcoord());
+        this.player = new Player(STATE.MOVING, 10, Lane.B.getLaneYcoord());
         saveList.add(player);
         this.amtObj = amtObj;
         this.distance = distance;
@@ -82,9 +82,9 @@ public class Road {
         // if player image coordinate equals object object, print collided..
         // System.out.println(playerCoord.getX());
         for (Obstacle i : usingRB) {
-            if (player.getdoubleY() == i.getdoubleY()) {
-                if (player.getdoubleX() <= i.getdoubleX() + i.getObstalceWidth()) {
-                    if (player.getdoubleX() + player.getPlayerWidth() >= i.getdoubleX()) {
+            if (player.getCoordinate().getdoubleY() == i.getdoubleY()) {
+                if (player.getCoordinate().getdoubleX() <= i.getdoubleX() + i.getObstalceWidth()) {
+                    if (player.getCoordinate().getdoubleX() + player.getCoordinate().getPlayerWidth() >= i.getdoubleX()) {
                         // System.out.println(player.getdoubleX() + ", " + i.getdoubleX());
                         gameOver = true;
                     }
@@ -100,7 +100,6 @@ public class Road {
 
             Rectangle2D r2 = obstacle.getBounds();
             if (playerRec.intersects(r2)) {
-                System.out.println("game over");
             }
         }
     }
@@ -154,37 +153,37 @@ public void updateXPositionOfObstableAndPlayer() {
         i.setX(i.getdoubleX() - 2);
         //System.out.println(i.getdoubleX() +" obstacle ");
     }
-    getPlayer().setX(getPlayer().getdoubleX() + 2);
+    this.player.getCoordinate().setX(this.player.getCoordinate().getdoubleX() + 2);
     detectCollision();
-    System.out.println(getPlayer().getdoubleY() +" Y player ");
 }
 
 //==================Switching Lanes====================//
     public void switchUp(){
-        if(getPlayer().getdoubleY() == Lane.A.getLaneYcoord()){
-            getPlayer().setX(Lane.A.getLaneYcoord());
-        }
-        if(getPlayer().getdoubleY() == Lane.B.getLaneYcoord()){
-            getPlayer().setX(Lane.A.getLaneYcoord());
-        }
-        if(getPlayer().getdoubleY() == Lane.C.getLaneYcoord()){
-            getPlayer().setX(Lane.B.getLaneYcoord());
-        }
+        // if(getPlayer().getCoordinate().getdoubleY() == Lane.A.getLaneYcoord()){
+        //     getPlayer().setX(Lane.A.getLaneYcoord());
+        // }
+        // if(getPlayer().getCoordinate().getdoubleY() == Lane.B.getLaneYcoord()){
+        //     getPlayer().setX(Lane.A.getLaneYcoord());
+        // }
+        // if(getPlayer().getCoordinate().getdoubleY() == Lane.C.getLaneYcoord()){
+        //     getPlayer().setX(Lane.B.getLaneYcoord());
+        // }
+        this.player.leftLane();
     }
 
     public void switchDown(){
-        if(getPlayer().getdoubleY() == Lane.A.getLaneYcoord()){
-            getPlayer().setX(Lane.B.getLaneYcoord());
+        if(getPlayer().getCoordinate().getdoubleY() == Lane.A.getLaneYcoord()){
+            getPlayer().getCoordinate().setX(Lane.B.getLaneYcoord());
         }
-        if(getPlayer().getdoubleY() == Lane.B.getLaneYcoord()){
-            getPlayer().setX(Lane.C.getLaneYcoord());
+        if(getPlayer().getCoordinate().getdoubleY() == Lane.B.getLaneYcoord()){
+            getPlayer().getCoordinate().setX(Lane.C.getLaneYcoord());
         }
-        if(getPlayer().getdoubleY() == Lane.C.getLaneYcoord()){
-            getPlayer().setX(Lane.C.getLaneYcoord());
+        if(getPlayer().getCoordinate().getdoubleY() == Lane.C.getLaneYcoord()){
+            getPlayer().getCoordinate().setX(Lane.C.getLaneYcoord());
         }
     }
     public void jumpOver(){
-        getPlayer().setX(getPlayer().getdoubleX()+80);
+        getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX()+80);
     }
 
 
@@ -204,7 +203,7 @@ public void updateXPositionOfObstableAndPlayer() {
     public void load() {
         // Still testing in separate project
     }
-    // road.getPlayer().setY(road.getPlayer().getdoubleY()
+    // road.getPlayer().setY(road.getPlayer().getCoordinate().getdoubleY()
     // - 200);
 
 }

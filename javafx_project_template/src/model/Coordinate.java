@@ -56,8 +56,4 @@ public class Coordinate{
         return playerWidth;
     }
 
-    public String getCurrent(){
-        return (getdoubleX() + ", " + getdoubleY());
-    }
-
 }

@@ -35,9 +35,6 @@ public class Obstacle extends Coordinate implements Savable {
     public RoadBlock getRoadBlock(){
         return object;
     }
-    public void placingObjectBound(){
-        //go through the loop and check if there is 
-    }
 
     public String serialize() {
         String serial = "Obstacle" + "\n" + String.valueOf(getdoubleX()) + "\n" + String.valueOf(getdoubleX()) + "\n" + "END" + "\n";
