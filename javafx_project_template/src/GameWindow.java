@@ -56,7 +56,7 @@ public class GameWindow {
 
     @FXML
     public void initialize(Stage stage, DifficultyLevel diff, LevelSequence seq) {
-        Road road = new Road(diff.getAmtObj(), seq.getDistance());
+        road = new Road(diff.getAmtObj(), seq.getDistance());
         
         
         // mainwindow = new MainWindow();
@@ -139,13 +139,14 @@ public class GameWindow {
 
     public void keyPressed(KeyEvent event) {
         KeyCode key = event.getCode();
+        String keyPressedName = key.getName();
         switch (key) {
         case UP: 
-            img.setY(img.getY()+200);
-            System.out.println(road.getPlayer().getCoordinate().getdoubleY());
+            road.switchUp(); //it goes from lane lane A to lane C.. can someone try to fix it
             break;
         case DOWN: // down one lane
             road.switchDown();
+            break;
         case SPACE:
             road.jumpOver();
             break;
@@ -171,17 +172,12 @@ public class GameWindow {
 
     }
 
-   /*  public void checkCollision(){
-
-        for (int i = 2; i < paneMain.getChildren().size(); i++) {
-
-           ImageView  imgObstacle = (ImageView) paneMain.getChildren().get(i);
-
-            if  (img.getX() == imgObstacle.getX() && img.getY() == imgObstacle.getY()){
-                imgObstacle = new ImageView(expImage);
-                paneMain.getChildren().add(i, imgObstacle);
-               // System.out.println("Colliding");
-            }
+    void keyUp(String up) {
+        if (up.equals("Up")) {
+            // img.setY(img.getY()+200);
+            road.switchUp();
+            
         }
-    } */
+
+    }
 }
