@@ -111,12 +111,12 @@ public class GameWindow {
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> img.setX(img.getX() + 2)));
         timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
-            road.update();
-            if(road.isGameOver()){
+            road.updateXPositionOfObstableAndPlayer();
+            if(road.getGameOver()){
             }
             
         }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.setCycleCount(100);
         timeline.play();
 
     }

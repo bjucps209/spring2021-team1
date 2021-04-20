@@ -72,7 +72,7 @@ public class Road {
         amtObj = obj;
     }
 
-    public boolean isGameOver() {
+    public boolean getGameOver() {
         return gameOver;
     }
 
@@ -149,13 +149,15 @@ public void createRandomObstacle(){
 // }
 
 
-public void update() {
+public void updateXPositionOfObstableAndPlayer() {
     for (Obstacle i : usingRB) {
         i.setX(i.getdoubleX() - 2);
+        //System.out.println(i.getdoubleX() +" obstacle ");
     }
     getPlayer().setX(getPlayer().getdoubleX() + 2);
     detectCollision();
-    }
+    System.out.println(getPlayer().getdoubleY() +" Y player ");
+}
 
 
 
