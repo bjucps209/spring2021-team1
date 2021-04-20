@@ -21,6 +21,16 @@ import javafx.geometry.Rectangle2D;
 public class Road {
     RoadBlock[] rb = RoadBlock.values();
     ArrayList<Obstacle> usingRB;
+    boolean finishPlease = false;
+    
+    public boolean isFinishPlease() {
+        return finishPlease;
+    }
+
+    public void setFinishPlease(boolean finishPlease) {
+        this.finishPlease = finishPlease;
+    }
+
     ArrayList<Integer> objectXs = new ArrayList<>();
     boolean gameOver;
 
@@ -153,22 +163,21 @@ public void updateXPositionOfObstableAndPlayer() {
         i.setX(i.getdoubleX() - 2);
         //System.out.println(i.getdoubleX() +" obstacle ");
     }
-    this.player.getCoordinate().setX(this.player.getCoordinate().getdoubleX() + 2);
+    player.getCoordinate().setX(player.getCoordinate().getdoubleX() + 2);
     detectCollision();
 }
 
 //==================Switching Lanes====================//
-    public void switchUp(){
-        // if(getPlayer().getCoordinate().getdoubleY() == Lane.A.getLaneYcoord()){
-        //     getPlayer().setX(Lane.A.getLaneYcoord());
-        // }
-        // if(getPlayer().getCoordinate().getdoubleY() == Lane.B.getLaneYcoord()){
-        //     getPlayer().setX(Lane.A.getLaneYcoord());
-        // }
-        // if(getPlayer().getCoordinate().getdoubleY() == Lane.C.getLaneYcoord()){
-        //     getPlayer().setX(Lane.B.getLaneYcoord());
-        // }
-        this.player.leftLane();
+    public void switchUp(int y){
+        if(y == Lane.A.getLaneYcoord()){
+            getPlayer().getCoordinate().setX(Lane.A.getLaneYcoord());
+        }
+        if(y == Lane.B.getLaneYcoord()){
+            getPlayer().getCoordinate().setX(Lane.A.getLaneYcoord());
+        }
+        if(y == Lane.C.getLaneYcoord()){
+            getPlayer().getCoordinate().setX(Lane.B.getLaneYcoord());
+        }
     }
 
     public void switchDown(){

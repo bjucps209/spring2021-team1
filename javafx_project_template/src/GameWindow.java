@@ -29,6 +29,7 @@ public class GameWindow {
 
     Timeline timeline;
     boolean gameOver;
+    boolean iWantToFinishThis = false;
     boolean cheatMode = false;
     Obstacle obstacle;
     ArrayList<ImageView> imgviewList = new ArrayList<>();
@@ -57,6 +58,7 @@ public class GameWindow {
     public void initialize(Stage stage, DifficultyLevel diff, LevelSequence seq) {
         Road road = new Road(diff.getAmtObj(), seq.getDistance());
         
+        
         // mainwindow = new MainWindow();
         // mainwindow.mainStage.getScene().setOnKeyPressed( e -> keyPressed(e) );
 
@@ -81,8 +83,8 @@ public class GameWindow {
         img.relocate(road.getPlayer().getCoordinate().getdoubleX(), road.getPlayer().getCoordinate().getdoubleY());
         paneMain.getChildren().add(img);
         
-        img.layoutXProperty().bind(road.getPlayer().getCoordinate().getX());
-        img.layoutXProperty().bind(road.getPlayer().getCoordinate().getY());
+        img.layoutXProperty().bindBidirectional(road.getPlayer().getCoordinate().getX());
+        img.layoutYProperty().bindBidirectional(road.getPlayer().getCoordinate().getY());
 
         // img.layoutYProperty().bindBidirectional((road.getPlayer().getY()));
         
@@ -118,7 +120,7 @@ public class GameWindow {
         // //checkCollision();
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
-            img.setX(img.getX() + 2);
+            // img.setX(img.getX() + 2);
             road.updateXPositionOfObstableAndPlayer();
             //checkCollision();
         }));
@@ -129,7 +131,9 @@ public class GameWindow {
 
     }
 
-    
+    public void switches(){
+        road.setFinishPlease(true);
+    }
 
    
 
@@ -137,9 +141,8 @@ public class GameWindow {
         KeyCode key = event.getCode();
         switch (key) {
         case UP: 
-            // img.setY(img.getY()-200);
-            System.out.println(road.getPlayer().getCoordinate().getdoubleX());
-            road.switchUp();
+            img.setY(img.getY()+200);
+            System.out.println(road.getPlayer().getCoordinate().getdoubleY());
             break;
         case DOWN: // down one lane
             road.switchDown();
