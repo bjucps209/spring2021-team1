@@ -143,8 +143,8 @@ public class LevelBuilder {
     }
 
     //Check current image pasition and make sure it's on a lane and not  between
-    public void setOnLanes(){
-
+    public void setOnLanes(ImageView img){
+        if (img.getX() )
     }
    
 

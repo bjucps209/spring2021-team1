@@ -44,7 +44,7 @@ public class GameWindow {
     final Image carImage = new Image("/images/RoadBlockcar.png");
     final Image player = new Image("/images/player.png");
     final Image roadImage = new Image("/images/road.png");
-    final Image fireImage = new Image("/images/fire.gif");
+    final Image expImage = new Image("/images/explosion.gif");
 
     ImageView imgPlayer = new ImageView(player);
 
@@ -115,7 +115,13 @@ public class GameWindow {
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+        //checkCollision();
+
     }
+
+    
+
+   
 
     public void keyPressed(KeyEvent event) {
         KeyCode key = event.getCode();
@@ -152,5 +158,17 @@ public class GameWindow {
 
     }
 
+   /*  public void checkCollision(){
 
+        for (int i = 2; i < paneMain.getChildren().size(); i++) {
+
+           ImageView  imgObstacle = (ImageView) paneMain.getChildren().get(i);
+
+            if  (img.getX() == imgObstacle.getX() && img.getY() == imgObstacle.getY()){
+                imgObstacle = new ImageView(expImage);
+                paneMain.getChildren().add(i, imgObstacle);
+               // System.out.println("Colliding");
+            }
+        }
+    } */
 }
