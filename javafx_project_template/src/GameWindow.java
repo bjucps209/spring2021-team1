@@ -45,7 +45,7 @@ public class GameWindow {
     final Image carImage = new Image("/images/RoadBlockcar.png");
     final Image player = new Image("/images/player.png");
     final Image roadImage = new Image("/images/road.png");
-    final Image fireImage = new Image("/images/fire.gif");
+    final Image expImage = new Image("/images/explosion.gif");
 
     ImageView imgPlayer = new ImageView(player);
 
@@ -79,12 +79,7 @@ public class GameWindow {
         // Adding Player Image
         img.setPreserveRatio(true);
         img.setFitWidth(100);
-<<<<<<< HEAD
-        img.setFitWidth(100);
-        img.relocate(50, 650);
-=======
         img.relocate(60, 300);
->>>>>>> 0488f4a168fda21ae6c828435f2057ebfddf4dc5
         paneMain.getChildren().add(img);
         
 
@@ -108,27 +103,6 @@ public class GameWindow {
             } else if (type == RoadBlock.CARS) {
                 image = setImage(carImage, obs);
             }
-<<<<<<< HEAD
-
-        }
-
-        timeline = new Timeline(new KeyFrame(Duration.millis(30), e -> {
-            road.update();
-            if (road.detectCollision(road.getPlayer().getCoordinate()) == true) {
-
-                VBox vbox = new VBox(new Label("Label"));
-                Scene newScene = new Scene(vbox);
-                Stage newStage = new Stage();
-                newStage.setScene(newScene);
-
-                Label newLabel = new Label("you have failed");
-                vbox.getChildren().add(newLabel);
-
-                // Platform.runLater(() -> timeline.stop());
-
-            }
-        }));
-=======
             // road.timer();
 
             
@@ -136,10 +110,13 @@ public class GameWindow {
 
         
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> img.setX(img.getX() + 2)));
->>>>>>> 0488f4a168fda21ae6c828435f2057ebfddf4dc5
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+            img.setX(img.getX() + 2);
+            //checkCollision();
+        }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+        //checkCollision();
 
         // for (int i = 2; i < paneMain.getChildren().size(); i++) {
         // ImageView image = (ImageView) paneMain.getChildren().get(i);
@@ -155,6 +132,10 @@ public class GameWindow {
         // beginCollisionDetection();
     }
 
+    
+
+   
+
     public void keyPressed(KeyEvent event) {
         KeyCode key = event.getCode();
         switch (key) {
@@ -165,6 +146,7 @@ public class GameWindow {
             if(img.getY() == 200){
                 img.setY(0);
             }
+           //checkCollision();
             break;
         case DOWN: // down one lane
             if (img.getY() == 0) {
@@ -172,13 +154,8 @@ public class GameWindow {
             }
             if(img.getY() == -200){
                 img.setY(0);
+               // checkCollision();
             }
-<<<<<<< HEAD
-
-            break;
-        case SPACE: // jump
-            img.setX(img.getX() + 50);
-=======
         case SPACE:
 
         // var jumptime = new Timeline(new KeyFrame(Duration.millis(500), e -> img.setFitWidth(img.getFitWidth()+ 90)));
@@ -190,8 +167,9 @@ public class GameWindow {
         
 
         break;
->>>>>>> 0488f4a168fda21ae6c828435f2057ebfddf4dc5
         }
+
+        
 
     }
 
@@ -210,4 +188,17 @@ public class GameWindow {
 
     }
 
+   /*  public void checkCollision(){
+
+        for (int i = 2; i < paneMain.getChildren().size(); i++) {
+
+           ImageView  imgObstacle = (ImageView) paneMain.getChildren().get(i);
+
+            if  (img.getX() == imgObstacle.getX() && img.getY() == imgObstacle.getY()){
+                imgObstacle = new ImageView(expImage);
+                paneMain.getChildren().add(i, imgObstacle);
+               // System.out.println("Colliding");
+            }
+        }
+    } */
 }
