@@ -160,9 +160,6 @@ public void updateXPositionOfObstableAndPlayer() {
 }
 
 
-
-
-
 //================Serialization=========================//
 
     public void save() {
