@@ -6,18 +6,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
@@ -118,7 +113,8 @@ public class GameWindow {
         timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
             road.update();
             if(road.isGameOver()){
-                System.out.println(road.getPlayer().getCoordinate().getdoubleY());
+                System.out.println(road.isGameOver());
+                //System.out.println(road.getPlayer().getCoordinate().getdoubleY() + " from timer");
             }
             
         }));
@@ -133,18 +129,21 @@ public class GameWindow {
         case UP: // up one lane
             if(img.getY() == 0){
                 img.setY(-200);
-                // System.out.println(road.getPlayer().getCoordinate().getdoubleY());
+                Platform.runLater(() -> System.out.println(road.getPlayer().getCoordinate().getdoubleY() + "from jey press switch")); 
             }
             if(img.getY() == 200){
                 img.setY(0);
+                Platform.runLater(() -> System.out.println(road.getPlayer().getCoordinate().getdoubleY() + "from jey press switch")); 
             }
             break;
         case DOWN: // down one lane
             if (img.getY() == 0) {
                 img.setY(200);
+                Platform.runLater(() -> System.out.println(road.getPlayer().getCoordinate().getdoubleY() + "from jey press switch")); 
             }
             if(img.getY() == -200){
                 img.setY(0);
+                Platform.runLater(() -> System.out.println(road.getPlayer().getCoordinate().getdoubleY() + "from jey press switch"));
             }
             break;
         case SPACE:
