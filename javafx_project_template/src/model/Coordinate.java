@@ -7,8 +7,7 @@ package model;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.geometry.Bounds;
-import javafx.scene.shape.Rectangle;
+
 
 public class Coordinate{
     

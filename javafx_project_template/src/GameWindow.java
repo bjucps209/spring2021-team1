@@ -107,15 +107,25 @@ public class GameWindow {
             // road.timer();
         }
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> img.setX(img.getX() + 2)));
-        timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+        // Timeline timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> img.setX(img.getX() + 2)));
+        // timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+        //     road.updateXPositionOfObstableAndPlayer();
+        //     road.detectCollision();
+        //     // img.setX(img.getX() + 2);
+        // }));
+        // timeline.setCycleCount(Timeline.INDEFINITE);
+        // timeline.play();
+        // //checkCollision();
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+            img.setX(img.getX() + 2);
             road.updateXPositionOfObstableAndPlayer();
-            road.detectCollision();
-            // img.setX(img.getX() + 2);
+            //checkCollision();
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-        //checkCollision();
+
+        
 
     }
 
