@@ -11,15 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 
 // import com.fasterxml.jackson.core.JsonParser;
 // import com.fasterxml.jackson.core.ObjectCodec;
