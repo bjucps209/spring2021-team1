@@ -111,14 +111,14 @@ public class GameWindow {
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> img.setX(img.getX() + 2)));
         timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
-            road.update();
-            if(road.isGameOver()){
-                System.out.println(road.isGameOver());
-                //System.out.println(road.getPlayer().getCoordinate().getdoubleY() + " from timer");
-            }
+            road.updateXPositionOfObstableAndPlayer();
+            // if(road.isGameOver()){
+            //     System.out.println(road.isGameOver());
+            //     //System.out.println(road.getPlayer().getCoordinate().getdoubleY() + " from timer");
+            // }
             
         }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.setCycleCount(100);
         timeline.play();
 
     }
