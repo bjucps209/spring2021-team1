@@ -142,7 +142,7 @@ public class GameWindow {
         KeyCode key = event.getCode();
         switch (key) {
         case UP: 
-            road.switchUp(); //it goes from lane lane A to lane C.. can someone try to fix it
+            road.switchUp(); 
             break;
         case DOWN: // down one lane
             road.switchDown();
@@ -153,9 +153,9 @@ public class GameWindow {
             break;
         case ESCAPE:
             cheatMode = true;
+        case RIGHT: 
+            road.setSpeedTrue();
         }
-
-
     }
 
     @FXML

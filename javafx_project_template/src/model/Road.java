@@ -35,7 +35,10 @@ public class Road {
     Obstacle obstacle;
     List<Integer> setXList = Arrays.asList(200, 400, 600, 800, 1000, 1200, 1400, 1600);
     List<Integer> setYList = Arrays.asList(100, 300, 500, 300, 100, 500, 300, 100);
-    
+    int NORMALSPEED = 2;
+    int FASTSPEED = 4;
+    boolean speed = false;
+
     // File to load and save from
     // static final File filename = new File("/data.json");
     public ArrayList<Savable> saveList = new ArrayList<Savable>();
@@ -85,13 +88,15 @@ public class Road {
         return player;
     }
 
-    // public void setDistanceAmtObj(int d, int obj){
-    //     distance = d*10;
-    //     amtObj = obj;
-    // }
-
     public boolean getGameOver() {
         return gameOver;
+    }
+    public void setSpeedTrue(){
+        speed ^= true;
+        
+    }
+    public void setSpeedFalse(){
+        speed = false;
     }
 
     public boolean isCollisionDetection() {
@@ -119,61 +124,71 @@ public class Road {
             }
     }   }
 
-//=================Anonymous==============================//
+    // =================Anonymous==============================//
 
-public void createRandomObstacle(){
-    for (int i = 0; i < 8; i ++){
-        Random rand = new Random();
-        //int currentX = (rand.nextInt(100 - 15 + 1) + 10)*20;
-        Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], setXList.get(i), setYList.get(i));
-        usingRB.add(obstacle);
-        saveList.add(obstacle);
+    public void createRandomObstacle() {
+        for (int i = 0; i < 8; i++) {
+            Random rand = new Random();
+            // int currentX = (rand.nextInt(100 - 15 + 1) + 10)*20;
+            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], setXList.get(i), setYList.get(i));
+            usingRB.add(obstacle);
+            saveList.add(obstacle);
+        }
     }
-}
 
-//this is creating objects
-// public void createCoursedefault(){
-//     for (int i = 0; i < amtObj; i ++){
+    // this is creating objects
+    // public void createCoursedefault(){
+    // for (int i = 0; i < amtObj; i ++){
 
-//         Random rand = new Random();
-//         int currentX = (rand.nextInt(100 - 15 + 1) + 10)*20;
-//         if((currentX%100) != 0 ){
-//            currentX = Math.round(currentX*100)/100;
-//         }
-//         Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], currentX, Lane.getRandomLane().getLaneYcoord());
-//         checkCollisionPics(obstacle);
-//         usingRB.add(obstacle);
-//         saveList.add(obstacle);
-//     }
-// }
+    // Random rand = new Random();
+    // int currentX = (rand.nextInt(100 - 15 + 1) + 10)*20;
+    // if((currentX%100) != 0 ){
+    // currentX = Math.round(currentX*100)/100;
+    // }
+    // Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], currentX,
+    // Lane.getRandomLane().getLaneYcoord());
+    // checkCollisionPics(obstacle);
+    // usingRB.add(obstacle);
+    // saveList.add(obstacle);
+    // }
+    // }
 
+    public void updateXPositionOfObstableAndPlayer() {
+        for (Obstacle i : usingRB) {
+            if (speed == false) {
+                i.setX(i.getdoubleX() - NORMALSPEED);
+                // System.out.println(i.getdoubleX() +" obstacle ");
+            }
+            if(speed == true){
+                i.setX(i.getdoubleX() - FASTSPEED);
+            }
 
-public void updateXPositionOfObstableAndPlayer() {
-    for (Obstacle i : usingRB) {
-        i.setX(i.getdoubleX() - 2);
-        //System.out.println(i.getdoubleX() +" obstacle ");
-    }
-    player.getCoordinate().setX(player.getCoordinate().getdoubleX() + 2);
-    if(collisionDetection == true)
+        }
+        player.getCoordinate().setX(player.getCoordinate().getdoubleX() + 2);
         detectCollision();
-}
+    }
 
-//==================Switching Lanes====================//
-    public void switchUp(){
-        if(getPlayer().getCoordinate().getdoubleY() == Lane.A.getLaneYcoord()){
+    // ==================Switching Lanes====================//
+    public void switchUp() {
+        switch ((int) getPlayer().getCoordinate().getdoubleY()) {
+        case 500:
             getPlayer().getCoordinate().setY(Lane.B.getLaneYcoord());
-        }
-        if(getPlayer().getCoordinate().getdoubleY() == Lane.B.getLaneYcoord()){
+            break;
+        case 300:
             getPlayer().getCoordinate().setY(Lane.C.getLaneYcoord());
+            break;
         }
     }
 
-    public void switchDown(){
-        if(getPlayer().getCoordinate().getdoubleY() == Lane.B.getLaneYcoord()){
-            getPlayer().getCoordinate().setY(Lane.A.getLaneYcoord());
-        }
-        if(getPlayer().getCoordinate().getdoubleY() == Lane.C.getLaneYcoord()){
+    public void switchDown() {
+        switch ((int) getPlayer().getCoordinate().getdoubleY()) {
+        case 100:
             getPlayer().getCoordinate().setY(Lane.B.getLaneYcoord());
+            break;
+        case 300:
+            getPlayer().getCoordinate().setY(Lane.A.getLaneYcoord());
+            break;
+
         }
     }
     public void jumpOver(){
@@ -183,9 +198,7 @@ public void updateXPositionOfObstableAndPlayer() {
         collisionDetection = true;
     }
 
-
-
-//================Serialization=========================//
+    // ================Serialization=========================//
 
     public void save() {
         try (FileWriter fr = new FileWriter("src/data.txt")) {
