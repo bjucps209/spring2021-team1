@@ -9,7 +9,9 @@ import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -54,8 +56,8 @@ public class GameWindow {
     ImageView img = new ImageView(player);
 
     @FXML
-    public void initialize(Stage stage, DifficultyLevel diff, LevelSequence seq) {
-        road = new Road(diff.getAmtObj(), seq.getDistance());
+    public void initialize(Stage stage) {
+        road = new Road();
         
         
         // mainwindow = new MainWindow();
@@ -118,13 +120,14 @@ public class GameWindow {
         // timeline.play();
         // //checkCollision();
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(9.8), e -> {
             // img.setX(img.getX() + 2);
             road.updateXPositionOfObstableAndPlayer();
             //checkCollision();
             if(road.getGameOver() == true){
                 timeline.stop();
-                
+                Alert alert = new Alert(AlertType.INFORMATION, "AHHH");
+                alert.show();
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -137,7 +140,6 @@ public class GameWindow {
 
     public void keyPressed(KeyEvent event) {
         KeyCode key = event.getCode();
-        String keyPressedName = key.getName();
         switch (key) {
         case UP: 
             road.switchUp(); //it goes from lane lane A to lane C.. can someone try to fix it
@@ -145,7 +147,8 @@ public class GameWindow {
         case DOWN: // down one lane
             road.switchDown();
             break;
-        case SPACE:
+        case SPACE: //cant jump because it collides...
+            road.setCollisionDetection(false);
             road.jumpOver();
             break;
         case ESCAPE:

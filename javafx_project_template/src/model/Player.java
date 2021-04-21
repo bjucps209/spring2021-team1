@@ -8,7 +8,6 @@ import javafx.geometry.Rectangle2D;
 
 public class Player implements Savable{
     //how the player begins (in the middle lane moving forward)
-    int speed = 0;
     int lives = 3;
     int score = 0;
     Coordinate coord;
