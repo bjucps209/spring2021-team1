@@ -160,20 +160,27 @@ public void updateXPositionOfObstableAndPlayer() {
 
 //==================Switching Lanes====================//
     public void switchUp(){
-        if(getPlayer().getCoordinate().getdoubleY() == Lane.A.getLaneYcoord()){
+        switch((int) getPlayer().getCoordinate().getdoubleY())
+        {
+            case 500:
             getPlayer().getCoordinate().setY(Lane.B.getLaneYcoord());
-        }
-        if(getPlayer().getCoordinate().getdoubleY() == Lane.B.getLaneYcoord()){
+            break;
+            case 300:
             getPlayer().getCoordinate().setY(Lane.C.getLaneYcoord());
+            break;
         }
     }
 
     public void switchDown(){
-        if(getPlayer().getCoordinate().getdoubleY() == Lane.B.getLaneYcoord()){
-            getPlayer().getCoordinate().setY(Lane.A.getLaneYcoord());
-        }
-        if(getPlayer().getCoordinate().getdoubleY() == Lane.C.getLaneYcoord()){
+        switch((int) getPlayer().getCoordinate().getdoubleY())
+        {
+            case 100: 
             getPlayer().getCoordinate().setY(Lane.B.getLaneYcoord());
+            break;
+            case 300:
+            getPlayer().getCoordinate().setY(Lane.A.getLaneYcoord());
+            break;
+
         }
     }
     public void jumpOver(){
