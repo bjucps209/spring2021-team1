@@ -56,9 +56,8 @@ public class GameWindow {
     ImageView img = new ImageView(player);
 
     @FXML
-    public void initialize(Stage stage) {
-        road = new Road();
-        
+    public void initialize(Stage stage, int DL, int LS) {
+        road = new Road(DL, LS);
         
         // mainwindow = new MainWindow();
         // mainwindow.mainStage.getScene().setOnKeyPressed( e -> keyPressed(e) );
@@ -120,7 +119,7 @@ public class GameWindow {
         // timeline.play();
         // //checkCollision();
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(9.8), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(20), e -> {
             // img.setX(img.getX() + 2);
             road.updateXPositionOfObstableAndPlayer();
             //checkCollision();
@@ -142,10 +141,12 @@ public class GameWindow {
         KeyCode key = event.getCode();
         switch (key) {
         case UP: 
-            road.switchUp(); 
+            Thread thread = road.switchUp();
+            thread.start();
             break;
         case DOWN: // down one lane
-            road.switchDown();
+            Thread thread2 = road.switchDown();
+            thread2.start();
             break;
         case SPACE: //cant jump because it collides...
             road.setCollisionDetection(false);
