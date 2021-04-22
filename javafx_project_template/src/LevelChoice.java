@@ -16,7 +16,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.DifficultyLevel;
 import model.LevelSequence;
-import model.Road;
 
 public class LevelChoice {
     @FXML
@@ -27,15 +26,14 @@ public class LevelChoice {
     Button btnBackStart;
     @FXML
 
-    Road road = new Road();
     ToggleGroup group;
-    GameWindow gameWindow = new GameWindow();
 
-    IntegerProperty difficultyLevel = new SimpleIntegerProperty();
-    IntegerProperty levelSequence = new SimpleIntegerProperty();
+    int difficultyLevel;
+    int levelSequence;
 
     @FXML
     public void initialize(Stage stage) {
+
         ToggleGroup group = new ToggleGroup(); // https://stackoverflow.com/questions/53467588/how-to-implement-togglegroup-in-fxml-file-using-spring-vs-javafx
         DiffBtn.setToggleGroup(group);
         DiffBtn.setToggleGroup(group);
@@ -48,46 +46,47 @@ public class LevelChoice {
     }
 
     @FXML
-    public void getDiffButton() {
-        road.getPropertyAmtObj().bind(difficultyLevel);
+    public int getDiffButton() {
         if(DiffBtn.isSelected()){
             String diffBtnText = DiffBtn.getText();
 
             switch (diffBtnText){
             case "Easy":
-                setDifficultyLevel(DifficultyLevel.EASY.getAmtObj());
+                difficultyLevel = DifficultyLevel.EASY.getAmtObj();
             case "Medium":
-                setDifficultyLevel(DifficultyLevel.MEDIUM.getAmtObj());
+                difficultyLevel = DifficultyLevel.MEDIUM.getAmtObj();            
             case "Hard":
-                setDifficultyLevel(DifficultyLevel.HARD.getAmtObj());
+                difficultyLevel = DifficultyLevel.HARD.getAmtObj();
             }
         } else if(!DiffBtn.isSelected()){
-            setDifficultyLevel(DifficultyLevel.EASY.getAmtObj());
+            difficultyLevel = DifficultyLevel.EASY.getAmtObj();
         }
+        return difficultyLevel;
     }
 
     @FXML
-    public void getLevelButton() {
-        road.getPropertyDistance().bind(levelSequence);
+    public int getLevelButton() {
         if(DiffBtn.isSelected()){
             String seqBtnText = SeqBtn.getText();
             switch (seqBtnText){
             case "Level 1":
-                setLevelSequence(LevelSequence.TEN.getDistance());
+                levelSequence = LevelSequence.TEN.getDistance();
             case "Level 2":
-                setLevelSequence(LevelSequence.TWENTY.getDistance());
+                levelSequence = LevelSequence.TEN.getDistance();
             case "Level 3":
-                setLevelSequence(LevelSequence.THIRTY.getDistance());
+                levelSequence = LevelSequence.TEN.getDistance();
         }
         } else if(!DiffBtn.isSelected()){
-            setLevelSequence(LevelSequence.TEN.getDistance());
+                levelSequence = LevelSequence.TEN.getDistance();
         }
+        return levelSequence;
     }
 
     @FXML
     public void onStartClicked(ActionEvent event) throws IOException {
-        getDiffButton();
-        getLevelButton();
+        int DL = getDiffButton();
+        int LS = getLevelButton();
+
 
         var gLoader = new FXMLLoader(getClass().getResource("GameWindow.fxml"));
         var gScene = new Scene(gLoader.load());
@@ -96,8 +95,7 @@ public class LevelChoice {
         // mainStage = stage;
         gStage.setScene(gScene);
         gStage.show();
-        window.initialize(gStage);
-        System.out.println(getDifficultyLevel()+ ", " + getLevelSequence());
+        window.initialize(gStage, DL, LS);
     }
 
     @FXML
@@ -105,27 +103,6 @@ public class LevelChoice {
         Stage stage = (Stage) btnBackStart.getScene().getWindow();
         stage.close();
 
-    }
-
-//================Getters/Setters===========================//
-
-    public final void setDifficultyLevel(int value){
-        difficultyLevel.set(value);
-    }
-    public IntegerProperty getPropertyDifficultyLevel() {
-        return difficultyLevel;
-    }
-    public final int getDifficultyLevel(){
-        return difficultyLevel.get();
-    }
-    public final void setLevelSequence(int value){
-        levelSequence.set(value);
-    }
-    public IntegerProperty getPropertyLevelSequence() {
-        return levelSequence;
-    }
-    public final int getLevelSequence(){
-        return levelSequence.get();
     }
 
 }
