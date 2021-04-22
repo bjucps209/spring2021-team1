@@ -4,12 +4,14 @@
 //----------------------------------------------------------- 
 package model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Rectangle2D;
 
 public class Player implements Savable{
     //how the player begins (in the middle lane moving forward)
-    int lives; //bind life with label -- Aya
-    int score; //bind score with label  -- Ortiz
+    IntegerProperty lives = new SimpleIntegerProperty(); //bind life with label -- Aya
+    IntegerProperty score = new SimpleIntegerProperty(); //bind score with label  -- Ortiz
     Coordinate coord;
     STATE player = STATE.MOVING;
     final int playerWidth = 100;
@@ -18,8 +20,11 @@ public class Player implements Savable{
 
     public Player(STATE Player, int x, int y){
         coord = new Coordinate(x, y); 
-        lives = 3;
-        score = 0;
+        setLives(3);
+        setScores(2);
+        this.lives = getPropertyLives();
+        
+        this.score = getPropertyScores();
         this.player = Player;
         
     }
@@ -43,19 +48,23 @@ public class Player implements Savable{
         return new Rectangle2D(coord.getdoubleX(), coord.getdoubleY(), playerWidth, playerHeight);
     }
 
-    public int getLives() {
+    public final void setLives(int value){
+        lives.set(value);
+    }
+    public IntegerProperty getPropertyLives() {
         return lives;
     }
-
-    public void setLives(int lives) {
-        this.lives = lives;
+    public final int getLives(){
+        return lives.get();
     }
 
-    public int getScore() {
+    public final void setScores(int value){
+        score.set(value);
+    }
+    public IntegerProperty getPropertyScores() {
         return score;
     }
-
-    public void setScore(int score) {
-        this.score = score;
+    public final int getScores(){
+        return score.get();
     }
 }
