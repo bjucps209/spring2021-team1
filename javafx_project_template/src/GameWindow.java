@@ -120,7 +120,7 @@ public class GameWindow {
         // timeline.play();
         // //checkCollision();
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(9.8), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
             // img.setX(img.getX() + 2);
             road.updateXPositionOfObstableAndPlayer();
             //checkCollision();
@@ -173,12 +173,4 @@ public class GameWindow {
 
     }
 
-    void keyUp(String up) {
-        if (up.equals("Up")) {
-            // img.setY(img.getY()+200);
-            road.switchUp();
-            
-        }
-
-    }
 }
