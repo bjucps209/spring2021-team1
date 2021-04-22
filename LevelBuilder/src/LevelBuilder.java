@@ -39,9 +39,13 @@ public class LevelBuilder {
         sldLevel.valueProperty().addListener((o, oldVal, newVal) -> onSliderChanged(newVal.intValue()));
        /// Pane paneRoad = new Pane();
         ScrollPane sp = new ScrollPane();
-
+        var road = new ImageView(IMG_ROAD);
+        road.setFitHeight(600);
+        road.setFitWidth(2000);
+        paneRoad.getChildren().add(road);
         sp.setContent(paneRoad);
         sp.setPannable(true);
+
         paneHBox.getChildren().add(sp);
         
     }
@@ -59,25 +63,25 @@ public class LevelBuilder {
         node.setOnMouseDragged(me -> {
             node.setLayoutX(node.getLayoutX() + me.getX() - dragDelta.x);
             node.setLayoutY(node.getLayoutY() + me.getY() - dragDelta.y);
+            setOnLanes((ImageView) node);
         });
         node.setOnMouseReleased(me -> node.getScene().setCursor(Cursor.HAND) );
 
-        // Prevent mouse clicks on img from propagating to the pane and
-        // resulting in creation of a new image
-        node.setOnMouseClicked(me -> me.consume());
     }
     
 
     @FXML 
     void onPotholeClicked(ActionEvent e) {
         var img = new ImageView(IMG_POT_HOLE);
-        int y = rand.nextInt(300);
-        int x = rand.nextInt(300);
+        int y = rand.nextInt(500);
+        int x = rand.nextInt(600);
         img.relocate(x, y);
+        setOnLanes(img);
         img.setFitWidth(50);
         img.setFitHeight(50);
         paneRoad.getChildren().add(img);
         makeDraggable(img);
+    
    
     }
 
@@ -89,9 +93,10 @@ public class LevelBuilder {
         img.setFitWidth(50);
         img.setFitHeight(50);
         img.relocate(x, y);
-
+        setOnLanes(img);
         paneRoad.getChildren().add(img);
         makeDraggable(img);
+        
     }
 
     @FXML 
@@ -102,9 +107,10 @@ public class LevelBuilder {
         img.setFitWidth(50);
         img.setFitHeight(50);
         img.relocate(x, y);
-
+        setOnLanes(img);
         paneRoad.getChildren().add(img);
         makeDraggable(img);
+        
     }
     
     @FXML
@@ -115,9 +121,10 @@ public class LevelBuilder {
         img.setFitWidth(50);
         img.setFitHeight(50);
         img.relocate(x, y);
-        
+        setOnLanes(img);
         paneRoad.getChildren().add(img);
         makeDraggable(img);
+    
     }
     
     @FXML
@@ -128,7 +135,7 @@ public class LevelBuilder {
         img.setFitWidth(50);
         img.setFitHeight(50);   
         img.relocate(x, y);
-
+        setOnLanes(img);
         
         paneRoad.getChildren().add(img);
         makeDraggable(img);
@@ -144,7 +151,20 @@ public class LevelBuilder {
 
     //Check current image pasition and make sure it's on a lane and not  between
     public void setOnLanes(ImageView img){
-        //if (img.getX()  )
+        if (img.getY() > 300){
+            img.setY(500);
+        
+        }
+
+        if (img.getY() < 300 && img.getY() > 100){
+            img.setY(300);
+            
+        }
+
+        if (img.getY() < 100){
+            img.setY(100);
+
+        }
     }
    
 
