@@ -9,7 +9,9 @@ import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -25,11 +27,10 @@ public class GameWindow {
     @FXML
     Pane paneMain;
     @FXML
-    Label lblCoord;
+    Label lblLife, lblScore;
 
     Timeline timeline;
     boolean gameOver;
-    boolean iWantToFinishThis = false;
     boolean cheatMode = false;
     Obstacle obstacle;
     ArrayList<ImageView> imgviewList = new ArrayList<>();
@@ -55,10 +56,14 @@ public class GameWindow {
     ImageView img = new ImageView(player);
 
     @FXML
-    public void initialize(Stage stage, DifficultyLevel diff, LevelSequence seq) {
-        road = new Road(diff.getAmtObj(), seq.getDistance());
+    public void initialize(Stage stage, int DL, int LS) {
+        road = new Road(DL, LS);
+        lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
+        lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
         
-        
+
+        // lblScore.textProperty().bind(road.getPlayer().getPropertyScores());
+
         // mainwindow = new MainWindow();
         // mainwindow.mainStage.getScene().setOnKeyPressed( e -> keyPressed(e) );
 
@@ -119,10 +124,15 @@ public class GameWindow {
         // timeline.play();
         // //checkCollision();
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
             // img.setX(img.getX() + 2);
             road.updateXPositionOfObstableAndPlayer();
             //checkCollision();
+            if(road.getGameOver() == true){
+                timeline.stop();
+                Alert alert = new Alert(AlertType.INFORMATION, "AHHH");
+                alert.show();
+            }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
@@ -130,31 +140,28 @@ public class GameWindow {
         
 
     }
-
-    public void switches(){
-        road.setFinishPlease(true);
-    }
-
    
 
     public void keyPressed(KeyEvent event) {
         KeyCode key = event.getCode();
-        String keyPressedName = key.getName();
         switch (key) {
         case UP: 
-            road.switchUp(); //it goes from lane lane A to lane C.. can someone try to fix it
+            Thread thread = road.switchUp();
+            thread.start();
             break;
         case DOWN: // down one lane
-            road.switchDown();
+            Thread thread2 = road.switchDown();
+            thread2.start();
             break;
-        case SPACE:
+        case SPACE: //cant jump because it collides...
+            road.setCollisionDetection(false);
             road.jumpOver();
             break;
         case ESCAPE:
             cheatMode = true;
+        case RIGHT: 
+            road.setSpeedTrue();
         }
-
-
     }
 
     @FXML
@@ -172,12 +179,4 @@ public class GameWindow {
 
     }
 
-    void keyUp(String up) {
-        if (up.equals("Up")) {
-            // img.setY(img.getY()+200);
-            road.switchUp();
-            
-        }
-
-    }
 }

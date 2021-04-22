@@ -10,59 +10,44 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
-import javafx.geometry.Rectangle2D;
-
-// import com.fasterxml.jackson.core.JsonParser;
-// import com.fasterxml.jackson.core.ObjectCodec;
-// import com.fasterxml.jackson.databind.JsonNode;
-// import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class Road {
     RoadBlock[] rb = RoadBlock.values();
     ArrayList<Obstacle> usingRB;
-    boolean finishPlease = false;
-    public boolean isFinishPlease() {
-        return finishPlease;
-    }
-
-    public void setFinishPlease(boolean finishPlease) {
-        this.finishPlease = finishPlease;
-    }
+    Thread thread;
 
     ArrayList<Integer> objectXs = new ArrayList<>();
     boolean gameOver;
+    boolean collisionDetection;
+
+    int amtObj;
+    int distance ;
 
     Player player;
-    int amtObj;
-    int distance;
     Obstacle obstacle;
     List<Integer> setXList = Arrays.asList(200, 400, 600, 800, 1000, 1200, 1400, 1600);
     List<Integer> setYList = Arrays.asList(100, 300, 500, 300, 100, 500, 300, 100);
+    int NORMALSPEED = 2;
+    int FASTSPEED = 4;
+    boolean speed = false;
 
     // File to load and save from
     // static final File filename = new File("/data.json");
     public ArrayList<Savable> saveList = new ArrayList<Savable>();
 
 //=======================Constructor==========================//
-    public Road(int amtObj, int distance) {
+    public Road(int DL, int SL) {
+        amtObj = DL;
+        distance = SL*250;
         gameOver = false;
+        collisionDetection = true;
         usingRB = new ArrayList<>();
         createRandomObstacle();
         this.player = new Player(STATE.MOVING, 10, Lane.B.getLaneYcoord());
         saveList.add(player);
-        this.amtObj = amtObj;
-        this.distance = distance;
-    }
-    
-//============================Setters/Getters===========================//
-    public int getSpeed() {
-        return amtObj;
     }
 
-    public int getDistance() {
-        return distance;
-    }
+    
+//============================Setters/Getters===========================//
 
     public ArrayList<Obstacle> getUsingRB() {
         return usingRB;
@@ -76,22 +61,48 @@ public class Road {
         return player;
     }
 
-    public void setDistanceAmtObj(int d, int obj){
-        distance = d*10;
-        amtObj = obj;
-    }
-
     public boolean getGameOver() {
         return gameOver;
     }
+    public void setSpeedTrue(){
+        speed = true;
+        
+    }
+    public void setSpeedFalse(){
+        speed = false;
+    }
 
+    public boolean isCollisionDetection() {
+        return collisionDetection;
+    }
+
+    public void setCollisionDetection(boolean tf) {
+        this.collisionDetection = tf;
+    }
 //=========================Collision Detection===================================//
 
     public void detectCollision() {
+        if(collisionDetection == true){
+        // if player image coordinate equals object object, print collided..
+        // System.out.println(playerCoord.getX());
+            for (Obstacle i : usingRB) {
+                if (player.getCoordinate().getdoubleY() == i.getdoubleY()) {
+                    if (player.getCoordinate().getdoubleX() <= i.getdoubleX() + i.getObstalceWidth()) {
+                        if (player.getCoordinate().getdoubleX() + player.getCoordinate().getPlayerWidth() >= i.getdoubleX()) {
+                            // System.out.println(player.getdoubleX() + ", " + i.getdoubleX());
+                            gameOver = true;
+                        }
+                    }
+                }
+            }
+        }   
+    }
+
+    public void objectOverLap(Obstacle obs) { //For object overlap
         // if player image coordinate equals object object, print collided..
         // System.out.println(playerCoord.getX());
         for (Obstacle i : usingRB) {
-            if (player.getCoordinate().getdoubleY() == i.getdoubleY()) {
+            if (obs.getdoubleY() == i.getdoubleY()) {
                 if (player.getCoordinate().getdoubleX() <= i.getdoubleX() + i.getObstalceWidth()) {
                     if (player.getCoordinate().getdoubleX() + player.getCoordinate().getPlayerWidth() >= i.getdoubleX()) {
                         // System.out.println(player.getdoubleX() + ", " + i.getdoubleX());
@@ -99,98 +110,87 @@ public class Road {
                     }
                 }
             }
-        }
+        } 
     }
+//=========================Anonymous==============================//
 
-    public void collision(Player player) {
-        Rectangle2D playerRec = player.getBounds();
-
-        for (Obstacle obstacle : usingRB) {
-
-            Rectangle2D r2 = obstacle.getBounds();
-            if (playerRec.intersects(r2)) {
-            }
-        }
-    }
-
-    public void checkCollisionPics(Obstacle obs){
-        Random rand = new Random();
-        if(usingRB.size() != 0){
-            for(Obstacle i: usingRB){
-                if(i.getdoubleX() == obs.getdoubleX()){
-                    obs.setX(rand.nextInt((100 - 15 + 1) + 10)*20);
-                    checkCollisionPics(obs);
-                }else{
-                    break;
+    public void createRandomObstacle() {
+        int newX = 300;
+        for (int i = 0; i < amtObj; i++) {
+            System.out.println(newX);
+            Random rand = new Random();
+            if(newX >= distance){
+                if(i < amtObj -1)
+                    newX = 300;
+                else if(i == amtObj){
+                    newX = newX - 100;
                 }
             }
+            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], newX, Lane.getRandomLane().getLaneYcoord());
+            usingRB.add(obstacle);
+            saveList.add(obstacle);
+            newX = newX + 300;
         }
     }
 
-//=================Anonymous==============================//
-
-public void createRandomObstacle(){
-    for (int i = 0; i < 8; i ++){
-        Random rand = new Random();
-        //int currentX = (rand.nextInt(100 - 15 + 1) + 10)*20;
-        Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], setXList.get(i), setYList.get(i));
-        checkCollisionPics(obstacle);
-        usingRB.add(obstacle);
-        saveList.add(obstacle);
+    public void updateXPositionOfObstableAndPlayer() {
+        for (Obstacle i : usingRB) {
+            if (speed == false) {
+                i.setX(i.getdoubleX() - NORMALSPEED);
+                // System.out.println(i.getdoubleX() +" obstacle ");
+            }
+            if(speed == true){
+                i.setX(i.getdoubleX() - FASTSPEED);
+            }
+        }
+        player.getCoordinate().setX(player.getCoordinate().getdoubleX() + 2);
+        detectCollision();
     }
-}
 
-//this is creating objects
-// public void createCoursedefault(){
-//     for (int i = 0; i < amtObj; i ++){
-
-//         Random rand = new Random();
-//         int currentX = (rand.nextInt(100 - 15 + 1) + 10)*20;
-//         if((currentX%100) != 0 ){
-//            currentX = Math.round(currentX*100)/100;
-//         }
-//         Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], currentX, Lane.getRandomLane().getLaneYcoord());
-//         checkCollisionPics(obstacle);
-//         usingRB.add(obstacle);
-//         saveList.add(obstacle);
-//     }
-// }
-
-
-public void updateXPositionOfObstableAndPlayer() {
-    for (Obstacle i : usingRB) {
-        i.setX(i.getdoubleX() - 2);
-        //System.out.println(i.getdoubleX() +" obstacle ");
-    }
-    player.getCoordinate().setX(player.getCoordinate().getdoubleX() + 2);
-    detectCollision();
-}
-
-//==================Switching Lanes====================//
-    public void switchUp(){
-        if(getPlayer().getCoordinate().getdoubleY() == Lane.A.getLaneYcoord()){
+//========================Lane Action===========================//
+    public Thread switchUp() {
+        switch ((int) getPlayer().getCoordinate().getdoubleY()) {
+        case 500:
+            thread = new Thread(() -> {
             getPlayer().getCoordinate().setY(Lane.B.getLaneYcoord());
+            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
+        });
+            break;
+        case 300:
+            thread = new Thread(() -> {
+                getPlayer().getCoordinate().setY(Lane.C.getLaneYcoord());
+                getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
+            });
+            break;
         }
-        if(getPlayer().getCoordinate().getdoubleY() == Lane.B.getLaneYcoord()){
-            getPlayer().getCoordinate().setY(Lane.C.getLaneYcoord());
-        }
+        return thread;
     }
 
-    public void switchDown(){
-        if(getPlayer().getCoordinate().getdoubleY() == Lane.B.getLaneYcoord()){
-            getPlayer().getCoordinate().setY(Lane.A.getLaneYcoord());
+    public Thread switchDown() {
+        switch ((int) getPlayer().getCoordinate().getdoubleY()) {
+        case 100:
+            thread = new Thread(() -> {
+                getPlayer().getCoordinate().setY(Lane.B.getLaneYcoord());
+                getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
+            });
+            break;
+        case 300:
+            thread = new Thread(() -> {
+                getPlayer().getCoordinate().setY(Lane.A.getLaneYcoord());
+                getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
+            });
+            break;
+
         }
-        if(getPlayer().getCoordinate().getdoubleY() == Lane.C.getLaneYcoord()){
-            getPlayer().getCoordinate().setY(Lane.B.getLaneYcoord());
-        }
+        return thread;
     }
     public void jumpOver(){
-        getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX()+80);
+        if(collisionDetection == false)
+            // getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY()-50);
+            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX()+80);
     }
 
-
-
-//================Serialization=========================//
+    // ================Serialization=========================//
 
     public void save() {
         try (FileWriter fr = new FileWriter("src/data.txt")) {

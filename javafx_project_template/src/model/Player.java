@@ -4,13 +4,14 @@
 //----------------------------------------------------------- 
 package model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Rectangle2D;
 
 public class Player implements Savable{
     //how the player begins (in the middle lane moving forward)
-    int speed = 0;
-    int lives = 3;
-    int score = 0;
+    IntegerProperty lives = new SimpleIntegerProperty(); //bind life with label -- Aya
+    IntegerProperty score = new SimpleIntegerProperty(); //bind score with label  -- Ortiz
     Coordinate coord;
     STATE player = STATE.MOVING;
     final int playerWidth = 100;
@@ -19,42 +20,14 @@ public class Player implements Savable{
 
     public Player(STATE Player, int x, int y){
         coord = new Coordinate(x, y); 
+        setLives(3);
+        setScores(2);
+        this.lives = getPropertyLives();
+        
+        this.score = getPropertyScores();
         this.player = Player;
         
     }
-    
-    /**
-     * @return none 
-     * @param none
-     * make the view go faster meaning adding more in x over a faster period of times
-     */
-
-    /**
-     * @return none
-     * @param State:state
-     * changing lanes to the left: if its already left by gettingcurrentstate then dont move the y; if the player is on
-     * the right or the middle lane add y
-     */
-    public void leftLane(){
-        if(coord.getdoubleY() == 300){
-            coord.setY(500);
-        } else if (coord.getdoubleY() == 100){
-            coord.setY(300);
-        } else if (coord.getdoubleY() == 500){
-            coord.setY(500);
-        }
-    }
-
-    /**
-     * @return none
-     * @param State:state
-     * changing lanes to the right: if its already right by gettingcurrentstate then dont move the y; if the player is on
-     * the left or the middle lane add y
-     */
-    public void rightLane(){
-        // break;
-    }
-
 
     public Coordinate getCoordinate(){
         return coord;
@@ -73,5 +46,25 @@ public class Player implements Savable{
     }
     public Rectangle2D getBounds() {
         return new Rectangle2D(coord.getdoubleX(), coord.getdoubleY(), playerWidth, playerHeight);
+    }
+
+    public final void setLives(int value){
+        lives.set(value);
+    }
+    public IntegerProperty getPropertyLives() {
+        return lives;
+    }
+    public final int getLives(){
+        return lives.get();
+    }
+
+    public final void setScores(int value){
+        score.set(value);
+    }
+    public IntegerProperty getPropertyScores() {
+        return score;
+    }
+    public final int getScores(){
+        return score.get();
     }
 }

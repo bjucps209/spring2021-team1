@@ -19,12 +19,11 @@ public class MainWindow {
     @FXML
     Pane roadPane;
 
-    LevelChoice window = new LevelChoice();
-
     Stage mainStage;
 
     @FXML
     void onNextClicked(ActionEvent event) throws IOException {
+
         var loader = new FXMLLoader(getClass().getResource("LevelChoice.fxml"));
         var scene = new Scene(loader.load());
         var stage = new Stage();
