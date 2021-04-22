@@ -6,14 +6,15 @@
 
 
 
-<VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml" 
+<VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml" stylesheets="@MainWindow.css"
     spacing="10" prefHeight="600"  style="-fx-background-color: black;" prefWidth="500" alignment="CENTER">
 
     <HBox  spacing="10" alignment="CENTER">
-    <Button fx:id="btnHigh" onAction="#onHighClicked" text="Highscores"  />
-    <Button fx:id="btnAbout" onAction="#onAboutClicked" text="About"  />
-    <Button fx:id="btnHelp" onAction="#onHelpClicked" text="Help"  />
-     <Button fx:id="btnLevel" onAction="#onLevelClicked" text="Build Level"  />
+    <Button fx:id="btnHigh" onAction="#onHighClicked" text="Highscores"  styleClass="Button"/>
+    <Button fx:id="btnAbout" onAction="#onAboutClicked" text="About" styleClass="Button" />
+    <Button fx:id="btnHelp" onAction="#onHelpClicked" text="Help" styleClass="Button"/>
+    <Button fx:id="btnLevel" onAction="#onLevelClicked" text="Build Level" styleClass="Button"/>
+    
     </HBox>
     <ImageView fitHeight="500" fitWidth="500" smooth="true">      
     <image>
