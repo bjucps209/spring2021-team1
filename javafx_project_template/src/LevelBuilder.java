@@ -39,7 +39,7 @@ public class LevelBuilder {
     //Pane paneRoad = new Pane();
     @FXML
     void initialize(Stage stage){
-        sldLevel.valueProperty().addListener((o, oldVal, newVal) -> onSliderChanged(newVal.intValue()));
+       
        /// Pane paneRoad = new Pane();
        // ScrollPane sp = new ScrollPane();
        Road road = new Road(20, 30);
@@ -165,14 +165,7 @@ public class LevelBuilder {
         makeDraggable(img);
     }
 
-    @FXML
-    void onSliderChanged(int val){
-        Pane newPane = new Pane();
-        newPane.setMaxWidth(val *(1000));
-        paneHBox.getChildren().add(newPane);
-
-    }
-
+    
     @FXML 
     void onDeleteClicked(ActionEvent e){
 
