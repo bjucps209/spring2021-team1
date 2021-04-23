@@ -15,8 +15,8 @@
         <Label styleClass="VboxchangingLabel" fx:id="lblScore"/>
     </VBox>
 
-    <Pane  style="-fx-background-color: lightgrey" styleClass="Pane" fx:id="paneMain">
-        <ImageView fx:id="imgView"></ImageView>
+    <Pane prefWidth="1250" prefHeight="600" style="-fx-background-color: lightgrey" styleClass="Pane" fx:id="paneMain">
+
     </Pane>
     
 

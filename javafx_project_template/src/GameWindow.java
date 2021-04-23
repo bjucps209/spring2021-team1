@@ -29,8 +29,6 @@ public class GameWindow {
     Pane paneMain;
     @FXML
     Label lblLife, lblScore;
-    @FXML
-    ImageView imgView;
 
     Timeline timeline;
     boolean gameOver;
@@ -49,7 +47,7 @@ public class GameWindow {
     final Image carImage = new Image("/images/RoadBlockcar.png");
     final Image player = new Image("/images/player.png");
     final Image roadImage = new Image("/images/road.png");
-    final Image gifRoad = new Image(new File("/images/recording.gif").toURI().toString());
+    final Image gifRoad = new Image("/images/recording.gif");
     final Image expImage = new Image("/images/explosion.gif");
 
     ImageView imgPlayer = new ImageView(player);
@@ -71,11 +69,12 @@ public class GameWindow {
         // mainwindow.mainStage.getScene().setOnKeyPressed( e -> keyPressed(e) );
 
         // Road picture
-
-        imgView.setImage(gifRoad);
+        ImageView imgView = new ImageView();
+        imgView.setImage(roadImage);
         imgView.setFitWidth(1250);
         imgView.setFitHeight(600);
-        //paneMain.getChildren().add(imgView);
+
+        paneMain.getChildren().add(imgView);
 
         // var imgFire = new ImageView(fireImage) ;
         stage.setMaximized(true);
