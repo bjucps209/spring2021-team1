@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
@@ -24,7 +25,7 @@ import model.*;
 public class GameWindow {
 
     @FXML
-    HBox hbox;
+    VBox hbox;
     @FXML
     Pane paneMain;
     @FXML
