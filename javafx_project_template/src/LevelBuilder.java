@@ -55,8 +55,8 @@ public class LevelBuilder {
         imgRoad.setFitHeight(600);
         paneRoad.getChildren().add(imgRoad);
 
-        Object window = stage.getScene().getWindow();
-        sp.setContent((Node) window);
+      //  Object window = stage.getScene().getWindow();
+      //  sp.setContent((Node) window);
 
         
         
