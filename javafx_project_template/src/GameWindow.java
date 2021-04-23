@@ -27,7 +27,7 @@ public class GameWindow {
     @FXML
     Pane paneMain;
     @FXML
-    Label lblCoord;
+    Label lblLife, lblScore;
 
     Timeline timeline;
     boolean gameOver;
@@ -58,7 +58,12 @@ public class GameWindow {
     @FXML
     public void initialize(Stage stage, int DL, int LS) {
         road = new Road(DL, LS);
+        lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
+        lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
         
+
+        // lblScore.textProperty().bind(road.getPlayer().getPropertyScores());
+
         // mainwindow = new MainWindow();
         // mainwindow.mainStage.getScene().setOnKeyPressed( e -> keyPressed(e) );
 
