@@ -61,10 +61,7 @@ public class GameWindow {
 
     @FXML
     public void initialize(Stage stage, int DL, int LS) {
-        road = new Road(DL, LS);
-        lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
-        lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
-
+        initializingObjects(DL, LS);
         // lblScore.textProperty().bind(road.getPlayer().getPropertyScores());
 
         // mainwindow = new MainWindow();
@@ -161,6 +158,7 @@ public class GameWindow {
             break;
         case ESCAPE:
             cheatMode = true;
+            road.immunity(cheatMode);
         case RIGHT:
             road.setSpeedTrue();
         }
@@ -179,6 +177,12 @@ public class GameWindow {
         obstacleImageView.layoutYProperty().bind(ob.getY());
         return obstacleImageView;
 
+    }
+
+    public void initializingObjects(int DL, int LS){
+        road = new Road(DL, LS);
+        lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
+        lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
     }
 
 }
