@@ -25,7 +25,7 @@ public class Road {
     Player player;
     Obstacle obstacle;
     List<Integer> setXList = Arrays.asList(200, 400, 600, 800, 1000, 1200, 1400, 1600);
-    List<Integer> setYList = Arrays.asList(100, 300, 500, 300, 100, 500, 300, 100);
+    List<Integer> setYList = Arrays.asList(100, 300, 500, 300, 100, 500, 300, 100, 300, 500,100, 300, 500, 300, 100, 500, 300, 100, 300, 500,100, 300, 500, 300, 100, 500, 300, 100, 300, 500);
     int NORMALSPEED = 2;
     int FASTSPEED = 4;
     boolean speed = false;
@@ -37,7 +37,7 @@ public class Road {
 //=======================Constructor==========================//
     public Road(int DL, int SL) {
         amtObj = DL;
-        distance = SL*250;
+        distance = SL*200;
         gameOver = false;
         collisionDetection = true;
         usingRB = new ArrayList<>();
@@ -119,17 +119,10 @@ public class Road {
         for (int i = 0; i < amtObj; i++) {
             System.out.println(newX + "#" + i);
             Random rand = new Random();
-            if(newX >= distance){
-                if(i < amtObj -1)
-                    newX = 300;
-                else if(i == amtObj){
-                    newX -= 100;
-                }
-            }
-            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], newX, Lane.getRandomLane().getLaneYcoord());
+            Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], newX, setYList.get(i));
             usingRB.add(obstacle);
             saveList.add(obstacle);
-            newX = newX + 250;
+            newX += 250;
         }
     }
 
@@ -143,7 +136,7 @@ public class Road {
                 i.setX(i.getdoubleX() - FASTSPEED);
             }
         }
-        player.getCoordinate().setX(player.getCoordinate().getdoubleX() + 2);
+        //player.getCoordinate().setX(player.getCoordinate().getdoubleX() + 2);
         detectCollision();
     }
 
