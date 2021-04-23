@@ -19,7 +19,7 @@ public class MainWindow {
     @FXML
     Pane roadPane;
 
-    Stage mainStage;
+   // Stage mainStage;
 
     @FXML
     void onNextClicked(ActionEvent event) throws IOException {
@@ -41,6 +41,8 @@ public class MainWindow {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setMaximized(true);
+        LevelBuilder levelBuilder = new LevelBuilder();
+        levelBuilder.initialize(stage);
         stage.show();
     }
 

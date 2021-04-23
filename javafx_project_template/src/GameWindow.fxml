@@ -3,18 +3,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox fx:controller="GameWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="GameWindow.css"
-    spacing="10" maxHeight="600"  style="-fx-background-color: black;" maxWidth="1500" alignment="CENTER_RIGHT" fx:id="hbox" onKeyPressed="#keyPressed">
+<VBox fx:controller="GameWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="GameWindow.css"
+    spacing="10" maxHeight="1500"  style="-fx-background-color: black;" maxWidth="600" alignment="CENTER_RIGHT" fx:id="hbox" onKeyPressed="#keyPressed">
         
-    <VBox styleClass="VBox" alignment="CENTER_LEFT" maxWidth="200" >
+
+    <HBox>
         <Label styleClass="VboxLabel" text="Lives"/>
         <Label styleClass="VboxchangingLabel" fx:id="lblLife"/>
 
         <Label styleClass="VboxLabel" text="Scores"/>
         <Label styleClass="VboxchangingLabel" fx:id="lblScore"/>
-    </VBox>
+    </HBox>
+
 
     <Pane maxHeight="600" prefWidth="1250" style="-fx-background-color: lightgrey" styleClass="Pane" fx:id="paneMain"/>
     
 
-</HBox>
+</VBox>

@@ -9,6 +9,7 @@ import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
@@ -16,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
@@ -23,7 +25,7 @@ import model.*;
 public class GameWindow {
 
     @FXML
-    HBox hbox;
+    VBox hbox;
     @FXML
     Pane paneMain;
     @FXML
@@ -54,6 +56,7 @@ public class GameWindow {
 
     // MainWindow mainwindow;
     ImageView img = new ImageView(player);
+    ImageView explosion = new ImageView(expImage);
 
     @FXML
     public void initialize(Stage stage, int DL, int LS) {
@@ -75,7 +78,8 @@ public class GameWindow {
 
         // var imgFire = new ImageView(fireImage) ;
         stage.setMaximized(true);
-        stage.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
+        Scene scene = stage.getScene();
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent e) {
                 keyPressed(e);
@@ -114,22 +118,26 @@ public class GameWindow {
             // road.timer();
         }
 
-        // Timeline timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> img.setX(img.getX() + 2)));
-        // timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+       // Timeline sceneTimeline = new Timeline(new KeyFrame(Duration.millis(50), e -> (scene.getX() + 2)));
+       Timeline  sceneTimeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
         //     road.updateXPositionOfObstableAndPlayer();
         //     road.detectCollision();
-        //     // img.setX(img.getX() + 2);
-        // }));
-        // timeline.setCycleCount(Timeline.INDEFINITE);
-        // timeline.play();
+        // img.setX(img.getX() + 2);
+
+        paneMain.setTranslateX(paneMain.getTranslateX() - 1);
+        }));
+        sceneTimeline.setCycleCount(Timeline.INDEFINITE);
+        sceneTimeline.play();
         // //checkCollision();
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(30), e -> {
             // img.setX(img.getX() + 2);
             road.updateXPositionOfObstableAndPlayer();
             //checkCollision();
             if(road.getGameOver() == true){
                 timeline.stop();
+                explosion.relocate(road.getPlayer().getCoordinate().getdoubleX(), road.getPlayer().getCoordinate().getdoubleY());
+                paneMain.getChildren().add(explosion);
                 Alert alert = new Alert(AlertType.INFORMATION, "AHHH");
                 alert.show();
             }
