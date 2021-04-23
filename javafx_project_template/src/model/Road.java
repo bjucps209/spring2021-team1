@@ -24,7 +24,6 @@ public class Road {
 
     Player player;
     Obstacle obstacle;
-    List<Integer> setXList = Arrays.asList(200, 400, 600, 800, 1000, 1200, 1400, 1600);
     List<Integer> setYList = Arrays.asList(100, 300, 500, 300, 100, 500, 300, 100, 300, 500,100, 300, 500, 300, 100, 500, 300, 100, 300, 500,100, 300, 500, 300, 100, 500, 300, 100, 300, 500);
     int NORMALSPEED = 2;
     int FASTSPEED = 4;
@@ -137,7 +136,8 @@ public class Road {
             }
         }
         //player.getCoordinate().setX(player.getCoordinate().getdoubleX() + 2);
-        detectCollision();
+        // if()
+        //     detectCollision();
     }
 
 //========================Lane Action===========================//
@@ -181,6 +181,12 @@ public class Road {
         if(collisionDetection == false)
             // getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY()-50);
             getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX()+80);
+    }
+
+    public void immunity(boolean tf){
+        if(tf = true){
+            collisionDetection = true;
+        }
     }
 
     // ================Serialization=========================//

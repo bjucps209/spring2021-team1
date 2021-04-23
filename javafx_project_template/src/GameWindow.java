@@ -73,11 +73,15 @@ public class GameWindow {
 
     @FXML
     public void initialize(Stage stage, int DL, int LS) {
+<<<<<<< HEAD
         road = new Road(DL, LS);
         lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
         // lblScore.textProperty().bind(Bindings.createStringBinding(
         //     () -> String.valueOf(score.getValue())), );
 
+=======
+        initializingObjects(DL, LS);
+>>>>>>> b4678bfb9fb7c6cb73faf7971d94336837249a7a
         // lblScore.textProperty().bind(road.getPlayer().getPropertyScores());
 
         // mainwindow = new MainWindow();
@@ -178,6 +182,7 @@ public class GameWindow {
             break;
         case ESCAPE:
             cheatMode = true;
+            road.immunity(cheatMode);
         case RIGHT:
             road.setSpeedTrue();
         }
