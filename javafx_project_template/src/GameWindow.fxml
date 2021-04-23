@@ -4,20 +4,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
-<HBox fx:controller="GameWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="GameWindow.css"
+<VBox fx:controller="GameWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="GameWindow.css"
     spacing="10" maxHeight="600"  style="-fx-background-color: black;" maxWidth="1500" alignment="CENTER_RIGHT" fx:id="hbox" onKeyPressed="#keyPressed">
-        
-    <VBox styleClass="VBox" alignment="CENTER_LEFT" maxWidth="200" >
+
+    <Pane prefWidth="1250" prefHeight="600" style="-fx-background-color: lightgrey" styleClass="Pane" fx:id="paneMain">
+    </Pane>
+
+    <HBox styleClass="VBox" alignment="CENTER_LEFT" maxHeight="200" >
         <Label styleClass="VboxLabel" text="Lives"/>
         <Label styleClass="VboxchangingLabel" fx:id="lblLife"/>
-
         <Label styleClass="VboxLabel" text="Scores"/>
         <Label styleClass="VboxchangingLabel" fx:id="lblScore"/>
-    </VBox>
+    </HBox>
 
-    <Pane  style="-fx-background-color: lightgrey" styleClass="Pane" fx:id="paneMain">
-        <ImageView fx:id="imgView"></ImageView>
-    </Pane>
-    
-
-</HBox>
+</VBox>
