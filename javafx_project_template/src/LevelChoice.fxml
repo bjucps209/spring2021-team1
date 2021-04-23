@@ -7,17 +7,17 @@
     spacing="10" prefHeight="700" prefWidth="500" styleClass = "VBox">
     <Label text="Difficulty"/>
     <HBox prefHeight="200" prefWidth="200" styleClass = "HBox">
-        <RadioButton text="Easy" fx:id="DiffBtn">
+        <RadioButton text="Easy" fx:id="BtnEasyDiff">
             <toggleGroup>
                 <ToggleGroup fx:id="group"/>
             </toggleGroup>
         </RadioButton>
-        <RadioButton text="Medium" fx:id="DiffBtn">
+        <RadioButton text="Medium" fx:id="BtnMedDiff">
             <toggleGroup>
                 <fx:reference source="group"/>
                 </toggleGroup>
         </RadioButton>
-        <RadioButton text="Hard" fx:id="DiffBtn">
+        <RadioButton text="Hard" fx:id="BtnHardDiff">
             <toggleGroup>
                 <fx:reference source="group"/>
             </toggleGroup>
@@ -26,17 +26,17 @@
 
     <Label text="Levels"/>
     <HBox prefHeight="200" prefWidth="200" styleClass = "HBox">
-        <RadioButton text="Level 1" fx:id="SeqBtn">
+        <RadioButton text="Level 1" fx:id="BtnOneSeq">
             <toggleGroup>
                 <ToggleGroup fx:id="level"/>
             </toggleGroup>
         </RadioButton>
-        <RadioButton text="Level 2" fx:id="SeqBtn">
+        <RadioButton text="Level 2" fx:id="BtnTwoSeq">
             <toggleGroup>
                 <fx:reference source="level"/>
                 </toggleGroup>
         </RadioButton>
-        <RadioButton text="Level 3" fx:id="SeqBtn">
+        <RadioButton text="Level 3" fx:id="BtnThreeSeq">
             <toggleGroup>
                 <fx:reference source="level"/>
             </toggleGroup>

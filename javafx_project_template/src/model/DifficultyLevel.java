@@ -1,9 +1,9 @@
 package model;
 
 public enum DifficultyLevel{
-    EASY (15),
-    MEDIUM (20),
-    HARD (25);
+    EASY (10),
+    MEDIUM (15),
+    HARD (20);
 
     private final int amtObj;
 
