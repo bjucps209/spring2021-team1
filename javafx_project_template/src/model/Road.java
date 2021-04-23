@@ -117,19 +117,19 @@ public class Road {
     public void createRandomObstacle() {
         int newX = 300;
         for (int i = 0; i < amtObj; i++) {
-            System.out.println(newX);
+            System.out.println(newX + "#" + i);
             Random rand = new Random();
             if(newX >= distance){
                 if(i < amtObj -1)
                     newX = 300;
                 else if(i == amtObj){
-                    newX = newX - 100;
+                    newX -= 100;
                 }
             }
             Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], newX, Lane.getRandomLane().getLaneYcoord());
             usingRB.add(obstacle);
             saveList.add(obstacle);
-            newX = newX + 300;
+            newX = newX + 250;
         }
     }
 

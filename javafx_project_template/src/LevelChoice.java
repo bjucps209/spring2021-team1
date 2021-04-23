@@ -1,92 +1,94 @@
 import java.io.IOException;
-
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.DifficultyLevel;
 import model.LevelSequence;
 
 public class LevelChoice {
     @FXML
-    RadioButton DiffBtn;
+    RadioButton BtnEasyDiff, BtnMedDiff, BtnHardDiff;
     @FXML
-    RadioButton SeqBtn;
-    @FXML 
+    RadioButton BtnOneSeq, BtnTwoSeq, BtnThreeSeq;
+    @FXML
     Button btnBackStart;
     @FXML
-
     ToggleGroup group;
+    @FXML 
+    ToggleGroup level;
 
-    int difficultyLevel;
-    int levelSequence;
+    int selectedDifficultyLevelValue;
+    int selectedLevelSequenceValue;
+    
 
     @FXML
     public void initialize(Stage stage) {
+        BtnEasyDiff.setSelected(true);
+        BtnOneSeq.setSelected(true);
 
         ToggleGroup group = new ToggleGroup(); // https://stackoverflow.com/questions/53467588/how-to-implement-togglegroup-in-fxml-file-using-spring-vs-javafx
-        DiffBtn.setToggleGroup(group);
-        DiffBtn.setToggleGroup(group);
-        DiffBtn.setToggleGroup(group);
+        BtnEasyDiff.setUserData("Easy");
+        BtnMedDiff.setUserData("Medium");
+        BtnHardDiff.setUserData("Hard");
+
+        BtnEasyDiff.setToggleGroup(group);
+        BtnMedDiff.setToggleGroup(group);
+        BtnHardDiff.setToggleGroup(group);
+
         ToggleGroup level = new ToggleGroup();
-        SeqBtn.setToggleGroup(level);
-        SeqBtn.setToggleGroup(level);
-        SeqBtn.setToggleGroup(level);
+        BtnOneSeq.setUserData("Level 1");
+        BtnTwoSeq.setUserData("Level 2");
+        BtnThreeSeq.setUserData("Level 3");
+
+        BtnOneSeq.setToggleGroup(level);
+        BtnTwoSeq.setToggleGroup(level);
+        BtnThreeSeq.setToggleGroup(level);
+
+        //BtnEasyDiff.setSelected(true);
+        //BtnOneSeq.setSelected(true);
 
     }
 
     @FXML
     public int getDiffButton() {
-        if(DiffBtn.isSelected()){
-            String diffBtnText = DiffBtn.getText();
 
-            switch (diffBtnText){
-            case "Easy":
-                difficultyLevel = DifficultyLevel.EASY.getAmtObj();
-            case "Medium":
-                difficultyLevel = DifficultyLevel.MEDIUM.getAmtObj();            
-            case "Hard":
-                difficultyLevel = DifficultyLevel.HARD.getAmtObj();
-            }
-        } else if(!DiffBtn.isSelected()){
-            difficultyLevel = DifficultyLevel.EASY.getAmtObj();
+        if(BtnEasyDiff.isSelected()){
+            selectedDifficultyLevelValue = DifficultyLevel.EASY.getAmtObj();
         }
-        return difficultyLevel;
+        if(BtnMedDiff.isSelected()){
+            selectedDifficultyLevelValue = DifficultyLevel.MEDIUM.getAmtObj();
+        }
+        if(BtnHardDiff.isSelected()){
+            selectedDifficultyLevelValue = DifficultyLevel.HARD.getAmtObj();
+        }
+
+        return selectedDifficultyLevelValue;
     }
 
     @FXML
     public int getLevelButton() {
-        if(DiffBtn.isSelected()){
-            String seqBtnText = SeqBtn.getText();
-            switch (seqBtnText){
-            case "Level 1":
-                levelSequence = LevelSequence.TEN.getDistance();
-            case "Level 2":
-                levelSequence = LevelSequence.TEN.getDistance();
-            case "Level 3":
-                levelSequence = LevelSequence.TEN.getDistance();
+        if(BtnOneSeq.isSelected()){
+            selectedLevelSequenceValue = LevelSequence.TEN.getDistance();
         }
-        } else if(!DiffBtn.isSelected()){
-                levelSequence = LevelSequence.TEN.getDistance();
+        if(BtnTwoSeq.isSelected()){
+            selectedLevelSequenceValue = LevelSequence.TWENTY.getDistance();
         }
-        return levelSequence;
+        if(BtnThreeSeq.isSelected()){
+            selectedLevelSequenceValue = LevelSequence.THIRTY.getDistance();
+        }
+        return selectedLevelSequenceValue;
     }
 
     @FXML
     public void onStartClicked(ActionEvent event) throws IOException {
         int DL = getDiffButton();
         int LS = getLevelButton();
-
 
         var gLoader = new FXMLLoader(getClass().getResource("GameWindow.fxml"));
         var gScene = new Scene(gLoader.load());
