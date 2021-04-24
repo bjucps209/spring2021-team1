@@ -1,18 +1,16 @@
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import javafx.event.ActionEvent;
+
+import javax.swing.Action;
+
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +20,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -79,6 +76,7 @@ public class GameWindow {
         }
         loadRoadImages(paneMain);
         stage.setMaximized(true);
+
         // when the key is released do these actions
         stage.getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
@@ -90,7 +88,6 @@ public class GameWindow {
             @Override
             public void handle(KeyEvent event) {
                 keyPressed(event);
-
             }
 
         });
@@ -98,8 +95,7 @@ public class GameWindow {
 
         timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> {
             // img.setX(img.getX() + 2);
-            road.getPlayer().setScores(road.getPlayer().getScores() + 1);
-            road.updateXPositionOfObstableAndPlayer();
+            road.updateXPositionOfObstable();
             try {
                 showOver(stage);
             } catch (IOException e1) {
@@ -117,8 +113,26 @@ public class GameWindow {
         timelineTwo.setCycleCount(1500);
         timelineTwo.play();
     }
+    //------------------
+    @FXML
+    public ImageView setImage(Image imgs, Obstacle ob, int width) {
+        ImageView obstacleImageView = new ImageView(imgs);
+        obstacleImageView.setFitWidth(width);
+        obstacleImageView.setPreserveRatio(true);
+        obstacleImageView.relocate(ob.getdoubleX(), ob.getdoubleY());
+        paneMain.getChildren().add(obstacleImageView);
+        imgviewList.add(obstacleImageView);
+        obstacleImageView.layoutXProperty().bind(ob.getX());
+        obstacleImageView.layoutYProperty().bind(ob.getY());
+        return obstacleImageView;
 
-    protected void keyReleased(KeyEvent event) {
+    }
+    @FXML
+    void onSaveClicked(ActionEvent event) {
+        road.save();
+    }
+    //------------------------------------------------------------
+    public void keyReleased(KeyEvent event) {
         KeyCode k = event.getCode();
         switch (k) {
         case RIGHT:
@@ -135,11 +149,9 @@ public class GameWindow {
             break;
         }
     }
-
-    public void onSaveClicked() {
-        road.save();
-    }
-
+//------------------------------------------------
+    
+//-------------------------------------------------
     public void keyPressed(KeyEvent event) {
         KeyCode key = event.getCode();
         switch (key) {
@@ -152,33 +164,19 @@ public class GameWindow {
             thread2.start();
             break;
         case SPACE:
-            road.jumpOver();
+            //road.jumpOver();
             // img.setFitWidth();
             break;
         case ESCAPE:
-            cheatMode = true;
-            road.immunity(cheatMode);
+            // cheatMode = true;
+            // road.immunity(cheatMode);
         case RIGHT:
-            road.setSpeedTrue();
+            //road.setSpeedTrue();
         case W:
-            road.immunity(true);
+            //road.immunity(true);
         }
     }
-
-    @FXML
-    public ImageView setImage(Image imgs, Obstacle ob, int width) {
-        ImageView obstacleImageView = new ImageView(imgs);
-        obstacleImageView.setFitWidth(width);
-        obstacleImageView.setPreserveRatio(true);
-        obstacleImageView.relocate(ob.getdoubleX(), ob.getdoubleY());
-        paneMain.getChildren().add(obstacleImageView);
-        imgviewList.add(obstacleImageView);
-        obstacleImageView.layoutXProperty().bind(ob.getX());
-        obstacleImageView.layoutYProperty().bind(ob.getY());
-        return obstacleImageView;
-
-    }
-
+//-------------------------------------------------
     public void bindsAndInitializing(int DL, int LS) {
         road = new Road(DL, LS);
         img.layoutXProperty().bindBidirectional(road.getPlayer().getCoordinate().getX());
@@ -206,8 +204,7 @@ public class GameWindow {
 
     }
 
-        // timeline.setOnFinished(event -> gameOver = true)
-
+        
     public void showOver(Stage stage) throws IOException {
         if (gameOver.get() == true) {
             
@@ -264,7 +261,6 @@ public class GameWindow {
                 obstacleImageView.layoutYProperty().bind(obs.getY());
 
             }
-            // road.timer();
         }
     }
 }

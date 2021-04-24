@@ -1,9 +1,9 @@
 
 public class PlayerHighScore {
-    int score; 
+    double score; 
     String name; 
 
-    PlayerHighScore(String name, int score){
+    PlayerHighScore(String name, double score){
         this.name = name;
         this.score = score;
     }
@@ -23,7 +23,7 @@ public class PlayerHighScore {
     public String getName() {
         return name;
     }
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 

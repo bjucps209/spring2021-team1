@@ -7,8 +7,6 @@ package model;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -33,8 +31,8 @@ public class Road {
     Player player;
     Obstacle obstacle;
 
-    int NORMALSPEED = 2;
-    int FASTSPEED = 4;
+    double NORMALSPEED = 2;
+    double FASTSPEED = 4;
     boolean speed = false;
     boolean crashed = false;
 
@@ -53,7 +51,7 @@ public class Road {
         this.collisionDetection = getPropertyCollisionDetection();
         usingRB = new ArrayList<>();
         createRandomObstacle();
-        this.player = new Player(STATE.MOVING, 10, Lane.B.getLaneYcoord());
+        this.player = new Player(STATE.MOVING, 10,300);
         saveList.add(player);
     }
 
@@ -167,18 +165,17 @@ public class Road {
         }
     }
 
-    public void updateXPositionOfObstableAndPlayer() {
+    public void updateXPositionOfObstable() {
         for (Obstacle i : usingRB) {
             if (speed == false) {
                 i.setX(i.getdoubleX() - NORMALSPEED);
-                // System.out.println(i.getdoubleX() +" obstacle ");
             }
             if(speed == true){
                 i.setX(i.getdoubleX() - FASTSPEED);
             }
         }
         detectCollision();
-        //System.out.println(player.getPropertyScores().get() + "score in model");
+        player.setScores(player.getScores() + .09);
     }
 
 //========================Lane Action===========================//
@@ -186,14 +183,14 @@ public class Road {
         switch ((int) getPlayer().getCoordinate().getdoubleY()) {
         case 500:
             thread = new Thread(() -> {
-            getPlayer().getCoordinate().setY(Lane.B.getLaneYcoord());
-            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
-        });
+            getPlayer().getCoordinate().setY(300);
+            //getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
+            });
             break;
         case 300:
             thread = new Thread(() -> {
-                getPlayer().getCoordinate().setY(Lane.C.getLaneYcoord());
-                getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
+                getPlayer().getCoordinate().setY(100);
+                //getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
             });
             break;
         }
@@ -204,20 +201,21 @@ public class Road {
         switch ((int) getPlayer().getCoordinate().getdoubleY()) {
         case 100:
             thread = new Thread(() -> {
-                getPlayer().getCoordinate().setY(Lane.B.getLaneYcoord());
-                getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
+                getPlayer().getCoordinate().setY(300);
+                //getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
             });
             break;
         case 300:
             thread = new Thread(() -> {
-                getPlayer().getCoordinate().setY(Lane.A.getLaneYcoord());
-                getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
+                getPlayer().getCoordinate().setY(500);
+               // getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
             });
             break;
 
         }
         return thread;
     }
+
     public void jumpOver(){
         if(getCollisionDetection() == false)
             // getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY()-50);
@@ -284,8 +282,6 @@ public class Road {
             System.out.print(e.getStackTrace());
         }
     }
-    // road.getPlayer().setY(road.getPlayer().getCoordinate().getdoubleY()
-    // - 200);
 
 
     public void setUsingRB(ArrayList<Obstacle> listObstacles){
