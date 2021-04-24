@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import model.DifficultyLevel;
 import model.LevelSequence;
+import model.*;
 
 public class LevelChoice {
     @FXML
@@ -27,6 +30,12 @@ public class LevelChoice {
     int selectedDifficultyLevelValue;
     int selectedLevelSequenceValue;
     
+    public ArrayList<Obstacle> levelArray;
+    
+
+    public void setLevelArray(ArrayList<Obstacle> levelArray) {
+        this.levelArray = levelArray;
+    }
 
     @FXML
     public void initialize(Stage stage) {
@@ -53,6 +62,7 @@ public class LevelChoice {
 
         //BtnEasyDiff.setSelected(true);
         //BtnOneSeq.setSelected(true);
+        levelArray = null;
 
     }
 
@@ -98,7 +108,7 @@ public class LevelChoice {
         // mainStage = stage;
         gStage.setScene(gScene);
         gStage.show();
-        window.initialize(gStage, DL, LS);
+        window.initialize(gStage, DL, LS, levelArray); //William's added null for levelbuilder purposes
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     

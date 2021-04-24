@@ -152,6 +152,8 @@ public class Road {
         //player.getCoordinate().setX(player.getCoordinate().getdoubleX() + 2);
         // if()
         detectCollision();
+
+        System.out.println(player.getPropertyScores().get() + "score in model");
     }
 
 //========================Lane Action===========================//
@@ -220,5 +222,24 @@ public class Road {
     }
     // road.getPlayer().setY(road.getPlayer().getCoordinate().getdoubleY()
     // - 200);
+
+
+    public void setUsingRB(ArrayList<Obstacle> listObstacles){
+
+        for (int i = 1; i < saveList.size(); i++) {
+           saveList.remove(i);
+        }
+
+        usingRB = listObstacles;
+
+    }
+
+    public void superJump() {
+    }
+
+
+    public void blowUp() {
+    }
+
 
 }
