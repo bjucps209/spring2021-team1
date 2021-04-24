@@ -137,7 +137,7 @@ public class GameWindow {
             break;
         case SPACE:
             if(collisionDetection.get() == true){ // cant jump because it collides...
-                road.setCollisionDetection(false);
+                // road.setCollisionDetection(false);
             }
             road.jumpOver();
             // img.setFitWidth();

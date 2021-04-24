@@ -149,11 +149,8 @@ public class Road {
                 i.setX(i.getdoubleX() - FASTSPEED);
             }
         }
-        //player.getCoordinate().setX(player.getCoordinate().getdoubleX() + 2);
-        // if()
         detectCollision();
-
-        System.out.println(player.getPropertyScores().get() + "score in model");
+        // System.out.println(player.getPropertyScores().get() + "score in model");
     }
 
 //========================Lane Action===========================//
