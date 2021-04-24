@@ -10,13 +10,13 @@
 
 .VboxLabel{
     -fx-font-family: monospace; 
-    -fx-font-size: 5;
+    -fx-font-size: 50;
     -fx-text-fill: blue;
 }
 
 .VboxchangingLabel{
     -fx-label-padding: 50,50,50,50;
     -fx-font-family: monospace; 
-    -fx-font-size: 5;
+    -fx-font-size: 50;
     -fx-text-fill: cyan;
 }

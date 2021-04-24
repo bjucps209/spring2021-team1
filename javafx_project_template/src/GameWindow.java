@@ -8,6 +8,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -35,6 +37,7 @@ public class GameWindow {
     boolean gameOver;
     boolean cheatMode = false;
     Obstacle obstacle;
+    IntegerProperty score = new SimpleIntegerProperty(); 
     ArrayList<ImageView> imgviewList = new ArrayList<>();
     Road road;
     AllHighScore highScore = AllHighScore.getInstance();
@@ -48,7 +51,7 @@ public class GameWindow {
     final Image carImage = new Image("/images/RoadBlockcar.png");
     final Image player = new Image("/images/player.png");
     final Image roadImage = new Image("/images/road.png");
-    final Image gifRoad = new Image("/images/recording.gif");
+    final Image roadGif = new Image("/images/recording.gif");
     final Image expImage = new Image("/images/explosion.gif");
 
     ImageView imgPlayer = new ImageView(player);
@@ -58,8 +61,21 @@ public class GameWindow {
     // MainWindow mainwindow;
     ImageView img = new ImageView(player);
 
+    public final void setScores(int value){
+        score.set(value);
+    }
+    public IntegerProperty getPropertyScores() {
+        return score;
+    }
+    public final int getScores(){
+        return score.get();
+    }
+
     @FXML
     public void initialize(Stage stage, int DL, int LS) {
+        // lblScore.textProperty().bind(Bindings.createStringBinding(
+        //     () -> String.valueOf(score.getValue())), );
+
         initializingObjects(DL, LS);
         // lblScore.textProperty().bind(road.getPlayer().getPropertyScores());
 
@@ -77,8 +93,6 @@ public class GameWindow {
                 keyPressed(e);
             }
         });
-
-        // Adding Player Image
 
         // img.layoutYProperty().bindBidirectional((road.getPlayer().getY()));
 
@@ -116,6 +130,8 @@ public class GameWindow {
 
         timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> {
             // img.setX(img.getX() + 2);
+            score.set(score.get() + 2);;
+            System.out.println(score.get());
             road.updateXPositionOfObstableAndPlayer();
             checkOver();
             // checkCollision();
@@ -169,6 +185,8 @@ public class GameWindow {
         img.layoutXProperty().bindBidirectional(road.getPlayer().getCoordinate().getX());
         img.layoutYProperty().bindBidirectional(road.getPlayer().getCoordinate().getY());
         lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
+        road.getPlayer().getPropertyScores().bind(score);
+        lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
         lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
     }
 
@@ -185,6 +203,7 @@ public class GameWindow {
         img.relocate(road.getPlayer().getCoordinate().getdoubleX(), road.getPlayer().getCoordinate().getdoubleY());
 
         paneMain.getChildren().add(img);
+
     }
 
     public void checkOver(){
