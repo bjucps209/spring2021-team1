@@ -2,6 +2,7 @@
 
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
@@ -26,27 +27,39 @@ public class LevelBuilder {
     
 
     final Image IMG_CONE = new Image("/images/cone.png");
+    final Image playerImage = new Image("/images/player.png");
     final Image IMG_POT_HOLE = new Image("/images/blackhole.gif");
     final Image IMG_HUMAN = new Image("/images/human.png");
     final Image IMG_TRUCK = new Image("/images/truck.png");
     final Image IMG_CAR = new Image("/images/RoadBlockcar.png");
-    final Image IMG_ROAD = new Image("/images/road.png");
+    final Image roadImage = new Image("/images/road.png");
 
     Random rand = new Random();
     //Pane paneRoad = new Pane();
 
-    void initialize(){
+    void initialize(Scene scene){
         sldLevel.valueProperty().addListener((o, oldVal, newVal) -> onSliderChanged(newVal.intValue()));
        /// Pane paneRoad = new Pane();
-        ScrollPane sp = new ScrollPane();
-        var road = new ImageView(IMG_ROAD);
-        road.setFitHeight(600);
-        road.setFitWidth(2000);
-        paneRoad.getChildren().add(road);
-        sp.setContent(paneRoad);
-        sp.setPannable(true);
+       // ScrollPane sp = new ScrollPane();
 
-        paneHBox.getChildren().add(sp);
+     /*   var imgPlayer = new ImageView(playerImage);
+       imgPlayer.setFitWidth(100);
+      // imgPlayer.setFitHeight(600);
+       imgPlayer.relocate(x, y);
+       paneRoad.getChildren().add(imgPlayer); */
+       
+        var imgRoad = new ImageView(roadImage);
+        imgRoad.setFitWidth(2000);
+        imgRoad.setFitHeight(600);
+        paneRoad.getChildren().add(imgRoad);
+
+
+        
+        
+        //sp.setContent(paneRoad);
+       // sp.setPannable(true);
+
+        //paneHBox.getChildren().add(sp);
         
     }
 
@@ -63,7 +76,7 @@ public class LevelBuilder {
         node.setOnMouseDragged(me -> {
             node.setLayoutX(node.getLayoutX() + me.getX() - dragDelta.x);
             node.setLayoutY(node.getLayoutY() + me.getY() - dragDelta.y);
-            setOnLanes((ImageView) node);
+          //setOnLanes((ImageView) node);
         });
         node.setOnMouseReleased(me -> node.getScene().setCursor(Cursor.HAND) );
 
@@ -73,10 +86,10 @@ public class LevelBuilder {
     @FXML 
     void onPotholeClicked(ActionEvent e) {
         var img = new ImageView(IMG_POT_HOLE);
-        int y = rand.nextInt(500);
-        int x = rand.nextInt(600);
+        int y = 500;
+        int x = rand.nextInt(2000);
         img.relocate(x, y);
-        setOnLanes(img);
+       // setOnLanes(img);
         img.setFitWidth(50);
         img.setFitHeight(50);
         paneRoad.getChildren().add(img);
@@ -88,12 +101,12 @@ public class LevelBuilder {
     @FXML 
     void onConeClicked(ActionEvent e) {
         var img = new ImageView(IMG_CONE);
-        int y = rand.nextInt(300);
+        int y = 300;
         int x = rand.nextInt(300);
         img.setFitWidth(50);
         img.setFitHeight(50);
         img.relocate(x, y);
-        setOnLanes(img);
+       // setOnLanes(img);
         paneRoad.getChildren().add(img);
         makeDraggable(img);
         
@@ -102,12 +115,12 @@ public class LevelBuilder {
     @FXML 
     void onTruckClicked(ActionEvent e) {
         var img = new ImageView(IMG_TRUCK);
-        int y = rand.nextInt(300);
+        int y = 100;
         int x = rand.nextInt(300);
         img.setFitWidth(50);
         img.setFitHeight(50);
         img.relocate(x, y);
-        setOnLanes(img);
+       // setOnLanes(img);
         paneRoad.getChildren().add(img);
         makeDraggable(img);
         
@@ -116,12 +129,12 @@ public class LevelBuilder {
     @FXML
     void onCarClicked(ActionEvent e) {
         var img = new ImageView(IMG_CAR);
-        int y = rand.nextInt(300);
-        int x = rand.nextInt(300);
+        int y = 500;
+        int x = rand.nextInt(2000);
         img.setFitWidth(50);
         img.setFitHeight(50);
         img.relocate(x, y);
-        setOnLanes(img);
+       // setOnLanes(img);
         paneRoad.getChildren().add(img);
         makeDraggable(img);
     
@@ -130,12 +143,12 @@ public class LevelBuilder {
     @FXML
     void onHumanClicked(ActionEvent e) {
         var img = new ImageView(IMG_HUMAN);
-        int y = rand.nextInt(300);
-        int x = rand.nextInt(300); 
+        int y = 300;
+        int x = rand.nextInt(2000); 
         img.setFitWidth(50);
         img.setFitHeight(50);   
         img.relocate(x, y);
-        setOnLanes(img);
+        //setOnLanes(img);
         
         paneRoad.getChildren().add(img);
         makeDraggable(img);
@@ -150,7 +163,7 @@ public class LevelBuilder {
     }
 
     //Check current image pasition and make sure it's on a lane and not  between
-    public void setOnLanes(ImageView img){
+     public void setOnLanes(ImageView img){
         if (img.getY() > 300){
             img.setY(500);
         
@@ -165,8 +178,7 @@ public class LevelBuilder {
             img.setY(100);
 
         }
-    }
-   
+    } 
 
     private class Delta {
         public double x;

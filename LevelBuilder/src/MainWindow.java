@@ -39,10 +39,11 @@ public class MainWindow {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("LevelBuilder.fxml"));
         Scene scene = new Scene(root);
-
+        
         stage.setScene(scene);
         stage.show();
-      //  levelbuiler.initialize(stage);
+        
+     // LevelBuilder levelBuilder.initialize(scene);
         
         
         
