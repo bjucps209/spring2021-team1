@@ -100,26 +100,22 @@ public class GameWindow {
             // img.setX(img.getX() + 2);
             road.getPlayer().setScores(road.getPlayer().getScores() + 1);
             road.updateXPositionOfObstableAndPlayer();
-            checkOver();
-            int sizeOfUsingRB = road.getUsingRB().size();
-            // System.out.println(road.getPlayer().getCoordinate().getdoubleX() +" player");
-            // System.out.println(road.getUsingRB().get(sizeOfUsingRB - 1).getdoubleX() +"
-            // FL");
-        }));
-
-        timeline.setCycleCount(timeline.INDEFINITE);
-        timeline.play();
-
-        Timeline overAllTimeline = new Timeline(new KeyFrame(Duration.millis(9), 
-        e ->{
-            if (gameOver.get() == true) {
-                timeline.stop();
+            try {
+                showOver(stage);
+            } catch (IOException e1) {
+                System.out.println("showOver error");
             }
         }));
+        timeline.setCycleCount(2000);
+        timeline.play();
 
-        overAllTimeline.setCycleCount(timeline.INDEFINITE);
-        overAllTimeline.play();
-       
+        Timeline timelineTwo = new Timeline(new KeyFrame((Duration.seconds(2.5)), e -> {
+            if(road.isCrashed()){
+                road.collisionDealer();
+            }
+        }));
+        timelineTwo.setCycleCount(1500);
+        timelineTwo.play();
     }
 
     protected void keyReleased(KeyEvent event) {
@@ -138,6 +134,10 @@ public class GameWindow {
             road.superJump();
             break;
         }
+    }
+
+    public void onSaveClicked() {
+        road.save();
     }
 
     public void keyPressed(KeyEvent event) {
@@ -206,22 +206,25 @@ public class GameWindow {
 
     }
 
-    public void checkOver() {
-        int sizeOfUsingRB = road.getUsingRB().size();
-        if (road.getUsingRB().get(sizeOfUsingRB - 1).getdoubleX() == 0) {
-            road.setGameOver(true);
+        // timeline.setOnFinished(event -> gameOver = true)
 
+    public void showOver(Stage stage) throws IOException {
+        if (gameOver.get() == true) {
+            
+
+            timeline.stop();
+            Alert alert = new Alert(AlertType.INFORMATION, "Crash");
+            alert.show();
+
+            var gLoader = new FXMLLoader(getClass().getResource("GameOver.fxml"));
+            var gScene = new Scene(gLoader.load());
+            var gStage = new Stage();
+            GameOver window = gLoader.getController();
+            gStage.setScene(gScene);
+            gStage.show();
+
+            // stage.close();
         }
-    }
-
-    public void gameOverwindow(Stage stage) throws IOException {
-        var gLoader = new FXMLLoader(getClass().getResource("GameOver.fxml"));
-        var gScene = new Scene(gLoader.load());
-        var gStage = new Stage();
-        GameOver window = gLoader.getController();
-        gStage.setScene(gScene);
-        gStage.show();
-        stage.close();
     }
     public void setHighScoreWhenGameOver(){
         PlayerHighScore playerHighScore = new PlayerHighScore("I won?", road.getPlayer().getPropertyScores().get());

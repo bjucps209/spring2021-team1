@@ -19,6 +19,8 @@ public class Obstacle extends Coordinate implements Savable {
 
     RoadBlock object;
     int id;
+    boolean crashed;
+
     private static int nextId;
     int obstalceWidth;
     int obstalceHight;
@@ -30,6 +32,7 @@ public class Obstacle extends Coordinate implements Savable {
         this.id = ++nextId;
         obstalceWidth = 75;
         obstalceHight = 75;
+
     }
 
     public RoadBlock getRoadBlock(){
@@ -39,6 +42,14 @@ public class Obstacle extends Coordinate implements Savable {
     public String serialize() {
         String serial = "Obstacle" + "\n" + String.valueOf(getdoubleX()) + "\n" + String.valueOf(getdoubleX()) + "\n" + "END" + "\n";
         return serial;
+    }
+
+    public void deserialize(String toDeserialize) {
+        String[] toParse = toDeserialize.split("\n");
+        setX(Double.parseDouble(toParse[0]));
+        setY(Double.parseDouble(toParse[1]));
+
+
     }
 
     public int getObstalceWidth() {
@@ -51,9 +62,7 @@ public class Obstacle extends Coordinate implements Savable {
     public int getId() {
         return id;
     }
-    public Rectangle2D getBounds() {
-        return new Rectangle2D(getdoubleX(), getdoubleY(), obstalceWidth, obstalceHight);
-    }
+    
 }
 
     

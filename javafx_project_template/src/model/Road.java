@@ -9,6 +9,9 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +36,8 @@ public class Road {
     int NORMALSPEED = 2;
     int FASTSPEED = 4;
     boolean speed = false;
+    boolean crashed = false;
+
 
     // File to load and save from
     // static final File filename = new File("/data.json");
@@ -95,19 +100,34 @@ public class Road {
     public final boolean getCollisionDetection(){
         return collisionDetection.get();
     }
+    public boolean isCrashed() {
+        return crashed;
+    }
 
+
+    public void setCrashed(boolean crashed) {
+        this.crashed = crashed;
+    }
 //=========================Collision Detection===================================//
 
     public void detectCollision() {
         if(getCollisionDetection() == true){
+            System.out.println("ITS WORKING");
         // if player image coordinate equals object object, print collided..
         // System.out.println(playerCoord.getX());
             for (Obstacle i : usingRB) {
                 if (player.getCoordinate().getdoubleY() == i.getdoubleY()) {
                     if (player.getCoordinate().getdoubleX() <= i.getdoubleX() + i.getObstalceWidth()) {
                         if (player.getCoordinate().getdoubleX() + player.getCoordinate().getPlayerWidth() >= i.getdoubleX()) {
-                            // System.out.println(player.getdoubleX() + ", " + i.getdoubleX());
-                            setGameOver(true);
+                            crashed = true;
+                            // // setGameOver(true);
+                            // if(player.getLives() == 1){
+                            //     setGameOver(true);
+                            // }else if (player.getLives() > 1){
+
+                            //     System.out.println(crashed);
+                            //     // setCollisionDetection(false);
+                            //     // player.setLives(player.getLives() - 1);
                         }
                     }
                 }
@@ -115,20 +135,6 @@ public class Road {
         }   
     }
 
-    public void objectOverLap(Obstacle obs) { //For object overlap
-        // if player image coordinate equals object object, print collided..
-        // System.out.println(playerCoord.getX());
-        for (Obstacle i : usingRB) {
-            if (obs.getdoubleY() == i.getdoubleY()) {
-                if (player.getCoordinate().getdoubleX() <= i.getdoubleX() + i.getObstalceWidth()) {
-                    if (player.getCoordinate().getdoubleX() + player.getCoordinate().getPlayerWidth() >= i.getdoubleX()) {
-                        // System.out.println(player.getdoubleX() + ", " + i.getdoubleX());
-                        setGameOver(true);
-                    }
-                }
-            }
-        } 
-    }
 //=========================Anonymous==============================//
 
     public void createRandomObstacle() {
@@ -146,6 +152,19 @@ public class Road {
         usingRB.add(finsihedLine);
         saveList.add(finsihedLine);
         System.out.println(usingRB.get(10).getdoubleX());
+    }
+
+    public void collisionDealer(){
+        crashed = true;
+        if(crashed == true){
+            if(player.getLives() > 1){
+                player.setLives(player.getLives() -1); 
+                crashed = false;
+            } else if( player.getLives() == 1){
+                setGameOver(true);
+            }
+            
+        }
     }
 
     public void updateXPositionOfObstableAndPlayer() {
@@ -232,7 +251,38 @@ public class Road {
     }
 
     public void load() {
-        // Still testing in separate project
+        try(var rd = new BufferedReader(new FileReader("data.txt"))) {
+            String line = rd.readLine();
+            String deser = new String();
+            while (line != null) {
+                switch(line) {
+                    case "Obstacle":
+                        
+                        Obstacle obst = new Obstacle(rb[0], 1, setYList.get(0));
+                        deser += rd.readLine() + "\n";
+                        deser += rd.readLine();
+                        //System.out.println(deser);
+                        String[] inBoundsCheck = deser.split("\n");
+                        //Checks if the object is still on the game screen
+                        if (Double.parseDouble(inBoundsCheck[0]) >= 0 && Double.parseDouble(inBoundsCheck[1]) >= 0) {
+                            obst.deserialize(deser);
+                        }
+                        deser = "";
+                    case "Player":
+                        deser += rd.readLine() + "\n";
+                        deser += rd.readLine();
+                        //System.out.println(deser);
+                        player.deserialize(deser);
+                        deser = "";
+                        
+                } 
+                //System.out.println(line);
+                line = rd.readLine();
+
+            }
+        }catch(Exception e) {
+            System.out.print(e.getStackTrace());
+        }
     }
     // road.getPlayer().setY(road.getPlayer().getCoordinate().getdoubleY()
     // - 200);
