@@ -127,10 +127,10 @@ public class GameWindow {
         return obstacleImageView;
 
     }
-    @FXML
-    void onSaveClicked(ActionEvent event) {
-        road.save();
-    }
+    // @FXML
+    // void onSaveClicked(ActionEvent event) {
+    //     road.save();
+    // }
     //------------------------------------------------------------
     public void keyReleased(KeyEvent event) {
         KeyCode k = event.getCode();
@@ -144,8 +144,10 @@ public class GameWindow {
         case A:
             road.immunity(true);
             break;
-        case W:
-            road.superJump();
+        case SPACE:
+            road.setCollisionDetection(false);
+            road.jumpOverdown();
+            road.setCollisionDetection(true);
             break;
         }
     }
@@ -163,18 +165,21 @@ public class GameWindow {
             Thread thread2 = road.switchDown();
             thread2.start();
             break;
-        case SPACE:
-            //road.jumpOver();
-            // img.setFitWidth();
+        case SPACE:road.setCollisionDetection(false);
+            road.jumpOverUp();
+            road.setCollisionDetection(true);
             break;
+            
         case ESCAPE:
             // cheatMode = true;
             // road.immunity(cheatMode);
         case RIGHT:
             //road.setSpeedTrue();
+            break;
         case W:
-            //road.immunity(true);
+            break;
         }
+
     }
 //-------------------------------------------------
     public void bindsAndInitializing(int DL, int LS) {
@@ -241,7 +246,7 @@ public class GameWindow {
             ImageView image;
 
             if (type == RoadBlock.PEOPLE) {
-                image = setImage(humanImage, obs, 55);
+                image = setImage(humanImage, obs, 50);
             } else if (type == RoadBlock.POTHOLES) {
                 image = setImage(potholeImage, obs, 100);
             } else if (type == RoadBlock.TRUCK) {

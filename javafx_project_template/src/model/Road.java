@@ -216,12 +216,21 @@ public class Road {
         return thread;
     }
 
-    public void jumpOver(){
-        if(getCollisionDetection() == false)
-            // getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY()-50);
-            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX()+80);
-            setCollisionDetection(true);
+    public void jumpOverUp(){
+        if(getCollisionDetection() == false){
+            getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY() - 50);
+            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 100);
+        }
+
     }
+    public void jumpOverdown(){
+        if(getCollisionDetection() == false){
+            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 100);
+            getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY() + 50);
+        }
+
+    }
+    
 
     public void immunity(boolean tf){
         if(tf = true){
@@ -229,11 +238,10 @@ public class Road {
         }
     }
 
-    public void superJump() {
-    }
 
 
     public void blowUp() {
+
     }
 
     // ================Serialization=========================//
