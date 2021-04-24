@@ -9,6 +9,9 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -257,7 +260,33 @@ public class Road {
     }
 
     public void load() {
-        // Still testing in separate project
+        try(var rd = new BufferedReader(new FileReader("data.txt"))) {
+            String line = rd.readLine();
+            String deser = new String();
+            while (line != null) {
+                switch(line) {
+                    case "Obstacle":
+                        Obstacle obst = new Obstacle(rb[0], 1, setYList.get(0));
+                        deser += rd.readLine() + "\n";
+                        deser += rd.readLine();
+                        //System.out.println(deser);
+                        obst.deserialize(deser);
+                        deser = "";
+                    case "Player":
+                        deser += rd.readLine() + "\n";
+                        deser += rd.readLine();
+                        //System.out.println(deser);
+                        player.deserialize(deser);
+                        deser = "";
+                        
+                } 
+                //System.out.println(line);
+                line = rd.readLine();
+
+            }
+        }catch(Exception e) {
+            System.out.print(e.getStackTrace());
+        }
     }
     // road.getPlayer().setY(road.getPlayer().getCoordinate().getdoubleY()
     // - 200);
