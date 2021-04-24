@@ -9,24 +9,25 @@
     <!-- Make the distance to be available for player to choose or make a set distance  -->
     <!-- Either way, have a scroll bar at the bottom so that the user can go move the pane -->
 
-    <HBox fx:id="paneHBox" spacing="40" HBox.hgrow="ALWAYS">
+    <VBox fx:id="paneHBox" spacing="40" VBox.vgrow="ALWAYS">
         
-        <VBox spacing="10">
+       <HBox spacing="10"> 
             <Button style="-fx-color: #318AE0;" onAction="#onPotholeClicked"  prefHeight="100" prefWidth="100" styleClass="leftbutton"><graphic><ImageView  fitHeight="100" fitWidth="100" preserveRatio="True"><image><Image url="@images/blackhole.gif" /></image></ImageView></graphic></Button>
             <Button style="-fx-color: #318AE0;" onAction="#onHumanClicked" prefHeight="100" prefWidth="100" styleClass="leftbutton"><graphic><ImageView  fitHeight="80" fitWidth="80" preserveRatio="True"><image><Image url="@images/human.gif" /></image></ImageView></graphic></Button>
             <Button style="-fx-color: #318AE0;" onAction="#onConeClicked" prefHeight="100" prefWidth="100"  styleClass="leftbutton"><graphic><ImageView  fitHeight="80" fitWidth="80" preserveRatio="True"><image><Image url="@images/cone.png" /></image></ImageView></graphic></Button>
             <Button style="-fx-color: #318AE0;" onAction="#onTruckClicked" prefHeight="100" prefWidth="100"  styleClass="leftbutton"><graphic><ImageView  fitHeight="100" fitWidth="100" preserveRatio="True"><image><Image url="@images/truck.png" /></image></ImageView></graphic></Button>
             <Button style="-fx-color: #318AE0;" onAction="#onCarClicked" prefHeight="100" prefWidth="100"  styleClass="leftbutton"><graphic><ImageView  fitHeight="100" fitWidth="100" preserveRatio="True"><image><Image url="@images/RoadBlockcar.png"/></image></ImageView></graphic></Button>
             <Button style="-fx-color: #318AE0;" onAction="#onDeleteClicked"><graphic><ImageView><image><Image url="@images/delete-icon.png" /></image></ImageView></graphic></Button>
-            <Button style="-fx-color: #318AE0;" ><graphic><ImageView><image><Image url="@images/undo-icon.png" /></image></ImageView></graphic></Button> 
+            <Button text="Right" onAction="#onRightClicked" style="-fx-color: #318AE0;-fx-font: 20px Tahoma;" /> 
+            <Button text="Left" onAction="#onLeftClicked" style="-fx-color: #318AE0;-fx-font: 20px Tahoma;" />
+       </HBox>
+        
+    
+            
+            
+         <Pane fx:id="paneRoad" prefHeight="600" prefWidth="8000" style="-fx-background-color: lightgray" /> 
+    
         </VBox>
-        
-           
-            
-            
-         <Pane fx:id="paneRoad" prefHeight="600" prefWidth="2000" style="-fx-background-color: lightgray" /> 
-        
-        </HBox>
 
    <Button text=" Start Level" />
 </VBox>

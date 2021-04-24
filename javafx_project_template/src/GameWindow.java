@@ -75,7 +75,7 @@ public class GameWindow {
 
     @FXML
     public void initialize(Stage stage, int DL, int LS) {
-        initializingObjects(DL, LS);
+       // initializingObjects(DL, LS);
         // lblScore.textProperty().bind(road.getPlayer().getPropertyScores());
 
         // mainwindow = new MainWindow();
@@ -176,6 +176,7 @@ public class GameWindow {
         case SPACE: // cant jump because it collides...
             road.setCollisionDetection(false);
             road.jumpOver();
+           // img.setFitWidth();
             break;
         case ESCAPE:
             cheatMode = true;
