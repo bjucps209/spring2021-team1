@@ -23,7 +23,6 @@ public class Road {
     
     BooleanProperty gameOver = new SimpleBooleanProperty();
     BooleanProperty collisionDetection = new SimpleBooleanProperty();
-    IntegerProperty score = new SimpleIntegerProperty();
 
     Thread thread;
     int amtObj;
@@ -97,17 +96,6 @@ public class Road {
         return collisionDetection.get();
     }
 
-    public final void setScores(int value){
-        score.set(value);
-    }
-
-    public IntegerProperty getPropertyScores() {
-        return score;
-    }
-
-    public final int getScores() {
-        return score.get();
-    }
 //=========================Collision Detection===================================//
 
     public void detectCollision() {
@@ -146,7 +134,7 @@ public class Road {
     public void createRandomObstacle() {
         int newX = 300;
         for (int i = 0; i < amtObj; i++) {
-            System.out.println(newX + "#" + i);
+            //System.out.println(newX + "#" + i);
             Random rand = new Random();
             Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], newX, setYList.get(i));
             usingRB.add(obstacle);
@@ -157,6 +145,7 @@ public class Road {
         Obstacle finsihedLine = new Obstacle(rb[5], (newX + 300), 0);  
         usingRB.add(finsihedLine);
         saveList.add(finsihedLine);
+        System.out.println(usingRB.get(10).getdoubleX());
     }
 
     public void updateXPositionOfObstableAndPlayer() {
@@ -170,7 +159,7 @@ public class Road {
             }
         }
         detectCollision();
-        // System.out.println(player.getPropertyScores().get() + "score in model");
+        //System.out.println(player.getPropertyScores().get() + "score in model");
     }
 
 //========================Lane Action===========================//
