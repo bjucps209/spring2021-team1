@@ -272,6 +272,7 @@ public class Road {
                         deser += rd.readLine();
                         //System.out.println(deser);
                         String[] inBoundsCheck = deser.split("\n");
+                        //Checks if the object is still on the game screen
                         if (Double.parseDouble(inBoundsCheck[0]) >= 0 && Double.parseDouble(inBoundsCheck[1]) >= 0) {
                             obst.deserialize(deser);
                         }
