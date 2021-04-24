@@ -83,16 +83,22 @@ public class GameWindow {
         timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> {
             road.setScores(road.getScores() + 2);
             road.updateXPositionOfObstableAndPlayer();
-            checkOver();
             try {
                 showOver(stage);
             } catch (IOException e1) {
                 System.out.println("showOver error");
             }
         }));
-        timeline.setCycleCount(1000);
+        timeline.setCycleCount(2000);
         timeline.play();
 
+        Timeline timelineTwo = new Timeline(new KeyFrame((Duration.seconds(2.5)), e -> {
+            if(road.isCrashed()){
+                road.collisionDealer();
+            }
+        }));
+        timelineTwo.setCycleCount(1500);
+        timelineTwo.play();
     }
 
     void StageSetKeyPressed(Stage s) {
@@ -154,7 +160,6 @@ public class GameWindow {
         collisionDetection.bind(road.getPropertyCollisionDetection());
         lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
         road.getPlayer().getPropertyScores().bind(road.getPropertyScores());
-        lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
         lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
         
     }
@@ -175,16 +180,16 @@ public class GameWindow {
 
     }
 
-    public void checkOver(){
-        if(timeline.getCycleCount() == 0){
-            road.setGameOver(true);
-        }
-
-        // timeline.setOnFinished(event -> gameOver = true);
-    }
+        // timeline.setOnFinished(event -> gameOver = true)
 
     public void showOver(Stage stage) throws IOException {
-        if (road.getGameOver() == true) {
+        if (gameOver.get() == true) {
+            
+
+            timeline.stop();
+            Alert alert = new Alert(AlertType.INFORMATION, "Crash");
+            alert.show();
+
             var gLoader = new FXMLLoader(getClass().getResource("GameOver.fxml"));
             var gScene = new Scene(gLoader.load());
             var gStage = new Stage();
@@ -192,7 +197,7 @@ public class GameWindow {
             gStage.setScene(gScene);
             gStage.show();
 
-            stage.close();
+            // stage.close();
         }
     }
 

@@ -19,6 +19,8 @@ public class Obstacle extends Coordinate implements Savable {
 
     RoadBlock object;
     int id;
+    boolean crashed;
+
     private static int nextId;
     final int obstalceWidth;
     final int obstalceHight;
@@ -30,6 +32,7 @@ public class Obstacle extends Coordinate implements Savable {
         this.id = ++nextId;
         obstalceWidth = 75;
         obstalceHight = 75;
+
     }
 
     public RoadBlock getRoadBlock(){
@@ -48,9 +51,7 @@ public class Obstacle extends Coordinate implements Savable {
     public int getId() {
         return id;
     }
-    public Rectangle2D getBounds() {
-        return new Rectangle2D(getdoubleX(), getdoubleY(), obstalceWidth, obstalceHight);
-    }
+    
 }
 
     
