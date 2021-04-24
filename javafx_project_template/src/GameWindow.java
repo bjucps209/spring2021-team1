@@ -96,7 +96,7 @@ public class GameWindow {
             // img.setX(img.getX() + 2);
             score.set(score.get() + 2);
             ;
-            //System.out.println(score.get());  :DON'T FORGET TO UNCOMMENT - WILLIAM"S
+            //System.out.println(score.get());  :DON'T FORGET TO UNCOMMENT
             road.updateXPositionOfObstableAndPlayer();
             checkOver();
             // checkCollision();

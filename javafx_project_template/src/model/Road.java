@@ -138,6 +138,8 @@ public class Road {
         //player.getCoordinate().setX(player.getCoordinate().getdoubleX() + 2);
         // if()
         detectCollision();
+
+        System.out.println(player.getPropertyScores().get() + "score in model");
     }
 
 //========================Lane Action===========================//
@@ -217,5 +219,13 @@ public class Road {
         usingRB = listObstacles;
 
     }
+
+    public void superJump() {
+    }
+
+
+    public void blowUp() {
+    }
+
 
 }
