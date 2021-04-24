@@ -1,5 +1,7 @@
 
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputFilter.Status;
 import java.util.ArrayList;
 
 import javafx.scene.input.KeyCode;
@@ -10,6 +12,7 @@ import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -37,7 +40,7 @@ public class GameWindow {
     boolean gameOver;
     boolean cheatMode = false;
     Obstacle obstacle;
-    IntegerProperty score = new SimpleIntegerProperty(); 
+    IntegerProperty scoreView = new SimpleIntegerProperty();
     ArrayList<ImageView> imgviewList = new ArrayList<>();
     Road road;
     AllHighScore highScore = AllHighScore.getInstance();
@@ -61,20 +64,22 @@ public class GameWindow {
     // MainWindow mainwindow;
     ImageView img = new ImageView(player);
 
-    public final void setScores(int value){
-        score.set(value);
+    public final void setScores(int value) {
+        scoreView.set(value);
     }
-    public IntegerProperty getPropertyScores() {
-        return score;
+
+    public IntegerProperty getPropertyScoreView() {
+        return scoreView;
     }
-    public final int getScores(){
-        return score.get();
+
+    public final int getScores() {
+        return scoreView.get();
     }
 
     @FXML
-    public void initialize(Stage stage, int DL, int LS) {
+    public void initialize(Stage stage, int DL, int LS) throws IOException {
         // lblScore.textProperty().bind(Bindings.createStringBinding(
-        //     () -> String.valueOf(score.getValue())), );
+        // () -> String.valueOf(score.getValue())), );
 
         initializingObjects(DL, LS);
         // lblScore.textProperty().bind(road.getPlayer().getPropertyScores());
@@ -87,11 +92,20 @@ public class GameWindow {
 
         // var imgFire = new ImageView(fireImage) ;
         stage.setMaximized(true);
-        stage.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
+        // when the key is released do these actions
+        stage.getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent e) {
-                keyPressed(e);
+                keyReleased(e);
             }
+        });
+        stage.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                keyPressed(event);
+
+            }
+
         });
 
         // img.layoutYProperty().bindBidirectional((road.getPlayer().getY()));
@@ -104,15 +118,15 @@ public class GameWindow {
             ImageView image;
 
             if (type == RoadBlock.PEOPLE) {
-                image = setImage(humanImage, obs, 55);
+                image = setImage(humanImage, obs, 50);
             } else if (type == RoadBlock.POTHOLES) {
-                image = setImage(potholeImage, obs, 100);
+                image = setImage(potholeImage, obs, 90);
             } else if (type == RoadBlock.TRUCK) {
-                image = setImage(truckImage, obs, 150);
-            } else if (type == RoadBlock.CONES ) {
-                image = setImage(coneImage, obs, 50);
+                image = setImage(truckImage, obs, 125);
+            } else if (type == RoadBlock.CONES) {
+                image = setImage(coneImage, obs, 45);
             } else if (type == RoadBlock.CARS) {
-                image = setImage(carImage, obs, 90);
+                image = setImage(carImage, obs, 80);
             }
             // road.timer();
         }
@@ -128,18 +142,50 @@ public class GameWindow {
         // timeline.play();
         // //checkCollision();
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(20), e -> {
             // img.setX(img.getX() + 2);
-            score.set(score.get() + 2);;
-            System.out.println(score.get());
+            scoreView.set(scoreView.get() + 1);
+            ;
+            System.out.println(scoreView.get());
             road.updateXPositionOfObstableAndPlayer();
             checkOver();
             // checkCollision();
-            showOver();
+            try {
+                showOver();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }));
-        timeline.setCycleCount(1000);
+        timeline.setCycleCount(timeline.INDEFINITE);
         timeline.play();
+        if(timeline.getStatus().equals(javafx.animation.Animation.Status.STOPPED)){
+            PlayerHighScore playerHighScore = new PlayerHighScore("I won?", road.getPlayer().getPropertyScores().get());
+            highScore.addPlayer(playerHighScore);
+            highScore.addToTxtFile();
+        };
+    }
 
+    public void onFinishedGame(ActionEvent event) throws IOException{
+        
+        
+    }
+
+    protected void keyReleased(KeyEvent event) {
+        KeyCode k = event.getCode();
+        switch (k) {
+        case RIGHT:
+            road.setSpeedFalse();
+            break;
+        case D:
+            road.blowUp();
+            break;
+        case A:
+            road.immunity(true);
+            break;
+        case W:
+            road.superJump();
+            break;
+        }
     }
 
     public void keyPressed(KeyEvent event) {
@@ -148,10 +194,12 @@ public class GameWindow {
         case UP:
             Thread thread = road.switchUp();
             thread.start();
+            // road.switchUp();
             break;
         case DOWN: // down one lane
             Thread thread2 = road.switchDown();
             thread2.start();
+            // road.switchDown();
             break;
         case SPACE: // cant jump because it collides...
             road.setCollisionDetection(false);
@@ -160,9 +208,12 @@ public class GameWindow {
         case ESCAPE:
             cheatMode = true;
             road.immunity(cheatMode);
+            break;
         case RIGHT:
             road.setSpeedTrue();
+            break;
         }
+
     }
 
     @FXML
@@ -180,17 +231,23 @@ public class GameWindow {
 
     }
 
-    public void initializingObjects(int DL, int LS){
+    public void initializingObjects(int DL, int LS) {
         road = new Road(DL, LS);
+        IntegerProperty intPropLives = road.getPlayer().getPropertyLives();
         img.layoutXProperty().bindBidirectional(road.getPlayer().getCoordinate().getX());
         img.layoutYProperty().bindBidirectional(road.getPlayer().getCoordinate().getY());
-        lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
-        road.getPlayer().getPropertyScores().bind(score);
-        lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
-        lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
+        // bind the life lbl to the life in model
+        lblLife.textProperty().bind(Bindings.createStringBinding(
+                () -> String.valueOf(road.getPlayer().getPropertyLives().get()), road.getPlayer().getPropertyLives()));
+        // bind the score made by the timer to the model
+        road.getPlayer().getPropertyScores().bind(getPropertyScoreView());
+        // bind the score made by the timer to gui
+        lblScore.textProperty()
+                .bind(Bindings.createStringBinding(() -> String.valueOf(scoreView.get()), getPropertyScoreView()));
+
     }
 
-    public void loadRoadImages(){
+    public void loadRoadImages() {
         ImageView imgView = new ImageView();
         imgView.setImage(roadImage);
         imgView.setFitWidth(1250);
@@ -206,19 +263,23 @@ public class GameWindow {
 
     }
 
-    public void checkOver(){
-        if(timeline.getCycleCount() == 0){
+    public void checkOver() {
+        if (timeline.getCycleCount() == 0) {
             gameOver = true;
         }
-        
-        // timeline.setOnFinished(event -> gameOver = true);
     }
 
-    public void showOver(){
+    public void showOver() throws IOException {
         if (road.getGameOver() == true) {
             timeline.stop();
-            Alert alert = new Alert(AlertType.INFORMATION, "AHHH");
+            if(timeline.getStatus().equals(javafx.animation.Animation.Status.STOPPED)){
+                PlayerHighScore playerHighScore = new PlayerHighScore("I crashed", road.getPlayer().getPropertyScores().get());
+                highScore.addPlayer(playerHighScore);
+                highScore.addToTxtFile();
+            };
+            Alert alert = new Alert(AlertType.INFORMATION, "GAME OVER!!! Final score: " + getScores());
             alert.show();
         }
     }
+
 }
