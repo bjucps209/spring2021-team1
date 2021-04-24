@@ -2,7 +2,7 @@
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import javafx.event.ActionEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.animation.KeyFrame;
@@ -43,7 +43,7 @@ public class GameWindow {
     BooleanProperty collisionDetection = new SimpleBooleanProperty();
     boolean cheatMode = false;
     Obstacle obstacle;
-    IntegerProperty score = new SimpleIntegerProperty();
+    
     ArrayList<ImageView> imgviewList = new ArrayList<>();
     Road road;
     AllHighScore highScore = AllHighScore.getInstance();
@@ -68,42 +68,24 @@ public class GameWindow {
     ImageView img = new ImageView(player);
     ImageView explosion = new ImageView(expImage);
 
-    public final void setScores(int value){
-        score.set(value);
-    }
-
-    public IntegerProperty getPropertyScores() {
-        return score;
-    }
-
-    public final int getScores() {
-        return score.get();
-    }
-
     @FXML
     public void initialize(Stage stage, int DL, int LS, ArrayList<Obstacle> obstacles) {
 
         bindsAndInitializing(DL, LS);
-
         //William's levelbuilder purposes
         if(obstacles != null){
             road.setUsingRB(obstacles);
         }
-
         loadRoadImages(paneMain);
-
         StageSetKeyPressed(stage);
-
         setRoad(road);
 
         timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> {
-            // img.setX(img.getX() + 2);
-            score.set(score.get() + 2);
+            road.setScores(road.getScores() + 2);
             road.updateXPositionOfObstableAndPlayer();
             checkOver();
-            // checkCollision();
             try {
-                showOver();
+                showOver(stage);
             } catch (IOException e1) {
                 System.out.println("showOver error");
             }
@@ -136,9 +118,6 @@ public class GameWindow {
             thread2.start();
             break;
         case SPACE:
-            if(collisionDetection.get() == true){ // cant jump because it collides...
-                // road.setCollisionDetection(false);
-            }
             road.jumpOver();
             // img.setFitWidth();
             break;
@@ -174,7 +153,7 @@ public class GameWindow {
         gameOver.bind(road.getPropertyGameOver());
         collisionDetection.bind(road.getPropertyCollisionDetection());
         lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
-        road.getPlayer().getPropertyScores().bind(score);
+        road.getPlayer().getPropertyScores().bind(road.getPropertyScores());
         lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
         lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
         
@@ -204,7 +183,7 @@ public class GameWindow {
         // timeline.setOnFinished(event -> gameOver = true);
     }
 
-    public void showOver() throws IOException {
+    public void showOver(Stage stage) throws IOException {
         if (road.getGameOver() == true) {
             var gLoader = new FXMLLoader(getClass().getResource("GameOver.fxml"));
             var gScene = new Scene(gLoader.load());
@@ -212,6 +191,8 @@ public class GameWindow {
             GameOver window = gLoader.getController();
             gStage.setScene(gScene);
             gStage.show();
+
+            stage.close();
         }
     }
 
