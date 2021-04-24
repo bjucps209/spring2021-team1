@@ -7,6 +7,8 @@ package model;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +23,8 @@ public class Road {
     
     BooleanProperty gameOver = new SimpleBooleanProperty();
     BooleanProperty collisionDetection = new SimpleBooleanProperty();
+    IntegerProperty score = new SimpleIntegerProperty();
+
     Thread thread;
     int amtObj;
     int distance ;
@@ -92,6 +96,18 @@ public class Road {
     public final boolean getCollisionDetection(){
         return collisionDetection.get();
     }
+
+    public final void setScores(int value){
+        score.set(value);
+    }
+
+    public IntegerProperty getPropertyScores() {
+        return score;
+    }
+
+    public final int getScores() {
+        return score.get();
+    }
 //=========================Collision Detection===================================//
 
     public void detectCollision() {
@@ -153,11 +169,8 @@ public class Road {
                 i.setX(i.getdoubleX() - FASTSPEED);
             }
         }
-        //player.getCoordinate().setX(player.getCoordinate().getdoubleX() + 2);
-        // if()
         detectCollision();
-
-        System.out.println(player.getPropertyScores().get() + "score in model");
+        // System.out.println(player.getPropertyScores().get() + "score in model");
     }
 
 //========================Lane Action===========================//
