@@ -38,7 +38,7 @@ public class GameWindow {
     boolean gameOver;
     boolean cheatMode = false;
     Obstacle obstacle;
-    IntegerProperty score = new SimpleIntegerProperty(); 
+    IntegerProperty score = new SimpleIntegerProperty();
     ArrayList<ImageView> imgviewList = new ArrayList<>();
     Road road;
     AllHighScore highScore = AllHighScore.getInstance();
@@ -63,103 +63,59 @@ public class GameWindow {
     ImageView img = new ImageView(player);
     ImageView explosion = new ImageView(expImage);
 
-    public final void setScores(int value){
+    public final void setScores(int value) {
         score.set(value);
     }
+
     public IntegerProperty getPropertyScores() {
         return score;
     }
-    public final int getScores(){
+
+    public final int getScores() {
         return score.get();
     }
 
     @FXML
-    public void initialize(Stage stage, int DL, int LS) {
-       // initializingObjects(DL, LS);
-        // lblScore.textProperty().bind(road.getPlayer().getPropertyScores());
+    public void initialize(Stage stage, int DL, int LS, ArrayList<Obstacle> obstacles) {
 
-        // mainwindow = new MainWindow();
-        // mainwindow.mainStage.getScene().setOnKeyPressed( e -> keyPressed(e) );
+        initializingObjects(DL, LS);
 
-        // Road picture
-        ImageView imgView = new ImageView();
-        imgView.setImage(roadImage);
-        imgView.setFitWidth(1250);
-        imgView.setFitHeight(600);
+        //William's levelbuilder purposes
+        if(obstacles != null){
+            road.setUsingRB(obstacles);
+        }
 
-        paneMain.getChildren().add(imgView);
 
-        // var imgFire = new ImageView(fireImage) ;
-        stage.setMaximized(true);
-        Scene scene = stage.getScene();
+        loadRoadImages(paneMain);
+
+        StageSetKeyPressed(stage);
+
+        setRoad(road);
+
+        timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> {
+            // img.setX(img.getX() + 2);
+            score.set(score.get() + 2);
+            ;
+            //System.out.println(score.get());  :DON'T FORGET TO UNCOMMENT - WILLIAM"S
+            road.updateXPositionOfObstableAndPlayer();
+            checkOver();
+            // checkCollision();
+            showOver();
+        }));
+        timeline.setCycleCount(1000);
+        timeline.play();
+
+    }
+
+    void StageSetKeyPressed(Stage s) {
+        s.setMaximized(true);
+        Scene scene = s.getScene();
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent e) {
                 keyPressed(e);
             }
         });
-
-        // Adding Player Image
-        img.setPreserveRatio(true);
-        img.setFitWidth(100);
-        img.relocate(road.getPlayer().getCoordinate().getdoubleX(), road.getPlayer().getCoordinate().getdoubleY());
-        paneMain.getChildren().add(img);
-
-        img.layoutXProperty().bindBidirectional(road.getPlayer().getCoordinate().getX());
-        img.layoutYProperty().bindBidirectional(road.getPlayer().getCoordinate().getY());
-        road.getPlayer().getPropertyScores().bind(score);
-
-        // img.layoutYProperty().bindBidirectional((road.getPlayer().getY()));
-
-        // Road.getInstance().setObserver(this);
-        for (int i = 0; i < road.getUsingRB().size(); i++) {
-            Obstacle obs = road.getUsingRB().get(i);
-            RoadBlock type = road.getObjectType(road.getUsingRB().get(i));
-
-            ImageView image;
-
-            if (type == RoadBlock.PEOPLE) {
-                image = setImage(humanImage, obs);
-            } else if (type == RoadBlock.POTHOLES) {
-                image = setImage(potholeImage, obs);
-            } else if (type == RoadBlock.TRUCK) {
-                image = setImage(truckImage, obs);
-            } else if (type == RoadBlock.CONES) {
-                image = setImage(coneImage, obs);
-            } else if (type == RoadBlock.CARS) {
-                image = setImage(carImage, obs);
-            }
-            // road.timer();
-        }
-
-        // Timeline timeline = new Timeline(new KeyFrame(Duration.millis(9), e ->
-        // img.setX(img.getX() + 2)));
-        // timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
-        // road.updateXPositionOfObstableAndPlayer();
-        // road.detectCollision();
-        // // img.setX(img.getX() + 2);
-        // }));
-        // timeline.setCycleCount(Timeline.INDEFINITE);
-        // timeline.play();
-        // //checkCollision();
-
-        timeline = new Timeline(new KeyFrame(Duration.millis(30), e -> {
-            // img.setX(img.getX() + 2);
-            score.set(score.get() + 2);;
-            System.out.println(score.get());
-            road.updateXPositionOfObstableAndPlayer();
-            // checkCollision();
-            if (road.getGameOver() == true) {
-                timeline.stop();
-                explosion.relocate(road.getPlayer().getCoordinate().getdoubleX(), road.getPlayer().getCoordinate().getdoubleY());
-                paneMain.getChildren().add(explosion);
-                Alert alert = new Alert(AlertType.INFORMATION, "AHHH");
-                alert.show();
-            }
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-
     }
 
     public void keyPressed(KeyEvent event) {
@@ -176,7 +132,7 @@ public class GameWindow {
         case SPACE: // cant jump because it collides...
             road.setCollisionDetection(false);
             road.jumpOver();
-           // img.setFitWidth();
+            // img.setFitWidth();
             break;
         case ESCAPE:
             cheatMode = true;
@@ -187,11 +143,11 @@ public class GameWindow {
     }
 
     @FXML
-    public ImageView setImage(Image imgs, Obstacle ob) {
+    public ImageView setImage(Image imgs, Obstacle ob, int width) {
         ImageView obstacleImageView = new ImageView(imgs);
         obstacleImageView.setPreserveRatio(true);
-        obstacleImageView.setFitWidth(50);
-        obstacleImageView.setFitHeight(50);
+        obstacleImageView.setFitWidth(width);
+        obstacleImageView.setPreserveRatio(true);
         obstacleImageView.relocate(ob.getdoubleX(), ob.getdoubleY());
         paneMain.getChildren().add(obstacleImageView);
         imgviewList.add(obstacleImageView);
@@ -201,5 +157,96 @@ public class GameWindow {
 
     }
 
-    
+    void setRoad(Road r) {
+        for (int i = 0; i < r.getUsingRB().size(); i++) {
+            Obstacle obs = r.getUsingRB().get(i);
+            RoadBlock type = r.getObjectType(r.getUsingRB().get(i));
+
+            ImageView image;
+
+            if (type == RoadBlock.PEOPLE) {
+                image = setImage(humanImage, obs, 55);
+            } else if (type == RoadBlock.POTHOLES) {
+                image = setImage(potholeImage, obs, 100);
+            } else if (type == RoadBlock.TRUCK) {
+                image = setImage(truckImage, obs, 150);
+            } else if (type == RoadBlock.CONES) {
+                image = setImage(coneImage, obs, 50);
+            } else if (type == RoadBlock.CARS) {
+                image = setImage(carImage, obs, 90);
+            }
+            // road.timer();
+        }
+    }
+
+    public void initializingObjects(int DL, int LS) {
+        road = new Road(DL, LS);
+        img.layoutXProperty().bindBidirectional(road.getPlayer().getCoordinate().getX());
+        img.layoutYProperty().bindBidirectional(road.getPlayer().getCoordinate().getY());
+        lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
+        road.getPlayer().getPropertyScores().bind(score);
+        lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
+        lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
+    }
+
+    public void loadRoadImages(Pane pane) {
+        ImageView imgView = new ImageView();
+        imgView.setImage(roadImage);
+        imgView.setFitWidth(1250);
+        imgView.setFitHeight(600);
+
+        pane.getChildren().add(imgView);
+
+        img.setPreserveRatio(true);
+        img.setFitWidth(100);
+        img.relocate(road.getPlayer().getCoordinate().getdoubleX(), road.getPlayer().getCoordinate().getdoubleY());
+
+        pane.getChildren().add(img);
+
+    }
+
+    public void checkOver() {
+        if (timeline.getCycleCount() == 0) {
+            gameOver = true;
+        }
+
+        // timeline.setOnFinished(event -> gameOver = true);
+    }
+
+    public void showOver() {
+        if (road.getGameOver() == true) {
+            timeline.stop();
+            Alert alert = new Alert(AlertType.INFORMATION, "AHHH");
+            alert.show();
+        }
+    }
 }
+
+// COMMENTED CODE
+
+// lblScore.textProperty().bind(Bindings.createStringBinding(
+// () -> String.valueOf(score.getValue())), );
+
+// lblScore.textProperty().bind(road.getPlayer().getPropertyScores());
+
+// mainwindow = new MainWindow();
+// mainwindow.mainStage.getScene().setOnKeyPressed( e -> keyPressed(e) );
+
+// Road picture
+
+// var imgFire = new ImageView(fireImage) ;
+
+// img.layoutYProperty().bindBidirectional((road.getPlayer().getY()));
+
+// Road.getInstance().setObserver(this);
+
+// Timeline timeline = new Timeline(new KeyFrame(Duration.millis(9), e ->
+// img.setX(img.getX() + 2)));
+// timeline = new Timeline(new KeyFrame(Duration.millis(50), e -> {
+// road.updateXPositionOfObstableAndPlayer();
+// road.detectCollision();
+// // img.setX(img.getX() + 2);
+// }));
+// timeline.setCycleCount(Timeline.INDEFINITE);
+// timeline.play();
+// //checkCollision();

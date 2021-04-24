@@ -29,5 +29,5 @@
     
         </VBox>
 
-   <Button text=" Start Level" />
+   <Button text=" Start Level" onAction="#onStartLevelClicked"/>
 </VBox>

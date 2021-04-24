@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.Action;
@@ -20,11 +21,13 @@ import javax.swing.Action;
 import javafx.beans.property.IntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 
 public class LevelBuilder {
 
     @FXML
     Pane paneRoad;
+
     @FXML
     VBox paneHBox;
     IntegerProperty roadLength;
@@ -39,6 +42,7 @@ public class LevelBuilder {
 
     Random rand = new Random();
     Node oldNode;
+    ArrayList<Obstacle> obslist = new ArrayList<Obstacle>();
 
     // Pane paneRoad = new Pane();
     @FXML
@@ -48,12 +52,12 @@ public class LevelBuilder {
         // ScrollPane sp = new ScrollPane();
         // Road road = new Road(20, 30);
 
-        var imgPlayer = new ImageView(playerImage);
+       /*  var imgPlayer = new ImageView(playerImage);
         imgPlayer.setFitWidth(100);
         // imgPlayer.setFitHeight(600);
         imgPlayer.relocate(50, 300);
         paneRoad.getChildren().add(imgPlayer);
-
+ */
         var imgRoad = new ImageView(roadImage);
         imgRoad.setFitWidth(2000);
         imgRoad.setFitHeight(600);
@@ -203,24 +207,85 @@ public class LevelBuilder {
 
     @FXML
     void onDeleteClicked(ActionEvent e) {
-
+        if(oldNode != null){
+        int index = paneRoad.getChildren().indexOf(oldNode);
         paneRoad.getChildren().remove(oldNode);
+        obslist.remove(index);
         oldNode = null;
-
+        }
     }
 
     @FXML
     void onLeftClicked(ActionEvent e){
+        for (int i = 0; i < paneRoad.getChildren().size(); i++) {
+            ImageView img = (ImageView) paneRoad.getChildren().get(i);
+            img.setTranslateX(img.getTranslateX() - 20);
+        }
+       
+    }
 
-        paneRoad.setTranslateX(paneRoad.getTranslateX() - 20);
+
+    @FXML
+    void onStartLevelClicked(ActionEvent e) throws IOException{
+        for (int i = 0; i < paneRoad.getChildren().size(); i++) {
+            Obstacle obs = null;
+            ImageView img = (ImageView) paneRoad.getChildren().get(i);
+            Image imgs = img.getImage();
+            System.out.println(img.getLayoutX() + ", " + img.getLayoutY());
+            int x = (int)img.getLayoutX();
+            int y = (int) img.getLayoutY();
+            if( imgs == IMG_CONE){
+                obs = new Obstacle(RoadBlock.CONES, x, y);
+            }
+            else if ( imgs == IMG_CAR){
+                obs = new Obstacle(RoadBlock.CARS, x, y);
+            }
+            else if ( imgs == IMG_HUMAN){
+                obs = new Obstacle(RoadBlock.PEOPLE, x, y);
+            }
+            else if ( imgs == IMG_POT_HOLE){
+                obs = new Obstacle(RoadBlock.POTHOLES, x, y);
+            }
+            else if ( imgs == IMG_TRUCK){
+                obs = new Obstacle(RoadBlock.TRUCK, x, y);
+            }
+
+            if(obs != null){
+                obslist.add(obs);
+            }
+        }
+
+
+        var loader = new FXMLLoader(getClass().getResource("LevelChoice.fxml"));
+        var scene = new Scene(loader.load());
+        var stage = new Stage();
+        LevelChoice window = loader.getController();
+        // mainStage = stage;
+        stage.setScene(scene);
+        stage.show();
+        window.initialize(stage);
+        window.setLevelArray(obslist);
+        Stage mStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        mStage.close();
     }
 
     @FXML
     void onRightClicked(ActionEvent e){
-        paneRoad.setTranslateX(paneRoad.getTranslateX() + 20);
+        for (int i = 0; i < paneRoad.getChildren().size(); i++) {
+            ImageView img = (ImageView) paneRoad.getChildren().get(i);
+            img.setTranslateX(img.getTranslateX() + 20);
+        }
+       
     }
 
-    // Check current image pasition and make sure it's on a lane and not between
+    private class Delta {
+        public double x;
+        public double y;
+    }
+}
+
+
+ // Check current image pasition and make sure it's on a lane and not between
     /* public void setOnLanes(ImageView img) {
         if (img.getY() > 300) {
             img.setY(500);
@@ -237,9 +302,3 @@ public class LevelBuilder {
 
         }
     } */
-
-    private class Delta {
-        public double x;
-        public double y;
-    }
-}
