@@ -37,6 +37,8 @@ public class Road {
     int NORMALSPEED = 2;
     int FASTSPEED = 4;
     boolean speed = false;
+    boolean crashed = false;
+
 
     // File to load and save from
     // static final File filename = new File("/data.json");
@@ -111,18 +113,35 @@ public class Road {
     public final int getScores() {
         return score.get();
     }
+
+    public boolean isCrashed() {
+        return crashed;
+    }
+
+
+    public void setCrashed(boolean crashed) {
+        this.crashed = crashed;
+    }
 //=========================Collision Detection===================================//
 
     public void detectCollision() {
         if(getCollisionDetection() == true){
+            System.out.println("ITS WORKING");
         // if player image coordinate equals object object, print collided..
         // System.out.println(playerCoord.getX());
             for (Obstacle i : usingRB) {
                 if (player.getCoordinate().getdoubleY() == i.getdoubleY()) {
                     if (player.getCoordinate().getdoubleX() <= i.getdoubleX() + i.getObstalceWidth()) {
                         if (player.getCoordinate().getdoubleX() + player.getCoordinate().getPlayerWidth() >= i.getdoubleX()) {
-                            // System.out.println(player.getdoubleX() + ", " + i.getdoubleX());
-                            setGameOver(true);
+                            crashed = true;
+                            // // setGameOver(true);
+                            // if(player.getLives() == 1){
+                            //     setGameOver(true);
+                            // }else if (player.getLives() > 1){
+
+                            //     System.out.println(crashed);
+                            //     // setCollisionDetection(false);
+                            //     // player.setLives(player.getLives() - 1);
                         }
                     }
                 }
@@ -130,20 +149,6 @@ public class Road {
         }   
     }
 
-    public void objectOverLap(Obstacle obs) { //For object overlap
-        // if player image coordinate equals object object, print collided..
-        // System.out.println(playerCoord.getX());
-        for (Obstacle i : usingRB) {
-            if (obs.getdoubleY() == i.getdoubleY()) {
-                if (player.getCoordinate().getdoubleX() <= i.getdoubleX() + i.getObstalceWidth()) {
-                    if (player.getCoordinate().getdoubleX() + player.getCoordinate().getPlayerWidth() >= i.getdoubleX()) {
-                        // System.out.println(player.getdoubleX() + ", " + i.getdoubleX());
-                        setGameOver(true);
-                    }
-                }
-            }
-        } 
-    }
 //=========================Anonymous==============================//
 
     public void createRandomObstacle() {
@@ -155,6 +160,19 @@ public class Road {
             usingRB.add(obstacle);
             saveList.add(obstacle);
             newX += 250;
+        }
+    }
+
+    public void collisionDealer(){
+        crashed = true;
+        if(crashed == true){
+            if(player.getLives() > 1){
+                player.setLives(player.getLives() -1); 
+                crashed = false;
+            } else if( player.getLives() == 1){
+                setGameOver(true);
+            }
+            
         }
     }
 
