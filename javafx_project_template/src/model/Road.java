@@ -248,11 +248,15 @@ public class Road {
             while (line != null) {
                 switch(line) {
                     case "Obstacle":
+                        
                         Obstacle obst = new Obstacle(rb[0], 1, setYList.get(0));
                         deser += rd.readLine() + "\n";
                         deser += rd.readLine();
                         //System.out.println(deser);
-                        obst.deserialize(deser);
+                        String[] inBoundsCheck = deser.split("\n");
+                        if (Double.parseDouble(inBoundsCheck[0]) >= 0 && Double.parseDouble(inBoundsCheck[1]) >= 0) {
+                            obst.deserialize(deser);
+                        }
                         deser = "";
                     case "Player":
                         deser += rd.readLine() + "\n";

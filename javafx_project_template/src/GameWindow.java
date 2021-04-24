@@ -106,6 +106,10 @@ public class GameWindow {
         });
     }
 
+    public void onSaveClicked() {
+        road.save();
+    }
+
     public void keyPressed(KeyEvent event) {
         KeyCode key = event.getCode();
         switch (key) {
