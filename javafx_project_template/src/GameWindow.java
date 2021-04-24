@@ -8,7 +8,9 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,7 +36,8 @@ public class GameWindow {
     Label lblLife, lblScore;
 
     Timeline timeline;
-    boolean gameOver;
+    BooleanProperty gameOver = new SimpleBooleanProperty();
+    BooleanProperty collisionDetection = new SimpleBooleanProperty();
     boolean cheatMode = false;
     Obstacle obstacle;
     IntegerProperty score = new SimpleIntegerProperty(); 
@@ -61,6 +64,8 @@ public class GameWindow {
     // MainWindow mainwindow;
     ImageView img = new ImageView(player);
 
+
+
     public final void setScores(int value){
         score.set(value);
     }
@@ -76,7 +81,7 @@ public class GameWindow {
         // lblScore.textProperty().bind(Bindings.createStringBinding(
         //     () -> String.valueOf(score.getValue())), );
 
-        initializingObjects(DL, LS);
+        bindsAndInitializing(DL, LS);
         // lblScore.textProperty().bind(road.getPlayer().getPropertyScores());
 
         // mainwindow = new MainWindow();
@@ -130,8 +135,7 @@ public class GameWindow {
 
         timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> {
             // img.setX(img.getX() + 2);
-            score.set(score.get() + 2);;
-            System.out.println(score.get());
+            score.set(score.get() + 2);
             road.updateXPositionOfObstableAndPlayer();
             checkOver();
             // checkCollision();
@@ -162,6 +166,8 @@ public class GameWindow {
             road.immunity(cheatMode);
         case RIGHT:
             road.setSpeedTrue();
+        case W:
+            road.immunity(true);
         }
     }
 
@@ -180,14 +186,17 @@ public class GameWindow {
 
     }
 
-    public void initializingObjects(int DL, int LS){
+    public void bindsAndInitializing(int DL, int LS){
         road = new Road(DL, LS);
         img.layoutXProperty().bindBidirectional(road.getPlayer().getCoordinate().getX());
         img.layoutYProperty().bindBidirectional(road.getPlayer().getCoordinate().getY());
+        gameOver.bind(road.getPropertyGameOver());
+        collisionDetection.bind(road.getPropertyCollisionDetection());
         lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
         road.getPlayer().getPropertyScores().bind(score);
         lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
         lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
+        
     }
 
     public void loadRoadImages(){
@@ -208,7 +217,7 @@ public class GameWindow {
 
     public void checkOver(){
         if(timeline.getCycleCount() == 0){
-            gameOver = true;
+            road.setGameOver(true);
         }
         
         // timeline.setOnFinished(event -> gameOver = true);
