@@ -82,7 +82,6 @@ public class GameWindow {
     public void initialize(Stage stage, int DL, int LS, ArrayList<Obstacle> obstacles) {
 
         bindsAndInitializing(DL, LS);
-        // lblScore.textProperty().bind(road.getPlayer().getPropertyScores());
 
         //William's levelbuilder purposes
         if(obstacles != null){
@@ -130,8 +129,10 @@ public class GameWindow {
             Thread thread2 = road.switchDown();
             thread2.start();
             break;
-        case SPACE: // cant jump because it collides...
-            road.setCollisionDetection(false);
+        case SPACE:
+            if(collisionDetection.get() == true){ // cant jump because it collides...
+                road.setCollisionDetection(false);
+            }
             road.jumpOver();
             // img.setFitWidth();
             break;

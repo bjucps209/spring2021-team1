@@ -197,12 +197,20 @@ public class Road {
         if(getCollisionDetection() == false)
             // getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY()-50);
             getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX()+80);
+            setCollisionDetection(true);
     }
 
     public void immunity(boolean tf){
         if(tf = true){
             setCollisionDetection(true);;
         }
+    }
+
+    public void superJump() {
+    }
+
+
+    public void blowUp() {
     }
 
     // ================Serialization=========================//
@@ -232,13 +240,6 @@ public class Road {
 
         usingRB = listObstacles;
 
-    }
-
-    public void superJump() {
-    }
-
-
-    public void blowUp() {
     }
 
 
