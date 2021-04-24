@@ -105,9 +105,9 @@ public class LevelChoice {
         var gScene = new Scene(gLoader.load());
         var gStage = new Stage();
         GameWindow window = gLoader.getController();
-        // mainStage = stage;
         gStage.setScene(gScene);
         gStage.show();
+
         window.initialize(gStage, DL, LS, levelArray); //William's added null for levelbuilder purposes
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();

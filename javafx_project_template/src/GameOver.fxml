@@ -1,0 +1,8 @@
+<VBox fx:controller="GameOver" xmlns:fx="http://javafx.com/fxml" 
+    spacing="10" maxHeight="600" maxWidth="600" style="-fx-background-color: black;" alignment="CENTER_RIGHT" fx:id="hbox">
+
+    
+
+</VBox>
+
+<!-- stylesheets="GameWindow.css" -->

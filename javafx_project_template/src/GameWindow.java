@@ -1,5 +1,6 @@
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.scene.input.KeyCode;
@@ -14,6 +15,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -92,7 +94,7 @@ public class GameWindow {
 
         StageSetKeyPressed(stage);
 
-        // setRoad(road);
+        setRoad(road);
 
         timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> {
             // img.setX(img.getX() + 2);
@@ -100,7 +102,11 @@ public class GameWindow {
             road.updateXPositionOfObstableAndPlayer();
             checkOver();
             // checkCollision();
-            showOver();
+            try {
+                showOver();
+            } catch (IOException e1) {
+                System.out.println("showOver error");
+            }
         }));
         timeline.setCycleCount(1000);
         timeline.play();
@@ -198,11 +204,36 @@ public class GameWindow {
         // timeline.setOnFinished(event -> gameOver = true);
     }
 
-    public void showOver() {
+    public void showOver() throws IOException {
         if (road.getGameOver() == true) {
-            timeline.stop();
-            Alert alert = new Alert(AlertType.INFORMATION, "AHHH");
-            alert.show();
+            var gLoader = new FXMLLoader(getClass().getResource("GameOver.fxml"));
+            var gScene = new Scene(gLoader.load());
+            var gStage = new Stage();
+            GameOver window = gLoader.getController();
+            gStage.setScene(gScene);
+            gStage.show();
+        }
+    }
+
+    void setRoad(Road r) {
+        for (int i = 0; i < r.getUsingRB().size(); i++) {
+            Obstacle obs = r.getUsingRB().get(i);
+            RoadBlock type = r.getObjectType(r.getUsingRB().get(i));
+
+            ImageView image;
+
+            if (type == RoadBlock.PEOPLE) {
+                image = setImage(humanImage, obs, 55);
+            } else if (type == RoadBlock.POTHOLES) {
+                image = setImage(potholeImage, obs, 100);
+            } else if (type == RoadBlock.TRUCK) {
+                image = setImage(truckImage, obs, 150);
+            } else if (type == RoadBlock.CONES) {
+                image = setImage(coneImage, obs, 50);
+            } else if (type == RoadBlock.CARS) {
+                image = setImage(carImage, obs, 90);
+            }
+            // road.timer();
         }
     }
 }
