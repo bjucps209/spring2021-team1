@@ -137,7 +137,7 @@ public class Road {
         }
         //player.getCoordinate().setX(player.getCoordinate().getdoubleX() + 2);
         // if()
-        //     detectCollision();
+        detectCollision();
     }
 
 //========================Lane Action===========================//
