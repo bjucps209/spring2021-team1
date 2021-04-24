@@ -8,7 +8,9 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -35,7 +37,8 @@ public class GameWindow {
     Label lblLife, lblScore;
 
     Timeline timeline;
-    boolean gameOver;
+    BooleanProperty gameOver = new SimpleBooleanProperty();
+    BooleanProperty collisionDetection = new SimpleBooleanProperty();
     boolean cheatMode = false;
     Obstacle obstacle;
     IntegerProperty score = new SimpleIntegerProperty();
@@ -63,7 +66,7 @@ public class GameWindow {
     ImageView img = new ImageView(player);
     ImageView explosion = new ImageView(expImage);
 
-    public final void setScores(int value) {
+    public final void setScores(int value){
         score.set(value);
     }
 
@@ -78,25 +81,23 @@ public class GameWindow {
     @FXML
     public void initialize(Stage stage, int DL, int LS, ArrayList<Obstacle> obstacles) {
 
-        initializingObjects(DL, LS);
+        bindsAndInitializing(DL, LS);
+        // lblScore.textProperty().bind(road.getPlayer().getPropertyScores());
 
         //William's levelbuilder purposes
         if(obstacles != null){
             road.setUsingRB(obstacles);
         }
 
-
         loadRoadImages(paneMain);
 
         StageSetKeyPressed(stage);
 
-        setRoad(road);
+        // setRoad(road);
 
         timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> {
             // img.setX(img.getX() + 2);
             score.set(score.get() + 2);
-            ;
-            //System.out.println(score.get());  :DON'T FORGET TO UNCOMMENT
             road.updateXPositionOfObstableAndPlayer();
             checkOver();
             // checkCollision();
@@ -139,6 +140,8 @@ public class GameWindow {
             road.immunity(cheatMode);
         case RIGHT:
             road.setSpeedTrue();
+        case W:
+            road.immunity(true);
         }
     }
 
@@ -157,36 +160,17 @@ public class GameWindow {
 
     }
 
-    void setRoad(Road r) {
-        for (int i = 0; i < r.getUsingRB().size(); i++) {
-            Obstacle obs = r.getUsingRB().get(i);
-            RoadBlock type = r.getObjectType(r.getUsingRB().get(i));
-
-            ImageView image;
-
-            if (type == RoadBlock.PEOPLE) {
-                image = setImage(humanImage, obs, 55);
-            } else if (type == RoadBlock.POTHOLES) {
-                image = setImage(potholeImage, obs, 100);
-            } else if (type == RoadBlock.TRUCK) {
-                image = setImage(truckImage, obs, 150);
-            } else if (type == RoadBlock.CONES) {
-                image = setImage(coneImage, obs, 50);
-            } else if (type == RoadBlock.CARS) {
-                image = setImage(carImage, obs, 90);
-            }
-            // road.timer();
-        }
-    }
-
-    public void initializingObjects(int DL, int LS) {
+    public void bindsAndInitializing(int DL, int LS){
         road = new Road(DL, LS);
         img.layoutXProperty().bindBidirectional(road.getPlayer().getCoordinate().getX());
         img.layoutYProperty().bindBidirectional(road.getPlayer().getCoordinate().getY());
+        gameOver.bind(road.getPropertyGameOver());
+        collisionDetection.bind(road.getPropertyCollisionDetection());
         lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
         road.getPlayer().getPropertyScores().bind(score);
         lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
         lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
+        
     }
 
     public void loadRoadImages(Pane pane) {
@@ -205,9 +189,9 @@ public class GameWindow {
 
     }
 
-    public void checkOver() {
-        if (timeline.getCycleCount() == 0) {
-            gameOver = true;
+    public void checkOver(){
+        if(timeline.getCycleCount() == 0){
+            road.setGameOver(true);
         }
 
         // timeline.setOnFinished(event -> gameOver = true);
