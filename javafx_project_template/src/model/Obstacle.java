@@ -41,6 +41,14 @@ public class Obstacle extends Coordinate implements Savable {
         return serial;
     }
 
+    public void deserialize(String toDeserialize) {
+        String[] toParse = toDeserialize.split("\n");
+        setX(Double.parseDouble(toParse[0]));
+        setY(Double.parseDouble(toParse[1]));
+
+
+    }
+
     public int getObstalceWidth() {
         return obstalceWidth;
     }
