@@ -137,6 +137,10 @@ public class Road {
             saveList.add(obstacle);
             newX += 250;
         }
+
+        Obstacle finsihedLine = new Obstacle(rb[5], (newX + 300), 0);  
+        usingRB.add(finsihedLine);
+        saveList.add(finsihedLine);
     }
 
     public void updateXPositionOfObstableAndPlayer() {

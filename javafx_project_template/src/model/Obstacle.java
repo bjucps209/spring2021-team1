@@ -20,8 +20,8 @@ public class Obstacle extends Coordinate implements Savable {
     RoadBlock object;
     int id;
     private static int nextId;
-    final int obstalceWidth;
-    final int obstalceHight;
+    int obstalceWidth;
+    int obstalceHight;
     Random rand = new Random();
 
     public Obstacle(RoadBlock rd, int x, int y){
@@ -45,6 +45,9 @@ public class Obstacle extends Coordinate implements Savable {
         return obstalceWidth;
     }
 
+    public void setObstableHight(int newHight){
+        this.obstalceHight = newHight;
+    }
     public int getId() {
         return id;
     }
