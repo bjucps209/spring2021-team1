@@ -30,8 +30,8 @@ public class Obstacle extends Coordinate implements Savable {
         super(x, y);
         this.object = rd;
         this.id = ++nextId;
-        obstalceWidth = 75;
-        obstalceHight = 75;
+        obstalceWidth = 50;
+        obstalceHight = 50;
 
     }
 

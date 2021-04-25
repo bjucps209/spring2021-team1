@@ -30,24 +30,24 @@ public class Coordinate{
         
     }
 
-    public final void setX(double value){
+    public void setX(double value){
         x.set(value);
     }
     public DoubleProperty getX() {
         return x;
     }
-    public final double getdoubleX(){
+    public double getdoubleX(){
         return x.get();
     }
 
-    public final void setY(double value){
+    public void setY(double value){
         y.set(value);
     }
     public DoubleProperty getY() {
         return y;
     }
 
-    public final double getdoubleY(){
+    public double getdoubleY(){
         return y.get();
     }
 

@@ -4,14 +4,16 @@
 //----------------------------------------------------------- 
 package model;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Rectangle2D;
 
 public class Player implements Savable{
     //how the player begins (in the middle lane moving forward)
     IntegerProperty lives = new SimpleIntegerProperty(); //bind life with label -- Aya
-    IntegerProperty score = new SimpleIntegerProperty(); //bind score with label  -- Ortiz
+    DoubleProperty score = new SimpleDoubleProperty(); //bind score with label  -- Ortiz
     Coordinate coord;
     STATE player = STATE.MOVING;
     final int playerWidth = 100;
@@ -62,13 +64,13 @@ public class Player implements Savable{
         return lives.get();
     }
 
-    public final void setScores(int value){
+    public final void setScores(double value){
         score.set(value);
     }
-    public IntegerProperty getPropertyScores() {
+    public DoubleProperty getPropertyScores() {
         return score;
     }
-    public final int getScores(){
+    public final double getScores(){
         return score.get();
     }
 }

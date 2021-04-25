@@ -2,14 +2,11 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.image.*?>
 
 <VBox fx:controller="GameOver" xmlns:fx="http://javafx.com/fxml" stylesheets="GameOver.css" 
-    spacing="10" maxHeight="600" maxWidth="400" style="-fx-background-color: black;" alignment="CENTER_RIGHT" fx:id="hbox">
+    spacing="10" prefHeight="700" prefWidth="1000" style="-fx-background-color: black;" alignment="CENTER" fx:id="hbox">
 
-    <Label fx.id="lblNameScore"/>
-    <Label fx:id="lblScore" styleClass="Label"/>
+    <Label fx:id="lblNameScore" text="Score: "/>
+    <Label fx:id="lblScore" styleClass="Label" text="Here"/>
 
 </VBox>
-
-<!-- stylesheets="GameWindow.css" -->

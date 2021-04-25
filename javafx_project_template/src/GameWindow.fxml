@@ -14,7 +14,7 @@
         <Label style="-fx-font-size: 50px; -fx-text-fill: white;" fx:id="lblLife"/>
         <Label style="-fx-font-size: 50px; -fx-text-fill: blue;" text="Scores"/>
         <Label style="-fx-font-size: 50px; -fx-text-fill: white;" fx:id="lblScore" text="0"/>
-        <Button style="-fx-font-size: 15px; -fx-text-fill: blue;" text="Save" alignment="CENTER_RIGHT" onAction="#onSaveClicked"/>
+        <!-- <Button style="-fx-font-size: 15px; -fx-text-fill: blue;" text="Save" alignment="CENTER_RIGHT" onAction="#onSaveClicked"/> -->
     </HBox>
     
 </VBox>
