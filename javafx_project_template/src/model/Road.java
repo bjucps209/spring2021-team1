@@ -52,8 +52,8 @@ public class Road {
         this.collisionDetection = getPropertyCollisionDetection();
         usingRB = new ArrayList<>();
         createRandomObstacle();
-        this.player = new Player(STATE.MOVING, 10,300);
-        saveList.add(player);
+        this.player = new Player(STATE.MOVING, 10 ,300);
+       // saveList.add(player);
     }
 
   /*  public ArrayList<PowerUp> getPowerups(){
@@ -312,7 +312,7 @@ public class Road {
                         deser += rd.readLine() + "\n";
                         deser += rd.readLine();
                         //System.out.println(deser);
-                        player.deserialize(deser);
+                        //player.deserialize(deser);
                         deser = "";
                         
                 } 
