@@ -14,6 +14,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -136,7 +138,18 @@ public class GameWindow {
         obstacleImageView.layoutYProperty().bind(ob.getY());
         return obstacleImageView;
 
-    } 
+    }
+    @FXML
+    void onBackClicked(ActionEvent event) throws IOException {
+
+        Stage stage =  (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("LevelChoice.fxml"));
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+
+    }
 
     // @FXML
     // void onSaveClicked(ActionEvent event) {

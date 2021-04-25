@@ -308,6 +308,8 @@ public class Road {
                         deser = "";
                     case "Player":
                         deser += rd.readLine() + "\n";
+                        deser += rd.readLine() + "\n";
+                        deser += rd.readLine() + "\n";
                         deser += rd.readLine();
                         //System.out.println(deser);
                         player.deserialize(deser);
