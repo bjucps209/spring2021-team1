@@ -24,6 +24,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
@@ -45,6 +46,7 @@ public class GameWindow {
 
     ArrayList<ImageView> imgviewList = new ArrayList<>();
     Road road;
+
     AllHighScore highScore = AllHighScore.getInstance();
 
     // final Image humanImage = new Image("/images/human.gif");
@@ -60,6 +62,7 @@ public class GameWindow {
     final Image expImage = new Image("/images/explosion.gif");
     final Image finishLineImage = new Image("/images/finsihedLine.png");
 
+    
     ImageView imgPlayer = new ImageView(player);
 
     Stage stage;
@@ -99,9 +102,10 @@ public class GameWindow {
             // img.setX(img.getX() + 2);
             road.updateXPositionOfObstable();
             try {
-                showOver(stage);
+                showOver();
             } catch (IOException e1) {
-                System.out.println("showOver error");
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
             }
         }));
         timeline.setCycleCount(2000);
@@ -117,7 +121,7 @@ public class GameWindow {
     }
 
     // ------------------
-    @FXML
+     @FXML
     public ImageView setImage(Image imgs, Obstacle ob, int width) {
         ImageView obstacleImageView = new ImageView(imgs);
         obstacleImageView.setFitWidth(width);
@@ -202,7 +206,12 @@ public class GameWindow {
             road.superJumpOverUp();
             road.setCollisionDetection(true);
             break;
+        
+        case D:
+            
         }
+
+       
 
     }
 
@@ -234,21 +243,17 @@ public class GameWindow {
 
     }
 
-    public void showOver(Stage stage) throws IOException {
+        
+    public void showOver() throws IOException {
         if (gameOver.get() == true) {
-
-            timeline.stop();
-            Alert alert = new Alert(AlertType.INFORMATION, "Crash");
-            alert.show();
 
             var gLoader = new FXMLLoader(getClass().getResource("GameOver.fxml"));
             var gScene = new Scene(gLoader.load());
             var gStage = new Stage();
-            GameOver window = gLoader.getController();
+            GameOver windows = gLoader.getController();
             gStage.setScene(gScene);
             gStage.show();
-
-            // stage.close();
+            windows.initialzie();
         }
     }
 
@@ -292,6 +297,10 @@ public class GameWindow {
 
             }
         }
+    }
+
+    public Road getRoad() {
+        return road;
     }
 }
 
