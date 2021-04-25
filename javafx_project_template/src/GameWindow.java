@@ -100,14 +100,17 @@ public class GameWindow {
             // img.setX(img.getX() + 2);
             road.updateXPositionOfObstable();
             try {
-                showOver();
+                showOver(timeline);
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         }));
         timeline.setCycleCount(2000);
+        timeline.setDelay(Duration.seconds(1));
         timeline.play();
+        
+       
 
         Timeline timelineTwo = new Timeline(new KeyFrame((Duration.seconds(2.5)), e -> {
             if (road.isCrashed()) {
@@ -115,7 +118,9 @@ public class GameWindow {
             }
         }));
         timelineTwo.setCycleCount(1500);
+        timelineTwo.setDelay(Duration.seconds(1));
         timelineTwo.play();
+        //timelineTwo
     }
 
     // ------------------
@@ -231,9 +236,10 @@ public class GameWindow {
     }
 
         
-    public void showOver() throws IOException {
+    public void showOver(Timeline t) throws IOException {
+            
         if (gameOver.get() == true) {
-
+            t.stop();
             var gLoader = new FXMLLoader(getClass().getResource("GameOver.fxml"));
             var gScene = new Scene(gLoader.load());
             var gStage = new Stage();
