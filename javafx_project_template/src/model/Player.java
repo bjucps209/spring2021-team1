@@ -4,14 +4,16 @@
 //----------------------------------------------------------- 
 package model;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Rectangle2D;
 
 public class Player implements Savable{
     //how the player begins (in the middle lane moving forward)
     IntegerProperty lives = new SimpleIntegerProperty(); //bind life with label -- Aya
-    IntegerProperty score = new SimpleIntegerProperty(); //bind score with label  -- Ortiz
+    DoubleProperty score = new SimpleDoubleProperty(); //bind score with label  -- Ortiz
     Coordinate coord;
     STATE player = STATE.MOVING;
     final int playerWidth = 100;
@@ -36,13 +38,17 @@ public class Player implements Savable{
     public String serialize() {
         double x = coord.getdoubleX();
         double y = coord.getdoubleY();
-        String serial = "Player" + "\n" + String.valueOf(x) + "\n" + String.valueOf(y) + "\n" + "END";
+        String serial = "Player" + "\n" + String.valueOf(x) + "\n" + String.valueOf(y) + "\n" + String.valueOf(getLives()) + "\n" + String.valueOf(getScores()) + "\n" + "END";
         //State will be added when getState() is complete
         return serial;
     }
 
-    public void deserialize() {
-        
+    public void deserialize(String toDeserialize) {
+        String[] toParse = toDeserialize.split("\n");
+        coord.setX(Double.parseDouble(toParse[0]));
+        coord.setY(Double.parseDouble(toParse[1]));
+        setLives(Integer.parseInt(toParse[2]));
+        setScores(Integer.parseInt(toParse[3]));
     }
     public Rectangle2D getBounds() {
         return new Rectangle2D(coord.getdoubleX(), coord.getdoubleY(), playerWidth, playerHeight);
@@ -58,13 +64,13 @@ public class Player implements Savable{
         return lives.get();
     }
 
-    public final void setScores(int value){
+    public final void setScores(double value){
         score.set(value);
     }
-    public IntegerProperty getPropertyScores() {
+    public DoubleProperty getPropertyScores() {
         return score;
     }
-    public final int getScores(){
+    public final double getScores(){
         return score.get();
     }
 }

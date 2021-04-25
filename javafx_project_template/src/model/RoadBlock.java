@@ -1,6 +1,6 @@
 package model;
 
 public enum RoadBlock {
-    CARS, PEOPLE, TRUCK, POTHOLES, CONES
+    CARS, PEOPLE, TRUCK, POTHOLES, CONES, FINISHEDLINE
 }
 

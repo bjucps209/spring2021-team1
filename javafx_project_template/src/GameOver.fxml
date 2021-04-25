@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<VBox fx:controller="GameOver" xmlns:fx="http://javafx.com/fxml" stylesheets="GameOver.css" 
+    spacing="10" maxHeight="600" maxWidth="400" style="-fx-background-color: black;" alignment="CENTER_RIGHT" fx:id="hbox">
+
+    <Label fx.id="lblNameScore"/>
+    <Label fx:id="lblScore" styleClass="Label"/>
+
+</VBox>
+
+<!-- stylesheets="GameWindow.css" -->

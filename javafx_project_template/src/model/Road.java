@@ -7,6 +7,9 @@ package model;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,15 +25,18 @@ public class Road {
     
     BooleanProperty gameOver = new SimpleBooleanProperty();
     BooleanProperty collisionDetection = new SimpleBooleanProperty();
+
     Thread thread;
     int amtObj;
     int distance ;
     Player player;
     Obstacle obstacle;
 
-    int NORMALSPEED = 2;
-    int FASTSPEED = 4;
+    double NORMALSPEED = 2;
+    double FASTSPEED = 4;
     boolean speed = false;
+    boolean crashed = false;
+
 
     // File to load and save from
     // static final File filename = new File("/data.json");
@@ -46,7 +52,7 @@ public class Road {
         this.collisionDetection = getPropertyCollisionDetection();
         usingRB = new ArrayList<>();
         createRandomObstacle();
-        this.player = new Player(STATE.MOVING, 10, Lane.B.getLaneYcoord());
+        this.player = new Player(STATE.MOVING, 10,300);
         saveList.add(player);
     }
 
@@ -100,19 +106,34 @@ public class Road {
     public final boolean getCollisionDetection(){
         return collisionDetection.get();
     }
+    public boolean isCrashed() {
+        return crashed;
+    }
+
+
+    public void setCrashed(boolean crashed) {
+        this.crashed = crashed;
+    }
 //=========================Collision Detection===================================//
 
     public void detectCollision() {
         if(getCollisionDetection() == true){
+            System.out.println("ITS WORKING");
         // if player image coordinate equals object object, print collided..
         // System.out.println(playerCoord.getX());
             for (Obstacle i : usingRB) {
                 if (player.getCoordinate().getdoubleY() == i.getdoubleY()) {
                     if (player.getCoordinate().getdoubleX() <= i.getdoubleX() + i.getObstalceWidth()) {
                         if (player.getCoordinate().getdoubleX() + player.getCoordinate().getPlayerWidth() >= i.getdoubleX()) {
-                            // System.out.println(player.getdoubleX() + ", " + i.getdoubleX());
-                            setGameOver(true);
-                            player.setLives(player.getLives() -1);
+                            crashed = true;
+                            // // setGameOver(true);
+                            // if(player.getLives() == 1){
+                            //     setGameOver(true);
+                            // }else if (player.getLives() > 1){
+
+                            //     System.out.println(crashed);
+                            //     // setCollisionDetection(false);
+                            //     // player.setLives(player.getLives() - 1);
                         }
                     }
                 }
@@ -120,49 +141,49 @@ public class Road {
         }   
     }
 
-    public void objectOverLap(Obstacle obs) { //For object overlap
-        // if player image coordinate equals object object, print collided..
-        // System.out.println(playerCoord.getX());
-        for (Obstacle i : usingRB) {
-            if (obs.getdoubleY() == i.getdoubleY()) {
-                if (player.getCoordinate().getdoubleX() <= i.getdoubleX() + i.getObstalceWidth()) {
-                    if (player.getCoordinate().getdoubleX() + player.getCoordinate().getPlayerWidth() >= i.getdoubleX()) {
-                        // System.out.println(player.getdoubleX() + ", " + i.getdoubleX());
-                        setGameOver(true);
-                    }
-                }
-            }
-        } 
-    }
 //=========================Anonymous==============================//
 
     public void createRandomObstacle() {
         int newX = 300;
         for (int i = 0; i < amtObj; i++) {
-            System.out.println(newX + "#" + i);
+            //System.out.println(newX + "#" + i);
             Random rand = new Random();
             Obstacle obstacle = new Obstacle(rb[rand.nextInt(5)], newX, setYList.get(i));
             usingRB.add(obstacle);
             saveList.add(obstacle);
             newX += 250;
         }
+
+        Obstacle finsihedLine = new Obstacle(rb[5], (newX + 300), 0);  
+        usingRB.add(finsihedLine);
+        saveList.add(finsihedLine);
+        System.out.println(usingRB.get(10).getdoubleX());
     }
 
-    public void updateXPositionOfObstableAndPlayer() {
+    public void collisionDealer(){
+        crashed = true;
+        if(crashed == true){
+            if(player.getLives() > 1){
+                player.setLives(player.getLives() -1); 
+                crashed = false;
+            } else if( player.getLives() == 1){
+                setGameOver(true);
+            }
+            
+        }
+    }
+
+    public void updateXPositionOfObstable() {
         for (Obstacle i : usingRB) {
             if (speed == false) {
                 i.setX(i.getdoubleX() - NORMALSPEED);
-                // System.out.println(i.getdoubleX() +" obstacle ");
             }
             if(speed == true){
                 i.setX(i.getdoubleX() - FASTSPEED);
             }
         }
-        //player.getCoordinate().setX(player.getCoordinate().getdoubleX() + 2);
-        // if()
         detectCollision();
-
-        System.out.println(player.getPropertyScores().get() + "score in model");
+        player.setScores(player.getScores() + .09);
     }
 
 //========================Lane Action===========================//
@@ -170,14 +191,14 @@ public class Road {
         switch ((int) getPlayer().getCoordinate().getdoubleY()) {
         case 500:
             thread = new Thread(() -> {
-            getPlayer().getCoordinate().setY(Lane.B.getLaneYcoord());
-            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
-        });
+            getPlayer().getCoordinate().setY(300);
+            //getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
+            });
             break;
         case 300:
             thread = new Thread(() -> {
-                getPlayer().getCoordinate().setY(Lane.C.getLaneYcoord());
-                getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
+                getPlayer().getCoordinate().setY(100);
+                //getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
             });
             break;
         }
@@ -188,30 +209,71 @@ public class Road {
         switch ((int) getPlayer().getCoordinate().getdoubleY()) {
         case 100:
             thread = new Thread(() -> {
-                getPlayer().getCoordinate().setY(Lane.B.getLaneYcoord());
-                getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
+                getPlayer().getCoordinate().setY(300);
+                //getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
             });
             break;
         case 300:
             thread = new Thread(() -> {
-                getPlayer().getCoordinate().setY(Lane.A.getLaneYcoord());
-                getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
+                getPlayer().getCoordinate().setY(500);
+               // getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 30);
             });
             break;
 
         }
         return thread;
     }
-    public void jumpOver(){
-        if(getCollisionDetection() == false)
-            // getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY()-50);
-            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX()+80);
+
+    public void jumpOverUp(){
+        if(getCollisionDetection() == false){
+            getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY() - 50);
+            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 50);
+        }
+
     }
+    public void jumpOverdown(){
+        if(getCollisionDetection() == false){
+            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 50);
+            getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY() + 50);
+        }
+
+    }
+    public void superJumpOverUp(){
+        if(getCollisionDetection() == false){
+            getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY() - 50);
+            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 100);
+        }
+
+    }
+    public void superJumpOverdown(){
+        if(getCollisionDetection() == false){
+            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 100);
+            getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY() + 50);
+        }
+
+    }
+
 
     public void immunity(boolean tf){
         if(tf = true){
             setCollisionDetection(true);;
         }
+    }
+
+
+
+    public void blowUp() {
+
+        for (int i = 0; i < usingRB.size(); i++) {
+            Obstacle obs;
+
+            obs = usingRB.get(i);
+            if (obs.getdoubleX()< player.getCoordinate().getdoubleX() + 30 && obs.getdoubleX() > player.getCoordinate().getdoubleX()){
+                usingRB.remove(i);
+                System.out.println("BOMB ROAD");
+            }
+        }
+        
     }
 
     // ================Serialization=========================//
@@ -227,10 +289,39 @@ public class Road {
     }
 
     public void load() {
-        // Still testing in separate project
+        try(var rd = new BufferedReader(new FileReader("data.txt"))) {
+            String line = rd.readLine();
+            String deser = new String();
+            while (line != null) {
+                switch(line) {
+                    case "Obstacle":
+                        
+                        Obstacle obst = new Obstacle(rb[0], 1, setYList.get(0));
+                        deser += rd.readLine() + "\n";
+                        deser += rd.readLine();
+                        //System.out.println(deser);
+                        String[] inBoundsCheck = deser.split("\n");
+                        //Checks if the object is still on the game screen
+                        if (Double.parseDouble(inBoundsCheck[0]) >= 0 && Double.parseDouble(inBoundsCheck[1]) >= 0) {
+                            obst.deserialize(deser);
+                        }
+                        deser = "";
+                    case "Player":
+                        deser += rd.readLine() + "\n";
+                        deser += rd.readLine();
+                        //System.out.println(deser);
+                        player.deserialize(deser);
+                        deser = "";
+                        
+                } 
+                //System.out.println(line);
+                line = rd.readLine();
+
+            }
+        }catch(Exception e) {
+            System.out.print(e.getStackTrace());
+        }
     }
-    // road.getPlayer().setY(road.getPlayer().getCoordinate().getdoubleY()
-    // - 200);
 
 
     public void setUsingRB(ArrayList<Obstacle> listObstacles){
@@ -247,19 +338,7 @@ public class Road {
     }
 
 
-    public void blowUp() {
-
-        for (int i = 0; i < usingRB.size(); i++) {
-            Obstacle obs;
-
-            obs = usingRB.get(i);
-            if (obs.getdoubleX()< player.getCoordinate().getdoubleX() + 30 && obs.getdoubleX() > player.getCoordinate().getdoubleX()){
-                usingRB.remove(i);
-                System.out.println("BOMB ROAD");
-            }
-        }
-        
-    }
+   
 
    
 

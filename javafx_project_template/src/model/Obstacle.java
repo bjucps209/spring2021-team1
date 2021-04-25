@@ -19,17 +19,20 @@ public class Obstacle extends Coordinate implements Savable {
 
     RoadBlock object;
     int id;
+    boolean crashed;
+
     private static int nextId;
-    final int obstalceWidth;
-    final int obstalceHight;
+    int obstalceWidth;
+    int obstalceHight;
     Random rand = new Random();
 
     public Obstacle(RoadBlock rd, int x, int y){
         super(x, y);
         this.object = rd;
         this.id = ++nextId;
-        obstalceWidth = 75;
-        obstalceHight = 75;
+        obstalceWidth = 50;
+        obstalceHight = 50;
+
     }
 
     public RoadBlock getRoadBlock(){
@@ -41,16 +44,25 @@ public class Obstacle extends Coordinate implements Savable {
         return serial;
     }
 
+    public void deserialize(String toDeserialize) {
+        String[] toParse = toDeserialize.split("\n");
+        setX(Double.parseDouble(toParse[0]));
+        setY(Double.parseDouble(toParse[1]));
+
+
+    }
+
     public int getObstalceWidth() {
         return obstalceWidth;
     }
 
+    public void setObstableHight(int newHight){
+        this.obstalceHight = newHight;
+    }
     public int getId() {
         return id;
     }
-    public Rectangle2D getBounds() {
-        return new Rectangle2D(getdoubleX(), getdoubleY(), obstalceWidth, obstalceHight);
-    }
+    
 }
 
     

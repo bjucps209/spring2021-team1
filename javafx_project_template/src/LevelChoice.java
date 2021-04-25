@@ -8,7 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
@@ -116,9 +115,9 @@ public class LevelChoice {
         var gScene = new Scene(gLoader.load());
         var gStage = new Stage();
         GameWindow window = gLoader.getController();
-        // mainStage = stage;
         gStage.setScene(gScene);
         gStage.show();
+
         window.initialize(gStage, DL, LS, levelArray); //William's added null for levelbuilder purposes
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
