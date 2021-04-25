@@ -54,8 +54,8 @@ class AllHighScore{
         addToTxtFile();
     }
 
-    public void load() throws IOException{
-        readFromTxtFile("Load.txt");
+    public void load(String Filename ) throws IOException{
+        readFromTxtFile(Filename);
     }
 
     

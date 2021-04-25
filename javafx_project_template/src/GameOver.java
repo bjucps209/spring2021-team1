@@ -10,7 +10,7 @@ public class GameOver {
     Road road = gameWindow.getRoad();
 
     public void initialzie(){
-        lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
+        
 
     }
 }
