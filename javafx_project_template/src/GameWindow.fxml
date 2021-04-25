@@ -6,7 +6,7 @@
 
 <VBox fx:controller="GameWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="GameWindow.css"
     spacing="10" maxHeight="600"  style="-fx-background-color: black;" maxWidth="1500" alignment="CENTER_RIGHT" fx:id="hbox" onKeyPressed="#keyPressed">
-
+    <Button text="back" onAction="#onBackClicked"/>
     <Pane prefWidth="1250" prefHeight="600" style="-fx-background-color: lightgrey;" styleClass="Pane" fx:id="paneMain"/>
 
     <HBox style="-fx-border-color: cyan; -fx-fill-width: true;" alignment="CENTER_LEFT" maxHeight="200" >
@@ -14,7 +14,7 @@
         <Label style="-fx-font-size: 50px; -fx-text-fill: white;" fx:id="lblLife"/>
         <Label style="-fx-font-size: 50px; -fx-text-fill: blue;" text="Scores"/>
         <Label style="-fx-font-size: 50px; -fx-text-fill: white;" fx:id="lblScore" text="0"/>
-      <!--<Button style="-fx-font-size: 15px; -fx-text-fill: blue;" text="Save" alignment="CENTER_RIGHT" onAction="#onSaveClicked"/>-->  
+        <!-- <Button style="-fx-font-size: 15px; -fx-text-fill: blue;" text="Save" alignment="CENTER_RIGHT" onAction="#onSaveClicked"/> -->
     </HBox>
     
 </VBox>
