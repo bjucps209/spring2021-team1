@@ -14,8 +14,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -24,7 +22,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
@@ -62,7 +59,6 @@ public class GameWindow {
     final Image expImage = new Image("/images/explosion.gif");
     final Image finishLineImage = new Image("/images/finsihedLine.png");
 
-    
     ImageView imgPlayer = new ImageView(player);
 
     Stage stage;
@@ -102,17 +98,14 @@ public class GameWindow {
             // img.setX(img.getX() + 2);
             road.updateXPositionOfObstable();
             try {
-                showOver(timeline);
+                showOver();
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         }));
         timeline.setCycleCount(2000);
-        timeline.setDelay(Duration.seconds(1));
         timeline.play();
-        
-       
 
         Timeline timelineTwo = new Timeline(new KeyFrame((Duration.seconds(2.5)), e -> {
             if (road.isCrashed()) {
@@ -120,13 +113,11 @@ public class GameWindow {
             }
         }));
         timelineTwo.setCycleCount(1500);
-        timelineTwo.setDelay(Duration.seconds(1));
         timelineTwo.play();
-        //timelineTwo
     }
 
     // ------------------
-     @FXML
+    @FXML
     public ImageView setImage(Image imgs, Obstacle ob, int width) {
         ImageView obstacleImageView = new ImageView(imgs);
         obstacleImageView.setFitWidth(width);
@@ -137,17 +128,6 @@ public class GameWindow {
         obstacleImageView.layoutXProperty().bind(ob.getX());
         obstacleImageView.layoutYProperty().bind(ob.getY());
         return obstacleImageView;
-
-    }
-    @FXML
-    void onBackClicked(ActionEvent event) throws IOException {
-
-        Stage stage =  (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("LevelChoice.fxml"));
-        Scene scene = new Scene(root);
-
-        stage.setScene(scene);
-        stage.show();
 
     }
 
@@ -211,12 +191,7 @@ public class GameWindow {
             road.superJumpOverUp();
             road.setCollisionDetection(true);
             break;
-        
-        case D:
-            
         }
-
-       
 
     }
 
@@ -249,10 +224,9 @@ public class GameWindow {
     }
 
         
-    public void showOver(Timeline t) throws IOException {
-            
+    public void showOver() throws IOException {
         if (gameOver.get() == true) {
-            t.stop();
+
             var gLoader = new FXMLLoader(getClass().getResource("GameOver.fxml"));
             var gScene = new Scene(gLoader.load());
             var gStage = new Stage();

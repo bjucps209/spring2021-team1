@@ -44,6 +44,5 @@
     </HBox>
     <Button fx:id="btnStart" text="Start" onAction="#onStartClicked" style="-fx-font: 30px Tahoma; -fx-background-color: #318AE0; -fx-text-fill: black;"/>
     <Button fx:id="btnBackStart" onAction="#onBackClicked" text="Back"/>
-    <Button fx:id="btnLoad" onAction="#onLoadClicked" text="Load Game" styleClass="Button" />
 
 </VBox>
