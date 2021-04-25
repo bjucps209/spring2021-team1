@@ -14,6 +14,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -23,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
@@ -58,6 +60,7 @@ public class GameWindow {
     final Image roadGif = new Image("/images/recording.gif");
     final Image expImage = new Image("/images/explosion.gif");
 
+    
     ImageView imgPlayer = new ImageView(player);
 
     Stage stage;
@@ -83,7 +86,8 @@ public class GameWindow {
 
         bindsAndInitializing(DL, LS);
         // lblScore.textProperty().bind(road.getPlayer().getPropertyScores());
-
+       
+    
         //William's levelbuilder purposes
         if(obstacles != null){
             road.setUsingRB(obstacles);
@@ -93,7 +97,7 @@ public class GameWindow {
 
         StageSetKeyPressed(stage);
 
-        // setRoad(road);
+        setRoad(road);
 
         timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> {
             // img.setX(img.getX() + 2);
@@ -106,7 +110,11 @@ public class GameWindow {
         timeline.setCycleCount(1000);
         timeline.play();
 
+       
+
     }
+
+    
 
     void StageSetKeyPressed(Stage s) {
         s.setMaximized(true);
@@ -142,7 +150,12 @@ public class GameWindow {
             road.setSpeedTrue();
         case W:
             road.immunity(true);
+        case D:
+            blowUpView();
+            
         }
+        
+
     }
 
     @FXML
@@ -200,8 +213,45 @@ public class GameWindow {
     public void showOver() {
         if (road.getGameOver() == true) {
             timeline.stop();
-            Alert alert = new Alert(AlertType.INFORMATION, "AHHH");
-            alert.show();
+        Alert alert = new Alert(AlertType.INFORMATION, "AHHH");
+         alert.show();
+        }
+    }
+
+
+
+    void setRoad(Road r) {
+        for (int i = 0; i < r.getUsingRB().size(); i++) {
+            Obstacle obs = r.getUsingRB().get(i);
+            RoadBlock type = r.getObjectType(r.getUsingRB().get(i));
+
+            ImageView image;
+
+            if (type == RoadBlock.PEOPLE) {
+                image = setImage(humanImage, obs, 55);
+            } else if (type == RoadBlock.POTHOLES) {
+                image = setImage(potholeImage, obs, 100);
+            } else if (type == RoadBlock.TRUCK) {
+                image = setImage(truckImage, obs, 150);
+            } else if (type == RoadBlock.CONES) {
+                image = setImage(coneImage, obs, 50);
+            } else if (type == RoadBlock.CARS) {
+                image = setImage(carImage, obs, 90);
+            }
+            // road.timer();
+        }
+    }
+
+    void blowUpView(){
+        road.blowUp();
+        for (int i = 0; i < paneMain.getChildren().size(); i++) {
+            ImageView image = (ImageView)paneMain.getChildren().get(i);
+            if (image.getTranslateX() <    imgPlayer.getTranslateX() + 30 && image.getTranslateX() > imgPlayer.getTranslateX()){
+                paneMain.getChildren().add(i, explosion);
+                paneMain.getChildren().remove(image);
+                System.out.println("BOMB ROAD VIEW");
+                
+            }
         }
     }
 }

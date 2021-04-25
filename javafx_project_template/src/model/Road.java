@@ -18,6 +18,7 @@ public class Road {
     ArrayList<Obstacle> usingRB;
     List<Integer> setYList = Arrays.asList(100, 300, 500, 300, 100, 500, 300, 100, 300, 500,100, 300, 500, 300, 100, 500, 300, 100, 300, 500,100, 300, 500, 300, 100, 500, 300, 100, 300, 500);
     ArrayList<Integer> objectXs = new ArrayList<>();
+  //  List<PowerUp> lstPowerUp = Arrays.asList(PowerUp.IMMUNITY, PowerUp.BLOWUP, PowerUp.SUPERJUMP, PowerUp.COINS, PowerUp.LIFE);
     
     BooleanProperty gameOver = new SimpleBooleanProperty();
     BooleanProperty collisionDetection = new SimpleBooleanProperty();
@@ -49,7 +50,14 @@ public class Road {
         saveList.add(player);
     }
 
+  /*  public ArrayList<PowerUp> getPowerups(){
+       Random num;
+       ArrayList<PowerUp> lstP = new ArrayList<>(); 
+        for (int i = 0; i < 15; i++) {
+            
+        } */
     
+   
 //============================Setters/Getters===========================//
 
     public ArrayList<Obstacle> getUsingRB() {
@@ -104,6 +112,7 @@ public class Road {
                         if (player.getCoordinate().getdoubleX() + player.getCoordinate().getPlayerWidth() >= i.getdoubleX()) {
                             // System.out.println(player.getdoubleX() + ", " + i.getdoubleX());
                             setGameOver(true);
+                            player.setLives(player.getLives() -1);
                         }
                     }
                 }
@@ -239,7 +248,19 @@ public class Road {
 
 
     public void blowUp() {
+
+        for (int i = 0; i < usingRB.size(); i++) {
+            Obstacle obs;
+
+            obs = usingRB.get(i);
+            if (obs.getdoubleX()< player.getCoordinate().getdoubleX() + 30 && obs.getdoubleX() > player.getCoordinate().getdoubleX()){
+                usingRB.remove(i);
+                System.out.println("BOMB ROAD");
+            }
+        }
+        
     }
 
+   
 
 }
