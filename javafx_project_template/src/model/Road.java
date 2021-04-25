@@ -219,18 +219,32 @@ public class Road {
     public void jumpOverUp(){
         if(getCollisionDetection() == false){
             getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY() - 50);
-            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 100);
+            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 50);
         }
 
     }
     public void jumpOverdown(){
+        if(getCollisionDetection() == false){
+            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 50);
+            getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY() + 50);
+        }
+
+    }
+    public void superJumpOverUp(){
+        if(getCollisionDetection() == false){
+            getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY() - 50);
+            getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 100);
+        }
+
+    }
+    public void superJumpOverdown(){
         if(getCollisionDetection() == false){
             getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 100);
             getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY() + 50);
         }
 
     }
-    
+
 
     public void immunity(boolean tf){
         if(tf = true){

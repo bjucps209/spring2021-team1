@@ -106,14 +106,15 @@ public class GameWindow {
         timeline.play();
 
         Timeline timelineTwo = new Timeline(new KeyFrame((Duration.seconds(2.5)), e -> {
-            if(road.isCrashed()){
+            if (road.isCrashed()) {
                 road.collisionDealer();
             }
         }));
         timelineTwo.setCycleCount(1500);
         timelineTwo.play();
     }
-    //------------------
+
+    // ------------------
     @FXML
     public ImageView setImage(Image imgs, Obstacle ob, int width) {
         ImageView obstacleImageView = new ImageView(imgs);
@@ -127,11 +128,12 @@ public class GameWindow {
         return obstacleImageView;
 
     }
+
     // @FXML
     // void onSaveClicked(ActionEvent event) {
-    //     road.save();
+    // road.save();
     // }
-    //------------------------------------------------------------
+    // ------------------------------------------------------------
     public void keyReleased(KeyEvent event) {
         KeyCode k = event.getCode();
         switch (k) {
@@ -149,11 +151,16 @@ public class GameWindow {
             road.jumpOverdown();
             road.setCollisionDetection(true);
             break;
+        case W:
+            road.setCollisionDetection(false);
+            road.superJumpOverdown();
+            road.setCollisionDetection(true);
+            break;
         }
     }
-//------------------------------------------------
-    
-//-------------------------------------------------
+    // ------------------------------------------------
+
+    // -------------------------------------------------
     public void keyPressed(KeyEvent event) {
         KeyCode key = event.getCode();
         switch (key) {
@@ -165,23 +172,28 @@ public class GameWindow {
             Thread thread2 = road.switchDown();
             thread2.start();
             break;
-        case SPACE:road.setCollisionDetection(false);
+        case SPACE:
+            road.setCollisionDetection(false);
             road.jumpOverUp();
             road.setCollisionDetection(true);
             break;
-            
+
         case ESCAPE:
             // cheatMode = true;
             // road.immunity(cheatMode);
         case RIGHT:
-            //road.setSpeedTrue();
+            // road.setSpeedTrue();
             break;
         case W:
+            road.setCollisionDetection(false);
+            road.superJumpOverUp();
+            road.setCollisionDetection(true);
             break;
         }
 
     }
-//-------------------------------------------------
+
+    // -------------------------------------------------
     public void bindsAndInitializing(int DL, int LS) {
         road = new Road(DL, LS);
         img.layoutXProperty().bindBidirectional(road.getPlayer().getCoordinate().getX());
@@ -209,10 +221,8 @@ public class GameWindow {
 
     }
 
-        
     public void showOver(Stage stage) throws IOException {
         if (gameOver.get() == true) {
-            
 
             timeline.stop();
             Alert alert = new Alert(AlertType.INFORMATION, "Crash");
@@ -228,7 +238,8 @@ public class GameWindow {
             // stage.close();
         }
     }
-    public void setHighScoreWhenGameOver(){
+
+    public void setHighScoreWhenGameOver() {
         PlayerHighScore playerHighScore = new PlayerHighScore("I won?", road.getPlayer().getPropertyScores().get());
         highScore.addPlayer(playerHighScore);
         try {
@@ -238,6 +249,7 @@ public class GameWindow {
         }
 
     }
+
     void setRoad(Road r) {
         for (int i = 0; i < r.getUsingRB().size(); i++) {
             Obstacle obs = r.getUsingRB().get(i);
