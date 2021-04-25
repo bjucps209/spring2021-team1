@@ -44,6 +44,7 @@ public class GameWindow {
 
     ArrayList<ImageView> imgviewList = new ArrayList<>();
     Road road;
+
     AllHighScore highScore = AllHighScore.getInstance();
 
     // final Image humanImage = new Image("/images/human.gif");
@@ -99,9 +100,10 @@ public class GameWindow {
             // img.setX(img.getX() + 2);
             road.updateXPositionOfObstable();
             try {
-                showOver(stage);
+                showOver();
             } catch (IOException e1) {
-                System.out.println("showOver error");
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
             }
         }));
         timeline.setCycleCount(2000);
@@ -228,21 +230,17 @@ public class GameWindow {
 
     }
 
-    public void showOver(Stage stage) throws IOException {
+        
+    public void showOver() throws IOException {
         if (gameOver.get() == true) {
-
-            timeline.stop();
-            Alert alert = new Alert(AlertType.INFORMATION, "Crash");
-            alert.show();
 
             var gLoader = new FXMLLoader(getClass().getResource("GameOver.fxml"));
             var gScene = new Scene(gLoader.load());
             var gStage = new Stage();
-            GameOver window = gLoader.getController();
+            GameOver windows = gLoader.getController();
             gStage.setScene(gScene);
             gStage.show();
-
-            // stage.close();
+            windows.initialzie();
         }
     }
 
@@ -286,6 +284,10 @@ public class GameWindow {
 
             }
         }
+    }
+
+    public Road getRoad() {
+        return road;
     }
 }
 

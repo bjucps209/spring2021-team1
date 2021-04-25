@@ -8,5 +8,10 @@
     <Button fx:id="btnBackHigh" onAction="#onBackClicked" text="Back"  />
     <Label text="high scores screen "/>
     <Label text="player name and score"/>
+    <VBox fx:id="listVbox">
+        
+    </VBox>
+    
+    <Button text="load scores" onAction="#onLoadClicked"/>
 
 </VBox>
