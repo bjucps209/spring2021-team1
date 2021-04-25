@@ -130,5 +130,24 @@ public class LevelChoice {
         stage.close();
 
     }
+    @FXML
+    void onLoadClicked(ActionEvent event) throws IOException {
+        int DL = getDiffButton();
+        int LS = getLevelButton();
+
+        var gLoader = new FXMLLoader(getClass().getResource("GameWindow.fxml"));
+        var gScene = new Scene(gLoader.load());
+        var gStage = new Stage();
+        GameWindow window = gLoader.getController();
+        gStage.setScene(gScene);
+        gStage.show();
+        
+        window.initialize(gStage, DL, LS, levelArray); //William's added null for levelbuilder purposes
+        
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.road.load();
+        stage.close();
+        
+    }
 
 }

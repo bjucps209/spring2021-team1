@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,7 @@ import javafx.scene.control.Button;
 
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import model.Obstacle;
 
 public class MainWindow {
 
@@ -84,8 +87,23 @@ public class MainWindow {
         stage.show();
     }
 
-    @FXML
+    //@FXML
+/*
     void onLoadClicked(ActionEvent event) throws IOException {
-        //Under Construction
-    }
+        var gLoader = new FXMLLoader(getClass().getResource("GameWindow.fxml"));
+        var gScene = new Scene(gLoader.load());
+        var gStage = new Stage();
+        LevelChoice lvl = new LevelChoice();
+        int DL = lvl.getDiffButton();
+        int LS = lvl.getLevelButton();
+        ArrayList<Obstacle> levelArray = new ArrayList<>();
+        levelArray = null;
+        GameWindow window = gLoader.getController();
+        gStage.setScene(gScene);
+        gStage.show();
+        window.initialize(gStage, DL, LS, levelArray); //William's added null for levelbuilder purposes
+        window.road.load();
+        Stage loadstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        loadstage.close();
+    } */
 }
