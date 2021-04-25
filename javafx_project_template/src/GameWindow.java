@@ -94,7 +94,6 @@ public class GameWindow {
             public void handle(KeyEvent event) {
                 keyPressed(event);
             }
-
         });
         setRoad(road);
 
@@ -146,11 +145,11 @@ public class GameWindow {
 
     }
 
-    // @FXML
-    // void onSaveClicked(ActionEvent event) {
-    // road.save();
-    // }
-    // ------------------------------------------------------------
+    @FXML
+    void onSaveClicked(ActionEvent event) {
+    road.save();
+    }
+    //------------------------------------------------------------
     public void keyReleased(KeyEvent event) {
         KeyCode k = event.getCode();
         switch (k) {
@@ -196,23 +195,21 @@ public class GameWindow {
             break;
 
         case ESCAPE:
-            // cheatMode = true;
-            // road.immunity(cheatMode);
+            cheatMode = true;
+            road.immunity(cheatMode);
+            break;
         case RIGHT:
-            // road.setSpeedTrue();
+            road.setSpeedTrue();
             break;
         case W:
             road.setCollisionDetection(false);
             road.superJumpOverUp();
             road.setCollisionDetection(true);
             break;
-        
         case D:
-            
+            road.blowUp();
+            break;
         }
-
-       
-
     }
 
     // -------------------------------------------------
