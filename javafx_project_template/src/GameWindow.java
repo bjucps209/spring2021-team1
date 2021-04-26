@@ -196,6 +196,8 @@ public class GameWindow {
                 road.setCollisionDetection(true);
                 break;
             }
+        case S:
+            road.save();
             
         }
 
