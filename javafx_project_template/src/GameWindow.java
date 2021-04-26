@@ -212,7 +212,6 @@ public class GameWindow {
         collisionDetection.bind(road.getPropertyCollisionDetection());
         lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
         lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
-
     }
 
     public void loadRoadImages(Pane pane) {

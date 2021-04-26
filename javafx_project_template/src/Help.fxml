@@ -16,8 +16,12 @@
     <Label text="UP: change to a lane above" wrapText="true"/>
     <Label text="DOWN: change to a lane below" wrapText="true"/>
     <Label text="RIGHT: Increase speed" wrapText="true"/>
+    <Label text="W: Super jump over big obstacles." wrapText="true"/>
+    <Label text="A: Immunity actived. " wrapText="true"/>
+    <Label text="S: Save the current position you are at." wrapText="true"/>
     
     <Button fx:id="btnBackHelp" onAction="#onBackClicked" text="Back"  />
+
 
 
 </VBox>

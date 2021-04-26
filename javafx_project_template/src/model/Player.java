@@ -45,13 +45,11 @@ public class Player implements Savable{
 
     public void deserialize(String toDeserialize) {
         String[] toParse = toDeserialize.split("\n");
+        System.out.println(toDeserialize);
         coord.setX(Double.parseDouble(toParse[0]));
         coord.setY(Double.parseDouble(toParse[1]));
         setLives(Integer.parseInt(toParse[2]));
         setScores(Integer.parseInt(toParse[3]));
-    }
-    public Rectangle2D getBounds() {
-        return new Rectangle2D(coord.getdoubleX(), coord.getdoubleY(), playerWidth, playerHeight);
     }
 
     public final void setLives(int value){

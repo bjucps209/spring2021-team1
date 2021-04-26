@@ -113,7 +113,7 @@ public class Road {
 
     public void detectCollision() {
         if(getCollisionDetection() == true){
-            System.out.println("ITS WORKING");
+            //System.out.println("ITS WORKING");
         // if player image coordinate equals object object, print collided..
         // System.out.println(playerCoord.getX());
             for (Obstacle i : usingRB) {
