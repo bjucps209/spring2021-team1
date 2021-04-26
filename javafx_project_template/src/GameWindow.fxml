@@ -6,7 +6,7 @@
 
 <VBox fx:controller="GameWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="GameWindow.css"
     spacing="10" maxHeight="600"  style="-fx-background-color: black;" maxWidth="1500" alignment="CENTER_RIGHT" fx:id="hbox" onKeyPressed="#keyPressed">
-    <Button text="back" onAction="#onBackClicked"/>
+
     <Pane prefWidth="1250" prefHeight="600" style="-fx-background-color: lightgrey;" styleClass="Pane" fx:id="paneMain"/>
 
     <HBox style="-fx-border-color: cyan; -fx-fill-width: true;" alignment="CENTER_LEFT" maxHeight="200" >

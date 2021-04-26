@@ -271,7 +271,6 @@ public class LevelBuilder {
 
     @FXML
     void onRightClicked(ActionEvent e){
-        
         for (int i = 0; i < paneRoad.getChildren().size(); i++) {
             ImageView img = (ImageView) paneRoad.getChildren().get(i);
             img.setTranslateX(img.getTranslateX() + 20);

@@ -1,5 +1,5 @@
 package model;
 
 public enum PowerUp {
-    IMMUNITY , BLOWUP, SUPERJUMP, COINS, LIFE
+    IMMUNITY , BLOWUP, SUPERJUMP, COINS
 }
