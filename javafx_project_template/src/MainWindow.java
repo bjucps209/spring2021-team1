@@ -6,8 +6,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class MainWindow {
@@ -18,6 +19,8 @@ public class MainWindow {
     Button btnBackStart, btnBackHelp, btnBackAbout, btnBackHigh;
     @FXML
     Pane roadPane;
+    @FXML 
+    Label txtHelp;
 
    // Stage mainStage;
 
@@ -55,6 +58,7 @@ public class MainWindow {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
     }
 
     @FXML
@@ -71,8 +75,10 @@ public class MainWindow {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("Highscores.fxml"));
         Scene scene = new Scene(root);
+        stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
+        
     }
 
     @FXML

@@ -154,10 +154,13 @@ public class GameWindow {
             road.setCollisionDetection(true);
             break;
         case W:
-            road.setCollisionDetection(false);
-            road.superJumpOverdown();
-            road.setCollisionDetection(true);
-            break;
+            if(road.getNumOfSpeedUp() > 0){
+                road.setCollisionDetection(false);
+                road.superJumpOverdown();
+                road.setCollisionDetection(true);
+                break;
+            }
+            
         }
     }
     // ------------------------------------------------
@@ -187,10 +190,13 @@ public class GameWindow {
             // road.setSpeedTrue();
             break;
         case W:
-            road.setCollisionDetection(false);
-            road.superJumpOverUp();
-            road.setCollisionDetection(true);
-            break;
+            if(road.getNumOfSpeedUp() > 0){
+                road.setCollisionDetection(false);
+                road.superJumpOverUp();
+                road.setCollisionDetection(true);
+                break;
+            }
+            
         }
 
     }
@@ -223,7 +229,6 @@ public class GameWindow {
 
     }
 
-        
     public void showOver() throws IOException {
         if (gameOver.get() == true) {
 

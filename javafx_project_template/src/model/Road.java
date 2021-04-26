@@ -35,6 +35,7 @@ public class Road {
     double FASTSPEED = 4;
     boolean speed = false;
     boolean crashed = false;
+    int numOfSuperJump = 3;
 
 
     // File to load and save from
@@ -102,9 +103,11 @@ public class Road {
         return crashed;
     }
 
-
     public void setCrashed(boolean crashed) {
         this.crashed = crashed;
+    }
+    public int getNumOfSpeedUp(){
+        return numOfSuperJump;
     }
 //=========================Collision Detection===================================//
 
@@ -234,6 +237,7 @@ public class Road {
         if(getCollisionDetection() == false){
             getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY() - 50);
             getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 100);
+
         }
 
     }
@@ -241,13 +245,14 @@ public class Road {
         if(getCollisionDetection() == false){
             getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 100);
             getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY() + 50);
+            numOfSuperJump -= 1;
         }
 
     }
 
 
     public void immunity(boolean tf){
-        if(tf = true){
+        if(tf == true){
             setCollisionDetection(true);;
         }
     }
@@ -315,6 +320,4 @@ public class Road {
         usingRB = listObstacles;
 
     }
-
-
 }
