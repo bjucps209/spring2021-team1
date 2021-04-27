@@ -20,7 +20,8 @@ public class HighScore {
     VBox listVbox;
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize(Stage stage) throws IOException {
+        stage.setMaximized(true);
         all.load("Load.txt");
         ArrayList<String> list = all.getPlayerList();
 
@@ -43,16 +44,4 @@ public class HighScore {
 
     }
 
-    @FXML
-    void onLoadClicked(ActionEvent event) throws IOException{
-        all.load("new.txt");
-        ArrayList<String> list = all.getPlayerList();
-        listVbox.getChildren().clear();
-        for(int i = 0; i < list.size(); i++){
-            var lbl = new Label();
-            listVbox.getChildren().addAll(lbl);
-            lbl.setText(list.get(i).toString());
-        }
-
-    }
 }
