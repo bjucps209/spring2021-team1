@@ -38,18 +38,17 @@ public class Player implements Savable{
     public String serialize() {
         double x = coord.getdoubleX();
         double y = coord.getdoubleY();
-        String serial = "Player" + "\n" + String.valueOf(x) + "\n" + String.valueOf(y) + "\n" + String.valueOf(getLives()) + "\n" + String.valueOf(getScores()) + "\n" + "END";
-        //State will be added when getState() is complete
+        String serial = "Player" + "\n" + String.valueOf(x) + "\n" + String.valueOf(y) + "\n" + String.valueOf(getLives()) + "\n" + String.valueOf(getScores());
         return serial;
     }
 
     public void deserialize(String toDeserialize) {
-        String[] toParse = toDeserialize.split("\n");
+        String[] toParse = toDeserialize.split(",");
         System.out.println(toDeserialize);
         coord.setX(Double.parseDouble(toParse[0]));
         coord.setY(Double.parseDouble(toParse[1]));
         setLives(Integer.parseInt(toParse[2]));
-        setScores(Integer.parseInt(toParse[3]));
+        setScores(Double.parseDouble(toParse[3]));
     }
 
     public final void setLives(int value){

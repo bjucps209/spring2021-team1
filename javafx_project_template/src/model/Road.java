@@ -278,30 +278,34 @@ public class Road {
     public void load() {
         try(var rd = new BufferedReader(new FileReader("javafx_project_template/src/data.txt"))) {
             String line = rd.readLine();
-            String deser = new String();
+            String deser = "";
             while (line != null) {
                 switch(line) {
                     case "Obstacle":
                         
                         Obstacle obst = new Obstacle(rb[0], 1, setYList.get(0));
-                        deser += rd.readLine() + "\n";
+                        deser += rd.readLine() + ",";
                         deser += rd.readLine();
-                        //System.out.println(deser);
-                        String[] inBoundsCheck = deser.split("\n");
+                        System.out.println(deser);
+                        String[] inBoundsCheck = deser.split(",");
                         //Checks if the object is still on the game screen
                         if (Double.parseDouble(inBoundsCheck[0]) >= 0 && Double.parseDouble(inBoundsCheck[1]) >= 0) {
                             obst.deserialize(deser);
                         }
                         deser = "";
+                        break;
                     case "Player":
-                        deser += rd.readLine() + "\n";
+                        deser += rd.readLine() + ",";
+                        deser += rd.readLine() + ",";
+                        deser += rd.readLine() + ",";
                         deser += rd.readLine();
-                        //System.out.println(deser);
+
+                        System.out.println(deser);
                         player.deserialize(deser);
                         deser = "";
-                        
+                        break;
                 } 
-                //System.out.println(line);
+                System.out.println(line);
                 line = rd.readLine();
 
             }
