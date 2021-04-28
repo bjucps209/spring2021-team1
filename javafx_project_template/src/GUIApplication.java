@@ -12,6 +12,7 @@ public class GUIApplication extends Application{
         
         var loader = new FXMLLoader(getClass().getResource("MainWindow.fxml"));
         var scene = new Scene(loader.load());
+
         stage.setScene(scene);
         stage.setTitle("Public Safety Escape"); // Title of main window
         stage.show();

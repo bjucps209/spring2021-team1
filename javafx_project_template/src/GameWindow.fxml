@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 
 <VBox fx:controller="GameWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="GameWindow.css"
-    spacing="10" prefHeight="1080" prefWidth="1920" style="-fx-background-color: black;" alignment="CENTER_RIGHT" fx:id="hbox" onKeyPressed="#keyPressed">
+    spacing="10" maxHeight="600"  style="-fx-background-color: black;" maxWidth="1500" alignment="CENTER_RIGHT" fx:id="hbox" onKeyPressed="#keyPressed">
 
     <Pane prefWidth="1250" prefHeight="600" style="-fx-background-color: lightgrey;" styleClass="Pane" fx:id="paneMain"/>
 
@@ -15,7 +15,6 @@
         <Label style="-fx-font-size: 50px; -fx-text-fill: blue;" text="Scores"/>
         <Label style="-fx-font-size: 50px; -fx-text-fill: white;" fx:id="lblScore" text="0"/>
         <!-- <Button style="-fx-font-size: 15px; -fx-text-fill: blue;" text="Save" alignment="CENTER_RIGHT" onAction="#onSaveClicked"/> -->
-        <Button fx:id="btnBackHelp" onAction="#onBackClicked" text="Back"  />
     </HBox>
     
 </VBox>

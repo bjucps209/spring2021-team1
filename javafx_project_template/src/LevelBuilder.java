@@ -38,7 +38,7 @@ public class LevelBuilder {
     final Image IMG_HUMAN = new Image("/images/human.gif");
     final Image IMG_TRUCK = new Image("/images/truck.png");
     final Image IMG_CAR = new Image("/images/RoadBlockcar.png");
-    final Image IMG_ROAD = new Image("/images/road.png");
+    final Image roadImage = new Image("/images/road.png");
 
     Random rand = new Random();
     Node oldNode;
@@ -58,7 +58,7 @@ public class LevelBuilder {
         imgPlayer.relocate(50, 300);
         paneRoad.getChildren().add(imgPlayer);
  */
-        var imgRoad = new ImageView(IMG_ROAD);
+        var imgRoad = new ImageView(roadImage);
         imgRoad.setFitWidth(2000);
         imgRoad.setFitHeight(600);
         paneRoad.getChildren().add(imgRoad);

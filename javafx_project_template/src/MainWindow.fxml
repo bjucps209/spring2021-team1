@@ -7,22 +7,21 @@
 
 
 <VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml" stylesheets="@MainWindow.css"
-    spacing="10" prefHeight="800" prefWidth="800" style="-fx-background-color: black;"  alignment="TOP_CENTER">
+    spacing="10" prefHeight="600" prefWidth="500" style="-fx-background-color: black;"  alignment="CENTER">
 
     <HBox  spacing="10" alignment="CENTER">
     <Button fx:id="btnHigh" onAction="#onHighClicked" text="Highscores"  styleClass="Button"/>
     <Button fx:id="btnAbout" onAction="#onAboutClicked" text="About" styleClass="Button" />
     <Button fx:id="btnHelp" onAction="#onHelpClicked" text="Help" styleClass="Button"/>
     <Button fx:id="btnLevel" onAction="#onLevelClicked" text="Build Level" styleClass="Button"/>
-    <!-- <Button fx:id="btnLoad" onAction="#onLoadClicked" text="Load Game" styleClass="Button" /> -->
+    <Button fx:id="btnLoad" onAction="#onLoadClicked" text="Load Game" styleClass="Button" />
     </HBox>
-    <ImageView fitHeight="300" fitWidth="300" smooth="true">      
-        <image>
-            <Image url="images/reallogo.png"/>
-        </image>
+    <ImageView fitHeight="500" fitWidth="500" smooth="true">      
+    <image>
+          <Image url="images/reallogo.png"/>
+    </image>
     </ImageView>  
     
-    <Button fx:id="btnStart" prefHeight="50" prefWidth="50" onAction="#onNextClicked" text="Next" 
-    style="-fx-font: 20px Tahoma; -fx-background-color: #318AE0; -fx-text-fill: black;" />
+    <Button fx:id="btnStart" prefHeight="150" prefWidth="200" onAction="#onNextClicked" text="Next" style="-fx-font: 30px Tahoma; -fx-background-color: #318AE0; -fx-text-fill: black;" />
 
 </VBox>

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="@MainWindow.css"
-    spacing="10" prefHeight="1080" prefWidth="1920">
+    spacing="10" prefHeight="600" prefWidth="500">
 
     <Label text="How to play the game"/>
     <Label text="Goal: The goal of this game is to reach the finsih line and get to school as fast as you can without crashing and getting pulled over." wrapText="true"/>
@@ -16,12 +16,8 @@
     <Label text="UP: change to a lane above" wrapText="true"/>
     <Label text="DOWN: change to a lane below" wrapText="true"/>
     <Label text="RIGHT: Increase speed" wrapText="true"/>
-    <Label text="W: Super jump over big obstacles." wrapText="true"/>
-    <Label text="A: Immunity actived. " wrapText="true"/>
-    <Label text="S: Save the current position you are at." wrapText="true"/>
     
     <Button fx:id="btnBackHelp" onAction="#onBackClicked" text="Back"  />
-
 
 
 </VBox>
