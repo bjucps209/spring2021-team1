@@ -267,7 +267,7 @@ public class Road {
     // ================Serialization=========================//
 
     public void save() {
-        try (FileWriter fr = new FileWriter("src/data.txt")) {
+        try (FileWriter fr = new FileWriter("data.txt")) {
             for (Savable obj : saveList) {
                 fr.append(obj.serialize());
             }
@@ -282,18 +282,21 @@ public class Road {
             String deser = new String();
             while (line != null) {
                 switch(line) {
-                   /* case "Obstacle":
+                    case "Obstacle":
                         
                         Obstacle obst = new Obstacle(rb[0], 1, setYList.get(0));
                         deser += rd.readLine();
                         deser += "\n" + rd.readLine();
                         //System.out.println(deser);
-                        String[] inBoundsCheck = deser.split("\n");
+                        //String[] inBoundsCheck = deser.split("\n");
                         //Checks if the object is still on the game screen
-                        if (Double.parseDouble(inBoundsCheck[0]) >= 0 && Double.parseDouble(inBoundsCheck[1]) >= 0) {
-                            obst.deserialize(deser);
-                        }
-                        deser = ""; */
+                        //if (Double.parseDouble(inBoundsCheck[0]) >= 0 && Double.parseDouble(inBoundsCheck[1]) >= 0) {
+                          //  obst.deserialize(deser);
+                       // }
+                        obst.deserialize(deser);
+                        deser = ""; 
+                        break;
+
                     case "Player":
                         deser += rd.readLine();
                         deser += "\n" + rd.readLine();
@@ -302,6 +305,7 @@ public class Road {
                         //System.out.println(deser);
                         player.deserialize(deser);
                         deser = "";
+                        break;
                         
                 } 
                 //System.out.println(line);

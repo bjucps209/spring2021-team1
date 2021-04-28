@@ -10,9 +10,11 @@
     
 
      @Test
-     public void testSave() {
-         Road r = new Road(3, 3);
+     public void testLoad() {
+         Road r = new Road(11, 11);
          r.load();
+         for ()
+        
      }
 
  }
