@@ -40,12 +40,12 @@ public class Obstacle extends Coordinate implements Savable {
     }
 
     public String serialize() {
-        String serial = "Obstacle" + "\n" + String.valueOf(getdoubleX()) + "\n" + String.valueOf(getdoubleX()) + "\n" + "END" + "\n";
+        String serial = "Obstacle" + "\n" + String.valueOf(getdoubleX()) + "\n" + String.valueOf(getdoubleY())+ "\n";
         return serial;
     }
 
     public void deserialize(String toDeserialize) {
-        String[] toParse = toDeserialize.split("\n");
+        String[] toParse = toDeserialize.split(",");
         setX(Double.parseDouble(toParse[0]));
         setY(Double.parseDouble(toParse[1]));
 

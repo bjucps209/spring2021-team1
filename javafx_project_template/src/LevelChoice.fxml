@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <VBox fx:controller="LevelChoice" xmlns:fx="http://javafx.com/fxml"  stylesheets="@LevelChoice.css"
-    spacing="10" prefHeight="700" prefWidth="500" styleClass = "VBox">
+    spacing="10" prefHeight="1080" prefWidth="1920" styleClass = "VBox">
     <Label text="Difficulty"/>
     <HBox prefHeight="200" prefWidth="200" styleClass = "HBox">
         <RadioButton text="Easy" fx:id="BtnEasyDiff">

@@ -114,7 +114,7 @@ public class Road {
 
     public void detectCollision() {
         if(getCollisionDetection() == true){
-            System.out.println("ITS WORKING");
+            //System.out.println("ITS WORKING");
         // if player image coordinate equals object object, print collided..
         // System.out.println(playerCoord.getX());
             for (Obstacle i : usingRB) {
@@ -277,14 +277,15 @@ public class Road {
     }
 
     public void load() {
-        try(var rd = new BufferedReader(new FileReader("data.txt"))) {
+        try(var rd = new BufferedReader(new FileReader("javafx_project_template/src/data.txt"))) {
             String line = rd.readLine();
-            String deser = new String();
+            String deser = "";
             while (line != null) {
                 switch(line) {
                     case "Obstacle":
                         
                         Obstacle obst = new Obstacle(rb[0], 1, setYList.get(0));
+<<<<<<< HEAD
                         deser += rd.readLine();
                         deser += "\n" + rd.readLine();
                         //System.out.println(deser);
@@ -307,13 +308,39 @@ public class Road {
                         deser = "";
                         break;
                         
+=======
+                        deser += rd.readLine() + ",";
+                        deser += rd.readLine();
+                        System.out.println(deser);
+                        String[] inBoundsCheck = deser.split(",");
+                        //Checks if the object is still on the game screen
+                        if (Double.parseDouble(inBoundsCheck[0]) >= 0 && Double.parseDouble(inBoundsCheck[1]) >= 0) {
+                            obst.deserialize(deser);
+                        }
+                        deser = "";
+                        break;
+                    case "Player":
+                        deser += rd.readLine() + ",";
+                        deser += rd.readLine() + ",";
+                        deser += rd.readLine() + ",";
+                        deser += rd.readLine();
+
+                        System.out.println(deser);
+                        player.deserialize(deser);
+                        deser = "";
+                        break;
+>>>>>>> 781f864a0004921b64df75642e22b9c38998bf0e
                 } 
-                //System.out.println(line);
+                System.out.println(line);
                 line = rd.readLine();
 
             }
         }catch(Exception e) {
+<<<<<<< HEAD
             System.out.print(e.getMessage());
+=======
+            System.out.print(e);
+>>>>>>> 781f864a0004921b64df75642e22b9c38998bf0e
         }
     }
 

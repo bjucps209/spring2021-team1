@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <VBox fx:id="main" fx:controller="HighScore" xmlns:fx="http://javafx.com/fxml"  stylesheets="@LevelChoice.css"
- style="-fx-background-color: black;" alignment="CENTER" spacing="10" prefHeight="400" prefWidth="250">
+ style="-fx-background-color: black;" alignment="CENTER" spacing="10" prefHeight="1080" prefWidth="1920">
     <Button fx:id="btnBackHigh" onAction="#onBackClicked" text="Back"  />
     <Label text="high scores screen "/>
     <Label text="player name and score"/>
@@ -12,6 +12,4 @@
         
     </VBox>
     
-    <Button text="load scores" onAction="#onLoadClicked"/>
-
 </VBox>

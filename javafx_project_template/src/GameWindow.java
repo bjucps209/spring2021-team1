@@ -14,6 +14,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -68,7 +70,7 @@ public class GameWindow {
     ImageView explosion = new ImageView(expImage);
 
     @FXML
-    public void initialize(Stage stage, int DL, int LS, ArrayList<Obstacle> obstacles) throws IOException {
+    public void initialize(Stage stage, int DL, int LS, ArrayList<Obstacle> obstacles, boolean load) throws IOException {
 
         bindsAndInitializing(DL, LS);
         // William's levelbuilder purposes
@@ -212,7 +214,7 @@ public class GameWindow {
         collisionDetection.bind(road.getPropertyCollisionDetection());
         lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
         lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
-
+        road.load();
     }
 
     public void loadRoadImages(Pane pane) {
@@ -288,6 +290,18 @@ public class GameWindow {
 
     public Road getRoad() {
         return road;
+    }
+    
+    @FXML
+    void onBackClicked(ActionEvent event) throws IOException {
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("LevelChoice.fxml"));
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+
     }
 }
 
