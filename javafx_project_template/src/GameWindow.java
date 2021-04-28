@@ -70,7 +70,7 @@ public class GameWindow {
     ImageView explosion = new ImageView(expImage);
 
     @FXML
-    public void initialize(Stage stage, int DL, int LS, ArrayList<Obstacle> obstacles) throws IOException {
+    public void initialize(Stage stage, int DL, int LS, ArrayList<Obstacle> obstacles, boolean load) throws IOException {
 
         bindsAndInitializing(DL, LS);
         // William's levelbuilder purposes
@@ -214,6 +214,7 @@ public class GameWindow {
         collisionDetection.bind(road.getPropertyCollisionDetection());
         lblLife.textProperty().bind(road.getPlayer().getPropertyLives().asString());
         lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
+        road.load();
     }
 
     public void loadRoadImages(Pane pane) {

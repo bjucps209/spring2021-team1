@@ -276,7 +276,7 @@ public class Road {
     }
 
     public void load() {
-        try(var rd = new BufferedReader(new FileReader("data.txt"))) {
+        try(var rd = new BufferedReader(new FileReader("javafx_project_template/src/data.txt"))) {
             String line = rd.readLine();
             String deser = new String();
             while (line != null) {
@@ -306,7 +306,7 @@ public class Road {
 
             }
         }catch(Exception e) {
-            System.out.print(e.getStackTrace());
+            System.out.print(e);
         }
     }
 
