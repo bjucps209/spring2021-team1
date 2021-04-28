@@ -48,7 +48,7 @@ public class Player implements Savable{
         coord.setX(Double.parseDouble(toParse[0]));
         coord.setY(Double.parseDouble(toParse[1]));
         setLives(Integer.parseInt(toParse[2]));
-        setScores(Integer.parseInt(toParse[3]));
+        setScores(Double.parseDouble(toParse[3]));
     }
     public Rectangle2D getBounds() {
         return new Rectangle2D(coord.getdoubleX(), coord.getdoubleY(), playerWidth, playerHeight);
