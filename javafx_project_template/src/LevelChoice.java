@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import model.DifficultyLevel;
 import model.LevelSequence;
@@ -31,6 +32,8 @@ public class LevelChoice {
     
     public ArrayList<Obstacle> levelArray;
     
+    AudioClip Menu_Sound = new AudioClip(
+        getClass().getResource("/sound/menu.mp3").toString());
 
     public void setLevelArray(ArrayList<Obstacle> levelArray) {
         this.levelArray = levelArray;
@@ -62,6 +65,7 @@ public class LevelChoice {
         //BtnEasyDiff.setSelected(true);
         //BtnOneSeq.setSelected(true);
         levelArray = null;
+        Menu_Sound.play();
 
     }
 
