@@ -16,9 +16,6 @@
     -fx-text-alignment: center;
 }
 .Button{
-    /* -fx-alignment: top-left;
-    -fx-font-family: serif; 
-    -fx-content-display: text-only;*/
     -fx-font-size: 20 serif; 
     -fx-background-color: #318AE0; 
     -fx-text-fill: black;

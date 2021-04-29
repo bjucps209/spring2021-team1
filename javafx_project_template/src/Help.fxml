@@ -16,6 +16,9 @@
     <Label text="UP: change to a lane above" wrapText="true" styleClass="Label"/>
     <Label text="DOWN: change to a lane below" wrapText="true" styleClass="Label"/>
     <Label text="RIGHT: Increase speed" wrapText="true" styleClass="Label"/>
+    <Label text="S: Save your current position" wrapText="true" styleClass="Label"/>
+    <Label text="SPACE: Regular Jump" wrapText="true" styleClass="Label"/>
+    <Label text="W: Super Jump" wrapText="true" styleClass="Label"/>
     <Label text="Scores: Scored are based on a timer, the faster you complete a level the lower your score. The goal is to get the lowest score possible. " wrapText="true" styleClass="Label"/>
     
     <Button fx:id="btnBackHelp" onAction="#onBackClicked" text="Back" styleClass="Button"/>

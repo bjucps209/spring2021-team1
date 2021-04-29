@@ -8,9 +8,9 @@ spacing="10" prefHeight="800" prefWidth="800" alignment="CENTER">
     <Label text="HIGHSCORES" styleClass="TitleLabel" underline="true"/>
     <Label text="Player's name and Score" underline="true" styleClass="Label"/>
     <VBox fx:id="listVbox" styleClass="Label" alignment="CENTER">
-        <Label text="Jackie,79" styleClass="Label"/>
+        <Label text="Jackie,39" styleClass="Label"/>
         <Label text="Aya,56" styleClass="Label"/>
-        <Label text="Brigs,36" styleClass="Label"/>
+        <Label text="Brigs,76" styleClass="Label"/>
 
     </VBox>
     <Button fx:id="btnBackHigh" onAction="#onBackClicked" text="Back"  styleClass="Button"/>

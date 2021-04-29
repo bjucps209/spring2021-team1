@@ -18,8 +18,8 @@
             <Button style="-fx-color: #318AE0;" onAction="#onTruckClicked" prefHeight="100" prefWidth="100"  styleClass="leftbutton"><graphic><ImageView  fitHeight="100" fitWidth="100" preserveRatio="True"><image><Image url="@images/truck.png" /></image></ImageView></graphic></Button>
             <Button style="-fx-color: #318AE0;" onAction="#onCarClicked" prefHeight="100" prefWidth="100"  styleClass="leftbutton"><graphic><ImageView  fitHeight="100" fitWidth="100" preserveRatio="True"><image><Image url="@images/RoadBlockcar.png"/></image></ImageView></graphic></Button>
             <Button style="-fx-color: #318AE0;" onAction="#onDeleteClicked"><graphic><ImageView><image><Image url="@images/delete-icon.png" /></image></ImageView></graphic></Button>
-            <Button text="Right" onAction="#onRightClicked" style="-fx-color: #318AE0;-fx-font: 20px Tahoma;" /> 
-            <Button text="Left" onAction="#onLeftClicked" style="-fx-color: #318AE0;-fx-font: 20px Tahoma;" />
+            <Button text="Left" onAction="#onRightClicked" style="-fx-color: #318AE0;-fx-font: 20px Tahoma;" /> 
+            <Button text="Right" onAction="#onLeftClicked" style="-fx-color: #318AE0;-fx-font: 20px Tahoma;" />
        </HBox>
         
     
