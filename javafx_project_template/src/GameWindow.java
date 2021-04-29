@@ -99,7 +99,7 @@ public class GameWindow {
             // img.setX(img.getX() + 2);
             road.updateXPositionOfObstable();
         }));
-        timeline.setCycleCount(2000);
+        timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
         Timeline timelineTwo = new Timeline(new KeyFrame((Duration.seconds(2.5)), e -> {
