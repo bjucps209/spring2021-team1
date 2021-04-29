@@ -141,11 +141,8 @@ public class GameWindow {
 
     }
 
-    // @FXML
-    // void onSaveClicked(ActionEvent event) {
-    // road.save();
-    // }
     // ------------------------------------------------------------
+    //Handles key releases
     public void keyReleased(KeyEvent event) {
         KeyCode k = event.getCode();
         switch (k) {
@@ -173,6 +170,7 @@ public class GameWindow {
     // ------------------------------------------------
 
     // -------------------------------------------------
+    //Handles key presses
     public void keyPressed(KeyEvent event) {
         KeyCode key = event.getCode();
         switch (key) {
@@ -248,10 +246,10 @@ public class GameWindow {
             GameOver windows = gLoader.getController();
             gStage.setScene(gScene);
             gStage.show();
-            windows.initialzie();
+            windows.initialize();
         }
     }
-
+    //Sets the high scores when the game ends
     public void setHighScoreWhenGameOver() {
         PlayerHighScore playerHighScore = new PlayerHighScore("New Player", road.getPlayer().getPropertyScores().get());
         highScore.addPlayer(playerHighScore);

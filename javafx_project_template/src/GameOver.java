@@ -9,7 +9,7 @@ public class GameOver {
     GameWindow gameWindow = new GameWindow();
     Road road = gameWindow.getRoad();
 
-    public void initialzie(){
+    public void initialize(){
         
 
     }
