@@ -21,7 +21,7 @@ class AllHighScore{
     }
 
     public void addToTxtFile() throws IOException {
-        File fout = new File("highscore.txt");
+        File fout = new File("oneScore.txt");
         FileOutputStream fos = new FileOutputStream(fout);
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
         for (int i = 0; i < playerList.size(); i++) {
@@ -29,6 +29,21 @@ class AllHighScore{
             bw.newLine();
         }
         bw.close();
+    }
+
+    public void addToAll() throws IOException{
+        var reader = new BufferedReader(new FileReader("oneScore.txt"));
+        String line = reader.readLine();        
+        File fout = new File("All.txt");
+        FileOutputStream fos = new FileOutputStream(fout);
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+        if (line != null) {
+            bw.write(line);
+            bw.newLine();
+        }
+        reader.close();
+        bw.close();
+
     }
     public void readFromTxtFile(String filename) throws IOException{
 
@@ -55,6 +70,7 @@ class AllHighScore{
     }
 
     public void load(String Filename ) throws IOException{
+        addToAll();
         readFromTxtFile(Filename);
     }
 

@@ -3,21 +3,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="@MainWindow.css"
-    spacing="10" prefHeight="600" prefWidth="500">
+<VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="@Help.css"
+    spacing="10" prefHeight="800" prefWidth="800" alignment="CENTER">
 
-    <Label text="How to play the game"/>
-    <Label text="Goal: The goal of this game is to reach the finsih line and get to school as fast as you can without crashing and getting pulled over." wrapText="true"/>
-    <Label text="Lives: You have a total of 3 lives and you lose one every time you hit anything in the road. When all lives are lost, public safety will pull you over and you are now late to class." wrapText="true"/>
-    <Label text="Moves: To avoid crashing, you can change lanes and jump over obstacles." wrapText="true"/>
-    <Label text="PowerUps: There are special powerups avaible for each level. At the start of each game you have 3 power ups available." wrapText="true"/>
-    <Label text="       Super jump allows you to jump over bigger items like trucks, if you just regular jump for a truck you will lose a life." wrapText="true"/>
-    <Label text="       Immunity allows you to be immune to crashes for 5 seconds." wrapText="true"/>
-    <Label text="UP: change to a lane above" wrapText="true"/>
-    <Label text="DOWN: change to a lane below" wrapText="true"/>
-    <Label text="RIGHT: Increase speed" wrapText="true"/>
+    <Label text="How to play the game" styleClass="TitleLabel" />
+    <Label text="Goal: The goal of this game is to reach the finsih line and get to school as fast as you can without crashing and getting pulled over." wrapText="true" styleClass="Label"/>
+    <Label text="Lives: You have a total of 3 lives and you lose one every time you hit anything in the road. When all lives are lost, public safety will pull you over and you are now late to class." wrapText="true" styleClass="Label"/>
+    <Label text="Moves: To avoid crashing, you can change lanes and jump over obstacles." wrapText="true" styleClass="Label"/>
+    <Label text="PowerUps: There are special powerups available for each level. At the start of each game you have 3 super jumps to use." wrapText="true" styleClass="Label"/>
+    <Label text="Super jump allows you to jump over bigger items like trucks, if you just regular jump for a truck you will lose a life." wrapText="true" styleClass="Label"/>
+    <Label text="Immunity allows you to be immune to crashes for 5 seconds." wrapText="true" styleClass="Label"/>
+    <Label text="UP: change to a lane above" wrapText="true" styleClass="Label"/>
+    <Label text="DOWN: change to a lane below" wrapText="true" styleClass="Label"/>
+    <Label text="RIGHT: Increase speed" wrapText="true" styleClass="Label"/>
     
-    <Button fx:id="btnBackHelp" onAction="#onBackClicked" text="Back"  />
+    <Button fx:id="btnBackHelp" onAction="#onBackClicked" text="Back" styleClass="Button"/>
 
 
 </VBox>

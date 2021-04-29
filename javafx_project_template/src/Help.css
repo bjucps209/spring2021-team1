@@ -1,0 +1,29 @@
+.root {
+    -fx-padding: 10;
+    -fx-spacing: 10;  /* Add a small padding around the window */
+    -fx-font-size: 20;
+    -fx-background-color: grey;
+
+    -fx-text-fill: black;
+}
+.TitleLabel{
+    -fx-font-family: serif; 
+    -fx-font-size: 30;
+    -fx-text-fill: black;
+    -fx-text-alignment: center;
+}
+
+.Label{
+    -fx-font-family: serif; 
+    -fx-font-size: 15;
+    -fx-text-fill: black;
+    -fx-text-alignment: center;
+}
+.Button{
+    -fx-alignment: top-left;
+    -fx-font-family: serif; 
+    -fx-content-display: text-only;
+    -fx-font-size: 20;
+
+
+}

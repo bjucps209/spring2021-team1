@@ -35,8 +35,8 @@ public class MainWindow {
         stage.setScene(scene);
         stage.show();
         window.initialize(stage);
-        Stage mStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        mStage.close();
+        // Stage mStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // mStage.close();
     }
 
     @FXML
