@@ -4,19 +4,19 @@
 <?import javafx.scene.layout.*?>
 <!-- "list programmer names; include sources of visual and audio media, 
     and any copyright permission notices required for assets you used" -->
-<VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="@MainWindow.css"
-    spacing="10" prefHeight="400" prefWidth="250">
+<VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="@About.css"
+    spacing="10" prefHeight="800" prefWidth="800" alignment="CENTER">
     
-    <Label text="About The Game"/>
-    <Label text="The Programmers"/>
-    <Label text="       Aya Cathey: Basic Game Play"/>
-    <Label text="       William's Fleurant: Level Builder"/>
-    <Label text="       Brigham Estelle: Serialization "/>
-    <Label text="       Jacqueline Ortiz: Auxiliary Screens"/>
-    <Label text="Copyright Information"/>          
-    <Label text="       For INSTERT IMAGES THAT CAME FROM HERE: Copyright© 2019. PngFind.com All Rights Reserved."/>
-    <Label text="       All other images used are public domain. "/>
-    <Button fx:id="btnBackAbout" onAction="#onBackClicked" text="Back"  />
+    <Label text="About The Game" styleClass="TitleLabel" underline="true"/>
+    <Label text="The Programmers" styleClass="TitleLabel" />
+    <Label text="Aya Cathey: Basic Game Play" styleClass="Label"/>
+    <Label text="William's Fleurant: Level Builder" styleClass="Label"/>
+    <Label text="Brigham Estelle: Serialization " styleClass="Label"/>
+    <Label text="Jacqueline Ortiz: Auxiliary Screens" styleClass="Label"/>
+    <Label text="Copyright Information" styleClass="TitleLabel"/>          
+    <Label text="For the truck image: Copyright© 2019. PngFind.com All Rights Reserved." styleClass="Label"/>
+    <Label text="All other images used are public domain. " styleClass="Label"/>
+    <Button fx:id="btnBackAbout" onAction="#onBackClicked" text="Back" styleClass="Button"/>
 
 
 </VBox>
