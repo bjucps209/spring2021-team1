@@ -1,1 +1,7 @@
+<<<<<<< HEAD
 New Player,318.52999999999105
+=======
+New Player,218.270000000007
+New Player,106.67000000000277
+New Player,170.30000000000518
+>>>>>>> 463bad22c5accd6b61e0328af0beaea77eaecdad

@@ -1,0 +1,5 @@
+.Button{
+    -fx-font-size: 20 serif; 
+    -fx-background-color: #318AE0; 
+    -fx-text-fill: black;
+}
