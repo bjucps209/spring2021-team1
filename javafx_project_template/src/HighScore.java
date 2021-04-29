@@ -1,3 +1,8 @@
+//-----------------------------------------------------------
+//File:   HighScore.java
+//Desc:   This program contains the fxml controler for 
+//          the highscores fxml file
+//----------------------------------------------------------- 
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -12,12 +17,14 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 
 public class HighScore {
+    //instance of allHighScores
     AllHighScore all = AllHighScore.getInstance();
     @FXML
     VBox main;
     @FXML
     VBox listVbox;
 
+    //adds all the players already loaded it to the All.txt file and adds labels for each one
     @FXML
     public void initialize() throws IOException {
         all.load("All.txt");
@@ -31,6 +38,7 @@ public class HighScore {
         list.clear();
     }
 
+    //Allows the user to return to the previous screen
     @FXML
     void onBackClicked(ActionEvent event) throws IOException {
 
@@ -43,16 +51,4 @@ public class HighScore {
 
     }
 
-    @FXML
-    void onLoadClicked(ActionEvent event) throws IOException {
-        all.load("All.txt");
-        ArrayList<String> list = all.getPlayerList();
-        listVbox.getChildren().clear();
-        for (int i = 0; i < list.size(); i++) {
-            var lbl = new Label();
-            listVbox.getChildren().addAll(lbl);
-            lbl.setText(list.get(i).toString());
-        }
-
-    }
 }

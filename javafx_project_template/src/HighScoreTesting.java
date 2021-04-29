@@ -1,4 +1,7 @@
-
+//-----------------------------------------------------------
+//File:   HighScoreTesting.java
+//Desc:   This program contains the unit test for high scores logic 
+//----------------------------------------------------------- 
 import static org.junit.Assert.assertArrayEquals;
 
 import java.io.IOException;
@@ -8,7 +11,8 @@ import org.junit.Test;
 public class HighScoreTesting {
 
     AllHighScore all = AllHighScore.getInstance();
-
+//test if the logic adds to the txt file, 
+//i don't know to use to asset for comparing text files so i manually checked if the file was loaded
     @Test
     public void highscoresOverallTest() throws IOException {
 
@@ -26,6 +30,7 @@ public class HighScoreTesting {
 
     }
 
+    //test if the highscore reader works 
     @Test
     public void readFromFileTest() throws IOException {
 

@@ -1,0 +1,4 @@
+Jackie,300
+Aya,100
+Brigs,7000
+William's,877
