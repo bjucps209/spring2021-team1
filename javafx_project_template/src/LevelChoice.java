@@ -108,8 +108,8 @@ public class LevelChoice {
         gStage.show();
 
         window.initialize(gStage, DL, LS, levelArray); //William's added null for levelbuilder purposes
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+        // Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // stage.close();
     
     }
 

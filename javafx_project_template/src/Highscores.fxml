@@ -3,15 +3,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="main" fx:controller="HighScore" xmlns:fx="http://javafx.com/fxml"  stylesheets="@LevelChoice.css"
- style="-fx-background-color: black;" alignment="CENTER" spacing="10" prefHeight="400" prefWidth="250">
-    <Button fx:id="btnBackHigh" onAction="#onBackClicked" text="Back"  />
-    <Label text="high scores screen "/>
-    <Label text="player name and score"/>
-    <VBox fx:id="listVbox">
+<VBox fx:id="main" fx:controller="HighScore" xmlns:fx="http://javafx.com/fxml"  stylesheets="@Help.css"
+ style="-fx-background-color: black;" alignment="CENTER" spacing="10" prefHeight="400" prefWidth="400">
+    <Button fx:id="btnBackHigh" onAction="#onBackClicked" text="Back"  styleClass="Button"/>
+    <Label text="HIGHSCORES" styleClass="Label"/>
+    <Label text="player name and score" underline="true" styleClass="Label"/>
+    <VBox fx:id="listVbox" styleClass="Label">
         
     </VBox>
     
-    <Button text="load scores" onAction="#onLoadClicked"/>
-
 </VBox>

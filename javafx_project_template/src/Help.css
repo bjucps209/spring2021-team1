@@ -1,0 +1,16 @@
+.root {
+    -fx-padding: 10; /* Add a small padding around the window */
+    -fx-font-size: 20;
+}
+
+.Label{
+    -fx-font-family: serif; 
+    -fx-font-size: 15;
+    -fx-text-fill: #ffffff;
+    -fx-text-alignment: center;
+}
+.Button{
+    -fx-alignment: top-left;
+    -fx-font-family: serif; 
+
+}

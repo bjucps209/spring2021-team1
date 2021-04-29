@@ -2,12 +2,20 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
+<!-- "list programmer names; include sources of visual and audio media, 
+    and any copyright permission notices required for assets you used" -->
 <VBox fx:controller="MainWindow" xmlns:fx="http://javafx.com/fxml"  stylesheets="@MainWindow.css"
     spacing="10" prefHeight="400" prefWidth="250">
-
-    <Label text="about screen"/>
     
+    <Label text="About The Game"/>
+    <Label text="The Programmers"/>
+    <Label text="       Aya Cathey: Basic Game Play"/>
+    <Label text="       William's Fleurant: Level Builder"/>
+    <Label text="       Brigham Estelle: Serialization "/>
+    <Label text="       Jacqueline Ortiz: Auxiliary Screens"/>
+    <Label text="Copyright Information"/>          
+    <Label text="       For INSTERT IMAGES THAT CAME FROM HERE: Copyright© 2019. PngFind.com All Rights Reserved."/>
+    <Label text="       All other images used are public domain. "/>
     <Button fx:id="btnBackAbout" onAction="#onBackClicked" text="Back"  />
 
 

@@ -23,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import model.*;
 
@@ -97,12 +98,6 @@ public class GameWindow {
         timeline = new Timeline(new KeyFrame(Duration.millis(9), e -> {
             // img.setX(img.getX() + 2);
             road.updateXPositionOfObstable();
-            try {
-                showOver();
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
         }));
         timeline.setCycleCount(2000);
         timeline.play();
@@ -110,10 +105,23 @@ public class GameWindow {
         Timeline timelineTwo = new Timeline(new KeyFrame((Duration.seconds(2.5)), e -> {
             if (road.isCrashed()) {
                 road.collisionDealer();
+                if(gameOver.get() == true){
+                    timeline.stop();
+                }
             }
         }));
         timelineTwo.setCycleCount(1500);
         timelineTwo.play();
+
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>(){
+
+            @Override
+            public void handle(WindowEvent event) {
+                timelineTwo.stop();   
+                setHighScoreWhenGameOver();
+            }
+            
+        });
     }
 
     // ------------------

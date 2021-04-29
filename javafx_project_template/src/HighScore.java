@@ -16,12 +16,14 @@ public class HighScore {
     AllHighScore all = AllHighScore.getInstance();
     @FXML
     VBox main;
-    @FXML 
+    @FXML
     VBox listVbox;
 
     @FXML
     public void initialize() throws IOException {
-        all.load("Load.txt");
+        all.load("All.txt");
+
+
         ArrayList<String> list = all.getPlayerList();
 
         for (int i = 0; i < list.size(); i++) {
@@ -29,6 +31,7 @@ public class HighScore {
             listVbox.getChildren().addAll(lbl);
             lbl.setText(list.get(i).toString());
         }
+        list.clear();
     }
 
     @FXML
@@ -44,11 +47,11 @@ public class HighScore {
     }
 
     @FXML
-    void onLoadClicked(ActionEvent event) throws IOException{
-        all.load("new.txt");
+    void onLoadClicked(ActionEvent event) throws IOException {
+        all.load("All.txt");
         ArrayList<String> list = all.getPlayerList();
         listVbox.getChildren().clear();
-        for(int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             var lbl = new Label();
             listVbox.getChildren().addAll(lbl);
             lbl.setText(list.get(i).toString());
