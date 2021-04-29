@@ -11,18 +11,16 @@
     -fx-text-fill: #318AE0;
 }
 
-.VBox Slider{
-    -fx-font-family: monospace; 
-    -fx-font-size: 40;
-    -fx-text-fill: #318AE0;
-}
-
 .HBox {
     -fx-spacing: 20;
     -fx-alignment: center;
     -fx-font-size: 25;
     -fx-text-fill: #318AE0;
 }
-
+.Button{
+    -fx-font-size: 20 serif; 
+    -fx-background-color: #318AE0; 
+    -fx-text-fill: black;
+}
 
 

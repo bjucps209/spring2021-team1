@@ -75,7 +75,6 @@ public class MainWindow {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("Highscores.fxml"));
         Scene scene = new Scene(root);
-        stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
         
@@ -90,8 +89,4 @@ public class MainWindow {
         stage.show();
     }
 
-    @FXML
-    void onLoadClicked(ActionEvent event) throws IOException {
-        //Under Construction
-    }
 }
