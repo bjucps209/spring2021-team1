@@ -40,7 +40,7 @@ public class Obstacle extends Coordinate implements Savable {
    
     //Writes Obstacle data to data.txt
     public String serialize() {
-        String serial = "Obstacle" + "\n" + String.valueOf(getdoubleX()) + "\n" + String.valueOf(getdoubleX()) + "\n" + "END" + "\n";
+        String serial = "Obstacle" + "\n" + String.valueOf(getdoubleX()) + "\n" + String.valueOf(getdoubleY()) + "\n" + "END" + "\n";
         return serial;
     }
     //Converts the serialization string to usable code
