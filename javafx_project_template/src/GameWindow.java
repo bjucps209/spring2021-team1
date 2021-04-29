@@ -111,7 +111,7 @@ public class GameWindow {
                 }
             }
         }));
-        timelineTwo.setCycleCount(1500);
+        timelineTwo.setCycleCount(Timeline.INDEFINITE);
         timelineTwo.play();
 
         stage.setOnCloseRequest(new EventHandler<WindowEvent>(){
