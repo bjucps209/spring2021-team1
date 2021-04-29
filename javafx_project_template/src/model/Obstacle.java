@@ -7,7 +7,6 @@ package model;
 
 import java.util.Random;
 
-import javafx.geometry.Rectangle2D;
 
 
 public class Obstacle extends Coordinate implements Savable {
@@ -16,34 +15,35 @@ public class Obstacle extends Coordinate implements Savable {
         /**
          * its used when there is roadblock created randomly.=
          */
-
+    //Enum of the roadblock variety 
     RoadBlock object;
+    //Obstacle's id
     int id;
+    //Calculates the Id
+    private static int nextId;
+    //Checks if you have crashed into this obstacle
     boolean crashed;
 
-    private static int nextId;
+    //Obstacle Height
     int obstalceWidth;
-    int obstalceHight;
+    //A random random
     Random rand = new Random();
-
+  //=======================Constructor==========================//
     public Obstacle(RoadBlock rd, int x, int y){
         super(x, y);
         this.object = rd;
         this.id = ++nextId;
         obstalceWidth = 50;
-        obstalceHight = 50;
+        
 
     }
-
-    public RoadBlock getRoadBlock(){
-        return object;
-    }
-
+   
+    //Writes Obstacle data to data.txt
     public String serialize() {
         String serial = "Obstacle" + "\n" + String.valueOf(getdoubleX()) + "\n" + String.valueOf(getdoubleX()) + "\n" + "END" + "\n";
         return serial;
     }
-
+    //Converts the serialization string to usable code
     public void deserialize(String toDeserialize) {
         String[] toParse = toDeserialize.split("\n");
         setX(Double.parseDouble(toParse[0]));
@@ -51,14 +51,14 @@ public class Obstacle extends Coordinate implements Savable {
 
 
     }
-
+//============================Setters/Getters===========================//
+    public RoadBlock getRoadBlock(){
+        return object;
+}
     public int getObstalceWidth() {
         return obstalceWidth;
     }
 
-    public void setObstableHight(int newHight){
-        this.obstalceHight = newHight;
-    }
     public int getId() {
         return id;
     }

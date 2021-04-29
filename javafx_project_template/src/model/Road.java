@@ -16,30 +16,41 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+
 public class Road {
+    //Values inside road blocks
     RoadBlock[] rb = RoadBlock.values();
+    //List of roadblocks without player
     ArrayList<Obstacle> usingRB;
+    //List of y's
     List<Integer> setYList = Arrays.asList(100, 300, 500, 300, 100, 500, 300, 100, 300, 500,100, 300, 500, 300, 100, 500, 300, 100, 300, 500,100, 300, 500, 300, 100, 500, 300, 100, 300, 500);
-    ArrayList<Integer> objectXs = new ArrayList<>();
-    
+    //Checks if the game is over 
     BooleanProperty gameOver = new SimpleBooleanProperty();
+    //Checks if collision detection is on
     BooleanProperty collisionDetection = new SimpleBooleanProperty();
-
+    //A thread
     Thread thread;
+    //Amount of roadblocks
     int amtObj;
-    int distance ;
+    //Distance of the road
+    int distance;
+    //The player
     Player player;
+    //The obstacle
     Obstacle obstacle;
-
+    //Normal speed
     double NORMALSPEED = 2;
+    //Fast speed
     double FASTSPEED = 4;
+    //Check if speed is on
     boolean speed = false;
+    //Check if it crashed or not
     boolean crashed = false;
+    //Number of super jumps
     int numOfSuperJump = 3;
 
 
-    // File to load and save from
-    // static final File filename = new File("/data.json");
+    //List of objects to save
     public ArrayList<Savable> saveList = new ArrayList<Savable>();
 
 //=======================Constructor==========================//
@@ -54,7 +65,6 @@ public class Road {
         createRandomObstacle();
         this.player = new Player(STATE.MOVING, 10,300);
         saveList.add(player);
-        //load();
     }
 
     
@@ -111,7 +121,7 @@ public class Road {
         return numOfSuperJump;
     }
 //=========================Collision Detection===================================//
-
+    //Detects Collision
     public void detectCollision() {
         if(getCollisionDetection() == true){
             System.out.println("ITS WORKING");
@@ -138,7 +148,7 @@ public class Road {
     }
 
 //=========================Anonymous==============================//
-
+    //Creates random obstacle objects
     public void createRandomObstacle() {
         int newX = 300;
         for (int i = 0; i < amtObj; i++) {
@@ -155,7 +165,7 @@ public class Road {
         saveList.add(finsihedLine);
         System.out.println(usingRB.get(10).getdoubleX());
     }
-
+    //Checks lives after collision
     public void collisionDealer(){
         crashed = true;
         if(crashed == true){
@@ -168,7 +178,7 @@ public class Road {
             
         }
     }
-
+//Updates Obstacle X Positions
     public void updateXPositionOfObstable() {
         for (Obstacle i : usingRB) {
             if (speed == false) {
@@ -183,6 +193,7 @@ public class Road {
     }
 
 //========================Lane Action===========================//
+    //Switches lanes to the top lane
     public Thread switchUp() {
         switch ((int) getPlayer().getCoordinate().getdoubleY()) {
         case 500:
@@ -200,7 +211,7 @@ public class Road {
         }
         return thread;
     }
-
+    //Switches lane to the bottom lane
     public Thread switchDown() {
         switch ((int) getPlayer().getCoordinate().getdoubleY()) {
         case 100:
@@ -219,7 +230,7 @@ public class Road {
         }
         return thread;
     }
-
+    //In the air
     public void jumpOverUp(){
         if(getCollisionDetection() == false){
             getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY() - 50);
@@ -227,6 +238,7 @@ public class Road {
         }
 
     }
+    //Falling with gravity
     public void jumpOverdown(){
         if(getCollisionDetection() == false){
             getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 50);
@@ -234,6 +246,7 @@ public class Road {
         }
 
     }
+    //Super jump
     public void superJumpOverUp(){
         if(getCollisionDetection() == false){
             getPlayer().getCoordinate().setY(getPlayer().getCoordinate().getdoubleY() - 50);
@@ -242,6 +255,7 @@ public class Road {
         }
 
     }
+    //Super jump
     public void superJumpOverdown(){
         if(getCollisionDetection() == false){
             getPlayer().getCoordinate().setX(getPlayer().getCoordinate().getdoubleX() + 100);
@@ -251,21 +265,16 @@ public class Road {
 
     }
 
-
+    //Immunity
     public void immunity(boolean tf){
         if(tf == true){
-            setCollisionDetection(true);;
+            setCollisionDetection(true);
         }
     }
 
 
-
-    public void blowUp() {
-
-    }
-
     // ================Serialization=========================//
-
+    //Saves game data to data.txt
     public void save() {
         try (FileWriter fr = new FileWriter("data.txt")) {
             for (Savable obj : saveList) {
@@ -275,7 +284,7 @@ public class Road {
             System.out.println(e);
         }
     }
-
+    //Loads game data from data.txt
     public void load() {
         try(var rd = new BufferedReader(new FileReader("data.txt"))) {
             String line = rd.readLine();

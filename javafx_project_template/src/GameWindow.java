@@ -142,9 +142,6 @@ public class GameWindow {
         case RIGHT:
             road.setSpeedFalse();
             break;
-        case D:
-            road.blowUp();
-            break;
         case A:
             road.immunity(true);
             break;
@@ -203,7 +200,8 @@ public class GameWindow {
 
     }
 
-    // -------------------------------------------------
+    // -------------------------------------------------//
+    //Binds and initializes
     public void bindsAndInitializing(int DL, int LS) {
         road = new Road(DL, LS);
         img.layoutXProperty().bindBidirectional(road.getPlayer().getCoordinate().getX());
@@ -214,7 +212,7 @@ public class GameWindow {
         lblScore.textProperty().bind(road.getPlayer().getPropertyScores().asString());
 
     }
-
+    //Loads the images for roads
     public void loadRoadImages(Pane pane) {
         ImageView imgView = new ImageView();
         imgView.setImage(roadImage);
