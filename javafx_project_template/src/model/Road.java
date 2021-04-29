@@ -163,7 +163,7 @@ public class Road {
         Obstacle finsihedLine = new Obstacle(rb[5], (newX + 300), 0);  
         usingRB.add(finsihedLine);
         saveList.add(finsihedLine);
-        System.out.println(usingRB.get(10).getdoubleX());
+        //System.out.println(usingRB.get(10).getdoubleX());
     }
     //Checks lives after collision
     public void collisionDealer(){

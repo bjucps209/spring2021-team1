@@ -226,7 +226,7 @@ public class LevelBuilder {
             Obstacle obs = null;
             ImageView img = (ImageView) paneRoad.getChildren().get(i);
             Image imgs = img.getImage();
-            System.out.println(img.getLayoutX() + ", " + img.getLayoutY());
+            //System.out.println(img.getLayoutX() + ", " + img.getLayoutY());
             int x = (int)img.getLayoutX();
             int y = (int) img.getLayoutY();
             if( imgs == IMG_CONE){
